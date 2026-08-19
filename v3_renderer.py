@@ -118,6 +118,128 @@ def album_card(row: dict) -> str:
     </article>"""
 
 
+TEXTURE_SIGNALS: dict[str, tuple[str, ...]] = {
+    "abrasive": (
+        "noise", "distort", "harsh", "feedback", "scream", "aggress", "brutal", "fuzz", "grind", "snarl",
+        "riff", "abras", "detuned", "dissonan", "metal", "clang", "sludge", "caustic", "shred",
+    ),
+    "atmospheric": (
+        "reverb", "ambient", "haze", "dream", "gauze", "gauzy", "ethereal", "shimmer", "blur", "cloud",
+        "wash", "narcotic", "gossamer", "drone", "laptop", "glitch", "process", "synth", "abstract",
+        "granular", "electronic", "shoegaze", "smear", "veil", "submerg",
+    ),
+    "cavernous": (
+        "vast", "cathedral", "echo", "sprawl", "epic", "monument", "immense", "expansive", "crescendo",
+        "cavern", "architect", "instrumental", "orchestral", "symphon", "swell", "expanse", "immersi",
+        "post-rock", "post rock",
+    ),
+    "crystalline": (
+        "clean", "bright", "precise", "delicate", "chime", "pristine", "clarity", "glassy", "melod",
+        "gleam", "composition", "classical", "chamber", "arrange", "piano", "string", "formal",
+        "intricate", "filigree",
+    ),
+    "propulsive": (
+        "rhythm", "drive", "motorik", "groove", "pulse", "momentum", "kinetic", "percussi", "drum",
+        "funk", "velocity", "propuls", "math", "angular", "geometr", "polyrhythm", "syncopat",
+        "krautrock", "jazz", "insistent",
+    ),
+    "spare": (
+        "minimal", "quiet", "sparse", "silence", "restraint", "hushed", "austere", "acoustic", "fragile",
+        "still", "empty", "spare", "tape", "lo-fi", "bedroom", "field record", "unadorned", "reduc",
+        "understat", "stark",
+    ),
+}
+
+ENERGY_SIGNALS: tuple[tuple[int, tuple[str, ...]], ...] = (
+    (2, ("brutal", "explos", "punish", "ferocious", "relentless", "violent", "blast", "crush", "obliterat")),
+    (
+        1,
+        (
+            "aggress", "loud", "heavy", "distort", "frantic", "rush", "euphoric", "anthem", "roar",
+            "intens", "scream", "noise", "propuls", "urgent", "surge", "maximal", "dense", "climax",
+            "crescendo", "attack", "kinetic",
+        ),
+    ),
+    (
+        -1,
+        (
+            "gentle", "delicate", "sparse", "subtle", "tender", "drift", "slow", "soft", "patient",
+            "restraint", "sustain", "understat", "unhurried", "spacious", "reflective", "meditative",
+        ),
+    ),
+    (-2, ("quiet", "minimal", "hushed", "silence", "ambient", "still", "austere", "fragile", "glacial", "stasis")),
+)
+
+
+TEXTURE_BASE_ENERGY: dict[str, int] = {
+    "abrasive": 8,
+    "propulsive": 7,
+    "cavernous": 6,
+    "atmospheric": 5,
+    "crystalline": 4,
+    "spare": 3,
+}
+
+
+def infer_texture(text: str) -> str:
+    scores = {
+        texture: sum(1 for signal in signals if signal in text)
+        for texture, signals in TEXTURE_SIGNALS.items()
+    }
+    best = max(scores.values())
+    if not best:
+        return "unclassified"
+    return min(texture for texture, score in scores.items() if score == best)
+
+
+def infer_energy(text: str, texture: str) -> int:
+    score = TEXTURE_BASE_ENERGY.get(texture, 5)
+    for weight, signals in ENERGY_SIGNALS:
+        hits = sum(1 for signal in signals if signal in text)
+        score += weight * min(hits, 2)
+    return max(1, min(10, score))
+
+
+def infer_missing_fields(records: list[dict]) -> int:
+    """Fill absent V3 columns from the essay prose so every guide gets a usable map."""
+    touched = 0
+    for row in records:
+        text = f"{row.get('note', '')} {row.get('listen_for', '')} {row.get('section', '')}".casefold()
+        if not row.get("texture"):
+            row["texture"] = infer_texture(text)
+            touched += 1
+        if not row.get("energy"):
+            row["energy"] = str(infer_energy(text, str(row["texture"])))
+            touched += 1
+        if not row.get("listen_for"):
+            row["listen_for"] = f"How the {row['texture']} surface sits against the rhythm section."
+
+    by_section: dict[str, list[dict]] = {}
+    for row in records:
+        by_section.setdefault(str(row.get("section", "General")), []).append(row)
+
+    for row in records:
+        if row.get("connections"):
+            continue
+        peers = by_section[str(row.get("section", "General"))]
+        position = peers.index(row)
+        links = [peers[(position + 1) % len(peers)]["key"]] if len(peers) > 1 else []
+        cross = next(
+            (
+                other["key"]
+                for other in records
+                if other["texture"] == row["texture"]
+                and other.get("section") != row.get("section")
+                and other["key"] not in links
+            ),
+            "",
+        )
+        if cross:
+            links.append(cross)
+        row["connections"] = "; ".join(dict.fromkeys(link for link in links if link != row["key"]))
+    return touched
+
+
 def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: int) -> str:
     metadata, essay = parse_front_matter(markdown_text)
     sections = extract_sections(essay)
@@ -128,6 +250,7 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
 
     records = [{**row, "key": album_key(row)} for row in catalog]
     record_keys = {row["key"] for row in records}
+    inferred = infer_missing_fields(records)
     for row in records:
         connections = [item.strip() for item in str(row.get("connections", "")).split(";") if item.strip()]
         missing = [item for item in connections if item not in record_keys]
@@ -152,30 +275,51 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
         by_section.setdefault(str(row.get("section", "General")), []).append(row)
 
     textures = sorted({str(row.get("texture", "unclassified")) for row in records})
-    texture_index = {texture: index for index, texture in enumerate(textures)}
-    map_width, map_height = 920, max(330, 100 + len(textures) * 62)
-    buckets: dict[tuple[int, str], int] = {}
-    map_points: list[str] = []
     for row in records:
         energy = int(str(row.get("energy", "5")))
         if not 1 <= energy <= 10:
             raise ValueError(f"Energy must be 1–10: {row['key']}")
+
+    # Row height follows the densest energy column so crowded guides stay legible.
+    bucket_sizes: dict[tuple[str, int], int] = {}
+    for row in records:
+        bucket = (str(row.get("texture", "unclassified")), int(str(row.get("energy", "5"))))
+        bucket_sizes[bucket] = bucket_sizes.get(bucket, 0) + 1
+    row_heights = {
+        texture: max(62, 30 + max((size for (tex, _), size in bucket_sizes.items() if tex == texture), default=1) * 15)
+        for texture in textures
+    }
+    row_tops: dict[str, float] = {}
+    cursor = 50.0
+    for texture in textures:
+        row_tops[texture] = cursor
+        cursor += row_heights[texture]
+
+    map_width, map_height = 920, int(max(330, cursor + 40))
+    buckets: dict[tuple[int, str], int] = {}
+    map_points: list[str] = []
+    for row in records:
+        energy = int(str(row.get("energy", "5")))
         texture = str(row.get("texture", "unclassified"))
         bucket = (energy, texture)
         offset = buckets.get(bucket, 0)
         buckets[bucket] = offset + 1
-        x = 70 + ((energy - 1) / 9) * (map_width - 120) + (offset % 3) * 8
-        y = 65 + texture_index[texture] * 62 + (offset // 3) * 15 + (offset % 3) * 11
+        x = 70 + ((energy - 1) / 9) * (map_width - 120) + (offset % 2) * 9
+        y = row_tops[texture] + 20 + offset * 15
         key_attr = html.escape(row["key"], quote=True)
+        label = (
+            f'<text x="{x + 14:.1f}" y="{y + 4:.1f}">{html.escape(str(row["artist"]))}</text>'
+            if bucket_sizes[(texture, energy)] <= 6
+            else ""
+        )
         map_points.append(
             f'<g class="map-point record-target" data-key="{key_attr}" tabindex="0" role="button" '
             f'aria-label="{key_attr}, energy {energy}, {html.escape(texture, quote=True)}">'
-            f'<circle cx="{x:.1f}" cy="{y}" r="9"></circle><text x="{x + 14:.1f}" y="{y + 4}">'
-            f'{html.escape(str(row["artist"]))}</text></g>'
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="9"></circle>{label}</g>'
         )
     map_labels = "".join(
-        f'<text class="axis-label" x="12" y="{69 + index * 62}">{html.escape(texture)}</text>'
-        for texture, index in texture_index.items()
+        f'<text class="axis-label" x="12" y="{row_tops[texture] + 18:.1f}">{html.escape(texture)}</text>'
+        for texture in textures
     )
 
     graph_width, graph_height = 920, 560
@@ -261,6 +405,13 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
         f'<option value="{html.escape(texture, quote=True)}">{html.escape(texture)}</option>'
         for texture in textures
     )
+    inference_note = (
+        f'<p>Energy and texture were inferred from the essay text for this guide. '
+        f'Add <code>Energy</code>, <code>Texture</code>, <code>Listen for</code> and <code>Connections</code> '
+        f'columns to the source tables to set them deliberately.</p>'
+        if inferred
+        else ""
+    )
 
     css = (ASSETS_DIR / "v3.css").read_text(encoding="utf-8")
     script = (ASSETS_DIR / "v3.js").read_text(encoding="utf-8")
@@ -287,7 +438,7 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
 <h2>Choose a route through the music</h2><p>Each path loads one release at a time into the persistent player.</p></div>
 <div class="route-grid">{route_cards}</div></section>
 <section class="lab" id="energy-map"><div class="lab-head"><span class="eyebrow">Energy / texture atlas</span>
-<h2>Find the pressure you want</h2><p>Records move from lower to higher energy and group by their dominant surface.</p></div>
+<h2>Find the pressure you want</h2><p>Records move from lower to higher energy and group by their dominant surface.</p>{inference_note}</div>
 <div class="feature-nav" aria-label="Map filters"><label>Artist <input id="artist-filter" type="search" placeholder="Filter artist"></label>
 <label>Texture <select id="texture-filter"><option value="">All textures</option>{texture_options}</select></label>
 <label>Minimum energy <input id="energy-filter" type="range" min="1" max="10" value="1"></label>
