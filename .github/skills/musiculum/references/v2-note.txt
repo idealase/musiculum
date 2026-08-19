@@ -1,0 +1,13 @@
+V2 is retained only as a historical design reference. New and regenerated pages use V3.
+
+The V2 renderer was configured through an optional YAML-like block at the top of a source essay:
+
+---
+subtitle: A bespoke hero line
+featured_labels:
+  1987-1990: The origin signal
+era_gradients:
+  1987-1990: "#35105c,#0b1726"
+---
+
+Keys in nested maps correspond to the text before the first colon in a section heading.

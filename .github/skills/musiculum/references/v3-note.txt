@@ -1,0 +1,16 @@
+V3 adds optional table columns: `Listen for`, `Energy` (1-10), `Texture`, and
+semicolon-separated `Connections`. Columns are resolved by their header names.
+
+Front matter supports:
+
+- `routes`: named album sequences separated by `>`
+- `era_locations`: a location or scene for each era key
+- `era_equipment`: characteristic machines or production tools
+- `era_captions`: a short contextual fragment
+
+Generate without new Spotify requests:
+
+python fetch_spotify.py <genre> --reuse-catalog
+
+The V3 output begins with zero iframes. A user action creates one Spotify iframe in the
+persistent listening dock; choosing another release replaces it.

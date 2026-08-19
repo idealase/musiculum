@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Acid Techno: The Machine Learns to Snarl listening guide">
+  <title>Acid Techno: The Machine Learns to Snarl — V2 Listening Guide</title>
+  <style>
+:root{color-scheme:dark;--paper:#09090b;--panel:#121217;--ink:#f1eee8;--muted:#a19ca5;--line:rgba(255,255,255,.12);--acid:#d7ff32;--pink:#f55fb4}
+*{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--paper)}body{margin:0;background:radial-gradient(circle at 80% -10%,#2c143e 0,transparent 35rem),var(--paper);color:var(--ink);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit}.skip-link{position:absolute;z-index:20;left:1rem;top:-4rem;background:var(--acid);color:#111;padding:.55rem .8rem;font-weight:700}.skip-link:focus{top:1rem}.layout{display:grid;grid-template-columns:17rem minmax(0,1fr);min-height:100vh}.rail{position:sticky;top:0;height:100vh;padding:2rem 1.25rem;border-right:1px solid var(--line);background:rgba(9,9,11,.88);backdrop-filter:blur(16px);display:flex;flex-direction:column;gap:2rem}.brand{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acid)}.brand strong{display:block;margin-top:.35rem;font-size:.98rem;letter-spacing:-.02em;text-transform:none;color:var(--ink)}.timeline{list-style:none;margin:0;padding:0;display:grid;gap:.35rem;overflow:auto}.timeline a{display:grid;gap:.12rem;padding:.65rem .7rem;text-decoration:none;border-left:2px solid transparent;color:var(--muted);font-size:.78rem;line-height:1.25}.timeline a:hover,.timeline a.active{border-color:var(--acid);background:rgba(215,255,50,.08);color:var(--ink)}.timeline small{font:700 .65rem/1 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--pink)}.rail-footer{margin-top:auto;font:700 .62rem/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.main{min-width:0}.hero{min-height:min(54rem,100vh);padding:clamp(4rem,9vw,9rem) clamp(1.5rem,7vw,7rem) 4rem;display:grid;align-content:center;gap:2rem;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}.hero::after{content:"303";position:absolute;right:-.06em;bottom:-.28em;color:rgba(255,255,255,.035);font:900 clamp(12rem,32vw,32rem)/.7 ui-sans-serif;pointer-events:none}.hero-copy{position:relative;z-index:1;max-width:50rem}.eyebrow,.feature-kicker{font:700 .68rem/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.13em;text-transform:uppercase;color:var(--acid)}h1,h2,h3,p{margin-top:0}.hero h1{max-width:12ch;margin:.55rem 0 1rem;font-size:clamp(3.2rem,8vw,7.8rem);line-height:.88;letter-spacing:-.07em}.subtitle{max-width:42rem;color:#cbc6ce;font-size:clamp(1rem,2vw,1.3rem)}.hero-summary{display:grid;gap:.2rem;max-width:54rem;color:var(--muted)}.hero-summary p{margin:0}.stats{display:flex;flex-wrap:wrap;gap:.7rem;position:relative;z-index:1}.stat{min-width:8.5rem;padding:.75rem .9rem;border:1px solid var(--line);background:rgba(18,18,23,.66)}.stat strong{display:block;font-size:1.25rem;color:var(--acid)}.stat span{font:700 .61rem/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.guide-controls{position:sticky;z-index:5;top:0;display:flex;flex-wrap:wrap;align-items:end;gap:.75rem;padding:1rem clamp(1.5rem,7vw,7rem);background:rgba(9,9,11,.9);border-bottom:1px solid var(--line);backdrop-filter:blur(15px)}.control{display:grid;gap:.3rem;color:var(--muted);font:700 .62rem/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase}.control input,.control select,.reset{height:2.4rem;border:1px solid var(--line);border-radius:0;background:#17171d;color:var(--ink);padding:0 .7rem;font:inherit;text-transform:none;letter-spacing:normal}.control input{min-width:min(16rem,70vw)}.reset{cursor:pointer}.reset:hover{border-color:var(--acid);color:var(--acid)}.result-count{margin-left:auto;color:var(--muted);font:700 .7rem/1 ui-monospace,SFMono-Regular,Consolas,monospace}.era-band{min-height:14rem;padding:2rem clamp(1.5rem,7vw,7rem);display:flex;align-items:end;gap:1.5rem;background:var(--era-gradient);border-bottom:1px solid var(--line)}.era-number{font:800 clamp(3rem,9vw,8rem)/.75 ui-monospace,SFMono-Regular,Consolas,monospace;color:rgba(255,255,255,.17)}.era-band p{margin:0 0 .35rem;font:700 .72rem/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.15em;color:var(--acid)}.era-band h2{margin:0;max-width:22ch;font-size:clamp(1.5rem,3vw,3.4rem);line-height:.95;letter-spacing:-.05em}.story-section{padding:clamp(3rem,7vw,6.5rem) clamp(1.5rem,7vw,7rem);border-bottom:1px solid var(--line)}.story-intro{max-width:47rem}.story-intro h2{margin:.6rem 0 1.5rem;font-size:clamp(2rem,4vw,4rem);line-height:.95;letter-spacing:-.06em}.story-intro p{color:#c7c1c9}.featured-album{display:grid;grid-template-columns:minmax(10rem,.55fr) minmax(0,1fr);gap:1.1rem;margin:3rem 0;padding:1rem;border:1px solid var(--line);background:linear-gradient(135deg,rgba(215,255,50,.09),rgba(245,95,180,.06))}.feature-copy{display:flex;flex-direction:column;justify-content:center;gap:.25rem;padding:1rem}.feature-copy strong{font-size:1.25rem}.feature-copy span:last-child{color:var(--muted)}iframe{display:block;width:100%;border:0}.listening-heading{display:flex;justify-content:space-between;align-items:center;margin:0 0 1rem;font:700 .7rem/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--acid)}.listening-heading small{color:var(--muted)}.album-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem}.album-card{display:flex;flex-direction:column;min-width:0;padding:1rem;background:var(--panel);border:1px solid var(--line);border-top:2px solid transparent;transition:transform .25s,border-color .25s,opacity .2s}.album-card:hover{transform:translateY(-.25rem);border-top-color:var(--acid)}.card-meta{display:flex;justify-content:space-between;gap:1rem;color:var(--pink);font:700 .64rem/1.3 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.06em;text-transform:uppercase}.card-album{margin:.55rem 0 .4rem;font-size:1.1rem;line-height:1.15}.card-note{min-height:3.9rem;margin:0 0 1rem;color:var(--muted);font-size:.88rem}.spotify-embed{margin-top:auto}.spotify-embed iframe{border-radius:4px}.reveal{opacity:0;transform:translateY(1.5rem);transition:opacity .55s ease,transform .55s ease}.reveal.visible{opacity:1;transform:none}.no-results .featured-album,.no-results .listening-block{display:none}footer{padding:2rem;text-align:center;color:var(--muted);font-size:.72rem}@media(max-width:850px){.layout{grid-template-columns:1fr}.rail{position:sticky;height:auto;z-index:10;padding:.8rem 1rem;display:flex;flex-direction:row;align-items:center;gap:1rem;border-right:0;border-bottom:1px solid var(--line)}.brand{min-width:max-content}.brand strong{display:none}.timeline{display:flex;gap:0;overflow:auto}.timeline a{min-width:8rem;padding:.35rem .5rem}.rail-footer{display:none}.hero{min-height:auto;padding-top:5rem}.featured-album{grid-template-columns:1fr}.feature-copy{padding:.25rem}.guide-controls{top:3.2rem}.result-count{width:100%;margin-left:0}}@media(max-width:520px){.control,.control input,.control select{width:100%}.reset{width:100%}.hero h1{font-size:3.2rem}.era-band{min-height:11rem}.album-grid{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.album-card{transition:none}}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#guide-content">Skip to guide</a>
+  <div class="layout">
+    <aside class="rail" aria-label="Guide sections">
+      <div class="brand">Musiculum <strong>Acid Techno: The Machine Learns to Snarl</strong></div>
+      <nav aria-label="Timeline"><ol class="timeline"><li><a href="#section-1"><span>1987-1990: the acid mutation</span><small>1987–1988</small></a></li><li><a href="#section-2"><span>1991-1994: from rave pressure to techno weapon</span><small>1992–1994</small></a></li><li><a href="#section-3"><span>1995-2000: the free-party circuit</span><small>1996–1998</small></a></li><li><a href="#section-4"><span>2001-2012: the acid diaspora</span><small>2005–2012</small></a></li><li><a href="#section-5"><span>2013-present: acid as a renewable resource</span><small>2015–2021</small></a></li></ol></nav>
+      <div class="rail-footer">24-bit pressure<br>V2 field guide</div>
+    </aside>
+    <main class="main" id="guide-content">
+      <header class="hero" id="hero">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">303 transmissions / selected records</span>
+          <h1>Acid Techno: The Machine Learns to Snarl</h1>
+          <p class="subtitle">A five-era guide to the TB-303&#x27;s journey from Chicago experiment to free-party pressure.</p>
+          <div class="hero-summary"><p><strong>Acid techno is not simply techno with a 303 line.</strong> It is a particular use of the Roland TB-303&#x27;s unstable, resonant voice: a sequence pushed past melody and into physical pressure. Where acid house used the machine for loose, ecstatic hypnosis, acid techno hardened its repetitions with the kick drum, industrial texture, rave velocity, and the sense that a small circuit was being made to misbehave in public.</p>
+<p>The story begins with Chicago&#x27;s acid experiment, travels through European rave culture, and becomes a durable underground language in labels, free parties, and DJs&#x27; record bags. Its defining tension is simple: disciplined grid versus liquid sound. The drums insist on forward motion while the 303 squirms, bites, and escapes its own pattern.</p></div>
+        </div>
+        <div class="stats reveal">
+          <div class="stat"><strong>24</strong><span>selected records</span></div>
+          <div class="stat"><strong>24/24</strong><span>Spotify resolved</span></div>
+          <div class="stat"><strong>5</strong><span>eras mapped</span></div>
+        </div>
+      </header>
+      <div class="guide-controls" aria-label="Filter releases">
+        <label class="control" for="artist-filter">Artist <input id="artist-filter" type="search" placeholder="Filter by artist"></label>
+        <label class="control" for="year-filter">Year <select id="year-filter"><option value="">All years</option><option value="1987">1987</option>
+<option value="1988">1988</option>
+<option value="1992">1992</option>
+<option value="1993">1993</option>
+<option value="1994">1994</option>
+<option value="1996">1996</option>
+<option value="1997">1997</option>
+<option value="1998">1998</option>
+<option value="2005">2005</option>
+<option value="2010">2010</option>
+<option value="2012">2012</option>
+<option value="2015">2015</option>
+<option value="2019">2019</option>
+<option value="2021">2021</option></select></label>
+        <button class="reset" id="reset-filters" type="button">Clear filters</button>
+        <output class="result-count" id="result-count" aria-live="polite"></output>
+      </div>
+      <div class="featured-album reveal">
+    <div class="feature-copy">
+      <span class="feature-kicker">The origin signal</span>
+      <strong>Phuture</strong>
+      <span>Acid Tracks</span>
+    </div>
+    <iframe title="Phuture - Acid Tracks" src="https://open.spotify.com/embed/album/6g7DeZAKsyubcQpyWw7WZZ?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+      <div class="era-band" style="--era-gradient:linear-gradient(120deg,#32105d,#092940)">
+  <div class="era-number">01</div>
+  <div>
+    <p>1987–1988</p>
+    <h2>1987-1990: the acid mutation</h2>
+  </div>
+</div>
+<section class="story-section" id="section-1">
+  <div class="story-intro">
+    <span class="eyebrow">Transmission 01</span>
+    <h2>1987-1990: the acid mutation</h2>
+    <div class="reveal"><p>The 303 was designed as a bass accompaniment machine, but its historical afterlife came from misuse. Chicago producers discovered that its resonance, filter cutoff, accent, and slide controls could make a bassline feel animated: not a stable foundation, but a voice with a nervous system. The records from this period are often called acid house, yet they establish the entire vocabulary acid techno later intensifies.</p></div>
+<div class="reveal"><p>Phuture&#x27;s <strong>Acid Tracks</strong> is the foundational event: a long, sparse, almost skeletal jam in which the changing filter position becomes the drama. A Guy Called Gerald gives that vocabulary a Manchester-scale rush, while 808 State show how machine funk could become both dense and architectural. These records are not all &quot;acid techno&quot; in a narrow genre sense; they are the open laboratory that made it possible.</p></div>
+  </div>
+  <div class="featured-album reveal">
+    <div class="feature-copy">
+      <span class="feature-kicker">The origin signal</span>
+      <strong>Phuture</strong>
+      <span>Acid Tracks</span>
+    </div>
+    <iframe title="Phuture - Acid Tracks" src="https://open.spotify.com/embed/album/6g7DeZAKsyubcQpyWw7WZZ?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+  <div class="listening-block">
+      <div class="listening-heading"><span>Selected releases</span><small>5 records</small></div>
+      <div class="album-grid"><article class="album-card" data-artist="Phuture" data-year="1987">
+      <div class="card-meta"><span>Phuture</span><span>1987</span></div>
+      <h3 class="card-album">Acid Tracks</h3>
+      <p class="card-note">The origin point: a 303 sequence made into the entire plot.</p>
+      <div class="spotify-embed">
+        <iframe title="Phuture - Acid Tracks" src="https://open.spotify.com/embed/album/6g7DeZAKsyubcQpyWw7WZZ?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="A Guy Called Gerald" data-year="1988">
+      <div class="card-meta"><span>A Guy Called Gerald</span><span>1988</span></div>
+      <h3 class="card-album">Hot Lemonade</h3>
+      <p class="card-note">Acid house translated into a euphoric, densely programmed Manchester language.</p>
+      <div class="spotify-embed">
+        <iframe title="A Guy Called Gerald - Hot Lemonade" src="https://open.spotify.com/embed/album/243myHasWAh6Fd4hGpqPli?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="808 State" data-year="1988">
+      <div class="card-meta"><span>808 State</span><span>1988</span></div>
+      <h3 class="card-album">Newbuild</h3>
+      <p class="card-note">Early UK machine music where acid, electro, and industrial rhythm interlock.</p>
+      <div class="spotify-embed">
+        <iframe title="808 State - Newbuild" src="https://open.spotify.com/embed/album/0mwlWFUpsVDeDw5kkUlDzV?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Pierre&#x27;s Fantasy Club" data-year="1988">
+      <div class="card-meta"><span>Pierre&#x27;s Fantasy Club</span><span>1988</span></div>
+      <h3 class="card-album">Fantasy Girl</h3>
+      <p class="card-note">Pierre&#x27;s elastic 303 writing makes the machine feel playful and bodily.</p>
+      <div class="spotify-embed">
+        <iframe title="Pierre&#x27;s Fantasy Club - Fantasy Girl" src="https://open.spotify.com/embed/album/5OAK0SGieqJ1jwW6vrVHjK?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Tyree" data-year="1988">
+      <div class="card-meta"><span>Tyree</span><span>1988</span></div>
+      <h3 class="card-album">Acid Crash</h3>
+      <p class="card-note">A sharp Chicago document of acid as a full-floor physical event.</p>
+      <div class="spotify-embed">
+        <iframe title="Tyree - Acid Crash" src="https://open.spotify.com/embed/album/6vN56bokUiEQ5Sot6D8Uxn?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article></div>
+    </div>
+</section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#521234,#27170b)">
+  <div class="era-number">02</div>
+  <div>
+    <p>1992–1994</p>
+    <h2>1991-1994: from rave pressure to techno weapon</h2>
+  </div>
+</div>
+<section class="story-section" id="section-2">
+  <div class="story-intro">
+    <span class="eyebrow">Transmission 02</span>
+    <h2>1991-1994: from rave pressure to techno weapon</h2>
+    <div class="reveal"><p>As rave culture expanded across Europe, the acid line was pulled into a tougher rhythmic frame. The tempo rose, the kicks gained weight, and the 303 ceased to be merely a psychedelic color. It became a source of abrasion. Belgian, German, Dutch, and UK producers treated it as a machine that could cut through a huge sound system without losing its unruly character.</p></div>
+<div class="reveal"><p>Hardfloor are central here because they make the 303 sound orchestral without smoothing it out. Their patterns multiply, answer each other, and build pressure like a room filling with steam. Joey Beltram, Speedy J, Emmanuel Top, and Dave Clarke connect acid&#x27;s writhing surface to the blunt force of early-1990s techno. This is the hinge where the style becomes less a branch of house than a tool for industrial-scale momentum.</p></div>
+  </div>
+  <div class="featured-album reveal">
+    <div class="feature-copy">
+      <span class="feature-kicker">Rave pressure</span>
+      <strong>Hardfloor</strong>
+      <span>TB Resuscitation</span>
+    </div>
+    <iframe title="Hardfloor - TB Resuscitation" src="https://open.spotify.com/embed/album/2ucG4BEW3uOUQgjdJ9c5GN?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+  <div class="listening-block">
+      <div class="listening-heading"><span>Selected releases</span><small>6 records</small></div>
+      <div class="album-grid"><article class="album-card" data-artist="Hardfloor" data-year="1993">
+      <div class="card-meta"><span>Hardfloor</span><span>1993</span></div>
+      <h3 class="card-album">TB Resuscitation</h3>
+      <p class="card-note">The definitive lesson in layered 303 arrangement and escalating tension.</p>
+      <div class="spotify-embed">
+        <iframe title="Hardfloor - TB Resuscitation" src="https://open.spotify.com/embed/album/2ucG4BEW3uOUQgjdJ9c5GN?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Joey Beltram" data-year="1992">
+      <div class="card-meta"><span>Joey Beltram</span><span>1992</span></div>
+      <h3 class="card-album">Beltram</h3>
+      <p class="card-note">Belgian techno severity with rave-scale low-end impact.</p>
+      <div class="spotify-embed">
+        <iframe title="Joey Beltram - Beltram" src="https://open.spotify.com/embed/album/2ihYd2Yo6pgzYNu0PcRLoW?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Emmanuel Top" data-year="1992">
+      <div class="card-meta"><span>Emmanuel Top</span><span>1992</span></div>
+      <h3 class="card-album">Asteroid</h3>
+      <p class="card-note">A rolling, psychedelic European acid classic built for perpetual motion.</p>
+      <div class="spotify-embed">
+        <iframe title="Emmanuel Top - Asteroid" src="https://open.spotify.com/embed/album/5Llw97kFDL7e8wl9TSM5a3?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Speedy J" data-year="1993">
+      <div class="card-meta"><span>Speedy J</span><span>1993</span></div>
+      <h3 class="card-album">G-Spot</h3>
+      <p class="card-note">Sleek Dutch machine funk at the boundary of acid, techno, and electro.</p>
+      <div class="spotify-embed">
+        <iframe title="Speedy J - G-Spot" src="https://open.spotify.com/embed/album/3lVgqjQTZppEIGMNhnsziw?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Dave Clarke" data-year="1994">
+      <div class="card-meta"><span>Dave Clarke</span><span>1994</span></div>
+      <h3 class="card-album">Archive One</h3>
+      <p class="card-note">Hard, precise techno whose acid flashes arrive like sparks from machinery.</p>
+      <div class="spotify-embed">
+        <iframe title="Dave Clarke - Archive One" src="https://open.spotify.com/embed/album/28hk5zc37dtBb62DY1gM9B?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="The Advent" data-year="1994">
+      <div class="card-meta"><span>The Advent</span><span>1994</span></div>
+      <h3 class="card-album">Elements of Life</h3>
+      <p class="card-note">A dense, muscular blueprint for the UK&#x27;s tougher techno continuum.</p>
+      <div class="spotify-embed">
+        <iframe title="The Advent - Elements of Life" src="https://open.spotify.com/embed/album/1T74vkbfwQChyLsH8dQbEc?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article></div>
+    </div>
+</section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#073e3c,#171335)">
+  <div class="era-number">03</div>
+  <div>
+    <p>1996–1998</p>
+    <h2>1995-2000: the free-party circuit</h2>
+  </div>
+</div>
+<section class="story-section" id="section-3">
+  <div class="story-intro">
+    <span class="eyebrow">Transmission 03</span>
+    <h2>1995-2000: the free-party circuit</h2>
+    <div class="reveal"><p>By the mid-1990s, acid techno became inseparable from a network of labels, warehouses, squats, and free parties, especially in the UK. The sound&#x27;s speed and aggression were not merely stylistic decisions: they made sense in long sets, improvised spaces, and crowds seeking a harder alternative to commercial rave culture. Records became modular tools, designed to be mixed for hours rather than received as self-contained songs.</p></div>
+<div class="reveal"><p>The crucial names are a wider ecosystem than any one canon. Stay Up Forever&#x27;s orbit, Chris Liberator and D.A.V.E. The Drummer&#x27;s DJ-centered productions, and the more austere work of Surgeon, Regis, and Luke Slater all demonstrate different answers to the same problem: how can repetition remain confrontational? Some records use the 303 as an obvious lead; others bury its corrosion inside a broader industrial design.</p></div>
+  </div>
+  <div class="featured-album reveal">
+    <div class="feature-copy">
+      <span class="feature-kicker">Free-party weapon</span>
+      <strong>Surgeon</strong>
+      <span>Basictonalvocabulary</span>
+    </div>
+    <iframe title="Surgeon - Basictonalvocabulary" src="https://open.spotify.com/embed/album/17Tz1co5AEuvo9HS0FNlOG?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+  <div class="listening-block">
+      <div class="listening-heading"><span>Selected releases</span><small>5 records</small></div>
+      <div class="album-grid"><article class="album-card" data-artist="Surgeon" data-year="1997">
+      <div class="card-meta"><span>Surgeon</span><span>1997</span></div>
+      <h3 class="card-album">Basictonalvocabulary</h3>
+      <p class="card-note">Birmingham pressure reduced to punishing, highly controlled components.</p>
+      <div class="spotify-embed">
+        <iframe title="Surgeon - Basictonalvocabulary" src="https://open.spotify.com/embed/album/17Tz1co5AEuvo9HS0FNlOG?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Regis" data-year="1996">
+      <div class="card-meta"><span>Regis</span><span>1996</span></div>
+      <h3 class="card-album">Gymnastics</h3>
+      <p class="card-note">Cold, disciplined industrial techno that clarifies acid techno&#x27;s darker edge.</p>
+      <div class="spotify-embed">
+        <iframe title="Regis - Gymnastics" src="https://open.spotify.com/embed/album/26qFq6Nhk9qLkqYSQdXrR9?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Luke Slater" data-year="1997">
+      <div class="card-meta"><span>Luke Slater</span><span>1997</span></div>
+      <h3 class="card-album">Freek Funk</h3>
+      <p class="card-note">A restless, high-definition survey of techno&#x27;s late-1990s possibilities.</p>
+      <div class="spotify-embed">
+        <iframe title="Luke Slater - Freek Funk" src="https://open.spotify.com/embed/album/28Krq111RJfvXWUHejlceu?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Chris Liberator" data-year="1998">
+      <div class="card-meta"><span>Chris Liberator</span><span>1998</span></div>
+      <h3 class="card-album">Acid Techno</h3>
+      <p class="card-note">A direct document of the UK free-party sound&#x27;s uncompromising energy.</p>
+      <div class="spotify-embed">
+        <iframe title="Chris Liberator - Acid Techno" src="https://open.spotify.com/embed/album/7c6uJZlXZychrdUIbEcIlr?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="D.A.V.E. The Drummer" data-year="1998">
+      <div class="card-meta"><span>D.A.V.E. The Drummer</span><span>1998</span></div>
+      <h3 class="card-album">Hydraulix 1</h3>
+      <p class="card-note">Stripped, forceful 303 techno designed as a functional DJ weapon.</p>
+      <div class="spotify-embed">
+        <iframe title="D.A.V.E. The Drummer - Hydraulix 1" src="https://open.spotify.com/embed/album/2AVsJmsxLfow1BeICxOvGT?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article></div>
+    </div>
+</section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#4a1a13,#30082f)">
+  <div class="era-number">04</div>
+  <div>
+    <p>2005–2012</p>
+    <h2>2001-2012: the acid diaspora</h2>
+  </div>
+</div>
+<section class="story-section" id="section-4">
+  <div class="story-intro">
+    <span class="eyebrow">Transmission 04</span>
+    <h2>2001-2012: the acid diaspora</h2>
+    <div class="reveal"><p>Acid techno never disappeared; it dispersed. In the 2000s, producers could treat the 303 either as a heritage object or as a still-unknown instrument. The most compelling work chooses the second path. Ceephax Acid Crew brings a deliberately playful, hardware-loving sensibility, while DMX Krew restores electro&#x27;s melodic bounce. Tin Man slows the motion down and makes the acid line emotionally exposed, proving that the machine&#x27;s intensity does not require brute speed.</p></div>
+<div class="reveal"><p>This period matters because it expands what counts as an acid record. The core gestures remain intact -- resonance, slide, repetition, unstable timbre -- but the emotional register widens from euphoria and menace to wistfulness, humor, and solitude. Acid becomes a portable grammar for bedroom studios as well as packed basements.</p></div>
+  </div>
+  <div class="featured-album reveal">
+    <div class="feature-copy">
+      <span class="feature-kicker">Acid in diaspora</span>
+      <strong>Ceephax Acid Crew</strong>
+      <span>United Acid Emirates</span>
+    </div>
+    <iframe title="Ceephax Acid Crew - United Acid Emirates" src="https://open.spotify.com/embed/album/6mANZenVe14ONb3NDd4EDb?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+  <div class="listening-block">
+      <div class="listening-heading"><span>Selected releases</span><small>4 records</small></div>
+      <div class="album-grid"><article class="album-card" data-artist="Ceephax Acid Crew" data-year="2005">
+      <div class="card-meta"><span>Ceephax Acid Crew</span><span>2005</span></div>
+      <h3 class="card-album">United Acid Emirates</h3>
+      <p class="card-note">Bright, maximal hardware acid that treats rave history as living material.</p>
+      <div class="spotify-embed">
+        <iframe title="Ceephax Acid Crew - United Acid Emirates" src="https://open.spotify.com/embed/album/6mANZenVe14ONb3NDd4EDb?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="DMX Krew" data-year="2005">
+      <div class="card-meta"><span>DMX Krew</span><span>2005</span></div>
+      <h3 class="card-album">The Collapse of the Wave Function</h3>
+      <p class="card-note">Electro detail and acid color balanced with unusually strong melodic instinct.</p>
+      <div class="spotify-embed">
+        <iframe title="DMX Krew - The Collapse of the Wave Function" src="https://open.spotify.com/embed/album/62l3f8u6j9eyDhuxsZA2iH?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Tin Man" data-year="2010">
+      <div class="card-meta"><span>Tin Man</span><span>2010</span></div>
+      <h3 class="card-album">Acid Acid</h3>
+      <p class="card-note">Minimal, intimate, and hypnotic: acid as atmosphere rather than attack.</p>
+      <div class="spotify-embed">
+        <iframe title="Tin Man - Acid Acid" src="https://open.spotify.com/embed/album/3OBOz2z7dYA7ns38Vt9yPJ?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Donato Dozzy" data-year="2012">
+      <div class="card-meta"><span>Donato Dozzy</span><span>2012</span></div>
+      <h3 class="card-album">K</h3>
+      <p class="card-note">A patient, psychedelic techno language that lets acid dissolve into texture.</p>
+      <div class="spotify-embed">
+        <iframe title="Donato Dozzy - K" src="https://open.spotify.com/embed/album/22jowoaOweuYui1WgFZvvB?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article></div>
+    </div>
+</section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#253e0c,#1c0b2f)">
+  <div class="era-number">05</div>
+  <div>
+    <p>2015–2021</p>
+    <h2>2013-present: acid as a renewable resource</h2>
+  </div>
+</div>
+<section class="story-section" id="section-5">
+  <div class="story-intro">
+    <span class="eyebrow">Transmission 05</span>
+    <h2>2013-present: acid as a renewable resource</h2>
+    <div class="reveal"><p>Contemporary acid techno operates with full awareness of its archive. The 303 is now an icon, but the best producers avoid nostalgia by making it strange again: distorted past recognition, surrounded by new rhythmic contexts, or made deliberately vulnerable. Artists such as Helena Hauff and I Hate Models show how acid can still feel dangerous on modern systems, while Tin Man&#x27;s influence continues in more spacious and introspective work.</p></div>
+<div class="reveal"><p>The genre&#x27;s durability comes from the contradiction at its center. A 303 pattern is rigidly programmed, yet it never quite behaves. Every filter movement implies a body at the controls; every slide turns calculation into smear. Acid techno survives because it stages that argument again and again, with the volume high enough that the distinction between machine and feeling stops mattering.</p></div>
+  </div>
+  <div class="featured-album reveal">
+    <div class="feature-copy">
+      <span class="feature-kicker">Renewed voltage</span>
+      <strong>Helena Hauff</strong>
+      <span>Discreet Desires</span>
+    </div>
+    <iframe title="Helena Hauff - Discreet Desires" src="https://open.spotify.com/embed/album/0bQyK8wR0FFKE0rJyQH9pQ?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+  <div class="listening-block">
+      <div class="listening-heading"><span>Selected releases</span><small>4 records</small></div>
+      <div class="album-grid"><article class="album-card" data-artist="Helena Hauff" data-year="2015">
+      <div class="card-meta"><span>Helena Hauff</span><span>2015</span></div>
+      <h3 class="card-album">Discreet Desires</h3>
+      <p class="card-note">Raw electro-techno pressure with acid&#x27;s damaged, tactile edge.</p>
+      <div class="spotify-embed">
+        <iframe title="Helena Hauff - Discreet Desires" src="https://open.spotify.com/embed/album/0bQyK8wR0FFKE0rJyQH9pQ?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="I Hate Models" data-year="2019">
+      <div class="card-meta"><span>I Hate Models</span><span>2019</span></div>
+      <h3 class="card-album">L&#x27;Age Des Metamorphoses</h3>
+      <p class="card-note">Melodramatic, high-impact contemporary rave music that makes acid feel huge again.</p>
+      <div class="spotify-embed">
+        <iframe title="I Hate Models - L&#x27;Age Des Metamorphoses" src="https://open.spotify.com/embed/album/2xMcZIMctPWT1jAfWL1toR?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Randomer" data-year="2015">
+      <div class="card-meta"><span>Randomer</span><span>2015</span></div>
+      <h3 class="card-album">Feelings</h3>
+      <p class="card-note">Distorted, percussive techno where acidic tension lives inside the sound design.</p>
+      <div class="spotify-embed">
+        <iframe title="Randomer - Feelings" src="https://open.spotify.com/embed/album/2hD1Rlt6mTM54dluKQFgg5?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article>
+<article class="album-card" data-artist="Ki/Ki" data-year="2021">
+      <div class="card-meta"><span>Ki/Ki</span><span>2021</span></div>
+      <h3 class="card-album">5 Mins Of Acid</h3>
+      <p class="card-note">A contemporary rave-facing statement that foregrounds the 303&#x27;s ecstatic pull.</p>
+      <div class="spotify-embed">
+        <iframe title="Ki/Ki - 5 Mins Of Acid" src="https://open.spotify.com/embed/album/7kPaOFIJ0jqmVtMJBKJpRY?utm_source=generator&theme=0"
+                height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+      </div>
+    </article></div>
+    </div>
+</section>
+      <footer>Built with Musiculum · V2 listening-guide interface</footer>
+    </main>
+  </div>
+  <script>
+(() => {
+  const cards = [...document.querySelectorAll('.album-card')];
+  const artistInput = document.querySelector('#artist-filter');
+  const yearSelect = document.querySelector('#year-filter');
+  const count = document.querySelector('#result-count');
+  const reset = document.querySelector('#reset-filters');
+  const update = () => {
+    const artist = artistInput.value.trim().toLocaleLowerCase();
+    const year = yearSelect.value;
+    let visible = 0;
+    cards.forEach(card => {
+      const matches = (!artist || card.dataset.artist.toLocaleLowerCase().includes(artist))
+        && (!year || card.dataset.year === year);
+      card.hidden = !matches;
+      if (matches) visible += 1;
+    });
+    document.querySelectorAll('.story-section').forEach(section => {
+      const sectionCards = [...section.querySelectorAll('.album-card')];
+      section.classList.toggle('no-results', sectionCards.length > 0 && sectionCards.every(card => card.hidden));
+    });
+    count.textContent = `${visible} of ${cards.length} releases`;
+  };
+  artistInput.addEventListener('input', update);
+  yearSelect.addEventListener('change', update);
+  reset.addEventListener('click', () => { artistInput.value = ''; yearSelect.value = ''; update(); artistInput.focus(); });
+  update();
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+  }
+
+  const links = [...document.querySelectorAll('.timeline a')];
+  const sections = [...document.querySelectorAll('.story-section')];
+  const active = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+  }), { rootMargin: '-35% 0px -55% 0px' });
+  sections.forEach(section => active.observe(section));
+})();
+</script>
+</body>
+</html>

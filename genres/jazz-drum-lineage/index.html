@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In the Pocket: The Drum Lineage from Bernard Purdie to BadBadNotGood</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:17px}
+body{font-family:'Georgia','Times New Roman',serif;background:#0a0a0c;color:#d4cfc6;line-height:1.75;overflow-x:hidden}
+::selection{background:#c0392b;color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#111}
+::-webkit-scrollbar-thumb{background:#3a2020;border-radius:3px}
+h1,h2,h3{font-family:'Helvetica Neue','Arial',sans-serif;font-weight:700;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.1;color:#f0ebe3}
+h2{font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.2;color:#e8c8a0;margin-bottom:1rem}
+h3{font-size:.85rem;color:#c9a96e;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em}
+p{margin-bottom:1.3rem;max-width:68ch}
+strong{color:#e8c8a0}
+em{color:#bfab8a;font-style:italic}
+a{color:#c0785a;text-decoration:none;border-bottom:1px solid rgba(192,120,90,.3);transition:border-color .3s}
+a:hover{border-color:#c0785a}
+.page-wrapper{display:flex;min-height:100vh}
+.sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:linear-gradient(180deg,#0d0d10,#12111a);border-right:1px solid #1e1b28;padding:2rem 1rem;display:flex;flex-direction:column;justify-content:center;z-index:100;overflow-y:auto}
+.sidebar-title{font-family:'Helvetica Neue','Arial',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.2em;color:#5a5262;margin-bottom:1.5rem;padding-left:.5rem}
+.timeline{list-style:none;position:relative;padding-left:1.2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:#1e1b28}
+.timeline li{position:relative;margin-bottom:1.2rem}
+.timeline li::before{content:'';position:absolute;left:-1.2rem;top:.45rem;width:8px;height:8px;border-radius:50%;background:#2a2535;border:2px solid #3a3345;transition:all .4s ease}
+.timeline li.active::before{background:#c0785a;border-color:#e8a87c;box-shadow:0 0 12px rgba(192,120,90,.5)}
+.timeline a{font-family:'Helvetica Neue','Arial',sans-serif;font-size:.75rem;color:#5a5262;text-decoration:none;border:none;display:block;padding:.15rem 0;transition:color .3s;line-height:1.3}
+.timeline li.active a{color:#e8c8a0}
+.timeline a:hover{color:#c0785a}
+.timeline .era-year{display:block;font-size:.6rem;color:#3a3345;margin-top:.1rem;font-family:monospace}
+.timeline li.active .era-year{color:#7a6858}
+.main-content{margin-left:220px;flex:1;min-height:100vh}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 2rem;background:radial-gradient(ellipse at 50% 80%,rgba(100,30,20,.15) 0%,transparent 60%),radial-gradient(ellipse at 20% 20%,rgba(40,20,60,.2) 0%,transparent 50%),#0a0a0c;position:relative}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(transparent,#0a0a0c)}
+.hero h1{margin-bottom:1rem}
+.hero .subtitle{font-size:clamp(.95rem,2vw,1.15rem);color:#7a7268;max-width:55ch;line-height:1.6;font-style:italic}
+.hero .scroll-hint{margin-top:3rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.25em;color:#3a3535;animation:pulse-down 2s infinite}
+@keyframes pulse-down{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:.8;transform:translateY(6px)}}
+.section{padding:6rem 3rem 4rem;max-width:900px;margin:0 auto;position:relative}
+.section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:1px;background:linear-gradient(90deg,transparent,#3a2020,transparent)}
+.section-number{font-family:monospace;font-size:.7rem;color:#3a2020;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;display:block}
+.album-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;margin:2.5rem 0 3rem}
+.album-card{background:linear-gradient(135deg,#13121a,#0f0e15);border:1px solid #1e1b28;border-radius:8px;padding:1.2rem;transition:transform .4s ease,border-color .4s ease,box-shadow .4s ease;position:relative;overflow:hidden}
+.album-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#c0785a,transparent);opacity:0;transition:opacity .4s}
+.album-card:hover{transform:translateY(-4px);border-color:#2a2535;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.album-card:hover::before{opacity:1}
+.album-card .card-artist{font-family:'Helvetica Neue','Arial',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#7a6858;margin-bottom:.2rem}
+.album-card .card-album{font-size:1.05rem;color:#e8c8a0;font-weight:600;margin-bottom:.15rem;font-family:'Helvetica Neue','Arial',sans-serif}
+.album-card .card-year{font-family:monospace;font-size:.7rem;color:#3a3345;margin-bottom:.6rem}
+.album-card .card-note{font-size:.82rem;color:#8a8278;line-height:1.5;margin-bottom:.8rem}
+.album-card .spotify-embed{border-radius:6px;overflow:hidden;margin-top:.5rem}
+.album-card .spotify-embed iframe{border:0;width:100%;border-radius:6px}
+.featured-album{margin:2rem 0 2.5rem;padding:1.5rem;background:linear-gradient(135deg,rgba(100,30,20,.08),rgba(20,18,30,.4));border:1px solid #2a1f2f;border-radius:10px}
+.featured-album .feat-label{font-family:'Helvetica Neue','Arial',sans-serif;font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:#5a4a3a;margin-bottom:.8rem}
+.featured-album iframe{border:0;width:100%;border-radius:8px}
+.era-divider{height:40vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.era-divider .era-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.2) saturate(.4);transform:scale(1.1);transition:transform 1s ease}
+.era-divider:hover .era-bg{transform:scale(1.15)}
+.era-divider .era-label{position:relative;z-index:1;font-family:'Helvetica Neue','Arial',sans-serif;font-size:clamp(1.2rem,3vw,2rem);font-weight:700;color:#f0ebe3;text-transform:uppercase;letter-spacing:.15em;text-shadow:0 2px 20px rgba(0,0,0,.8)}
+.era-divider .era-years{position:relative;z-index:1;font-family:monospace;font-size:.75rem;color:#7a6858;margin-top:.5rem;letter-spacing:.2em}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.from-left{transform:translateX(-40px)}
+.reveal.from-right{transform:translateX(40px)}
+.reveal.scale-in{transform:scale(.92);transform-origin:center}
+.reveal.visible{opacity:1;transform:translateY(0) translateX(0) scale(1)}
+.stagger .album-card{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.stagger.visible .album-card{opacity:1;transform:translateY(0)}
+.stagger.visible .album-card:nth-child(1){transition-delay:.05s}
+.stagger.visible .album-card:nth-child(2){transition-delay:.1s}
+.stagger.visible .album-card:nth-child(3){transition-delay:.15s}
+.stagger.visible .album-card:nth-child(4){transition-delay:.2s}
+.stagger.visible .album-card:nth-child(5){transition-delay:.25s}
+.stagger.visible .album-card:nth-child(6){transition-delay:.3s}
+.stagger.visible .album-card:nth-child(7){transition-delay:.35s}
+.stagger.visible .album-card:nth-child(8){transition-delay:.4s}
+.stagger.visible .album-card:nth-child(9){transition-delay:.45s}
+.stagger.visible .album-card:nth-child(10){transition-delay:.5s}
+.stagger.visible .album-card:nth-child(n+11){transition-delay:.55s}
+@media(max-width:768px){.sidebar{display:none}.main-content{margin-left:0}.section{padding:4rem 1.5rem 3rem}.album-grid{grid-template-columns:1fr}}
+@media(min-width:769px) and (max-width:1024px){.sidebar{width:180px}.main-content{margin-left:180px}}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<nav class="sidebar">
+  <div class="sidebar-title">In the Pocket: The Drum Lineage from Bernard Purdie to BadBadNotGood</div>
+  <ul class="timeline">
+    <li data-section="hero"><a href="#hero">Introduction<span class="era-year">Overview</span></a></li>
+    <li data-section="section-1"><a href="#section-1">Executive summary<span class="era-year"></span></a></li>
+    <li data-section="section-2"><a href="#section-2">1969-1976: the drummer becomes the author<span class="era-year">1972–1976</span></a></li>
+    <li data-section="section-3"><a href="#section-3">1974-1981: the shuffle enters the studio<span class="era-year">1974–1980</span></a></li>
+    <li data-section="section-4"><a href="#section-4">1988-1996: the break becomes a language<span class="era-year">1988–1995</span></a></li>
+    <li data-section="section-5"><a href="#section-5">1997-2006: the producer sits behind the kit<span class="era-year">1998–2006</span></a></li>
+    <li data-section="section-6"><a href="#section-6">2006-2015: the Dilla feel goes live<span class="era-year">2006–2015</span></a></li>
+    <li data-section="section-7"><a href="#section-7">2016-present: the drummer leads the band<span class="era-year">2016–2023</span></a></li>
+    <li data-section="section-8"><a href="#section-8">Listening routes<span class="era-year"></span></a></li>
+  </ul>
+</nav>
+
+<main class="main-content">
+
+<header class="hero" id="hero">
+  <h1 class="reveal">In the Pocket: The Drum Lineage from Bernard Purdie to BadBadNotGood</h1>
+  <p class="subtitle reveal" style="transition-delay:.2s">A Listening Guide &middot; 63/63 albums on Spotify</p>
+  <div class="scroll-hint reveal" style="transition-delay:.6s">&darr; Scroll to begin</div>
+</header>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0a1015,#15100a)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Executive summary</div>
+    <div class="era-years reveal" style="transition-delay:.2s"></div>
+  </div>
+</div>
+
+<section class="section" id="section-1">
+  <span class="section-number reveal">Section 01</span>
+  <h2 class="reveal">Executive summary</h2>
+
+  <div class="reveal"><p>There is a family of music that has no settled genre name and does not need one. It is usually filed as jazz-funk, jazz rap, acid jazz, broken beat, nu jazz, or simply &quot;the London scene&quot;, but those labels describe marketing categories rather than the thing itself. The thing itself is a <em>drumming tradition</em> — a fifty-year argument about where the beat sits, who is allowed to bend it, and how much imperfection a groove can hold before it stops being a groove.</p></div>
+  <div class="reveal"><p>The argument starts in the late 1960s, when a handful of American session drummers stopped functioning as timekeepers and started functioning as authors. Bernard Purdie, Clyde Stubblefield, Idris Muhammad, Zigaboo Modeliste, and Harvey Mason built parts that were not accompaniment but composition: ghost notes on the snare, hi-hat patterns with their own internal melody, a bass drum that answered the bass guitar rather than doubling it. In Lagos, Tony Allen was doing something parallel and arguably more radical, distributing a single pulse across four limbs so evenly that Fela Kuti&#x27;s Afrobeat could run for twenty minutes without ever resolving. Fela&#x27;s own summary is the shortest history of the style available: no Tony Allen, no Afrobeat.</p></div>
+  <div class="reveal"><p>The second act is the studio. Steely Dan hired those same players and treated the groove as a manufacturable object, cutting take after take until Purdie&#x27;s half-time shuffle on <em>Aja</em> and <em>Gaucho</em> and Steve Gadd&#x27;s dissolving solo on &quot;Aja&quot; sounded simultaneously loose and machined. That paradox — human feel captured with obsessive precision — is the sound a generation of producers would later go looking for in second-hand record shops.</p></div>
+  <div class="reveal"><p>The third act is the theft, and it is the most productive theft in modern music. Hip-hop producers bought those records for the four bars where the band dropped out, and in doing so turned a drummer&#x27;s performance into a reusable grammar. A Tribe Called Quest, Pete Rock, Gang Starr, and Digable Planets built an entire aesthetic from upright bass and jazz-funk breaks; the loop preserved the swing of a 1973 drum take and put it in circulation forever.</p></div>
+  <div class="reveal"><p>The fourth act closes the circle. J Dilla programmed drums without quantisation, letting the snare land fractionally late in a way no machine would choose and no trained drummer had been permitted; Questlove and Chris Dave then learned to play that error deliberately. Once that skill existed, a live band could sound like a sampler, and the loop went back into human hands. Everything that follows — BadBadNotGood, Makaya McCraven, Yussef Dayes, Moses Boyd, Ezra Collective, Kokoroko — belongs to that reversal. The drummer, who spent the 1970s uncredited on the back of someone else&#x27;s sleeve, ends up with their name on the front.</p></div>
+  <div class="reveal"><p>This guide is organised as six eras. It is not a jazz canon and it is not a hip-hop canon. It is a listening path through the records where the drums are the reason the record exists.</p></div>
+
+  
+
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#100a08,#08101a)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">1969-1976: the drummer becomes the author</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1972–1976</div>
+  </div>
+</div>
+
+<section class="section" id="section-2">
+  <span class="section-number reveal">Section 02</span>
+  <h2 class="reveal">1969-1976: the drummer becomes the author</h2>
+
+  <div class="reveal"><p>Listen to almost any funk or soul-jazz record cut in New York between 1969 and 1974 and you are probably listening to a very small number of people. Bernard &quot;Pretty&quot; Purdie was on thousands of sessions, most famously as Aretha Franklin&#x27;s musical director, and he brought a specific innovation: a half-time shuffle carried by triplet ghost notes so quiet they read as texture rather than notes. The pattern would be named after him, and it remains one of the few drum parts widely known by its inventor&#x27;s name rather than the song it appears on.</p></div>
+  <div class="reveal"><p>He was not alone. Clyde Stubblefield&#x27;s break on James Brown&#x27;s &quot;Funky Drummer&quot; — a solo bar the band leaves him alone with — became one of the most sampled recordings ever made, and the second half of this guide is essentially the story of what happened to it. Idris Muhammad brought New Orleans second-line displacement into Blue Note and CTI sessions. Zigaboo Modeliste built the Meters&#x27; entire language out of syncopation and negative space. Harvey Mason gave <em>Head Hunters</em> and <em>Black Byrd</em> a rigid, danceable clarity that jazz purists distrusted and every subsequent producer loved.</p></div>
+  <div class="reveal"><p>Two other things happen in this window that matter enormously later. In Lagos, Tony Allen abandons the idea that any single limb carries the beat, producing a pulse that is felt collectively rather than counted — Afrobeat&#x27;s real engine. And in New York, Miles Davis dispenses with song form entirely on <em>On the Corner</em>, treating the rhythm section as a bed of loops years before samplers made loops literal.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/3fY5FgzZmkm1vAIY5Qbb1Q?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Bernard Purdie</div>
+      <div class="card-album">Soul Is... Pretty Purdie</div>
+      <div class="card-year">1972</div>
+      <div class="card-note">The session player steps out front. Purdie&#x27;s own record is the clearest statement of a drummer treating groove as authorship rather than service.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3fY5FgzZmkm1vAIY5Qbb1Q?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Aretha Franklin</div>
+      <div class="card-album">Young, Gifted and Black</div>
+      <div class="card-year">1972</div>
+      <div class="card-note">Purdie as musical director, and &quot;Rock Steady&quot; as proof that a rhythm arrangement can be the composition.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0k5C3Z7w7uQpyGFQEzl7yB?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">James Brown</div>
+      <div class="card-album">The Payback</div>
+      <div class="card-year">1973</div>
+      <div class="card-note">The JB rhythm section at its most patient: a groove that refuses to develop because development would ruin it.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/49vpRrUcAr2bj6aYQr0Cfl?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Idris Muhammad</div>
+      <div class="card-album">Power of Soul</div>
+      <div class="card-year">1974</div>
+      <div class="card-note">New Orleans second-line logic dropped into a CTI jazz-funk session, with Bob James and Joe Beck.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3IUR2zFKUbyPA2OW1sJpzX?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Billy Cobham</div>
+      <div class="card-album">Spectrum</div>
+      <div class="card-year">1973</div>
+      <div class="card-note">The opposite pole: technique as spectacle, and the record that made fusion drumming a headline act.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5JmNk3ayVaujKO5hFvU5YA?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Herbie Hancock</div>
+      <div class="card-album">Head Hunters</div>
+      <div class="card-year">1973</div>
+      <div class="card-note">Jazz musicians choosing the groove over the changes, with Harvey Mason building a beat you can loop.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5fmIolILp5NAtNYiRPjhzA?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Miles Davis</div>
+      <div class="card-album">On the Corner</div>
+      <div class="card-year">1972</div>
+      <div class="card-note">Form dissolved into rhythm. The most influential badly-reviewed record in this entire lineage.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4K7w2LiKZz0CyHXl6OtkOu?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">The Meters</div>
+      <div class="card-album">Rejuvenation</div>
+      <div class="card-year">1974</div>
+      <div class="card-note">Zigaboo Modeliste&#x27;s syncopation is the definition of playing less and meaning more.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3OoFKxuziLv3B3NxhEJwOW?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Fela Kuti</div>
+      <div class="card-album">Expensive Shit</div>
+      <div class="card-year">1975</div>
+      <div class="card-note">Tony Allen distributes the beat so evenly across the kit that the groove stops needing a downbeat.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5QtXhQE2WvVLz60sYwafQH?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Donald Byrd</div>
+      <div class="card-album">Black Byrd</div>
+      <div class="card-year">1973</div>
+      <div class="card-note">The Mizell Brothers make jazz-funk that sounds designed for a future crate-digger, and Blue Note&#x27;s biggest seller resulted.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0j5Nx6IeRw3H5gohShC0qZ?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Roy Ayers Ubiquity</div>
+      <div class="card-album">Everybody Loves the Sunshine</div>
+      <div class="card-year">1976</div>
+      <div class="card-note">Slow, warm, spacious, and endlessly sampled: the template for jazz as atmosphere.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5JehGpTedBPXzhUcwXoIlf?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0f0808,#0a0f18)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">1974-1981: the shuffle enters the studio</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1974–1980</div>
+  </div>
+</div>
+
+<section class="section" id="section-3">
+  <span class="section-number reveal">Section 03</span>
+  <h2 class="reveal">1974-1981: the shuffle enters the studio</h2>
+
+  <div class="reveal"><p>Steely Dan is the hinge of this story, and not only because Becker and Fagen were jazz obsessives writing harmonically dense songs for a rock audience. They industrialised the session drummer. On <em>The Royal Scam</em>, <em>Aja</em>, and <em>Gaucho</em> they auditioned players track by track, replacing a part until the feel was exactly right — a process that produced both legendary results and a fair amount of resentment.</p></div>
+  <div class="reveal"><p>The most quoted outcome is Purdie&#x27;s half-time shuffle on &quot;Home at Last&quot; and &quot;Babylon Sisters&quot;: a groove so specific that Jeff Porcaro&#x27;s famous adaptation for Toto&#x27;s &quot;Rosanna&quot; openly acknowledges it. The other is Steve Gadd&#x27;s performance on &quot;Aja&quot; itself, which turns a solo section into something closer to a controlled demolition, and which sits alongside his equally influential march-derived pattern on Paul Simon&#x27;s &quot;50 Ways to Leave Your Lover&quot;.</p></div>
+  <div class="reveal"><p>What matters historically is not the perfectionism but the artefact. This era produced immaculately recorded drums — isolated, close-miked, dry, and loud — attached to sophisticated jazz harmony. Those recordings would sit in second-hand shops for a decade until a generation with samplers found them and recognised exactly what they were: ready-made, high-fidelity grooves with the swing already baked in.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/1hOK2ey9W76x9GnftSRgrw?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Steely Dan</div>
+      <div class="card-album">Aja</div>
+      <div class="card-year">1977</div>
+      <div class="card-note">The record where jazz drumming, studio perfectionism, and pop songwriting fuse completely. Purdie and Gadd on the same album, doing opposite things.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1hOK2ey9W76x9GnftSRgrw?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Steely Dan</div>
+      <div class="card-album">Gaucho</div>
+      <div class="card-year">1980</div>
+      <div class="card-note">Longer, colder, more expensive, and home to &quot;Babylon Sisters&quot; — arguably the definitive recorded Purdie shuffle.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6FRN2BwvClQEMsG2I4Cofb?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Steely Dan</div>
+      <div class="card-album">The Royal Scam</div>
+      <div class="card-year">1976</div>
+      <div class="card-note">The rawest of the trio, where the session players still sound like a band having an argument.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/13l9IPYL1qpMSTD5olr7ZP?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Paul Simon</div>
+      <div class="card-album">Still Crazy After All These Years</div>
+      <div class="card-year">1975</div>
+      <div class="card-note">Steve Gadd&#x27;s &quot;50 Ways&quot; pattern is one of the few drum parts non-drummers can hum.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4A366gjTrYQwmRtkTezF2W?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Herbie Hancock</div>
+      <div class="card-album">Thrust</div>
+      <div class="card-year">1974</div>
+      <div class="card-note">Mike Clark&#x27;s &quot;Actual Proof&quot; is the linear-funk summit: a groove that never repeats and never loses the pocket.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/00Uf5PRAinCJ0oiCX1Cv2k?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Weather Report</div>
+      <div class="card-album">Heavy Weather</div>
+      <div class="card-year">1977</div>
+      <div class="card-note">Fusion at its most melodic, with a rhythm section that swings despite the technology.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2M9F2yYsUvqiBPwUGeNvn1?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Return to Forever</div>
+      <div class="card-album">Romantic Warrior</div>
+      <div class="card-year">1976</div>
+      <div class="card-note">Lenny White&#x27;s precision-engineered complexity — the maximalist wing of the tradition.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2mLtPMLV5nWE0rzjVvcEmt?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Stuff</div>
+      <div class="card-album">Stuff</div>
+      <div class="card-year">1976</div>
+      <div class="card-note">The New York session elite as their own band, with two drummers and nothing to prove to a producer.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/67nNXT3aMW7vQVS8alA2Sk?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Bob James</div>
+      <div class="card-album">Two</div>
+      <div class="card-year">1975</div>
+      <div class="card-note">The crate-digger&#x27;s Rosetta Stone: sophisticated fusion carrying breaks that hip-hop would later build on wholesale.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3UnkPDjAuMNSQbWbr3liax?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#120808,#08080f)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">1988-1996: the break becomes a language</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1988–1995</div>
+  </div>
+</div>
+
+<section class="section" id="section-4">
+  <span class="section-number reveal">Section 04</span>
+  <h2 class="reveal">1988-1996: the break becomes a language</h2>
+
+  <div class="reveal"><p>By the late 1980s the records above were cheap, plentiful, and full of isolated drum bars. The SP-1200 and MPC60 made those bars loopable, and a strand of hip-hop emerged that treated jazz not as a style to imitate but as a source of raw rhythmic material with better drums than anything then being recorded.</p></div>
+  <div class="reveal"><p>A Tribe Called Quest&#x27;s <em>The Low End Theory</em> is the pivot. It is not a jazz record — the group are rappers, and the album&#x27;s minimalism is a hip-hop decision — but it hires Ron Carter to play upright bass, builds tracks from jazz-funk debris, and treats space as an instrument in a way that directly descends from the records in the previous section. Pete Rock, DJ Premier, Digable Planets, and Guru&#x27;s <em>Jazzmatazz</em> project took the same premise in different directions, from dusty horn loops to full sessions with living jazz musicians.</p></div>
+  <div class="reveal"><p>Two consequences follow. First, an entire generation heard 1970s jazz-funk drumming through a filter of loops, filtered EQ, and deliberate dust — so the <em>sound</em> of the break, not just the pattern, became canonical. Second, the Roots proved a band could play it live without losing the loop&#x27;s hypnotic sameness, which sets up everything in the last three sections of this guide.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/5MGulPuRADl4COIrbMfvmw?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Stetsasonic</div>
+      <div class="card-album">In Full Gear</div>
+      <div class="card-year">1988</div>
+      <div class="card-note">&quot;Talkin&#x27; All That Jazz&quot; argues the case for sampling as a musical practice, on record, before the courts got involved.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5MGulPuRADl4COIrbMfvmw?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">A Tribe Called Quest</div>
+      <div class="card-album">The Low End Theory</div>
+      <div class="card-year">1991</div>
+      <div class="card-note">The record that fixed the relationship between jazz and hip-hop for the next thirty years. Minimal, warm, and rhythmically immaculate.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1p12OAWwudgMqfMzjMvl2a?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">A Tribe Called Quest</div>
+      <div class="card-album">Midnight Marauders</div>
+      <div class="card-year">1993</div>
+      <div class="card-note">Denser and funkier, with the group&#x27;s sample choices sharpened into a house style.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4v5x3Oo3UjQ9YmF3hRAip5?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Pete Rock &amp; CL Smooth</div>
+      <div class="card-album">Mecca and the Soul Brother</div>
+      <div class="card-year">1992</div>
+      <div class="card-note">The most luxurious drum programming of the era: horns, filtered bass, and breaks that hit like a live room.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2AgTKAULjbHpqqtyI53hdp?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Gang Starr</div>
+      <div class="card-album">Daily Operation</div>
+      <div class="card-year">1992</div>
+      <div class="card-note">DJ Premier&#x27;s stripped, percussive chops treat jazz records as rhythm sources rather than melodies.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/74DwNAuirHLDLVLrBQAnVg?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Digable Planets</div>
+      <div class="card-album">Reachin&#x27; (A New Refutation of Time and Space)</div>
+      <div class="card-year">1993</div>
+      <div class="card-note">Cool-jazz atmosphere as a whole worldview, complete with upright bass and brushed-snare softness.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5snUbps5KleLIP0cVI72lP?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Guru</div>
+      <div class="card-album">Jazzmatazz, Vol. 1</div>
+      <div class="card-year">1993</div>
+      <div class="card-note">Rather than sample the players, hire them: Donald Byrd, Roy Ayers, and Lonnie Liston Smith in the room.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/64J8girYqmK86ebqBayrjQ?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Us3</div>
+      <div class="card-album">Hand on the Torch</div>
+      <div class="card-year">1993</div>
+      <div class="card-note">Blue Note licenses its own archive to a hip-hop project, and the loop is formally legitimised.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4Cm1wXjw6YCbkaiZZGNiZ1?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">The Roots</div>
+      <div class="card-album">Do You Want More?!!!??!</div>
+      <div class="card-year">1995</div>
+      <div class="card-note">Questlove plays the loop instead of sampling it, and the live band re-enters the story.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3fr53Fq6cElPicmpKz9w1g?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">The Brand New Heavies</div>
+      <div class="card-album">Heavy Rhyme Experience, Vol. 1</div>
+      <div class="card-year">1992</div>
+      <div class="card-note">UK acid jazz meets American rappers, and the transatlantic thread that leads to broken beat opens.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1rcB3G2fEGV0cjx2ZEl2vt?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#08100a,#0a0810)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">1997-2006: the producer sits behind the kit</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1998–2006</div>
+  </div>
+</div>
+
+<section class="section" id="section-5">
+  <span class="section-number reveal">Section 05</span>
+  <h2 class="reveal">1997-2006: the producer sits behind the kit</h2>
+
+  <div class="reveal"><p>Two things happen at once in this period, and they are causally linked.</p></div>
+  <div class="reveal"><p>In West London, a scene later labelled broken beat took the swing of jazz-funk, the syncopation of drum and bass, and the harmony of soul, and produced rhythms with a permanent limp — deliberately uneven grids that no drummer would have played but which came out of an instinctively jazz-literate community. 4hero, Bugz in the Attic, and their Berlin cousins Jazzanova treated the sequencer as a jazz instrument. In Oslo, Jaga Jazzist did the equivalent with a big band.</p></div>
+  <div class="reveal"><p>In Detroit, meanwhile, J Dilla was making the crucial discovery. Programming an MPC with quantisation off, he placed hits where they felt right rather than where the grid demanded, producing beats that lurch and stagger while still grooving hard. Questlove heard this, sat behind a kit, and taught himself to reproduce it by hand — which is why <em>Voodoo</em> sounds like it is falling over and never does. That record, and Erykah Badu&#x27;s <em>Mama&#x27;s Gun</em>, transmitted the technique to a generation of musicians who had spent their childhoods being taught that playing behind the beat was a mistake.</p></div>
+  <div class="reveal"><p>Roy Hargrove&#x27;s RH Factor is the moment jazz&#x27;s institutional side formally acknowledged all of this: a trumpet player of impeccable straight-ahead credentials assembling a band around the neo-soul rhythm section instead of the other way round.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/5k4w88bM5Ldvwhu9zDcKhM?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">4hero</div>
+      <div class="card-album">Two Pages</div>
+      <div class="card-year">1998</div>
+      <div class="card-note">Drum and bass programmers write for strings and jazz harmony, and broken beat&#x27;s blueprint appears.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5k4w88bM5Ldvwhu9zDcKhM?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">D&#x27;Angelo</div>
+      <div class="card-album">Voodoo</div>
+      <div class="card-year">2000</div>
+      <div class="card-note">The most important rhythm record of its decade: a band playing deliberately, audibly late and never losing the pocket.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2lO9yuuIDgBpSJzxTh3ai8?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Erykah Badu</div>
+      <div class="card-album">Mama&#x27;s Gun</div>
+      <div class="card-year">2000</div>
+      <div class="card-note">The same rhythm section applied to songwriting, and the proof that the technique could carry hooks.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3cADvHRdKniF9ELCn1zbGH?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">The Cinematic Orchestra</div>
+      <div class="card-album">Every Day</div>
+      <div class="card-year">2002</div>
+      <div class="card-note">Ninja Tune&#x27;s jazz wing: live drums recorded for depth, then edited with a producer&#x27;s ear.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1EUXHvyflL27HwOTQgaVuh?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Jaga Jazzist</div>
+      <div class="card-album">A Livingroom Hush</div>
+      <div class="card-year">2001</div>
+      <div class="card-note">Norwegian post-rock precision applied to a jazz big band, with rhythm as the organising principle.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5FzUnPRyOKXUSkhRPhUNzL?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Madlib</div>
+      <div class="card-album">Shades of Blue</div>
+      <div class="card-year">2003</div>
+      <div class="card-note">Blue Note hands its vaults to a producer, who reassembles the label as a beat record.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6jRvDpOc9oi3sjQuoPK7if?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Jazzanova</div>
+      <div class="card-album">In Between</div>
+      <div class="card-year">2002</div>
+      <div class="card-note">Broken beat&#x27;s European wing, elegant and rhythmically restless.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/66kiWj82pS3nk9D2uzoeZq?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">The RH Factor</div>
+      <div class="card-album">Hard Groove</div>
+      <div class="card-year">2003</div>
+      <div class="card-note">Roy Hargrove builds a band around the neo-soul groove, formally joining jazz to the Dilla lineage.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/7ocjymC4B0S00K0BZ71M9X?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Medeski Martin &amp; Wood</div>
+      <div class="card-album">Combustication</div>
+      <div class="card-year">1998</div>
+      <div class="card-note">The American organ-trio route into the same territory, with turntables and dub space.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/409EgDFqusiF1kmmm3NBzN?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Bugz in the Attic</div>
+      <div class="card-album">Back in the Doghouse</div>
+      <div class="card-year">2006</div>
+      <div class="card-note">The West London collective&#x27;s statement album, and broken beat at its most physical.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/49jb5DD7YHg033KBgRU5SF?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0a0a10,#100a0a)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">2006-2015: the Dilla feel goes live</div>
+    <div class="era-years reveal" style="transition-delay:.2s">2006–2015</div>
+  </div>
+</div>
+
+<section class="section" id="section-6">
+  <span class="section-number reveal">Section 06</span>
+  <h2 class="reveal">2006-2015: the Dilla feel goes live</h2>
+
+  <div class="reveal"><p><em>Donuts</em> was released three days before J Dilla died, and its influence is impossible to overstate: an album of unquantised, half-finished-sounding beats that a decade of conservatory-trained musicians would study as repertoire. What follows is a genuinely unusual historical reversal. Normally machines imitate people. Here, people spend ten years learning to imitate a machine being operated badly on purpose.</p></div>
+  <div class="reveal"><p>Chris Dave is the key executor. His playing on Robert Glasper&#x27;s <em>Black Radio</em> takes the sagging, off-grid feel of programmed beats and performs it live with terrifying control, and the record&#x27;s Grammy win pushed the approach into the jazz mainstream. Karriem Riggins, a drummer who also produces, works the same seam from the other end. Makaya McCraven goes further and inverts the process entirely: record long improvised sessions, then edit the tapes like a producer, so the finished album is a sampled record whose source material is his own band.</p></div>
+  <div class="reveal"><p>Meanwhile in Toronto, three students who started by playing Odd Future covers on jazz instruments became BadBadNotGood, and demonstrated that the whole lineage could be treated as one continuous repertoire rather than a set of separate traditions.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/5fMlysqhFE0itGn4KezMBW?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">J Dilla</div>
+      <div class="card-album">Donuts</div>
+      <div class="card-year">2006</div>
+      <div class="card-note">The source code. Unquantised drum programming turned into a compositional method, assembled largely from a hospital bed.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5fMlysqhFE0itGn4KezMBW?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Robert Glasper Experiment</div>
+      <div class="card-album">Black Radio</div>
+      <div class="card-year">2012</div>
+      <div class="card-note">Chris Dave performs the sampler&#x27;s imperfection live, and jazz&#x27;s institutions finally give it a prize.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1yqUCdbw73DpnHBVDwNa3X?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Karriem Riggins</div>
+      <div class="card-album">Alone Together</div>
+      <div class="card-year">2012</div>
+      <div class="card-note">A working jazz drummer making a beat tape, collapsing the two disciplines into one person.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3Z295aI1J54wiMXVkj21wu?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">BadBadNotGood</div>
+      <div class="card-album">III</div>
+      <div class="card-year">2014</div>
+      <div class="card-note">The Toronto trio&#x27;s first album of originals, and the moment the covers band becomes a serious rhythm outfit.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4E8q20fmm8onDCc7NK217d?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Kamasi Washington</div>
+      <div class="card-album">The Epic</div>
+      <div class="card-year">2015</div>
+      <div class="card-note">Spiritual jazz returns at maximum scale, with two drummers and a rhythmic density that owes as much to LA beat culture as to Coltrane.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2j2q2ySuVk43eHB8wI5XQj?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Makaya McCraven</div>
+      <div class="card-album">In the Moment</div>
+      <div class="card-year">2015</div>
+      <div class="card-note">Live improvisation edited into loops: the producer&#x27;s technique applied to a drummer&#x27;s own performance.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4ceQAIsAy7ThCFMONhuL3u?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Snarky Puppy</div>
+      <div class="card-album">We Like It Here</div>
+      <div class="card-year">2014</div>
+      <div class="card-note">The technical wing, and a reminder that this lineage also contains people who simply want to play very hard, very accurately.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4GzjQ0xXRlLl78ih481BUi?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">GoGo Penguin</div>
+      <div class="card-album">v2.0</div>
+      <div class="card-year">2014</div>
+      <div class="card-note">An acoustic trio playing electronic rhythms without triggers, translating breakbeats onto a kit.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/7rXrjbrYcXG8EkqXpt0weK?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Mehliana</div>
+      <div class="card-album">Taming the Dragon</div>
+      <div class="card-year">2014</div>
+      <div class="card-note">Brad Mehldau and Mark Guiliana as a two-person band where the drums are the lead instrument.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/7veyvtvK49ca1UMEEmZ00q?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Flying Lotus</div>
+      <div class="card-album">Cosmogramma</div>
+      <div class="card-year">2010</div>
+      <div class="card-note">The LA beat scene&#x27;s most ambitious record, and the bridge between Dilla&#x27;s grid and free jazz&#x27;s chaos.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/26yWpyWgFK6xuxi1UsLUFW?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Hiatus Kaiyote</div>
+      <div class="card-album">Choose Your Weapon</div>
+      <div class="card-year">2015</div>
+      <div class="card-note">Melbourne&#x27;s answer: neo-soul harmony with metric modulation treated as a pop device.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3qzmmmRmVBiOuMvrerfW4z?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0d0a0a,#0a0d12)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">2016-present: the drummer leads the band</div>
+    <div class="era-years reveal" style="transition-delay:.2s">2016–2023</div>
+  </div>
+</div>
+
+<section class="section" id="section-7">
+  <span class="section-number reveal">Section 07</span>
+  <h2 class="reveal">2016-present: the drummer leads the band</h2>
+
+  <div class="reveal"><p>The current era&#x27;s defining feature is authorship. In South London especially, the bandleaders are drummers: Yussef Dayes, Moses Boyd, Femi Koleoso of Ezra Collective. Their training came through Tomorrow&#x27;s Warriors and community music education rather than through American conservatories, and their reference points are grime, Afrobeat, dub, and jazz in roughly equal measure — which is why the rhythms sit differently from anything in the American tradition.</p></div>
+  <div class="reveal"><p><em>Black Focus</em> is the record that announced it: Yussef Dayes and Kamaal Williams playing something that is recognisably fusion, recognisably broken beat, and recognisably a product of small sweaty London rooms. Sons of Kemet answered with twin drum kits and a tuba where the bass should be. Kokoroko took Tony Allen&#x27;s Afrobeat directly rather than through American intermediaries. Ezra Collective, a band that plays like a party rather than a recital, won the Mercury Prize in 2023 — a decent marker of how completely the drummer-led band has moved from margin to centre.</p></div>
+  <div class="reveal"><p>The thread the user of this guide asked about is now closed. Purdie&#x27;s ghost notes reach Steely Dan; Steely Dan&#x27;s drum sound reaches the sampler; the sampler reaches Dilla; Dilla reaches Chris Dave and Questlove; and their feel reaches a generation of London and Los Angeles players who never needed to choose between jazz, hip-hop, and Afrobeat because they arrived after the distinction stopped being useful.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/6pDAh84nyNU7x3xje9G03I?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Yussef Kamaal</div>
+      <div class="card-album">Black Focus</div>
+      <div class="card-year">2016</div>
+      <div class="card-note">The record that opened the current London scene to the world, cut fast and loose by a drummer and a keyboardist.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6pDAh84nyNU7x3xje9G03I?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Sons of Kemet</div>
+      <div class="card-album">Your Queen Is a Reptile</div>
+      <div class="card-year">2018</div>
+      <div class="card-note">Twin drum kits, tuba bass, and Caribbean carnival rhythm reframing what a jazz group can be.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4pxnDGBdoGu88h8ZInX5f5?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Moses Boyd</div>
+      <div class="card-album">Dark Matter</div>
+      <div class="card-year">2020</div>
+      <div class="card-note">A drummer producing his own record, with grime, Afrobeat, and dub given equal weight to jazz.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4XRA7yDYWSkO5BMvZinESW?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Ezra Collective</div>
+      <div class="card-album">Where I&#x27;m Meant to Be</div>
+      <div class="card-year">2022</div>
+      <div class="card-note">Femi Koleoso leads from the kit, and a joyful, danceable jazz record wins the Mercury Prize.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5rW58nzgWhqERhafY4KV4n?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Makaya McCraven</div>
+      <div class="card-album">Universal Beings</div>
+      <div class="card-year">2018</div>
+      <div class="card-note">Four cities, four bands, one editor: the method from In the Moment scaled up into a statement.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5kUIX7phMsfXsmEFZu2z18?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">BadBadNotGood</div>
+      <div class="card-album">Talk Memory</div>
+      <div class="card-year">2021</div>
+      <div class="card-note">The trio drop the vocal features and make an instrumental record with orchestral arrangements, Arthur Verocai included.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/594yqwr1MOvVX0UBnOWftY?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Yussef Dayes</div>
+      <div class="card-album">Black Classical Music</div>
+      <div class="card-year">2023</div>
+      <div class="card-note">A drummer&#x27;s solo album conceived as a career statement, spanning Afrobeat, fusion, and spiritual jazz.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2A5yzYdLTVTLQaCp4CTKwG?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Tom Misch &amp; Yussef Dayes</div>
+      <div class="card-album">What Kinda Music</div>
+      <div class="card-year">2020</div>
+      <div class="card-note">The crossover record: bedroom-pop production meeting a drummer who will not simplify.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6iOCv7oGL5sGi2aVnRz2BI?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Kokoroko</div>
+      <div class="card-album">Could We Be More</div>
+      <div class="card-year">2022</div>
+      <div class="card-note">London&#x27;s Afrobeat inheritors, taking the Tony Allen lineage first-hand rather than second.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/48e8LFqiVUxumlXDIVyNYl?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Tony Allen &amp; Hugh Masekela</div>
+      <div class="card-album">Rejoice</div>
+      <div class="card-year">2020</div>
+      <div class="card-note">Recorded years earlier, released posthumously for both: the origin of Afrobeat drumming meeting South African jazz.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2Boz0rJ8zfeoclEv7SHIFR?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">DOMi &amp; JD BECK</div>
+      <div class="card-album">NOT TiGHT</div>
+      <div class="card-year">2022</div>
+      <div class="card-note">The internet-native extreme: absurd precision, cartoon energy, and a drummer playing figures that read as programmed.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6cXQ0dxd2pWCTFhZ8RIg2j?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Butcher Brown</div>
+      <div class="card-album">#KingButch</div>
+      <div class="card-year">2020</div>
+      <div class="card-note">Richmond, Virginia&#x27;s answer, where the band swaps between jazz, hip-hop, and funk without announcing it.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4dd1M7bEbduM0Cb2dqr28f?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#100808,#08100a)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Listening routes</div>
+    <div class="era-years reveal" style="transition-delay:.2s"></div>
+  </div>
+</div>
+
+<section class="section" id="section-8">
+  <span class="section-number reveal">Section 08</span>
+  <h2 class="reveal">Listening routes</h2>
+
+  <div class="reveal"><p>If you want a single evening rather than a full survey, use one of the four paths built into this guide.</p></div>
+  <div class="reveal"><p>If you only have seven evenings: <em>Aja</em>; <em>Head Hunters</em>; <em>The Low End Theory</em>; <em>Voodoo</em>; <em>Donuts</em>; <em>Black Radio</em>; <em>Black Focus</em>. That sequence contains the whole argument, in order, without a single redundant record.</p></div>
+
+  
+
+</section>
+
+<footer style="text-align:center;padding:2rem;font-size:.65rem;color:#2a2535;border-top:1px solid #1a1a20">
+  Built with Musiculum
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var reveals=document.querySelectorAll('.reveal');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})
+  },{threshold:.08,rootMargin:'0px 0px -60px 0px'});
+  reveals.forEach(function(el){obs.observe(el)});
+
+  var sections=document.querySelectorAll('[id^="hero"],[id^="section-"]');
+  var items=document.querySelectorAll('.timeline li');
+  var map={};
+  items.forEach(function(li){map[li.dataset.section]=li});
+  var so=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        items.forEach(function(li){li.classList.remove('active')});
+        if(map[e.target.id])map[e.target.id].classList.add('active');
+      }
+    })
+  },{threshold:.15,rootMargin:'-20% 0px -60% 0px'});
+  sections.forEach(function(s){so.observe(s)});
+
+  document.querySelectorAll('.timeline a').forEach(function(a){
+    a.addEventListener('click',function(ev){
+      ev.preventDefault();
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+    })
+  });
+
+  var dividers=document.querySelectorAll('.era-divider .era-bg');
+  if(dividers.length&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    var ticking=false;
+    window.addEventListener('scroll',function(){
+      if(!ticking){
+        requestAnimationFrame(function(){
+          dividers.forEach(function(bg){
+            var r=bg.parentElement.getBoundingClientRect();
+            var off=(r.top+r.height/2-window.innerHeight/2)*.12;
+            bg.style.transform='scale(1.1) translateY('+off+'px)';
+          });
+          ticking=false;
+        });
+        ticking=true;
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>

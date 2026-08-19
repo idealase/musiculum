@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>After the Ecstasy: Bristol, Tokyo, and the Haunted Beat</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:17px}
+body{font-family:'Georgia','Times New Roman',serif;background:#0a0a0c;color:#d4cfc6;line-height:1.75;overflow-x:hidden}
+::selection{background:#c0392b;color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#111}
+::-webkit-scrollbar-thumb{background:#3a2020;border-radius:3px}
+h1,h2,h3{font-family:'Helvetica Neue','Arial',sans-serif;font-weight:700;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.1;color:#f0ebe3}
+h2{font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.2;color:#e8c8a0;margin-bottom:1rem}
+h3{font-size:.85rem;color:#c9a96e;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em}
+p{margin-bottom:1.3rem;max-width:68ch}
+strong{color:#e8c8a0}
+em{color:#bfab8a;font-style:italic}
+a{color:#c0785a;text-decoration:none;border-bottom:1px solid rgba(192,120,90,.3);transition:border-color .3s}
+a:hover{border-color:#c0785a}
+.page-wrapper{display:flex;min-height:100vh}
+.sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:linear-gradient(180deg,#0d0d10,#12111a);border-right:1px solid #1e1b28;padding:2rem 1rem;display:flex;flex-direction:column;justify-content:center;z-index:100;overflow-y:auto}
+.sidebar-title{font-family:'Helvetica Neue','Arial',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.2em;color:#5a5262;margin-bottom:1.5rem;padding-left:.5rem}
+.timeline{list-style:none;position:relative;padding-left:1.2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:#1e1b28}
+.timeline li{position:relative;margin-bottom:1.2rem}
+.timeline li::before{content:'';position:absolute;left:-1.2rem;top:.45rem;width:8px;height:8px;border-radius:50%;background:#2a2535;border:2px solid #3a3345;transition:all .4s ease}
+.timeline li.active::before{background:#c0785a;border-color:#e8a87c;box-shadow:0 0 12px rgba(192,120,90,.5)}
+.timeline a{font-family:'Helvetica Neue','Arial',sans-serif;font-size:.75rem;color:#5a5262;text-decoration:none;border:none;display:block;padding:.15rem 0;transition:color .3s;line-height:1.3}
+.timeline li.active a{color:#e8c8a0}
+.timeline a:hover{color:#c0785a}
+.timeline .era-year{display:block;font-size:.6rem;color:#3a3345;margin-top:.1rem;font-family:monospace}
+.timeline li.active .era-year{color:#7a6858}
+.main-content{margin-left:220px;flex:1;min-height:100vh}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 2rem;background:radial-gradient(ellipse at 50% 80%,rgba(100,30,20,.15) 0%,transparent 60%),radial-gradient(ellipse at 20% 20%,rgba(40,20,60,.2) 0%,transparent 50%),#0a0a0c;position:relative}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(transparent,#0a0a0c)}
+.hero h1{margin-bottom:1rem}
+.hero .subtitle{font-size:clamp(.95rem,2vw,1.15rem);color:#7a7268;max-width:55ch;line-height:1.6;font-style:italic}
+.hero .scroll-hint{margin-top:3rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.25em;color:#3a3535;animation:pulse-down 2s infinite}
+@keyframes pulse-down{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:.8;transform:translateY(6px)}}
+.section{padding:6rem 3rem 4rem;max-width:900px;margin:0 auto;position:relative}
+.section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:1px;background:linear-gradient(90deg,transparent,#3a2020,transparent)}
+.section-number{font-family:monospace;font-size:.7rem;color:#3a2020;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;display:block}
+.album-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;margin:2.5rem 0 3rem}
+.album-card{background:linear-gradient(135deg,#13121a,#0f0e15);border:1px solid #1e1b28;border-radius:8px;padding:1.2rem;transition:transform .4s ease,border-color .4s ease,box-shadow .4s ease;position:relative;overflow:hidden}
+.album-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#c0785a,transparent);opacity:0;transition:opacity .4s}
+.album-card:hover{transform:translateY(-4px);border-color:#2a2535;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.album-card:hover::before{opacity:1}
+.album-card .card-artist{font-family:'Helvetica Neue','Arial',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#7a6858;margin-bottom:.2rem}
+.album-card .card-album{font-size:1.05rem;color:#e8c8a0;font-weight:600;margin-bottom:.15rem;font-family:'Helvetica Neue','Arial',sans-serif}
+.album-card .card-year{font-family:monospace;font-size:.7rem;color:#3a3345;margin-bottom:.6rem}
+.album-card .card-note{font-size:.82rem;color:#8a8278;line-height:1.5;margin-bottom:.8rem}
+.album-card .spotify-embed{border-radius:6px;overflow:hidden;margin-top:.5rem}
+.album-card .spotify-embed iframe{border:0;width:100%;border-radius:6px}
+.featured-album{margin:2rem 0 2.5rem;padding:1.5rem;background:linear-gradient(135deg,rgba(100,30,20,.08),rgba(20,18,30,.4));border:1px solid #2a1f2f;border-radius:10px}
+.featured-album .feat-label{font-family:'Helvetica Neue','Arial',sans-serif;font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:#5a4a3a;margin-bottom:.8rem}
+.featured-album iframe{border:0;width:100%;border-radius:8px}
+.era-divider{height:40vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.era-divider .era-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.2) saturate(.4);transform:scale(1.1);transition:transform 1s ease}
+.era-divider:hover .era-bg{transform:scale(1.15)}
+.era-divider .era-label{position:relative;z-index:1;font-family:'Helvetica Neue','Arial',sans-serif;font-size:clamp(1.2rem,3vw,2rem);font-weight:700;color:#f0ebe3;text-transform:uppercase;letter-spacing:.15em;text-shadow:0 2px 20px rgba(0,0,0,.8)}
+.era-divider .era-years{position:relative;z-index:1;font-family:monospace;font-size:.75rem;color:#7a6858;margin-top:.5rem;letter-spacing:.2em}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.from-left{transform:translateX(-40px)}
+.reveal.from-right{transform:translateX(40px)}
+.reveal.scale-in{transform:scale(.92);transform-origin:center}
+.reveal.visible{opacity:1;transform:translateY(0) translateX(0) scale(1)}
+.stagger .album-card{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.stagger.visible .album-card{opacity:1;transform:translateY(0)}
+.stagger.visible .album-card:nth-child(1){transition-delay:.05s}
+.stagger.visible .album-card:nth-child(2){transition-delay:.1s}
+.stagger.visible .album-card:nth-child(3){transition-delay:.15s}
+.stagger.visible .album-card:nth-child(4){transition-delay:.2s}
+.stagger.visible .album-card:nth-child(5){transition-delay:.25s}
+.stagger.visible .album-card:nth-child(6){transition-delay:.3s}
+.stagger.visible .album-card:nth-child(7){transition-delay:.35s}
+.stagger.visible .album-card:nth-child(8){transition-delay:.4s}
+.stagger.visible .album-card:nth-child(9){transition-delay:.45s}
+.stagger.visible .album-card:nth-child(10){transition-delay:.5s}
+.stagger.visible .album-card:nth-child(n+11){transition-delay:.55s}
+@media(max-width:768px){.sidebar{display:none}.main-content{margin-left:0}.section{padding:4rem 1.5rem 3rem}.album-grid{grid-template-columns:1fr}}
+@media(min-width:769px) and (max-width:1024px){.sidebar{width:180px}.main-content{margin-left:180px}}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<nav class="sidebar">
+  <div class="sidebar-title">After the Ecstasy: Bristol, Tokyo, and the Haunted Beat</div>
+  <ul class="timeline">
+    <li data-section="hero"><a href="#hero">Introduction<span class="era-year">Overview</span></a></li>
+    <li data-section="section-1"><a href="#section-1">Executive summary<span class="era-year"></span></a></li>
+    <li data-section="section-2"><a href="#section-2">Night after the night<span class="era-year">1991–1998</span></a></li>
+    <li data-section="section-3"><a href="#section-3">Bristol weather<span class="era-year">1994–1997</span></a></li>
+    <li data-section="section-4"><a href="#section-4">The sampler as ghost machine<span class="era-year">1995–2001</span></a></li>
+    <li data-section="section-5"><a href="#section-5">Tokyo receives and transforms the beat<span class="era-year">1994–2008</span></a></li>
+    <li data-section="section-6"><a href="#section-6">Tokyo after midnight<span class="era-year"></span></a></li>
+    <li data-section="section-7"><a href="#section-7">Timeline and closing synthesis<span class="era-year"></span></a></li>
+  </ul>
+</nav>
+
+<main class="main-content">
+
+<header class="hero" id="hero">
+  <h1 class="reveal">After the Ecstasy: Bristol, Tokyo, and the Haunted Beat</h1>
+  <p class="subtitle reveal" style="transition-delay:.2s">A Listening Guide &middot; 47/47 albums on Spotify</p>
+  <div class="scroll-hint reveal" style="transition-delay:.6s">&darr; Scroll to begin</div>
+</header>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0a1015,#15100a)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Executive summary</div>
+    <div class="era-years reveal" style="transition-delay:.2s"></div>
+  </div>
+</div>
+
+<section class="section" id="section-1">
+  <span class="section-number reveal">Section 01</span>
+  <h2 class="reveal">Executive summary</h2>
+
+  <div class="reveal"><p>The most illuminating way to organise a narrative about trip-hop is not to treat it as a stable genre first and a historical scene second, but to flip that order. The sound coheres if you hear it as a <em>social function</em>: music for the after-hours, the walk home, the cigarette on the curb, the comedown after the rave’s collective acceleration. The term itself emerged in 1994 around Mo’ Wax, DJ Shadow, and London after-hours circulation, while the style’s deepest roots lay in Bristol’s slower, bass-heavy, dub-inflected sound-system culture and its post-punk bohemia. Even then, many of the artists most associated with the label distrusted or outright disliked it.</p></div>
+  <div class="reveal"><p>Bristol matters here less as a single city with a single sound than as a weather system: a port city whose Black British sound-system culture, reggae and dub inheritance, hip-hop uptake, and post-punk melancholy made <em>Blue Lines</em>, <em>Dummy</em>, and <em>Maxinquaye</em> possible. The Wild Bunch’s genre promiscuity—hip-hop, reggae, punk, soul, ambient drift—was not a side detail; it was the method. That is why Bristol produced a “scene” that was always already more than one sound.</p></div>
+  <div class="reveal"><p>Tokyo matters because it did not merely imitate this weather. It translated and transformed it. Japanese hip-hop culture had already been catalysed by the early circulation of <em>Wild Style</em> and by local club and record-shop infrastructures; DJ Krush turned turntablism into an austere, spatial, almost calligraphic art, while Shibuya-kei and club-jazz scenes in Tokyo created a parallel cosmopolitan ecology of quotation, sophistication, and groove. By the time Hydeout Productions and <em>Samurai Champloo</em> arrived, Tokyo had become one of the key sites where trip-hop’s darker noir vocabulary was softened, thinned into air, and reissued globally as something warmer, more melodic, and more intimate.</p></div>
+  <div class="reveal"><p>A final methodological note: some of the records below are “pure” trip-hop only if one uses the term very loosely. That looseness is part of the argument. The scene’s most fertile records often live at the borders—abstract hip-hop, downtempo, club-jazz, acid jazz, Shibuya-kei, sampledelia, soundtrack work—because trip-hop was always more a sensibility of tempo, density, bass pressure, and haunted sampling than a cleanly bounded style.</p></div>
+  <div class="reveal"><p>Useful primary or near-primary reference links for key claims include <a href="https://www.massiveattack.co.uk/" target="_blank" rel="noopener">Massive Attack’s official site</a>, <a href="https://www.portishead.co.uk/" target="_blank" rel="noopener">Portishead’s official site</a>, <a href="https://www.trickysite.com/nearly-god/" target="_blank" rel="noopener">Tricky’s official page for <em>Nearly God</em></a>, <a href="https://djkrush.jp/en/disco/" target="_blank" rel="noopener">DJ KRUSH’s official discography</a>, <a href="https://www.jvcmusic.co.jp/-/Discography/A018999/VTJL-7.html" target="_blank" rel="noopener">Victor/FlyingDog’s official page for <em>samurai champloo music record &quot;departure&quot;</em></a>, <a href="https://www.silentpoets.net/discography/words-and-silence/" target="_blank" rel="noopener">SILENT POETS’ official discography</a>, <a href="https://articles.roland.com/label-spotlight-mo-wax-records-and-unkle/" target="_blank" rel="noopener">Roland’s label spotlight on Mo’ Wax and UNKLE</a>, and the Hydeout-related official press material archived via <a href="https://prtimes.jp/main/html/rd/p/000000640.000011969.html" target="_blank" rel="noopener">PR TIMES</a>.</p></div>
+  <div class="reveal"><p>Illustrative cover and image links: <a href="https://100best.music.apple.com/us/album/87" target="_blank" rel="noopener"><em>Blue Lines</em> cover page on Apple Music 100</a>, <a href="https://www.moma.org/collection/works/189267" target="_blank" rel="noopener">Ben Drury’s <em>Meiso</em> cover in MoMA’s collection</a>, and <a href="https://www.jvcmusic.co.jp/-/Discography/A018999/VTJL-7.html" target="_blank" rel="noopener">the official <em>samurai champloo music record &quot;departure&quot;</em> release page with jacket image</a>.</p></div>
+
+  
+
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#100a08,#08101a)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Night after the night</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1991–1998</div>
+  </div>
+</div>
+
+<section class="section" id="section-2">
+  <span class="section-number reveal">Section 02</span>
+  <h2 class="reveal">Night after the night</h2>
+
+  <div class="reveal"><p>The “comedown thesis” is best understood as an inference from the documented social life of the music. Trip-hop was attached early to after-hours listening and club circulation, but it refused club music’s imperative to peak. It took the architecture of hip-hop—breaks, loops, samples, bass, suspended repetition—and drained it of triumphal certainty. Instead it offered narcotic drift, dread, erotic fatigue, and the strange lucidity that follows overstimulation. That helps explain why so many canonical records feel less like party records than like records that <em>remember</em> the party from the next room over.</p></div>
+  <div class="reveal"><p>This is also why the best entry points are not necessarily the “most representative” records in a taxonomic sense. They are the ones that most persuasively stage the transition from kinetic rave modernity to slower, more reflective, haunted listening: from the floor to the sofa, from collective ecstasy to private fallout.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/5mAPk4qeNqVLtNydaWbWlf?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Massive Attack</div>
+      <div class="card-album">Blue Lines</div>
+      <div class="card-year">1991</div>
+      <div class="card-note">The ur-text: hip-hop cadence, dub depth, soul lament, and sound-system patience fused into an album that feels physically slow without ever becoming inert. Start here if you want the &quot;before the term existed&quot; version of the thesis.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5mAPk4qeNqVLtNydaWbWlf?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Portishead</div>
+      <div class="card-album">Dummy</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">Noir without kitsch: turntable abrasion, spy-soundtrack melodrama, and Beth Gibbons&#x27; voice as a form of wounded interiorscape. It sounds like insomnia staged as design.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3539EbNgIdEDGBKkUf4wno?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Tricky</div>
+      <div class="card-album">Maxinquaye</div>
+      <div class="card-year">1995</div>
+      <div class="card-note">The genre&#x27;s most destabilising masterpiece—half-whispered, paranoid, intimate, anti-spectacular. If Blue Lines is the city at dusk, this is the city after midnight, when every corner feels psychically charged.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/7qlZpMib7D0riFPQ5JHDT8?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Nightmares on Wax</div>
+      <div class="card-album">Smokers Delight</div>
+      <div class="card-year">1995</div>
+      <div class="card-note">Less gothic than Bristol, more horizontally blissed-out, but crucial for hearing the comedown as groove rather than crisis. The beats recline instead of lurch.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3stVzMomzhVGw0prDxLY0K?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Lamb</div>
+      <div class="card-album">Lamb</div>
+      <div class="card-year">1996</div>
+      <div class="card-note">A Manchester variant where trip-hop rubs against drum-and-bass fracture and torch-song intensity. Lou Rhodes gives the style a rare, almost devotional ache.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5pMiACEneeuFtoFR9tEzOO?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Bowery Electric</div>
+      <div class="card-album">Beat</div>
+      <div class="card-year">1996</div>
+      <div class="card-note">A New York answer from the shoegaze edge: less urban-noir cinema, more narcotic fog and negative space. Essential if you want to hear how trip-hop bled into dream-pop and post-rock atmospherics.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6jbGBeBtwD05O0EV9RFjlC?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Archive</div>
+      <div class="card-album">Londinium</div>
+      <div class="card-year">1996</div>
+      <div class="card-note">Colder and more architectural than many Bristol records, with rap, melancholy, and metropolitan scale. An excellent bridge between trip-hop and later European downtempo.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6SpDB8znJJGwcuoj2GW1cV?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Sneaker Pimps</div>
+      <div class="card-album">Becoming X</div>
+      <div class="card-year">1996</div>
+      <div class="card-note">Pop-minded but never trivial: sleek hooks, covert menace, and a sense of late-&#x27;90s stylish alienation. A good reminder that trip-hop&#x27;s commercial edge did not always flatten its mood.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4CqepH0gmnNKTgENheRgT7?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Morcheeba</div>
+      <div class="card-album">Big Calm</div>
+      <div class="card-year">1998</div>
+      <div class="card-note">Warmer, sunnier, and more organic than the Bristol core, but still unmistakably post-club in its loosened pulse and low-lit spaciousness. Ideal for hearing the style turn from dread toward ease.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1ILnMWNKUXzcXug4Tq2JRP?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Esthero</div>
+      <div class="card-album">Breath from Another</div>
+      <div class="card-year">1998</div>
+      <div class="card-note">A beautifully overdressed detour: lounge, acid jazz, trip-hop, and sly theatricality. It proves the genre could be glamorous without losing its undertow.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5IjiTlH5NjwgFjfCxXlY0S?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0f0808,#0a0f18)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Bristol weather</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1994–1997</div>
+  </div>
+</div>
+
+<section class="section" id="section-3">
+  <span class="section-number reveal">Section 03</span>
+  <h2 class="reveal">Bristol weather</h2>
+
+  <div class="reveal"><p>Bristol’s centrality is not just a matter of chronology. It is a matter of atmosphere and infrastructure. Britannica, the British Council, and scholarship on the so-called “Bristol sound” all emphasise the same cluster of conditions: a port city, racial and musical plurality, Jamaican sound-system influence, post-punk residue, and a scene in which DJs and producers treated genre as material rather than allegiance. The Wild Bunch’s significance lies precisely in that promiscuous method of assembly.</p></div>
+  <div class="reveal"><p>That is why Bristol should be pictured less as an origin point and more as a pressure system that kept generating variants. Even within a narrow temporal window, Massive Attack, Portishead, Tricky, Smith &amp; Mighty, and Alpha do not sound interchangeable. What they share is not a single template but a shared climate: heavy low end, slowed hip-hop logic, dub spaciousness, and an insistence that melancholy can be produced, arranged, and engineered with as much care as euphoria.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/0bxjgfzmhTln5tgxzjmQtC?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Smith &amp; Mighty</div>
+      <div class="card-album">Bass Is Maternal</div>
+      <div class="card-year">1995</div>
+      <div class="card-note">The deep prehistory made audible: dub bass, Bristol break science, and a clear sense that the city&#x27;s contribution began below the canonical &quot;big three.&quot; If you need a foundation text for Bristol before canon ossified, this is it.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0bxjgfzmhTln5tgxzjmQtC?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Massive Attack</div>
+      <div class="card-album">Protection</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">More liquid and nocturnal than Blue Lines, with a richer sense of dub as emotional architecture. It is the record where the Bristol atmosphere becomes almost tactile.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5CnZjFfPDmxOX7KnWLLqpC?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Portishead</div>
+      <div class="card-album">Portishead</div>
+      <div class="card-year">1997</div>
+      <div class="card-note">Harsher and more self-manufactured than Dummy: less reliant on external samples, more obsessed with creating its own internal decay. Hear it as self-conscious artifice turned uncanny.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3G36754KQVLyGuskraEAVA?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Nearly God</div>
+      <div class="card-album">Nearly God</div>
+      <div class="card-year">1996</div>
+      <div class="card-note">Tricky under an alias, but really Tricky as curator of psychic weather: unfinished demos, guest voices, and a strange stasis that feels more private than theatrical.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5NYiyNqu9Joe1qtgJN01w3?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Tricky</div>
+      <div class="card-album">Pre-Millennium Tension</div>
+      <div class="card-year">1996</div>
+      <div class="card-note">More difficult and claustrophobic than Maxinquaye, but rewarding precisely because it resists ambient prettiness. The comedown here becomes fever rather than drift.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/540zw9ShTu9bsY984xS3Hu?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Alpha</div>
+      <div class="card-album">Come From Heaven</div>
+      <div class="card-year">1997</div>
+      <div class="card-note">Released on Massive Attack&#x27;s Melankolic imprint, it is one of the great &quot;second-ring&quot; Bristol records: softer focus, narcotic romance, and rain-streaked melancholy at every turn.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0blm7ESsfrsrTSKtpt7npY?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Smoke City</div>
+      <div class="card-album">Flying Away</div>
+      <div class="card-year">1997</div>
+      <div class="card-note">Brazilian textures and metropolitan trip-hop restraint combine into something sensuous and unusually buoyant. It widens the palette without losing the late-night aura.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/52g3C6ZdK60MAWsiGxAQz1?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Hooverphonic</div>
+      <div class="card-album">A New Stereophonic Sound Spectacular</div>
+      <div class="card-year">1996</div>
+      <div class="card-note">Belgian rather than Bristolian, but a crucial proof of diffusion: the style travels into ambient pop and widescreen mood design without losing its low-lit pulse.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6FFKUYyfC9S8fDy725qLAq?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Mono</div>
+      <div class="card-album">Formica Blues</div>
+      <div class="card-year">1997</div>
+      <div class="card-note">Glossy, urban, and curiously weightless, with &quot;Life in Mono&quot; as one of the style&#x27;s purest expressions of glamorous sadness. A useful counterexample to the assumption that trip-hop must feel grimy.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5HMZTqSusVo6QDstVaqPBV?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">The Third Eye Foundation</div>
+      <div class="card-album">Ghost</div>
+      <div class="card-year">1997</div>
+      <div class="card-note">Not &quot;trip-hop&quot; in any orthodox sense, but vital if you want the Bristol weather pushed into harsher, more abstract territory. An edge case that clarifies the scene&#x27;s sonic perimeter.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0Hld51wfO7z3AH2byoF3fO?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#120808,#08080f)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">The sampler as ghost machine</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1995–2001</div>
+  </div>
+</div>
+
+<section class="section" id="section-4">
+  <span class="section-number reveal">Section 04</span>
+  <h2 class="reveal">The sampler as ghost machine</h2>
+
+  <div class="reveal"><p>If Bristol explains the weather, labels explain the circulation. The term “trip-hop” first attached itself in print to DJ Shadow and Mo’ Wax, and that matters because Mo’ Wax and, in a parallel but distinct way, Ninja Tune turned local mood into a transnational network of records, sleeves, shops, and affinities. Mo’ Wax’s importance was not simply that it released records; it provided a graphic and conceptual frame joining turntablism, abstract hip-hop, downtempo drift, and art-school design. Ninja Tune, founded by Coldcut in 1990, did something similar with a broader roster and a more overtly experimental remit.</p></div>
+  <div class="reveal"><p>This is where the sampler starts to behave like a ghost machine. Its function is not merely quotation; it makes memory audible, turns debris into atmosphere, and makes geographically distant scenes feel uncannily proximate. DJ Shadow in California, DJ Krush in Tokyo, UNKLE in London, DJ Food and The Herbaliser in the Ninja Tune orbit, and later Thievery Corporation in Washington all share this logic: the beat as archive, the loop as séance, the mix as architecture of recall.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/4tUVkNYSFrrEqqrxBQW9PN?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">DJ Shadow</div>
+      <div class="card-album">Endtroducing…..</div>
+      <div class="card-year">1996</div>
+      <div class="card-note">The definitive sampler-as-consciousness record: shadowy, allusive, and built almost entirely from vinyl fragments. It is less a set of songs than a theory of memory in beat form.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4tUVkNYSFrrEqqrxBQW9PN?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">DJ Food</div>
+      <div class="card-album">A Recipe For Disaster</div>
+      <div class="card-year">1995</div>
+      <div class="card-note">A Ninja Tune cornerstone that hears the kitchen, the studio, and the collage suite as one space. Fantastic for tracing how trip-hop&#x27;s methods overlap with cut-up comic absurdity.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5hWHgBqt3wSzp3sMnciQuO?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">The Herbaliser</div>
+      <div class="card-album">Remedies</div>
+      <div class="card-year">1995</div>
+      <div class="card-note">More hip-hop-forward, jazzier, and more playful than the Bristol core, but deeply relevant for understanding the Ninja Tune branch of downbeat culture.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6pEiSu3D6LY8lrxSIFbdfu?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">DJ Cam</div>
+      <div class="card-album">Underground Vibes</div>
+      <div class="card-year">1995</div>
+      <div class="card-note">A French answer to Mo&#x27; Wax minimalism: smoked jazz loops, cool surfaces, elegant groove control. A sleeper classic if you want trip-hop without gothic melodrama.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3KbEXCBCtDk1gUIJrQirIA?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">UNKLE</div>
+      <div class="card-album">Psyence Fiction</div>
+      <div class="card-year">1998</div>
+      <div class="card-note">Mo&#x27; Wax grown cinematic and maximal: guest-heavy, brittle, and ambitious. Hear it as the moment the scene&#x27;s underground grammar began speaking blockbuster scale.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0LFPjvWEaHP7WKQD6F5pVS?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Kid Loco</div>
+      <div class="card-album">A Grand Love Story</div>
+      <div class="card-year">1997</div>
+      <div class="card-note">Velvet, kitsch, and blissed-out romanticism. It shows how the trip-hop toolkit could be used for hedonism and charm rather than dread.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6R1VyRo1cFv2JDC1diCkPS?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Thievery Corporation</div>
+      <div class="card-album">Sounds From The Thievery Hi-Fi</div>
+      <div class="card-year">1997</div>
+      <div class="card-note">One of the clearest early signs that the style had become globally portable: dub, electronica, lounge, and cosmopolitan crate-digging fused into a highly exportable nocturne.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3n4Zqt489pJfqDkjRuqN05?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Kruder &amp; Dorfmeister</div>
+      <div class="card-album">The K&amp;D Sessions</div>
+      <div class="card-year">1998</div>
+      <div class="card-note">Remixes as atmosphere engineering. Not a studio album in the strict sense, but indispensable for hearing how downtempo became a continental design language.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2aOsuFTEy1JLReCIUsOEBG?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Tosca</div>
+      <div class="card-album">Suzuki</div>
+      <div class="card-year">2000</div>
+      <div class="card-note">Vienna&#x27;s dub-techno elegance brought down to sofa tempo. If you want the cigarette-smoke side of early-2000s downtempo, this is the record.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3OJjPjV1kmPanucFQnh2x1?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Lovage</div>
+      <div class="card-album">Music to Make Love to Your Old Lady By</div>
+      <div class="card-year">2001</div>
+      <div class="card-note">A knowingly decadent late mutation: lounge parody, seduction pastiche, and genuine downbeat craft all at once. It works best when heard as the genre becoming self-aware.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4cJSjRnQTXkzbXuwcZKsbA?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#08100a,#0a0810)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Tokyo receives and transforms the beat</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1994–2008</div>
+  </div>
+</div>
+
+<section class="section" id="section-5">
+  <span class="section-number reveal">Section 05</span>
+  <h2 class="reveal">Tokyo receives and transforms the beat</h2>
+
+  <div class="reveal"><p>Tokyo’s role in this history is not secondary or merely “influenced by.” It is co-constitutive. Japanese hip-hop took shape in dialogue with imported films, records, and styles in the early 1980s, and one of the most repeated origin stories is DJ Krush seeing <em>Wild Style</em> and deciding, effectively, to step into the culture. From there, Tokyo developed multiple overlapping routes into haunted-beat music: turntablism and abstract hip-hop; Shibuya-kei’s exquisitely curated pop cosmopolitanism; club-jazz and acid-jazz hybrids; and, later, Hydeout’s intimate, jazz-rap-inflected afterlife of trip-hop.</p></div>
+  <div class="reveal"><p>What changed in Tokyo was affect. Bristol often sounds rain-dark, nicotine-stained, burdened by post-punk gravity. Tokyo frequently thins the same materials into cleaner contours: more air between elements, more attention to texture as texture, a stronger tolerance for elegance, and eventually a shift from noir anxiety toward reflective warmth. <em>Samurai Champloo</em> then globalised that transformation by embedding underground hip-hop production into one of the 2000s’ most influential anime sound worlds, carried officially through four soundtrack albums and repeatedly reissued.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/5FzUnPRyOKXUSkhRPhUNzL?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">DJ KRUSH</div>
+      <div class="card-album">Strictly Turntablized</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">The Tokyo-London hinge: austere, beat-led, and spatially disciplined. It is one of the cleanest demonstrations of how Japanese minimalism sharpened Mo&#x27; Wax-era downbeat logic.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5FzUnPRyOKXUSkhRPhUNzL?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">DJ KRUSH</div>
+      <div class="card-album">Meiso</div>
+      <div class="card-year">1995</div>
+      <div class="card-note">Krush&#x27;s breakthrough statement of meditative force—less &quot;trip-hop&quot; as genre badge than beat architecture as urban calligraphy. The guest features never disturb its poise.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4CP9eTY7tIcp3w2idhLwvQ?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">DJ KRUSH &amp; Toshinori Kondo</div>
+      <div class="card-album">Ki-Oku</div>
+      <div class="card-year">1996</div>
+      <div class="card-note">A serene, uncanny fusion of trumpet jazz and beat science. Essential for hearing Tokyo make abstract hip-hop feel ceremonial rather than merely smoked-out.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4hk2QVSMMF1SdcL3iibyDN?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">DJ KRUSH</div>
+      <div class="card-album">Jaku</div>
+      <div class="card-year">2004</div>
+      <div class="card-note">By the 2000s Krush was folding more explicitly Japanese instrumental colour into his sound. The result is grander and darker, but still disciplined by emptiness.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3dmRqnSSeMcPOrFGAmy2sm?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">SILENT POETS</div>
+      <div class="card-album">Words and Silence</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">One of the strongest Japanese counterparts to early trip-hop proper: dubwise bass, spoken-word lineage, and a spacious, contemplative pulse.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4wMF6T7x8NIdD1GQvaNMn0?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">SILENT POETS</div>
+      <div class="card-album">For Nothing</div>
+      <div class="card-year">1998</div>
+      <div class="card-note">A later refinement of the project&#x27;s moody, dub-inflected poetics. Slightly glossier, but still fundamentally nocturnal and suspended.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/7wR7udye21tIeJWr1EyRuC?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">United Future Organization</div>
+      <div class="card-album">No Sound Is Too Taboo</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">Not orthodox trip-hop, but indispensable for Tokyo&#x27;s club-jazz wing: stylish, cosmopolitan, and built from deep crate knowledge. It shows how the city translated downbeat sensibility into urbane motion.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1TLK7fd9YL4wmr0i80lcei?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">United Future Organization</div>
+      <div class="card-album">3rd Perspective</div>
+      <div class="card-year">1997</div>
+      <div class="card-note">Sleeker and more internationally poised than the earlier work. A perfect example of Tokyo&#x27;s 1990s ability to make sophistication itself into a groove.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5uE7OpuM8N1oo5IllhELGe?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">MONDO GROSSO</div>
+      <div class="card-album">Born Free</div>
+      <div class="card-year">1995</div>
+      <div class="card-note">Acid jazz, house, Brazilian influence, and downtempo intelligence converging in one of the era&#x27;s key Tokyo club albums. Think of it as part of the same citywide ecosystem, not a genre outlier.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/206sG42PumsnSOtjoLrjK9?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">TOWA TEI</div>
+      <div class="card-album">Sound Museum</div>
+      <div class="card-year">1997</div>
+      <div class="card-note">A Shibuya-kei/pop-art route into the same cosmopolitan, sample-savvy universe. More playful than haunted, but deeply relevant to Tokyo&#x27;s aesthetics of quotation and polish.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0W0SAbwjURrbew0Q9wrFPj?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Cornelius</div>
+      <div class="card-album">Fantasma</div>
+      <div class="card-year">1997</div>
+      <div class="card-note">Again, not strict trip-hop, but crucial context: a dazzling collage album from Tokyo&#x27;s quotation culture, making eclectic sampling feel architectural and intimate all at once.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3Wml3n8kxQ1S14zXynLduY?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Monday Michiru</div>
+      <div class="card-album">MAIDEN JAPAN</div>
+      <div class="card-year">1999</div>
+      <div class="card-note">Soulful, jazzy, and city-pop adjacent, with enough downtempo poise to belong in this wider Tokyo constellation. A fine route for listeners who want less noir and more midnight elegance.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3ylJex0tchhP3TrNeQbA6W?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Calm</div>
+      <div class="card-album">Moonage Electric Ensemble</div>
+      <div class="card-year">1999</div>
+      <div class="card-note">Dreamier and more open-hearted than the Krush line, but beautifully demonstrates Tokyo&#x27;s capacity to make downtempo feel expansive rather than enclosed.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3IY23B2w3XO2ffnuUXySA9?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Nujabes</div>
+      <div class="card-album">Metaphorical Music</div>
+      <div class="card-year">2003</div>
+      <div class="card-note">Hydeout&#x27;s first full revelation: jazz-rap, downtempo, cracked-beat tenderness, and a new emotional directness. This is where trip-hop&#x27;s haunted beat begins turning toward memory as solace.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0j7bgcyO7uKQtgpYwbbi7Q?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Nujabes</div>
+      <div class="card-album">Modal Soul</div>
+      <div class="card-year">2005</div>
+      <div class="card-note">The most beloved Hydeout full-length for good reason: lyrical soul, immaculate sequencing, and a near-perfect balance between beat craft and emotional release.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6b08FpNaFFTjc1dJ9DSWfn?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Nujabes, Fat Jon, Shing02, MINMI</div>
+      <div class="card-album">samurai champloo music record &quot;departure&quot;</div>
+      <div class="card-year">2004</div>
+      <div class="card-note">A crucial globalising vector. The soundtrack&#x27;s hip-hop/Edo-period hybrid turned Tokyo&#x27;s underground beat aesthetics into a worldwide point of entry for a generation of listeners.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3uNaLrScYulpXLRmQquP9I?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Uyama Hiroto</div>
+      <div class="card-album">A Son of the Sun</div>
+      <div class="card-year">2008</div>
+      <div class="card-note">Hydeout after Nujabes, but not merely derivative: more live instrumentation, more jazz horizon, and a sense of continuity without imitation. One of the essential &quot;after trip-hop&quot; records from Japan.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5ijARtDaIxPLVG8lseDf2y?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0a0a10,#100a0a)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Tokyo after midnight</div>
+    <div class="era-years reveal" style="transition-delay:.2s"></div>
+  </div>
+</div>
+
+<section class="section" id="section-6">
+  <span class="section-number reveal">Section 06</span>
+  <h2 class="reveal">Tokyo after midnight</h2>
+
+  <div class="reveal"><p>For a cousin in Japan and his Japanese girlfriend, the most hospitable listening route is not “the best albums in order,” but a sequence that moves from the immediately inviting to the more severe, while staying inside Japanese scenes as much as possible. That route also shows how broad Tokyo’s contribution really was: anime gateway, abstract beat craft, club-jazz sophistication, Shibuya quotation, and Hydeout intimacy all belong to one story.</p></div>
+  <div class="reveal"><p>If you want a single seven-evening Japanese sequence, I would program it this way: <em>Modal Soul</em>; <em>departure</em>; <em>Meiso</em>; <em>Words and Silence</em>; <em>No Sound Is Too Taboo</em>; <em>Fantasma</em>; <em>A Son of the Sun</em>. That path moves from immediately lovable to historically deeper, without losing coherence of mood.</p></div>
+
+  
+
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0d0a0a,#0a0d12)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Timeline and closing synthesis</div>
+    <div class="era-years reveal" style="transition-delay:.2s"></div>
+  </div>
+</div>
+
+<section class="section" id="section-7">
+  <span class="section-number reveal">Section 07</span>
+  <h2 class="reveal">Timeline and closing synthesis</h2>
+
+  <div class="reveal"><p>The releases below track the argument’s main arc: Bristol’s early weather system, Mo’ Wax and Ninja Tune’s transnational circulation, and Tokyo’s transformation of the haunted beat into new forms between 1991 and 2010.</p></div>
+  <div class="reveal"><p>Bristol gave trip-hop its pressure, pace, and weather; Tokyo gave it a second life by cleaning its lines, widening its emotional register, and sending it back into the world through club culture, design culture, label culture, and anime culture. If Bristol made the haunted beat sound like the city after ecstasy, Tokyo taught it how to endure the morning after—clearer, lonelier, and, sometimes, unexpectedly consoling.</p></div>
+
+  
+
+</section>
+
+<footer style="text-align:center;padding:2rem;font-size:.65rem;color:#2a2535;border-top:1px solid #1a1a20">
+  Built with Musiculum
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var reveals=document.querySelectorAll('.reveal');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})
+  },{threshold:.08,rootMargin:'0px 0px -60px 0px'});
+  reveals.forEach(function(el){obs.observe(el)});
+
+  var sections=document.querySelectorAll('[id^="hero"],[id^="section-"]');
+  var items=document.querySelectorAll('.timeline li');
+  var map={};
+  items.forEach(function(li){map[li.dataset.section]=li});
+  var so=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        items.forEach(function(li){li.classList.remove('active')});
+        if(map[e.target.id])map[e.target.id].classList.add('active');
+      }
+    })
+  },{threshold:.15,rootMargin:'-20% 0px -60% 0px'});
+  sections.forEach(function(s){so.observe(s)});
+
+  document.querySelectorAll('.timeline a').forEach(function(a){
+    a.addEventListener('click',function(ev){
+      ev.preventDefault();
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+    })
+  });
+
+  var dividers=document.querySelectorAll('.era-divider .era-bg');
+  if(dividers.length&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    var ticking=false;
+    window.addEventListener('scroll',function(){
+      if(!ticking){
+        requestAnimationFrame(function(){
+          dividers.forEach(function(bg){
+            var r=bg.parentElement.getBoundingClientRect();
+            var off=(r.top+r.height/2-window.innerHeight/2)*.12;
+            bg.style.transform='scale(1.1) translateY('+off+'px)';
+          });
+          ticking=false;
+        });
+        ticking=true;
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>

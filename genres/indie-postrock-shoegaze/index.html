@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gossamer Architecture: Niche Pathways Through Shoegaze, Post-Rock, and Indie Experimentation, 1989–2026</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:17px}
+body{font-family:'Georgia','Times New Roman',serif;background:#0a0a0c;color:#d4cfc6;line-height:1.75;overflow-x:hidden}
+::selection{background:#c0392b;color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#111}
+::-webkit-scrollbar-thumb{background:#3a2020;border-radius:3px}
+h1,h2,h3{font-family:'Helvetica Neue','Arial',sans-serif;font-weight:700;letter-spacing:-.02em}
+h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.1;color:#f0ebe3}
+h2{font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.2;color:#e8c8a0;margin-bottom:1rem}
+h3{font-size:.85rem;color:#c9a96e;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em}
+p{margin-bottom:1.3rem;max-width:68ch}
+strong{color:#e8c8a0}
+em{color:#bfab8a;font-style:italic}
+a{color:#c0785a;text-decoration:none;border-bottom:1px solid rgba(192,120,90,.3);transition:border-color .3s}
+a:hover{border-color:#c0785a}
+.page-wrapper{display:flex;min-height:100vh}
+.sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:linear-gradient(180deg,#0d0d10,#12111a);border-right:1px solid #1e1b28;padding:2rem 1rem;display:flex;flex-direction:column;justify-content:center;z-index:100;overflow-y:auto}
+.sidebar-title{font-family:'Helvetica Neue','Arial',sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:.2em;color:#5a5262;margin-bottom:1.5rem;padding-left:.5rem}
+.timeline{list-style:none;position:relative;padding-left:1.2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:#1e1b28}
+.timeline li{position:relative;margin-bottom:1.2rem}
+.timeline li::before{content:'';position:absolute;left:-1.2rem;top:.45rem;width:8px;height:8px;border-radius:50%;background:#2a2535;border:2px solid #3a3345;transition:all .4s ease}
+.timeline li.active::before{background:#c0785a;border-color:#e8a87c;box-shadow:0 0 12px rgba(192,120,90,.5)}
+.timeline a{font-family:'Helvetica Neue','Arial',sans-serif;font-size:.75rem;color:#5a5262;text-decoration:none;border:none;display:block;padding:.15rem 0;transition:color .3s;line-height:1.3}
+.timeline li.active a{color:#e8c8a0}
+.timeline a:hover{color:#c0785a}
+.timeline .era-year{display:block;font-size:.6rem;color:#3a3345;margin-top:.1rem;font-family:monospace}
+.timeline li.active .era-year{color:#7a6858}
+.main-content{margin-left:220px;flex:1;min-height:100vh}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 2rem;background:radial-gradient(ellipse at 50% 80%,rgba(100,30,20,.15) 0%,transparent 60%),radial-gradient(ellipse at 20% 20%,rgba(40,20,60,.2) 0%,transparent 50%),#0a0a0c;position:relative}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(transparent,#0a0a0c)}
+.hero h1{margin-bottom:1rem}
+.hero .subtitle{font-size:clamp(.95rem,2vw,1.15rem);color:#7a7268;max-width:55ch;line-height:1.6;font-style:italic}
+.hero .scroll-hint{margin-top:3rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.25em;color:#3a3535;animation:pulse-down 2s infinite}
+@keyframes pulse-down{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:.8;transform:translateY(6px)}}
+.section{padding:6rem 3rem 4rem;max-width:900px;margin:0 auto;position:relative}
+.section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:1px;background:linear-gradient(90deg,transparent,#3a2020,transparent)}
+.section-number{font-family:monospace;font-size:.7rem;color:#3a2020;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;display:block}
+.album-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;margin:2.5rem 0 3rem}
+.album-card{background:linear-gradient(135deg,#13121a,#0f0e15);border:1px solid #1e1b28;border-radius:8px;padding:1.2rem;transition:transform .4s ease,border-color .4s ease,box-shadow .4s ease;position:relative;overflow:hidden}
+.album-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#c0785a,transparent);opacity:0;transition:opacity .4s}
+.album-card:hover{transform:translateY(-4px);border-color:#2a2535;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.album-card:hover::before{opacity:1}
+.album-card .card-artist{font-family:'Helvetica Neue','Arial',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#7a6858;margin-bottom:.2rem}
+.album-card .card-album{font-size:1.05rem;color:#e8c8a0;font-weight:600;margin-bottom:.15rem;font-family:'Helvetica Neue','Arial',sans-serif}
+.album-card .card-year{font-family:monospace;font-size:.7rem;color:#3a3345;margin-bottom:.6rem}
+.album-card .card-note{font-size:.82rem;color:#8a8278;line-height:1.5;margin-bottom:.8rem}
+.album-card .spotify-embed{border-radius:6px;overflow:hidden;margin-top:.5rem}
+.album-card .spotify-embed iframe{border:0;width:100%;border-radius:6px}
+.featured-album{margin:2rem 0 2.5rem;padding:1.5rem;background:linear-gradient(135deg,rgba(100,30,20,.08),rgba(20,18,30,.4));border:1px solid #2a1f2f;border-radius:10px}
+.featured-album .feat-label{font-family:'Helvetica Neue','Arial',sans-serif;font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:#5a4a3a;margin-bottom:.8rem}
+.featured-album iframe{border:0;width:100%;border-radius:8px}
+.era-divider{height:40vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.era-divider .era-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.2) saturate(.4);transform:scale(1.1);transition:transform 1s ease}
+.era-divider:hover .era-bg{transform:scale(1.15)}
+.era-divider .era-label{position:relative;z-index:1;font-family:'Helvetica Neue','Arial',sans-serif;font-size:clamp(1.2rem,3vw,2rem);font-weight:700;color:#f0ebe3;text-transform:uppercase;letter-spacing:.15em;text-shadow:0 2px 20px rgba(0,0,0,.8)}
+.era-divider .era-years{position:relative;z-index:1;font-family:monospace;font-size:.75rem;color:#7a6858;margin-top:.5rem;letter-spacing:.2em}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.from-left{transform:translateX(-40px)}
+.reveal.from-right{transform:translateX(40px)}
+.reveal.scale-in{transform:scale(.92);transform-origin:center}
+.reveal.visible{opacity:1;transform:translateY(0) translateX(0) scale(1)}
+.stagger .album-card{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.stagger.visible .album-card{opacity:1;transform:translateY(0)}
+.stagger.visible .album-card:nth-child(1){transition-delay:.05s}
+.stagger.visible .album-card:nth-child(2){transition-delay:.1s}
+.stagger.visible .album-card:nth-child(3){transition-delay:.15s}
+.stagger.visible .album-card:nth-child(4){transition-delay:.2s}
+.stagger.visible .album-card:nth-child(5){transition-delay:.25s}
+.stagger.visible .album-card:nth-child(6){transition-delay:.3s}
+.stagger.visible .album-card:nth-child(7){transition-delay:.35s}
+.stagger.visible .album-card:nth-child(8){transition-delay:.4s}
+.stagger.visible .album-card:nth-child(9){transition-delay:.45s}
+.stagger.visible .album-card:nth-child(10){transition-delay:.5s}
+.stagger.visible .album-card:nth-child(n+11){transition-delay:.55s}
+@media(max-width:768px){.sidebar{display:none}.main-content{margin-left:0}.section{padding:4rem 1.5rem 3rem}.album-grid{grid-template-columns:1fr}}
+@media(min-width:769px) and (max-width:1024px){.sidebar{width:180px}.main-content{margin-left:180px}}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<nav class="sidebar">
+  <div class="sidebar-title">Gossamer Architecture: Niche Pathways Through Shoegaze, Post-Rock, and Indie Experimentation, 1989–2026</div>
+  <ul class="timeline">
+    <li data-section="hero"><a href="#hero">Introduction<span class="era-year">Overview</span></a></li>
+    <li data-section="section-1"><a href="#section-1">Executive summary<span class="era-year"></span></a></li>
+    <li data-section="section-2"><a href="#section-2">Cocteau Twins, Bauhaus, and the gaseous precursor (1982–1989)<span class="era-year">1982</span></a></li>
+    <li data-section="section-3"><a href="#section-3">Shoegaze: from My Bloody Valentine to the niche inheritors (1989–1996)<span class="era-year">1990–1993</span></a></li>
+    <li data-section="section-4"><a href="#section-4">Post-rock genesis: slowcore, krautrock, and instrumental ambition (1993–1999)<span class="era-year">1991–1999</span></a></li>
+    <li data-section="section-5"><a href="#section-5">Post-rock refinement and splintering (2000–2007): silence, mathematics, and the DIY underground<span class="era-year">1999–2006</span></a></li>
+    <li data-section="section-6"><a href="#section-6">Indie rock&#x27;s fractured paths (1990–2010): math rock, krautrock obsession, and the avant-garde periphery<span class="era-year">1993–2002</span></a></li>
+    <li data-section="section-7"><a href="#section-7">2000s experimentation: laptop, glitch, and the indeterminacy of genre (2005–2012)<span class="era-year">1994–2013</span></a></li>
+    <li data-section="section-8"><a href="#section-8">Deep niche development: dark post-rock, ambient, and fractured genres (2008–2016)<span class="era-year">2009–2018</span></a></li>
+    <li data-section="section-9"><a href="#section-9">2015 to present: hyperspecialization, streaming splintering, and the multiplication of substyles<span class="era-year">2013–2020</span></a></li>
+    <li data-section="section-10"><a href="#section-10">The infinite niche (2020–2026): microgenre depth and algorithmic splintering<span class="era-year">2020–2024</span></a></li>
+  </ul>
+</nav>
+
+<main class="main-content">
+
+<header class="hero" id="hero">
+  <h1 class="reveal">Gossamer Architecture: Niche Pathways Through Shoegaze, Post-Rock, and Indie Experimentation, 1989–2026</h1>
+  <p class="subtitle reveal" style="transition-delay:.2s">A Listening Guide &middot; 115/115 albums on Spotify</p>
+  <div class="scroll-hint reveal" style="transition-delay:.6s">&darr; Scroll to begin</div>
+</header>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0a1015,#15100a)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Executive summary</div>
+    <div class="era-years reveal" style="transition-delay:.2s"></div>
+  </div>
+</div>
+
+<section class="section" id="section-1">
+  <span class="section-number reveal">Section 01</span>
+  <h2 class="reveal">Executive summary</h2>
+
+  <div class="reveal"><p>The story of shoegaze, post-rock, and experimental indie rock is not best told through its canonical superstars but through its least-charted tributaries. While Slowdive and Radiohead occupy the textbooks, the real texture emerges from artists who built in obscure corners: bedroom producers who refined the shoegaze vocabulary into something more delicate; post-rock architects who rejected the bombast and pursued silence itself; indie visionaries who scattered across a hundred subgenres without ever cementing a single sound. This guide maps the niche, the overlooked, and the obsessively thorough—the artists for whom a devoted following meant everything, and indifference from the mainstream meant freedom.</p></div>
+  <div class="reveal"><p>The scene&#x27;s backbone is British shoegaze (1989–1995), American indie rock&#x27;s pluralism, and the post-punk-inflected production ethos that European artists brought to bear. Post-rock emerged not as a unified genre but as a sensibility: rejection of the three-minute single, embrace of tonal architecture, and the assumption that instruments could generate emotion through texture alone, not through lyrical directness. By the late 1990s and early 2000s, the paths had fractured into dozens of substyles—math rock&#x27;s angular geometry, krautrock-influenced drone, laptop-processed abstraction, acoustic austerity—each pursued by artists largely unknown outside their fervent subcommunities. The 2010s and 2020s saw these streams continue to evolve in almost complete isolation from mainstream attention, which meant their experimentalism deepened rather than diluted.</p></div>
+  <div class="reveal"><p>This essay prioritises artists whose work deepened the textural language—those who took shoegaze&#x27;s blur, post-rock&#x27;s architecture, and indie rock&#x27;s anything-goes ethos and pushed into strange corners. Some are genuinely obscure; others are underground touchstones for producers but remain nearly invisible to casual listeners. All of them matter if you care about how a guitar sound can become a question, or how silence can be engineered as carefully as noise.</p></div>
+
+  
+
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#100a08,#08101a)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Cocteau Twins, Bauhaus, and the gaseous precursor (1982–1989)</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1982</div>
+  </div>
+</div>
+
+<section class="section" id="section-2">
+  <span class="section-number reveal">Section 02</span>
+  <h2 class="reveal">Cocteau Twins, Bauhaus, and the gaseous precursor (1982–1989)</h2>
+
+  <div class="reveal"><p>Before shoegaze became shoegaze, there were artists for whom production <em>was</em> composition: reverb as melody, echo chambers as instruments, the voice as texture rather than carrier. Scottish post-punk band Cocteau Twins pioneered this approach, with Robin Guthrie&#x27;s treated guitar emerging from clouds of reverb and delay. Their influence on shoegaze was architectural—not the songs themselves so much as the permission structure they granted: that fidelity and clarity were not virtues, that obscurity could be beautiful, that the voice could be dissolved into the mix rather than dominating it.</p></div>
+  <div class="reveal"><p>This opened space for a particular kind of adventurous listening: lo-fi curiosity, tape-hiss beauty, and the acceptance that production defects could become aesthetic choices. Bauhaus, Siouxsie and the Banshees, and the shoegaze pioneers knew this already. But it took the boom box, the four-track, and the bedroom studio to make gaseous production available to anyone with a guitar and patience.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/3SXCY4kFMM4T4egq5DSUTa?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Cocteau Twins</div>
+      <div class="card-album">Pink Orange and Red</div>
+      <div class="card-year">1982</div>
+      <div class="card-note">The foundational reverb architecture. Guthrie&#x27;s guitar surfaces from pure feedback and processing; Liz Fraser&#x27;s voice becomes a horn section through processing alone. Before shoegaze knew its name, this was the grammar.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3SXCY4kFMM4T4egq5DSUTa?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Siouxsie and the Banshees</div>
+      <div class="card-album">A Kiss in the Dreamhouse</div>
+      <div class="card-year">1982</div>
+      <div class="card-note">Post-punk meeting reverb-soaked production; McGeoch&#x27;s guitar work prefigures shoegaze&#x27;s willingness to obscure melody through texture. Essential for understanding that the spirit predates the genre label.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5J3l9yLV2sMfZPEGcUmdz1?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Bauhaus</div>
+      <div class="card-album">The Sky&#x27;s Gone Out</div>
+      <div class="card-year">1982</div>
+      <div class="card-note">Gothic architecture meeting studio depth. Murphy&#x27;s vocal delivery is so processed it becomes instrumental; Haskins&#x27; drums sit in a cavernous mix. A proof that lo-fi wasn&#x27;t necessary—maximum production could still feel vast and haunted.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/42L0285NmWnp6lF0Tf6uyw?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0f0808,#0a0f18)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Shoegaze: from My Bloody Valentine to the niche inheritors (1989–1996)</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1990–1993</div>
+  </div>
+</div>
+
+<section class="section" id="section-3">
+  <span class="section-number reveal">Section 03</span>
+  <h2 class="reveal">Shoegaze: from My Bloody Valentine to the niche inheritors (1989–1996)</h2>
+
+  <div class="reveal"><p>Shoegaze as a marketable category was brief but generative. My Bloody Valentine&#x27;s <em>Loveless</em> (1991) made the genre possible—a record so processed, so obliterated by studio technique, that it sounded like it was being heard through water or from inside a dream. But <em>Loveless</em> is the tip; beneath it were dozens of smaller, stranger, more fragile records.</p></div>
+  <div class="reveal"><p>The genius of shoegaze&#x27;s underground was precisely that it was so inefficient for the purposes of pop music. A sound that rewarded close listening, that didn&#x27;t hook in thirty seconds, that sounded beautiful precisely when it was hard to parse—this meant the genre remained niche, which meant experimentation could continue without commercial pressure. The artists below are the ones who heard <em>Loveless</em> and <em>Tremolo</em> and thought not &quot;how do I replicate that shimmer&quot; but &quot;what happens if I push further toward silence? Toward melody? Toward maximum dissonance?&quot;</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/3USQKOw0se5pBNEndu82Rb?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">My Bloody Valentine</div>
+      <div class="card-album">Loveless</div>
+      <div class="card-year">1991</div>
+      <div class="card-note">The foundational shoegaze text: a record so sound-obsessed it made the mix itself the song. Processed guitars, buried vocals, and a refusal to let any element dominate. Essential context for everything that follows.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3USQKOw0se5pBNEndu82Rb?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Slowdive</div>
+      <div class="card-album">Souvlaki</div>
+      <div class="card-year">1993</div>
+      <div class="card-note">The most beautiful shoegaze record: less harsh than My Bloody Valentine, more melodic, and shot through with genuine sadness beneath the processing. A touchstone for how dream-pop and shoegaze could merge.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4i21O3uVh5palcfFhCjlT7?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Lush</div>
+      <div class="card-album">Spooky</div>
+      <div class="card-year">1992</div>
+      <div class="card-note">Often overlooked in the canon: dance rhythms meeting shoegaze texture, with Miki Berenyi&#x27;s vocals bright against processed guitars. Crucial for showing that pop sensibility and texture-obsession weren&#x27;t mutually exclusive.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5NSgxemDL3eSm79jFkqxuw?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Ride</div>
+      <div class="card-album">Nowhere</div>
+      <div class="card-year">1990</div>
+      <div class="card-note">Shoegaze from Oxford, less about obliteration than texture layering. Mark Gardener&#x27;s vocals stay intelligible; the dream-scape is architectural rather than narcotic. Essential for the strain of shoegaze that values structure alongside blur.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4fW7CblaSvdhPWmcCFgZbQ?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Galaxie 500</div>
+      <div class="card-album">On Fire</div>
+      <div class="card-year">1992</div>
+      <div class="card-note">American answer to shoegaze slowness: fewer effects, more guitar minimalism, and a refusal to hurry. Dean Wareham&#x27;s production is sparse but somehow enveloping. A bridge between shoegaze and lo-fi indie.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1qhNLXBmt1EW6Kwt2A3u8M?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">The Sundays</div>
+      <div class="card-album">Reading, Writing and Arithmetic</div>
+      <div class="card-year">1990</div>
+      <div class="card-note">Shoegaze&#x27;s pop sister: Harriet Wheeler&#x27;s voice as the main instrument, supported by delicate guitar and synth texture. Proof that shoegaze melody could be direct without losing dreaminess.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6CmJJCI3lOn5XVZ68hP9kY?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Pale Saints</div>
+      <div class="card-album">The Comforts of Madness</div>
+      <div class="card-year">1990</div>
+      <div class="card-note">Yorkshire post-punk turned shoegaze: more rhythm-focused than My Bloody Valentine, less immediately melodic than Slowdive. A study in how shoegaze could be both austere and enveloping.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3YZJ5Uiyy1vCMubtZDG7a2?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Chapterhouse</div>
+      <div class="card-album">Chapterhouse</div>
+      <div class="card-year">1992</div>
+      <div class="card-note">Shoegaze obscurity: Bristol-based, less known than peers but obsessed with pristine production and melody-through-haze. A reminder that shoegaze&#x27;s underground was vast and patient.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3XooBCDnP4vcqe7soGJFBc?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Whirlpool Eye</div>
+      <div class="card-album">Whirlpool Eye</div>
+      <div class="card-year">1993</div>
+      <div class="card-note">Japanese shoegaze: Nakatani Satoshi&#x27;s production is more aggressive and industrial than Western peers, mixing noise and melody with asynchronous intent. Important for understanding shoegaze&#x27;s global reach.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0kREexziUWzylKjsX8owX2?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Cocteau Twins (continued influence)</div>
+      <div class="card-album">—</div>
+      <div class="card-year">—</div>
+      <div class="card-note">Cocteau Twins&#x27; influence on shoegaze production remained constant; their later work including Heaven or Las Vegas (1990) became even more genre-adjacent as the 90s progressed.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3SXCY4kFMM4T4egq5DSUTa?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#120808,#08080f)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Post-rock genesis: slowcore, krautrock, and instrumental ambition (1993–1999)</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1991–1999</div>
+  </div>
+</div>
+
+<section class="section" id="section-4">
+  <span class="section-number reveal">Section 04</span>
+  <h2 class="reveal">Post-rock genesis: slowcore, krautrock, and instrumental ambition (1993–1999)</h2>
+
+  <div class="reveal"><p>Post-rock emerged as a deliberate repudiation: of rock&#x27;s forward momentum, of the verse-chorus-bridge, of vocals as essential. Early post-rock took cues from Krautrock&#x27;s patient architectures (Can, Neu!), minimalism&#x27;s process-based thinking, and the indie rock tradition&#x27;s anything-goes ethos. The term itself was imprecise—used for everything from Bark Psychosis&#x27;s collage-based experimentation to Tortoise&#x27;s more orchestral approach—but it described a sensibility: the record as composition, the instrument as texture, the build as storytelling.</p></div>
+  <div class="reveal"><p>What made post-rock genuinely post-rock was not the absence of progression but the <em>type</em> of progression: crescendos that took six minutes to resolve, melodies that emerged from rhythm rather than dominating it, and production that treated space and silence as active elements. The niche post-rockers below are the ones who heard this permission structure and pursued it into strange corners—away from the post-rock canon&#x27;s tendency toward drama or catharsis, toward something quieter, more austere, more genuinely experimental.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/7j98uMKCZuBQU1SPcrQAxP?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Bark Psychosis</div>
+      <div class="card-album">Hex</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">The definitive collage-based post-rock: no traditional song structure, instead a composition assembled from fragments, voices, and production artifacts. A rejection of conventional form so complete it became its own genre touchstone.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/7j98uMKCZuBQU1SPcrQAxP?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Tortoise</div>
+      <div class="card-album">Millions Now Living Will Never Die</div>
+      <div class="card-year">1996</div>
+      <div class="card-note">Post-rock meets prog ambition: long-form compositions with clear narrative arcs, orchestral textures, and the conviction that instrumental rock could be as emotionally complex as any song-based form.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3X20tXW0zsl5imVzETPhQh?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Godspeed You! Black Emperor</div>
+      <div class="card-album">Lift Your Skinny Fists Like Antennas to Heaven</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">Canadian post-rock at maximum scale: field recordings, orchestral crescendos, and a sense of apocalyptic grandeur. Influential in its ambition but also in its political/aesthetic seriousness.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1nRpkYNTxT7JR90pJ7IZvd?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Slint</div>
+      <div class="card-album">Spiderland</div>
+      <div class="card-year">1991</div>
+      <div class="card-note">Math-rock adjacent post-rock: polyrhythmic, tightly arranged, and refusing easy resolution. Bren&#x27;s falsetto becomes another instrument in a densely woven tapestry. Essential for post-rock&#x27;s math-rock branch.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2NnkLRaeX33d1Mn8ZLgTo8?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Disco Inferno</div>
+      <div class="card-album">D.I. Go Pop</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">Experimental post-rock that foreground glitch, repetition, and detuned elements. More aligned with UK avant-garde electronic music than traditional post-rock&#x27;s orchestral ambitions. A proof of post-rock&#x27;s stylistic range.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3Lw1772fKHpOpVxdMGNYa3?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Stereolab</div>
+      <div class="card-album">Dots and Loops</div>
+      <div class="card-year">1997</div>
+      <div class="card-note">Post-rock&#x27;s lounge-music cousin: Krautrock rhythms, treated vocals, and a commitment to groove alongside texture. Essential for understanding post-rock&#x27;s eclecticism.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4TQhvd3hojFZAIZCRULdhn?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Gastr del Sol</div>
+      <div class="card-album">Camoufleur</div>
+      <div class="card-year">1996</div>
+      <div class="card-note">Jim O&#x27;Rourke&#x27;s solo project before his work with Alvin Lucier: sparse, detuned, and obsessively detailed in its minimalism. Post-rock from the electronic/composition side rather than the rock side.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1M7w7h8TteadyMfbeKsu5s?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Low</div>
+      <div class="card-album">I Could Live in Hope</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">Slowcore&#x27;s most minimalist manifestation: Alan Sparhawk&#x27;s guitar work and Mimi Parker&#x27;s vocals used as rhythmic instruments in compositions built from silence and restraint. A counterpoint to post-rock bombast.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/61dByu8oBt4qdym9Rkz39w?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Kaada/Johnsen</div>
+      <div class="card-album">Notes from Underground</div>
+      <div class="card-year">1998</div>
+      <div class="card-note">Norwegian post-rock-adjacent work: Merzbow-influenced noise sitting alongside orchestral composition. Proof that post-rock could accommodate extreme sonic adventurism.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/328whVCkslvYFWvreH7BAJ?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Bohren &amp; der Club of Gore</div>
+      <div class="card-album">Sunset Mission</div>
+      <div class="card-year">1999</div>
+      <div class="card-note">German post-rock turned dark-jazz: minimal, dub-influenced, and built around negative space. An archetype for the &quot;dark post-rock&quot; movement that would deepen in the 2000s.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3CrWNG2oqbEBHKAqfZP6CO?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#08100a,#0a0810)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Post-rock refinement and splintering (2000–2007): silence, mathematics, and the DIY underground</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1999–2006</div>
+  </div>
+</div>
+
+<section class="section" id="section-5">
+  <span class="section-number reveal">Section 05</span>
+  <h2 class="reveal">Post-rock refinement and splintering (2000–2007): silence, mathematics, and the DIY underground</h2>
+
+  <div class="reveal"><p>The early 2000s saw post-rock fracture into multiple substyles, each pursued with increasing intensity by dedicated underground audiences. The &quot;big three&quot; (Godspeed You! Black Emperor, Explosions in the Sky, Mono) became the mainstream touchstones, but the real innovation was happening in the margins: bedroom post-rock producers working on laptops, math-rock communities developing increasingly complex polyrhythmic languages, and ambient-adjacent artists treating rock instrumentation as raw material for composition.</p></div>
+  <div class="reveal"><p>This era also saw the global spread of post-rock&#x27;s DIY ethos. Bandcamp and self-release became viable paths; touring networks of small venues in Europe and Asia created viable underground economies. Artists could build devoted fanbases without radio play or mainstream critical attention. This meant experimentalism deepened rather than diluted—there was freedom in obscurity.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/3lLwFslntPTc7cBofBXXDp?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Explosions in the Sky</div>
+      <div class="card-album">The Earth Is Not a Cold Dead Place</div>
+      <div class="card-year">2003</div>
+      <div class="card-note">Post-rock&#x27;s most lush manifestation: four-track guitar arrangement that achieves orchestral density through layering and repetition. Essential for proving post-rock could be beautiful without being grandiose.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3lLwFslntPTc7cBofBXXDp?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Mono</div>
+      <div class="card-album">You Have Left Me Alone but I Shall Not Forgive You</div>
+      <div class="card-year">2001</div>
+      <div class="card-note">Japanese post-rock: more propulsive than European peers, less focused on negative space, more oriented toward cathartic crescendos. Influential in proving post-rock&#x27;s cultural portability.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5Wl4IUYO6C9n79S99Njy1n?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Sigur Rós</div>
+      <div class="card-album">Ágætis byrjun</div>
+      <div class="card-year">1999</div>
+      <div class="card-note">Icelandic post-rock&#x27;s most famous export: Jónsi&#x27;s falsetto and bowed guitar create a sound simultaneously fragile and enormous. Essential for post-rock&#x27;s melodic branch.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1DMMv1Kmoli3Y9fVEZDUVC?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Lights Out Asia</div>
+      <div class="card-album">From Them</div>
+      <div class="card-year">2004</div>
+      <div class="card-note">UK post-rock obscurity: math-rock complexity meeting shoegazey texture, with Jarboe-adjacent vocal treatment. A reminder of post-rock&#x27;s underground diversity.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3CFy1RRgyFBhRhnCQm6SPS?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Aloha</div>
+      <div class="card-album">Here Come the Warm Jets</div>
+      <div class="card-year">2006</div>
+      <div class="card-note">Avant-garde pop-adjacent post-rock: featuring members of Dirty Three and other experimental communities. Saxophone and organ alongside guitars; a proof of post-rock&#x27;s instrumental openness.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3gHuqLrIkfxDHXE29JGf5Y?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Caspian</div>
+      <div class="card-album">The Four Agreements</div>
+      <div class="card-year">2006</div>
+      <div class="card-note">American post-rock from outside the Explosions orbit: more deliberately mysterious, less immediately cathartic. Important for the &quot;dark post-rock&quot; aesthetic developing in this era.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4InGI9WCwjyUVJ05M39pw1?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Tortoise</div>
+      <div class="card-album">Beacons of the Future</div>
+      <div class="card-year">2006</div>
+      <div class="card-note">Later Tortoise: less proggy than earlier work, more interested in texture and spacing. A reminder that post-rock&#x27;s most important artists were refining rather than repeating their approaches.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5vDz9NLQ2QRCf5HyjZfsNK?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Iska Dhaaf</div>
+      <div class="card-album">Of Light</div>
+      <div class="card-year">2004</div>
+      <div class="card-note">Icelandic instrumental: sparse, deeply textured, and more aligned with ambient composition than traditional post-rock. An example of how post-rock terminology was expanding to include texture-focused instrumental work.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1UmfNmEI4Xyl8flbxlSWgG?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">White Rainbow</div>
+      <div class="card-album">Big City Nights</div>
+      <div class="card-year">2005</div>
+      <div class="card-note">Obscure UK guitar-driven post-rock: lo-fi production, repetition-based composition, and a refusal of post-rock&#x27;s tendency toward structure. Proof of the genre&#x27;s underground eclecticism.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4ZCCd0IZB5RizC5sz5IguU?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Trans Am</div>
+      <div class="card-album">Super Electric</div>
+      <div class="card-year">2002</div>
+      <div class="card-note">Post-rock influenced by Krautrock and motorik rhythms: more oriented toward rhythm and groove than typical post-rock, but maintaining the instrumental focus and compositional ambition.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4Sik3ZYRJ7Yb4Q5DMlql8D?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Mouse on Mars</div>
+      <div class="card-album">Glam</div>
+      <div class="card-year">2000</div>
+      <div class="card-note">German electronic post-rock: laptop and synthesizer-based, but aligned with post-rock&#x27;s compositional seriousness and refusal of dance-music urgency.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6vpsQZ0yRIXdJcPXxD8gyV?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0a0a10,#100a0a)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Indie rock&#x27;s fractured paths (1990–2010): math rock, krautrock obsession, and the avant-garde periphery</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1993–2002</div>
+  </div>
+</div>
+
+<section class="section" id="section-6">
+  <span class="section-number reveal">Section 06</span>
+  <h2 class="reveal">Indie rock&#x27;s fractured paths (1990–2010): math rock, krautrock obsession, and the avant-garde periphery</h2>
+
+  <div class="reveal"><p>Indie rock proper—bands on independent labels, playing small venues, maintaining fiercely local scenes—was never a unified category. The 1990s saw multiple indie traditions develop in parallel: American slacker rock (Pavement, Built to Spill), UK indie-pop (Belle and Sebastian), Japanese noise-adjacent experimentalism (Blonde Redhead), and math-rock&#x27;s increasingly complex guitar arrangements. What unified them was an ethos: artistic control, small-scale distribution, and the assumption that unfamiliarity could be a virtue.</p></div>
+  <div class="reveal"><p>Math rock emerged as indie rock&#x27;s most deliberately difficult subgenre: polyrhythmic, refusing conventional song structure, and often prioritizing texture-based guitar work over singable melodies. Artists like Slint, Don Caballero, and Battles built devoted fanbases, but remained almost entirely outside mainstream attention. That isolation was part of the point—complex music for complex listeners, with no apologies for inaccessibility.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/1XFNz6KIvLyIsLFOiLRKqP?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Pavement</div>
+      <div class="card-album">Crooked Rain, Crooked Rain</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">Slacker-rock&#x27;s most influential statement: detuned guitars, anti-charismatic vocals, and a deliberate refusal of polish. Essential for indie rock&#x27;s embrace of imperfection as aesthetic choice.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1XFNz6KIvLyIsLFOiLRKqP?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Built to Spill</div>
+      <div class="card-album">Great Expectations</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">Math-adjacent indie from Boise: long, patient songs with intricate guitar layering. Douglas Martsch&#x27;s approach to the instrument as composer rather than mere performer influenced a generation.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2PKZhfPrgMmK5zug2pqdHA?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Don Caballero</div>
+      <div class="card-album">Don Caballero 2</div>
+      <div class="card-year">1998</div>
+      <div class="card-note">Math rock&#x27;s most purely instrumental statement: no vocals, no chorus, pure compositional complexity. Essential for understanding math-rock&#x27;s roots in jazz fusion and classical composition.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2ewXus1O2vZpjbgVmDQITy?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Blonde Redhead</div>
+      <div class="card-album">Melody of Certain Damaged Lemons</div>
+      <div class="card-year">1997</div>
+      <div class="card-note">Japanese/Italian/American experimentalism: dual vocals, detuned guitars, and a production style influenced by lo-fi hip-hop&#x27;s aesthetic. Crucial for understanding indie rock&#x27;s global, non-English-language development.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6wRDKCpKw3ap6dhkpdXNIN?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Unwound</div>
+      <div class="card-album">New Plastic Ideas</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">Math-rock-adjacent indie punk: Donovan Freiley&#x27;s guitar work balances rhythmic complexity with noise texture. Post-punk intensity meeting indie rock&#x27;s willingness to be fractured and difficult.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/66AIKchn1wvJUpZB6nIOmn?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Ability</div>
+      <div class="card-album">Ability</div>
+      <div class="card-year">1993</div>
+      <div class="card-note">Korean math-rock obscurity: complex time signatures, intricate bass/guitar interplay, and a sound that suggests Don Caballero but from a distinct cultural position. Important for non-Western math-rock development.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3fDhEtlJ8N8n1VP3yVc0HQ?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Japancakes</div>
+      <div class="card-album">Soft</div>
+      <div class="card-year">2002</div>
+      <div class="card-note">Southern US instrumental indie: fingerpicking guitar and vibraphone create delicate, chamber-pop-adjacent soundscapes. A proof that indie rock&#x27;s experimental spirit extended to intimate, acoustic composition.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5n24EJXwP5gq45z1kSYeJ4?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Six Parts Seven</div>
+      <div class="card-album">The Way Up</div>
+      <div class="card-year">2000</div>
+      <div class="card-note">Cleveland math-rock: cello, guitar, and intricate arrangements creating something between classical minimalism and contemporary composition.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1hf3AFvEIIIfaXdcRXllYN?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Mogwai</div>
+      <div class="card-album">Come On Die Young</div>
+      <div class="card-year">1999</div>
+      <div class="card-note">Scottish post-rock-adjacent indie: longer forms, orchestral textures, but maintaining indie rock&#x27;s DIY ethics. One of the most influential acts in bridging post-rock and indie rock audiences.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2ge6eVAMFNWS5srqDbudEq?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">A Silver Mt. Zion</div>
+      <div class="card-album">Horses in the Sky</div>
+      <div class="card-year">2000</div>
+      <div class="card-note">Montreal experimental folk-adjacent post-rock: Efrim Manuel Cienfuegos&#x27; treated guitar, field recordings, and political seriousness. A link between post-rock and folk-experimental communities.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3wBRVIdW9h69IE3fnNUO62?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0d0a0a,#0a0d12)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">2000s experimentation: laptop, glitch, and the indeterminacy of genre (2005–2012)</div>
+    <div class="era-years reveal" style="transition-delay:.2s">1994–2013</div>
+  </div>
+</div>
+
+<section class="section" id="section-7">
+  <span class="section-number reveal">Section 07</span>
+  <h2 class="reveal">2000s experimentation: laptop, glitch, and the indeterminacy of genre (2005–2012)</h2>
+
+  <div class="reveal"><p>The 2000s saw indie rock, post-rock, and shoegaze increasingly influenced by electronic music&#x27;s production techniques. Laptop-based composition, glitch aesthetics, and digital processing began appearing in rock contexts not as novelty but as standard practice. Artists like Oval, Ryoji Ikeda, and Tim Hecker demonstrated that electronic processing could be integrated into experimental thinking without abandoning rock&#x27;s core concerns: melody, instrument timbre, compositional form.</p></div>
+  <div class="reveal"><p>Simultaneously, internet distribution (Bandcamp, Myspace) meant that geographical isolation was no longer as limiting. A producer in rural Japan, a experimental musician in rural Appalachia, or a post-rock ensemble in a small European city could reach global audiences of dedicated listeners. This democratisation of distribution meant quality music produced in utter obscurity could find its people.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/1VjWcD0lLRFpAIK0AFRUBl?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Oval</div>
+      <div class="card-album">Systemisch</div>
+      <div class="card-year">2002</div>
+      <div class="card-note">German glitch-adjacent work: corrupted audio files, digital processing, and a willingness to let formal imperfection become compositional material. Essential for understanding electronic music&#x27;s influence on experimental indie and post-rock.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1VjWcD0lLRFpAIK0AFRUBl?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Penderecki (contemporary)</div>
+      <div class="card-album">De Natura Sonoris</div>
+      <div class="card-year">2005</div>
+      <div class="card-note">Contemporary classical composer&#x27;s influence on post-rock production increased throughout the 2000s; many post-rock producers studied his work. A reminder that experimental rock was in dialogue with formal classical composition.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4vGRrXTak44ULC7tS2v25Q?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Keiji Haino</div>
+      <div class="card-album">Nazonazo</div>
+      <div class="card-year">2001</div>
+      <div class="card-note">Japanese guitar experimentalism: highly processed, feedback-influenced, and aligned with more of a noise aesthetic than traditional rock. Important for non-Western guitar experimentation.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6YWR7I5MUWiJJBRTISSiZ0?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Godspeed You! Black Emperor</div>
+      <div class="card-album">F♯ A♯ ∞</div>
+      <div class="card-year">1994</div>
+      <div class="card-note">Reissued and further contextualized during this era; continued influence on field-recording approaches and political seriousness in post-rock.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1nRpkYNTxT7JR90pJ7IZvd?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Fennesz</div>
+      <div class="card-album">Endless Summer</div>
+      <div class="card-year">2001</div>
+      <div class="card-note">Austrian laptop-based post-rock adjacent work: guitar processed through digital effects into something between noise and composition. Essential for laptop-rock fusion.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3Ombmwfn0Wi3twVHD0VyxS?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Matmos</div>
+      <div class="card-album">A Chance to Cut Is a Chance to Cure</div>
+      <div class="card-year">2001</div>
+      <div class="card-note">Experimental electronic duo influenced by noise, experimental music, and pop sensibility. Proof that laptop-based music could maintain pop hooks while pursuing formal complexity.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6Ny98g8gtVeMwN6TtWmYXs?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Alva Noto</div>
+      <div class="card-album">Unitxt</div>
+      <div class="card-year">2002</div>
+      <div class="card-note">Ryoji Ikeda&#x27;s more melodic project: glitch aesthetics applied to post-rock-adjacent compositions. A bridge between IDM and experimental rock/post-rock.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0eVwM1mUJvPoyDuzKMvUsR?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Arca</div>
+      <div class="card-album">Stretch 2</div>
+      <div class="card-year">2013</div>
+      <div class="card-note">Venezuelan electronic experimentalist: harsh, chaotic, but emerging from post-rock/indie rock communities. Important for understanding how electronic music fed back into experimental rock aesthetics.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2cxxInEwtqsRaTnhidR5It?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Tim Hecker</div>
+      <div class="card-album">Virgins</div>
+      <div class="card-year">2006</div>
+      <div class="card-note">Canadian laptop composer: drone, texture, and formal innovation aligned with both electronic and post-rock thinking. Essential for understanding laptop composition&#x27;s integration into experimental rock discourse.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3GzIvKYXNOBViT8TveArjx?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Alles</div>
+      <div class="card-album">Alles</div>
+      <div class="card-year">2005</div>
+      <div class="card-note">Obscure German ensemble: laptop processing, field recordings, and post-rock instrumentation creating something between composition and sound art.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4aF1GKmKic4bkbBPDUUyrh?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#100808,#08100a)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">Deep niche development: dark post-rock, ambient, and fractured genres (2008–2016)</div>
+    <div class="era-years reveal" style="transition-delay:.2s">2009–2018</div>
+  </div>
+</div>
+
+<section class="section" id="section-8">
+  <span class="section-number reveal">Section 08</span>
+  <h2 class="reveal">Deep niche development: dark post-rock, ambient, and fractured genres (2008–2016)</h2>
+
+  <div class="reveal"><p>The late 2000s and early 2010s saw experimental indie and post-rock communities develop increasingly specialized subcategories. &quot;Dark post-rock&quot; became a recognizable aesthetic: music aligned with post-rock&#x27;s structural ambitions but leaning toward Bohren-influenced minimalism, dub spaciousness, and a general refusal of emotional catharsis. Simultaneously, &quot;post-rock&quot; terminology was stretching to include entirely acoustic and ambient work—artists using post-rock&#x27;s compositional approach but abandoning electrical amplification entirely.</p></div>
+  <div class="reveal"><p>During this period, online communities (particularly SoundCloud, Bandcamp, and increasingly specialized music forums) began explicitly cataloguing these substyles. This created feedback loops: artists could research extremely specific aesthetics, iterate on them, and find audiences of hundreds or thousands of people worldwide who shared their precise artistic interests. The internet meant genuine niche flourished.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/6JpQGIi2he6iskzR4aLwPG?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Ólafur Arnalds</div>
+      <div class="card-album">Re:member</div>
+      <div class="card-year">2018</div>
+      <div class="card-note">Icelandic post-classical: piano and strings, influenced by post-rock&#x27;s patient architecture but entirely acoustic. Proof that post-rock&#x27;s thinking extended far beyond guitar-based music.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6JpQGIi2he6iskzR4aLwPG?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Emery</div>
+      <div class="card-album">Eve</div>
+      <div class="card-year">2012</div>
+      <div class="card-note">UK post-rock-adjacent: drone influenced, highly textured, and pursuing minimal melody. Important for dark post-rock aesthetic&#x27;s deepening in this era.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1Q3D26T9v87fchbamiTRij?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Black Boned Angel</div>
+      <div class="card-album">Ceremony of Souls</div>
+      <div class="card-year">2012</div>
+      <div class="card-note">Polish drone-adjacent post-rock: minimal instrumentation, field recordings, and a refusal of conventional structure. Proof of post-rock&#x27;s Eastern European development.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/7bm6yf26WJab5t3Cmn8cch?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Explosions in the Sky</div>
+      <div class="card-album">Take Care, Take Care, Take Care</div>
+      <div class="card-year">2011</div>
+      <div class="card-note">Later Explosions work: darker, more textured, less immediately cathartic than earlier albums. A reminder that established acts were evolving with their subgenres.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0YyzsxDm4ifuVMoXL2kshK?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Lantlos</div>
+      <div class="card-album">Hälfte Mensch</div>
+      <div class="card-year">2010</div>
+      <div class="card-note">German post-rock-adjacent ensemble: folk influences, complexity, and a sense of both intimate and vast scale.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4joaiFXVmxObMdQ0Cj4HGS?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Balmorhea</div>
+      <div class="card-album">All Is Wild, All Is Silent</div>
+      <div class="card-year">2010</div>
+      <div class="card-note">American acoustic post-rock adjacent: fingerpicking guitar, minimal electronics, and chamber-music aesthetics. Proof that post-rock&#x27;s thinking could work entirely without amplification.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/017xVwah8y6Jc37bsRZ4u4?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">MONO</div>
+      <div class="card-album">Hymn to the Immortal Wind</div>
+      <div class="card-year">2009</div>
+      <div class="card-note">Japanese post-rock continued evolution: orchestral ambition maintained, but increasingly interested in texture and negative space alongside crescendo.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2tMQkZ8WvwpM7qmRVrW3hK?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Maybeshewill</div>
+      <div class="card-album">Not for Want of Trying</div>
+      <div class="card-year">2010</div>
+      <div class="card-note">UK post-rock: DIY ethos maintained, but increasingly influenced by electronic music and glitch aesthetics. Important for post-rock&#x27;s continued dialogue with electronic production.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0bAYZeyWRQEikxxpxRGZrs?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Gwenifar</div>
+      <div class="card-album">Absence Speaks Louder</div>
+      <div class="card-year">2013</div>
+      <div class="card-note">UK dark post-rock: female-fronted, minimal, and aligned with both post-rock&#x27;s compositional ambitions and drone&#x27;s patient aesthetics.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5FzUnPRyOKXUSkhRPhUNzL?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Cloud Nothings</div>
+      <div class="card-album">Attack on Memory</div>
+      <div class="card-year">2011</div>
+      <div class="card-note">Indie rock obscurity that evolved into post-rock-adjacent territory: Collis&#x27;s songwriting became increasingly ambitious and abstract. Important for indie rock&#x27;s continued evolution into post-rock thinking.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1siXezO0rAWku1Aoi5vVMa?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#1a0a0a,#0a0a15)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">2015 to present: hyperspecialization, streaming splintering, and the multiplication of substyles</div>
+    <div class="era-years reveal" style="transition-delay:.2s">2013–2020</div>
+  </div>
+</div>
+
+<section class="section" id="section-9">
+  <span class="section-number reveal">Section 09</span>
+  <h2 class="reveal">2015 to present: hyperspecialization, streaming splintering, and the multiplication of substyles</h2>
+
+  <div class="reveal"><p>The 2015–2026 period has seen experimental indie rock and post-rock fragment into dozens of micro-subgenres, each with devoted communities but almost no crossover audience. Streaming&#x27;s algorithms mean that listeners can spend months in extremely specific sonic territories without encountering anything outside their chosen aesthetic. This has produced both liberation and isolation: liberation in that artists can pursue hyper-specialized research; isolation in that the unified &quot;indie rock&quot; or &quot;post-rock&quot; audiences of previous eras has splintered into incompatible subcommunities.</p></div>
+  <div class="reveal"><p>During this period, the boundary between &quot;post-rock,&quot; &quot;ambient,&quot; &quot;contemporary composition,&quot; &quot;drone,&quot; &quot;folk,&quot; and &quot;electronic music&quot; has become almost meaningless. Artists regularly work across all these categories in a single discography. The albums listed below represent this splintering: they are united by a sensibility (instrumental, texture-focused, influenced by post-rock and experimental indie thinking) rather than by a coherent genre classification.</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/5Wl4IUYO6C9n79S99Njy1n?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Cloudkicker</div>
+      <div class="card-album">Let Yourself Down</div>
+      <div class="card-year">2013</div>
+      <div class="card-note">One-man instrumental metal-adjacent project that shares more DNA with post-rock and experimental indie than with traditional metal. Important for understanding metal and post-rock&#x27;s increasing overlap.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5Wl4IUYO6C9n79S99Njy1n?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Clint Mansell (solo)</div>
+      <div class="card-album">Soundtrack for Film</div>
+      <div class="card-year">2015</div>
+      <div class="card-note">Film composer exploring post-rock and ambient idioms in instrumental album form. Proof of compositional thinking&#x27;s portability across high-art and underground contexts.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/02QuittxOYhUcxfmT9Gnn9?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Godspeed You! Black Emperor</div>
+      <div class="card-album">Asunder, Sweet and Other Distress</div>
+      <div class="card-year">2015</div>
+      <div class="card-note">Still active, still refining: longer works, more integration of electronic processing, and continued political commitment. A reminder that the &quot;first generation&quot; of post-rock remains vital.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/7pL7dEBNUaAC1EHpqFeWpm?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Merzbow</div>
+      <div class="card-album">Pulse Demon (2016 remaster)</div>
+      <div class="card-year">2016</div>
+      <div class="card-note">Merzbow&#x27;s continued influence on experimental guitar and processing aesthetics cannot be overstated; his noise methodology influenced a generation of guitar experimentalists.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2jp9y9hNZTVeQkEDr0pCLI?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Helios</div>
+      <div class="card-album">Veriditas</div>
+      <div class="card-year">2016</div>
+      <div class="card-note">Keith Kenniff&#x27;s solo instrumental work: intimate, acoustic, but influenced by post-rock&#x27;s patient compositional thinking. Essential for acoustic minimalism&#x27;s relationship to post-rock.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3QTsU264hhPO4cEOrHrZC0?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Jugngle Rot</div>
+      <div class="card-album">Liminal</div>
+      <div class="card-year">2018</div>
+      <div class="card-note">Obscure UK project: ambient-adjacent, drone-influenced, and existing almost entirely outside mainstream attention. Exemplifies underground post-rock&#x27;s continued vitality.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/513jv6L44NNDZQGSaPNg7S?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Tortoise</div>
+      <div class="card-album">The Catastrophist</div>
+      <div class="card-year">2016</div>
+      <div class="card-note">Tortoise at their most ambitious: electronic processing integrated throughout, orchestral ambitions maintained, and a reminder that progressive thinking about rock instrumentation continues.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0Q7HMY1sPLRa0LZoFpzgRw?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Explosions in the Sky</div>
+      <div class="card-album">How Strange, Innocence</div>
+      <div class="card-year">2016</div>
+      <div class="card-note">Compilation album highlighting evolution and archival thinking. Post-rock had begun to develop historiographical impulses.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4AB19qiiH6r1eiIlH6cpFC?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Cory Wong (instrumental)</div>
+      <div class="card-album">The Optimist</div>
+      <div class="card-year">2016</div>
+      <div class="card-note">Fusion-adjacent but influenced by post-rock&#x27;s textural and compositional thinking. Proof of stylistic porosity between experimental indie, fusion, and post-rock proper.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0A8cq3cjiMMP8lI1SeG4GN?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Múm</div>
+      <div class="card-album">Smilewound</div>
+      <div class="card-year">2020</div>
+      <div class="card-note">Icelandic post-rock-adjacent band&#x27;s late-period work: laptop and acoustic instrumentation blended, melodic but textured, proof of Iceland&#x27;s continued experimental sophistication.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/585s5jZVhHqU7JC1MpK1vp?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Trent Reznor &amp; Atticus Ross (instrumental)</div>
+      <div class="card-album">Before the Flood</div>
+      <div class="card-year">2015</div>
+      <div class="card-note">Film score that explicitly references post-rock&#x27;s compositional strategies. Proof of post-rock&#x27;s influence on high-profile contemporary composition.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6nFtsE7rZHInooqb9QYGrn?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Noise Trail Immersion</div>
+      <div class="card-album">Noise Trail Immersion</div>
+      <div class="card-year">2019</div>
+      <div class="card-note">Swiss-Italian collaboration: laptop and guitar processing, deeply experimental, and almost entirely obscure. Exemplifies the niche depth of contemporary instrumental music.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2aTsEMrHMNOFm2LY0GDN2W?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Fennesz</div>
+      <div class="card-album">Plus</div>
+      <div class="card-year">2018</div>
+      <div class="card-note">Laptop composer&#x27;s evolution: integrating post-rock structures into electronic work. A reminder of electronic music&#x27;s continued influence on experimental rock aesthetics.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5i5oTm29YHNiapM9jnFIe9?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Tim Hecker</div>
+      <div class="card-album">AGAR</div>
+      <div class="card-year">2017</div>
+      <div class="card-note">Continued evolution: laptop-based but increasingly orchestral in ambition. Tim Hecker&#x27;s work exemplifies how experimental thinking in electronic music intersects with post-rock&#x27;s compositional seriousness.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1U5x6wQtMJtbwM3NZRSvKT?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Grinderman/Nick Cave &amp; the Bad Seeds</div>
+      <div class="card-album">Skeleton Key (instrumental re-working)</div>
+      <div class="card-year">2017</div>
+      <div class="card-note">Nick Cave&#x27;s instrumental work influenced by post-rock thinking; proof that artists from other genres were adopting post-rock&#x27;s compositional language.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/08wjfoojsdnKnFtfzzbQEN?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Mouse on Mars</div>
+      <div class="card-album">Histoires</div>
+      <div class="card-year">2017</div>
+      <div class="card-note">Continued experimentation with laptop-based composition, ambient thinking, and post-rock-adjacent forms.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0SX7gjlXxpX1sTFXZYN12P?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Balmorhea</div>
+      <div class="card-album">Into the Sun</div>
+      <div class="card-year">2020</div>
+      <div class="card-note">Continued exploration of acoustic post-rock-adjacent music: intimate, textured, and maintaining the compositional patience characteristic of the style.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/06HzVCSW7suHfuHGp7rJHg?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">William Basinski</div>
+      <div class="card-album">The Disintegration Loops (15 Year Retrospective)</div>
+      <div class="card-year">2015</div>
+      <div class="card-note">While primarily a tape-based experimental composer, Basinski&#x27;s work influenced countless post-rock and experimental indie artists. His approach to degradation and memory shaped a generation&#x27;s thinking about texture and time.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5fmPy3XmYD0BJKEr86a3Cu?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Arca</div>
+      <div class="card-album">KiCk i</div>
+      <div class="card-year">2020</div>
+      <div class="card-note">Venezuelan producer&#x27;s continued evolution into post-rock-adjacent territory: chaotic, textured, but with growing interest in composition and structure alongside raw experimentalism.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6fumIfDEAppI5NCGHQEBSr?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Fennesz &amp; Ryoji Ikeda</div>
+      <div class="card-album">Optics</div>
+      <div class="card-year">2016</div>
+      <div class="card-note">Collaboration between laptop experimentalists: proof of electronic music&#x27;s technical sophistication and increasing alignment with post-rock&#x27;s compositional seriousness.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2xX3ZjCpag97tPL1BHBlbJ?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Ben Frost</div>
+      <div class="card-album">A U R O R A</div>
+      <div class="card-year">2018</div>
+      <div class="card-note">Icelandic producer: ambient-adjacent, glitch-influenced, but integrating guitar and orchestral thinking. Exemplifies contemporary experimental music&#x27;s genre-straddling nature.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1MuXKZMVnOVEwlby2vKsIf?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Laurel Halo</div>
+      <div class="card-album">Raw Silk Uncut Wood</div>
+      <div class="card-year">2020</div>
+      <div class="card-note">Electronic musician influenced by ambient and post-rock thinking; laptop-based but deeply compositional. Proof of electronic music&#x27;s integration into rock-adjacent experimental communities.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1A4Yf9XDWWQ0xJYOpE9Eyc?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Andy Akiho (contemporary)</div>
+      <div class="card-album">Time Zones</div>
+      <div class="card-year">2018</div>
+      <div class="card-note">Composer working across minimalism, post-rock, and experimental thinking. Proof of formal composition&#x27;s dialogue with underground experimental aesthetics.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/53vYFDgzRtbO2j3enyWDnr?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Sarah Beth Dallison</div>
+      <div class="card-album">Amorphous</div>
+      <div class="card-year">2020</div>
+      <div class="card-note">UK composer-performer: guitar and processing, ambient thinking, and extremely limited distribution. Exemplifies contemporary underground experimental music&#x27;s niche specificity.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3VYJLM1oXQV0o9RTlVSrfA?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">James Holden</div>
+      <div class="card-album">Emerald Rush</div>
+      <div class="card-year">2019</div>
+      <div class="card-note">Electronic musician influenced by techno, ambient, and post-rock thinking. His 2019 album shows increasing interest in composition and structure.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/54yde117GS26RlCZuZFlzz?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">William Basinski &amp; Lawrence English</div>
+      <div class="card-album">The Universal Waveform</div>
+      <div class="card-year">2020</div>
+      <div class="card-note">Collaboration between tape experimentalist and contemporary composer. Proof of cross-pollination between tape-based and digital-age experimental music.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5QXgxzxiOzManaZz4XBcoq?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Elori Saxl</div>
+      <div class="card-album">A Thousand Rooms</div>
+      <div class="card-year">2020</div>
+      <div class="card-note">Electroacoustic musician: processed instruments, field recordings, and contemporary composition thinking. Proof of experimental thinking&#x27;s continued diversification.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1iqnfPEUEjFAeSbk50nbTc?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="era-divider">
+  <div class="era-bg" style="background:linear-gradient(135deg,#0a1015,#15100a)"></div>
+  <div style="text-align:center">
+    <div class="era-label reveal">The infinite niche (2020–2026): microgenre depth and algorithmic splintering</div>
+    <div class="era-years reveal" style="transition-delay:.2s">2020–2024</div>
+  </div>
+</div>
+
+<section class="section" id="section-10">
+  <span class="section-number reveal">Section 10</span>
+  <h2 class="reveal">The infinite niche (2020–2026): microgenre depth and algorithmic splintering</h2>
+
+  <div class="reveal"><p>In the present moment, experimental indie rock and post-rock exist primarily as a series of interconnected but largely non-communicating communities. SoundCloud, Bandcamp, and algorithm-driven streaming mean that someone can spend years listening to a specific substyle—say, dark-jazz-influenced post-rock with field recordings—and almost never encounter anything outside that narrow aesthetic. The experimental music communities at this moment are characterized by:</p></div>
+  <div class="reveal"><p>1. <strong>Hyperspecialization</strong>: Artists pursue extremely narrow aesthetic territories, pushing each idea to exhaustion.</p></div>
+  <div class="reveal"><p>2. <strong>Community-based curation</strong>: Rather than mainstream media deciding what matters, small communities of dedicated listeners function as tastemakers and historians.</p></div>
+  <div class="reveal"><p>3. <strong>Continuous fragmentation</strong>: New substyles emerge constantly, each defined by specific reference points and production choices.</p></div>
+  <div class="reveal"><p>4. <strong>Simultaneous accessibility and obscurity</strong>: Artists can find audiences of thousands or tens of thousands worldwide, but remain unknown to casual listeners in their own cities.</p></div>
+  <div class="reveal"><p>The records listed below represent this moment: artists whose work is meaningful to devoted listeners but whose names would mean almost nothing to someone focused on mainstream music:</p></div>
+
+  <div class="featured-album reveal scale-in">
+    <div class="feat-label">Essential Listening</div>
+    <iframe src="https://open.spotify.com/embed/album/1nRpkYNTxT7JR90pJ7IZvd?utm_source=generator&theme=0"
+            height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+  </div>
+
+  <h3 class="reveal">Recommended Listening</h3>
+  <div class="album-grid stagger reveal">
+    <div class="album-card">
+      <div class="card-artist">Godspeed You! Black Emperor</div>
+      <div class="card-album">Godspeed You! Black Emperor</div>
+      <div class="card-year">2021</div>
+      <div class="card-note">Twenty-first-century post-rock&#x27;s elder statesmen still making vital work. Political commitment and sonic ambition remain undiminished.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1nRpkYNTxT7JR90pJ7IZvd?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Explosions in the Sky</div>
+      <div class="card-album">Wilderness</div>
+      <div class="card-year">2021</div>
+      <div class="card-note">Continued refinement: melodic, textured, and proving that 30+ years into the project, the basic approach remains generative.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/4wgtPg4XUMc5cDG3ZVIXan?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Mono</div>
+      <div class="card-album">Pilgrimage of the Soul</div>
+      <div class="card-year">2021</div>
+      <div class="card-note">Japanese post-rock continues evolving: orchestral, patient, and maintaining the political/emotional seriousness of the early work.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1ycEDqn6VTj8wvK3NEKBEV?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Balmorhea</div>
+      <div class="card-album">Cascadia</div>
+      <div class="card-year">2022</div>
+      <div class="card-note">American acoustic post-rock continues: delicate, patient, and increasingly interested in field recordings and natural ambience.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3jaaXBjkXWUJOB68U6DVdr?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Múm</div>
+      <div class="card-album">Nautilus</div>
+      <div class="card-year">2021</div>
+      <div class="card-note">Icelandic post-rock-adjacent band: electronic and acoustic fusion, patient and textured. Proof of Iceland&#x27;s continued experimental vitality.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2XCcnYJJQXYoWm5oc20x9k?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Nils Frahm</div>
+      <div class="card-album">Felt</div>
+      <div class="card-year">2021</div>
+      <div class="card-note">Contemporary minimalist composer influenced by post-rock&#x27;s patient aesthetics and electronic music&#x27;s production sophistication. Essential for post-rock&#x27;s continued dialogue with formal composition.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3AioJfZ8LfEzPaFPQHoe3e?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Ólafur Arnalds</div>
+      <div class="card-album">Some Kind of Peace</div>
+      <div class="card-year">2020</div>
+      <div class="card-note">Continued exploration of post-classical music influenced by post-rock thinking. Piano and strings, intimate but architecturally ambitious.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6NW97EFYSQ9X1CulKyL7wf?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Godkicker</div>
+      <div class="card-album">Vast Silence</div>
+      <div class="card-year">2021</div>
+      <div class="card-note">Obscure one-man instrumental project: drone, ambient, and post-rock-adjacent. Exemplifies the niche obscurity of contemporary experimental music.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5OO46Ywofy5hoCyNjZxWs7?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Purity Ring</div>
+      <div class="card-album">Betwixt</div>
+      <div class="card-year">2022</div>
+      <div class="card-note">Electronic artists influenced by post-rock&#x27;s compositional thinking; proof of cross-pollination between electronic pop and experimental music.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/23NPYRIGOes2LYAh0r7Jzw?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Vagabon</div>
+      <div class="card-album">Vagrant</div>
+      <div class="card-year">2021</div>
+      <div class="card-note">Indie rock artist whose later work shows increasing influence from post-rock and experimental thinking. Important for understanding indie rock&#x27;s continued conversation with post-rock methodology.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/1WA7jS20S9MCz493hFY5im?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Fennesz</div>
+      <div class="card-album">Call</div>
+      <div class="card-year">2022</div>
+      <div class="card-note">Laptop composer&#x27;s continued evolution: increasingly orchestral, but maintaining glitch and processing aesthetics as fundamental to the work.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3BW7CgpmNbGYaxJncNrv9a?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">David Torn</div>
+      <div class="card-album">Evocations</div>
+      <div class="card-year">2021</div>
+      <div class="card-note">Jazz-adjacent guitarist influenced by experimental indie and post-rock thinking. Proof of jazz and experimental rock&#x27;s continued porosity.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6s4wgmA6O4jRFLyQMRxx0u?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Jarboe (solo instrumental)</div>
+      <div class="card-album">Rare Recordings</div>
+      <div class="card-year">2021</div>
+      <div class="card-note">Former Neurosis vocalist&#x27;s instrumental work influenced by experimental music and post-rock thinking. Proof of artists moving across genres while maintaining experimental commitment.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/24rrR09ppuyoNWgKwGRP4J?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Stars of the Lid</div>
+      <div class="card-album">The Tired Sounds of Stars of the Lid</div>
+      <div class="card-year">2021</div>
+      <div class="card-note">Expanded/reissued archival material from the dark post-rock/ambient pioneers. Increased historical attention to these aesthetics.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2TnJPCSX9i2etg8jbaMcbl?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Eluvium</div>
+      <div class="card-album">A Winged Victory For The Sullen</div>
+      <div class="card-year">2022</div>
+      <div class="card-note">Matthew Evan Taylor&#x27;s collaboration with Adam Wiltzie: ambient, orchestral, post-rock-influenced. Proof of ambient and post-rock&#x27;s continued aesthetic overlap.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/7bm6yf26WJab5t3Cmn8cch?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Grouper</div>
+      <div class="card-album">Dragging a Dead Deer Up a Hill (2022 remaster)</div>
+      <div class="card-year">2022</div>
+      <div class="card-note">Liz Harris&#x27;s work influential on contemporary ambient and experimental thinking. The influence of shoegaze and post-rock on ambient music became increasingly explicit in this era.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3xdgL0gjv3u3wjvzqh0CJI?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Kiasmos</div>
+      <div class="card-album">Blurred Lines</div>
+      <div class="card-year">2021</div>
+      <div class="card-note">Icelandic duo: piano and electronics, experimental thinking, and post-rock-adjacent patiently developed compositions.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/6buz46xNMKBZ5xItTu5rDK?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Belong</div>
+      <div class="card-album">Common Era</div>
+      <div class="card-year">2022</div>
+      <div class="card-note">Orchestral electronic music: experimental post-rock adjacent, using processing and field recordings. Proof of post-rock&#x27;s influence extending into electronic and orchestral contexts.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/5eLecfBYVgIQqlJtXBHJgy?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Aasthya</div>
+      <div class="card-album">Silence</div>
+      <div class="card-year">2023</div>
+      <div class="card-note">Contemporary experimental musician: minimal, textured, and working in almost complete obscurity. Exemplifies the current state of underground experimental music.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2Y8JmDSdZtS59CCIMsxe2F?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Godspeed You! Black Emperor (anniversary reissues)</div>
+      <div class="card-album">Godspeed You! Black Emperor (1994) (2024 remaster)</div>
+      <div class="card-year">2024</div>
+      <div class="card-note">The continued reissuing and contextualization of foundational post-rock works. A marker of the genre&#x27;s historiographical maturity.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0WGs5bQx4HefdubdFh1kfE?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Múm</div>
+      <div class="card-album">In Your Keep</div>
+      <div class="card-year">2024</div>
+      <div class="card-note">Continued Icelandic post-rock-adjacent evolution: patient, textured, and maintaining experimental commitment across a three-decade career.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/3ukNtDUlpfzDwFXiZFAGsh?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Cory Wong &amp; Vulfpeck</div>
+      <div class="card-album">Motéma</div>
+      <div class="card-year">2023</div>
+      <div class="card-note">Fusion-adjacent but influenced by post-rock and experimental indie thinking. Proof of genre-straddling becoming the default for ambitious instrumental music.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2vRHWU3gH7U5JYi9FQ35tV?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Stars of the Lid</div>
+      <div class="card-album">The Tired Sounds Remixed</div>
+      <div class="card-year">2024</div>
+      <div class="card-note">Dark post-rock pioneers continue recontextualizing their legacy through remixes and expanded releases. Proof of dark post-rock&#x27;s current cultural status as worthy of archival and re-examination.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/2TnJPCSX9i2etg8jbaMcbl?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+    <div class="album-card">
+      <div class="card-artist">Fennesz (solo/collaborations)</div>
+      <div class="card-album">Dimensional</div>
+      <div class="card-year">2024</div>
+      <div class="card-note">Laptop composer&#x27;s continued work: orchestral ambitions, glitch aesthetics, and rigorous compositional thinking maintained.</div>
+      <div class="spotify-embed"><iframe src="https://open.spotify.com/embed/album/0FsCs7FQEHa5cBIpQT3LTT?utm_source=generator&theme=0" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<footer style="text-align:center;padding:2rem;font-size:.65rem;color:#2a2535;border-top:1px solid #1a1a20">
+  Built with Musiculum
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var reveals=document.querySelectorAll('.reveal');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})
+  },{threshold:.08,rootMargin:'0px 0px -60px 0px'});
+  reveals.forEach(function(el){obs.observe(el)});
+
+  var sections=document.querySelectorAll('[id^="hero"],[id^="section-"]');
+  var items=document.querySelectorAll('.timeline li');
+  var map={};
+  items.forEach(function(li){map[li.dataset.section]=li});
+  var so=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        items.forEach(function(li){li.classList.remove('active')});
+        if(map[e.target.id])map[e.target.id].classList.add('active');
+      }
+    })
+  },{threshold:.15,rootMargin:'-20% 0px -60% 0px'});
+  sections.forEach(function(s){so.observe(s)});
+
+  document.querySelectorAll('.timeline a').forEach(function(a){
+    a.addEventListener('click',function(ev){
+      ev.preventDefault();
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+    })
+  });
+
+  var dividers=document.querySelectorAll('.era-divider .era-bg');
+  if(dividers.length&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    var ticking=false;
+    window.addEventListener('scroll',function(){
+      if(!ticking){
+        requestAnimationFrame(function(){
+          dividers.forEach(function(bg){
+            var r=bg.parentElement.getBoundingClientRect();
+            var off=(r.top+r.height/2-window.innerHeight/2)*.12;
+            bg.style.transform='scale(1.1) translateY('+off+'px)';
+          });
+          ticking=false;
+        });
+        ticking=true;
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
