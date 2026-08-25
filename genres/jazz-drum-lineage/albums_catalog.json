@@ -164,7 +164,7 @@
     "listen_for": "Drums pushing the tempo when the arrangement refuses to.",
     "energy": "6",
     "texture": "taut",
-    "connections": "Stuff - Stuff",
+    "connections": "Stuff - More Stuff",
     "spotify_id": "13l9IPYL1qpMSTD5olr7ZP"
   },
   {
@@ -176,7 +176,7 @@
     "listen_for": "A marching rudiment repurposed as a pop hook.",
     "energy": "4",
     "texture": "crisp",
-    "connections": "Stuff - Stuff",
+    "connections": "Stuff - More Stuff",
     "spotify_id": "4A366gjTrYQwmRtkTezF2W"
   },
   {
@@ -217,15 +217,15 @@
   },
   {
     "artist": "Stuff",
-    "album": "Stuff",
-    "year": "1976",
+    "album": "More Stuff",
+    "year": "1977",
     "note": "The New York session elite as their own band, with two drummers and nothing to prove to a producer.",
     "section": "1974-1981: the shuffle enters the studio",
     "listen_for": "Steve Gadd and Chris Parker sharing one groove without collision.",
     "energy": "5",
     "texture": "conversational",
     "connections": "The RH Factor - Hard Groove",
-    "spotify_id": "67nNXT3aMW7vQVS8alA2Sk"
+    "spotify_id": "5FVcOA53qGUrODHbRDmHMu"
   },
   {
     "artist": "Bob James",
@@ -409,7 +409,7 @@
   },
   {
     "artist": "Jaga Jazzist",
-    "album": "A Livingroom Hush",
+    "album": "A Living Room Hush",
     "year": "2001",
     "note": "Norwegian post-rock precision applied to a jazz big band, with rhythm as the organising principle.",
     "section": "1997-2006: the producer sits behind the kit",
@@ -417,7 +417,7 @@
     "energy": "7",
     "texture": "kinetic",
     "connections": "BadBadNotGood - Talk Memory",
-    "spotify_id": "5FzUnPRyOKXUSkhRPhUNzL"
+    "spotify_id": "79yZ6f40ABeqdqh1yqRgiS"
   },
   {
     "artist": "Madlib",

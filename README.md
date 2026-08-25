@@ -9,12 +9,18 @@ A Python workflow for turning genre essays in markdown into Spotify-backed HTML 
 - `genres/<genre>/spotify_albums.json`: key-value map of `Artist - Album` to Spotify album ID.
 - `genres/<genre>/albums_catalog.json`: normalized album catalog with section/year/note + Spotify ID.
 - `genres/<genre>/index.html`: generated embeddable listening report.
+- `genres/<genre>/share.html`: companion share sheet with the same words and no Spotify embeds.
+- `genres/callback.html`: shared Spotify OAuth landing page; every guide redirects through it.
 - `genres/_template/`: starter files for adding a new genre.
+
+GitHub Pages deploys the repository root from `main` using `.github/workflows/pages.yml`. The published site redirects
+from `/` to the guide hub at `/genres/`; after the first successful workflow run, its URL is shown under the repository's
+Actions and Settings -> Pages screens.
 
 ## Who Creates What
 
 - You provide `genres/<genre>/first.md`.
-- `fetch_spotify.py` generates `spotify_albums.json`, `albums_catalog.json`, and `index.html`.
+- `fetch_spotify.py` generates `spotify_albums.json`, `albums_catalog.json`, `index.html`, and `share.html`.
 - You should not hand-author the JSON outputs during normal usage.
 - Copilot is optional: use it to help draft/clean your markdown essay and album tables, then run the Python script to generate artifacts.
 
@@ -28,6 +34,8 @@ A Python workflow for turning genre essays in markdown into Spotify-backed HTML 
 	- `genres/<genre>/spotify_albums.json`
 	- `genres/<genre>/albums_catalog.json`
 	- `genres/<genre>/index.html` (V3 long-session listening guide)
+	- `genres/<genre>/share.html` (share sheet: no player, no scripts, no network calls)
+	- `genres/callback.html` (shared Spotify OAuth landing page)
 6. Open `genres/<genre>/index.html` in your browser.
 
 ## Requirements
@@ -86,9 +94,36 @@ Useful options:
 ```bash
 python fetch_spotify.py emo --delay 0.05
 python fetch_spotify.py emo --markdown essay.md --html report.html
+python fetch_spotify.py emo --share notes.html
 python fetch_spotify.py emo --reuse-catalog
 python fetch_spotify.py emo --legacy-v1
 ```
+
+## Sharing a Guide
+
+The guide assumes a Spotify session; the people you send it to usually have neither your server nor your developer app.
+Three artifacts cover that gap:
+
+- **`share.html`** — the full essay, era by era, with every note, listening cue, energy and texture, and no iframes,
+  scripts, or outbound requests. It opens straight from a `file://` URL, survives being emailed, and prints cleanly.
+- **Liner notes** — the playlist panel exports the current selection as Markdown, including the playlist link once one
+  exists. Useful for pasting into a message alongside the playlist.
+- **A Spotify playlist** — built in the browser with Authorization Code + PKCE, so no client secret is ever in the page.
+
+Playlist export needs a Spotify app of your own:
+
+1. Create an app in the [developer dashboard](https://developer.spotify.com/dashboard).
+2. Register the redirect URI the guide displays, character for character. For the published GitHub Pages site it will be
+	`https://<account>.github.io/<repository>/genres/callback.html`; every guide shares this one entry. Spotify rejects
+	`localhost`, so use `127.0.0.1` only for local development.
+3. Paste the client ID into the guide. It is stored in that browser only.
+
+Spotify validates the redirect URI only *after* sign-in, so a mismatch shows up as a Spotify-hosted error page rather
+than anything the guide can catch.
+
+A new app is in **development mode**, which Spotify limits to a Premium-account owner plus at most five listeners added
+by name and email under *Settings -> User Management*. Anyone else can reach the sign-in screen and is then refused with
+a 403. Send those people `share.html` instead.
 
 ## Expected Markdown Table Format
 

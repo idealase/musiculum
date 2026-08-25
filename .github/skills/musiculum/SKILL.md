@@ -40,7 +40,9 @@ musiculum/
 │   │   ├── first.md              # Source essay (user-authored)
 │   │   ├── spotify_albums.json   # Generated: artist→album ID map
 │   │   ├── albums_catalog.json   # Generated: full metadata + IDs
-│   │   └── index.html            # Generated: final HTML report
+│   │   ├── index.html            # Generated: final HTML report
+│   │   └── share.html            # Generated: share sheet, no Spotify embeds
+│   ├── callback.html             # Generated: shared Spotify OAuth landing page
 │   └── <other-genre>/
 ```
 
@@ -73,6 +75,7 @@ This will:
 4. Write `spotify_albums.json` (flat ID map)
 5. Write `albums_catalog.json` (full metadata per album)
 6. Write `index.html` using the V3 renderer
+7. Write `share.html` using the share renderer
 
 To regenerate visuals while preserving resolved Spotify IDs:
 
@@ -139,6 +142,21 @@ The generated HTML report uses the V3 long-session design:
 - Keep exactly one iframe in the persistent dock and replace it on selection.
 - Use dark theme, lazy loading, and the existing Spotify album IDs.
 
+### Sharing
+Three artifacts let a guide travel to someone who has neither the server nor the developer app:
+
+- **Playlist export** (`#playlist`): Authorization Code with PKCE, entirely in the browser, so no client secret
+  reaches the page. Scope selector (all / filtered / bookmarked), whole albums or opening tracks only. Guides redirect
+  through the shared `genres/callback.html`, which stores the result in `sessionStorage`, verifies the return URL is
+  same-origin, and bounces back to the originating guide — so Spotify needs only one registered redirect URI per host.
+- **Liner notes**: exports the current selection as Markdown — era headings, numbered releases, notes, cues, energy
+  and texture — plus the playlist link once one has been built. Works without any Spotify sign-in.
+- **`share.html`**: the same essay and records with no iframes, no scripts, and no outbound requests. Opens from a
+  `file://` URL, prints cleanly, and is the right thing to send to anyone outside the developer app's allowlist.
+
+Spotify keeps new apps in **development mode**: the owner needs Premium, and at most five other listeners work, each
+added under *Settings -> User Management*. Non-allowlisted accounts reach the sign-in screen and then get a 403.
+
 ### Sections Structure
 For each `## Heading` in the markdown:
 1. Era divider with gradient, heading, range, and optional location
@@ -157,6 +175,7 @@ python fetch_spotify.py --all                         # All genres
 python fetch_spotify.py emo --delay 0.05              # Faster API calls
 python fetch_spotify.py emo --markdown essay.md       # Custom input filename
 python fetch_spotify.py emo --html report.html        # Custom output filename
+python fetch_spotify.py emo --share notes.html        # Custom share sheet filename
 python fetch_spotify.py emo --reuse-catalog            # Regenerate V3 without Spotify searches
 python fetch_spotify.py emo --legacy-v1                # Explicit legacy interface
 ```
@@ -167,3 +186,10 @@ python fetch_spotify.py emo --legacy-v1                # Explicit legacy interfa
 - **Rate limiting**: The script handles 429s automatically with backoff; reduce `--delay` if too slow
 - **"No markdown album table rows found"**: Ensure tables have `Artist` and `Album` in the header row
 - **Missing `markdown` package**: Install with `pip install markdown` for rich essay rendering; without it, essay renders as `<pre>` block
+- **`redirect_uri: Not matching configuration`**: The address shown in the guide's setup panel is not registered on the
+  Spotify app. Add it verbatim, press Add *and* Save, and use `127.0.0.1` rather than `localhost`. Spotify only checks
+  this *after* sign-in, so the error appears on a Spotify page rather than in the guide
+- **A Spotify-hosted error page with only a help link**: an app-level problem, not a page problem — development mode
+  requires the owner to have Premium, and every other listener to be on the allowlist
+- **Wrong album resolved**: `search_album` scores candidates on title, artist, type, and year proximity, and prints
+  `[weak match]` below a threshold. Check those lines, and confirm the release exists on Spotify before assuming a bug
