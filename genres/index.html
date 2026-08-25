@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse Musiculum's genre histories and long-session listening guides." />
+  <title>Musiculum — Genre Listening Guides</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #09090b;
+      --panel: #131318;
+      --panel-hover: #19191f;
+      --ink: #f3efe7;
+      --muted: #aaa4ad;
+      --line: rgba(255, 255, 255, 0.12);
+      --accent: #d7ff46;
+      --accent-soft: rgba(215, 255, 70, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--bg);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 85% 0%, rgba(94, 45, 124, 0.28), transparent 30rem),
+        radial-gradient(circle at 5% 90%, rgba(65, 126, 119, 0.18), transparent 26rem),
+        var(--bg);
+      font: 16px/1.6 Inter, "Segoe UI", system-ui, sans-serif;
+    }
+
+    main {
+      width: min(70rem, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: clamp(4rem, 10vw, 8rem) 0;
+    }
+
+    header {
+      max-width: 48rem;
+      margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: var(--accent);
+      font: 700 0.76rem/1.4 ui-monospace, "Cascadia Mono", monospace;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 12ch;
+      margin: 0;
+      font: 750 clamp(3rem, 9vw, 7rem)/0.92 Inter, "Segoe UI", sans-serif;
+      letter-spacing: -0.06em;
+    }
+
+    .intro {
+      max-width: 42rem;
+      margin: 1.75rem 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+    }
+
+    .guides {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+      gap: 1rem;
+    }
+
+    .guide {
+      position: relative;
+      display: flex;
+      min-height: 15rem;
+      flex-direction: column;
+      padding: 1.5rem;
+      overflow: hidden;
+      color: inherit;
+      text-decoration: none;
+      background: linear-gradient(145deg, var(--panel), rgba(19, 19, 24, 0.72));
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .guide::before {
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      content: "";
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 180ms ease;
+    }
+
+    .guide:hover,
+    .guide:focus-visible {
+      background: var(--panel-hover);
+      border-color: rgba(215, 255, 70, 0.48);
+      outline: none;
+      transform: translateY(-4px);
+    }
+
+    .guide:hover::before,
+    .guide:focus-visible::before {
+      transform: scaleX(1);
+    }
+
+    .guide-number {
+      margin-bottom: auto;
+      color: var(--muted);
+      font: 650 0.72rem/1 ui-monospace, "Cascadia Mono", monospace;
+      letter-spacing: 0.1em;
+    }
+
+    .guide h2 {
+      margin: 2.5rem 0 0.65rem;
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    .guide p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .open {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 1.25rem;
+      color: var(--accent);
+      font: 700 0.72rem/1 ui-monospace, "Cascadia Mono", monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 0.8rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .guide,
+      .guide::before {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Musiculum / Seven listening guides</p>
+      <h1>Choose a frequency.</h1>
+      <p class="intro">Genre histories built for long listening sessions. Pick a guide to explore its eras, essential records, connections, and listening cues.</p>
+    </header>
+
+    <nav class="guides" aria-label="Genre listening guides">
+      <a class="guide" href="acid-techno/index.html">
+        <span class="guide-number">01 / ACID TECHNO</span>
+        <h2>The Machine Learns to Snarl</h2>
+        <p>A five-era journey through the TB-303’s transformation from failed bass emulator to dance-floor icon.</p>
+        <span class="open">Open guide <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="guide" href="country/index.html">
+        <span class="guide-number">02 / COUNTRY</span>
+        <h2>Three Chords and the Argument</h2>
+        <p>A century of negotiation, from the Bristol Sessions and honky-tonk bars to outlaws, Americana, and Cowboy Carter.</p>
+        <span class="open">Open guide <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="guide" href="emo/index.html">
+        <span class="guide-number">03 / EMO</span>
+        <h2>From Revolution Summer to Revival</h2>
+        <p>Hardcore’s inward turn, the Midwest canon, the scene years, and the late-2000s revival.</p>
+        <span class="open">Open guide <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="guide" href="indie-postrock-shoegaze/index.html">
+        <span class="guide-number">04 / INDIE · POST-ROCK · SHOEGAZE</span>
+        <h2>Gossamer Architecture</h2>
+        <p>Niche pathways through guitar haze, patient crescendos, and experimental indie from 1989 onward.</p>
+        <span class="open">Open guide <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="guide" href="jazz-drum-lineage/index.html">
+        <span class="guide-number">05 / JAZZ DRUM LINEAGE</span>
+        <h2>In the Pocket</h2>
+        <p>Follow the rhythmic lineage from Bernard Purdie’s deep pocket to BadBadNotGood’s modern pulse.</p>
+        <span class="open">Open guide <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="guide" href="nu-metal/index.html">
+        <span class="guide-number">06 / NU-METAL</span>
+        <h2>Rage, Turntables, and the Late 1990s</h2>
+        <p>Heavy riffs, hip-hop rhythm, electronic texture, and the unruly sound of a generational collision.</p>
+        <span class="open">Open guide <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="guide" href="triphop/triphop.html">
+        <span class="guide-number">07 / TRIP-HOP</span>
+        <h2>After the Ecstasy</h2>
+        <p>Bristol, Tokyo, and the haunted beat: nocturnal atmospheres, fractured samples, and slow-burning tension.</p>
+        <span class="open">Open guide <span aria-hidden="true">→</span></span>
+      </a>
+    </nav>
+
+    <footer>Musiculum · narrative histories with embedded listening guides</footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "name": "Musiculum",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "extensions.ignoreRecommendations": true,
+    "git.enabled": true,
+    "git.openRepositoryInParentFolders": "never",
+    "workbench.startupEditor": "none"
+  },
+  "extensions": {
+    "recommendations": []
+  }
+}

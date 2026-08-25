@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import html
 import json
-import math
 import re
 from pathlib import Path
 
@@ -84,6 +83,11 @@ def era_key(heading: str) -> str:
     return heading.split(":", 1)[0].strip()
 
 
+def section_key(heading: str) -> str:
+    normalized = heading.replace("’", "'").replace("“", '"').replace("”", '"')
+    return re.sub(r"\s+", " ", normalized).strip().casefold()
+
+
 def era_setting(metadata: dict[str, object], setting: str, heading: str, default: str = "") -> str:
     values = metadata.get(setting)
     if not isinstance(values, dict):
@@ -122,31 +126,39 @@ TEXTURE_SIGNALS: dict[str, tuple[str, ...]] = {
     "abrasive": (
         "noise", "distort", "harsh", "feedback", "scream", "aggress", "brutal", "fuzz", "grind", "snarl",
         "riff", "abras", "detuned", "dissonan", "metal", "clang", "sludge", "caustic", "shred",
+        "explosive", "relentless", "churning", "assertive", "fractured", "grimy", "turbulent", "riotous",
     ),
     "atmospheric": (
         "reverb", "ambient", "haze", "dream", "gauze", "gauzy", "ethereal", "shimmer", "blur", "cloud",
         "wash", "narcotic", "gossamer", "drone", "laptop", "glitch", "process", "synth", "abstract",
         "granular", "electronic", "shoegaze", "smear", "veil", "submerg",
+        "hypnotic", "languid", "cinematic", "murky", "panoramic", "fluid", "shape-shifting", "woozy",
     ),
     "cavernous": (
         "vast", "cathedral", "echo", "sprawl", "epic", "monument", "immense", "expansive", "crescendo",
         "cavern", "architect", "instrumental", "orchestral", "symphon", "swell", "expanse", "immersi",
         "post-rock", "post rock",
+        "monumental", "plush", "rounded", "woven", "organic",
     ),
     "crystalline": (
         "clean", "bright", "precise", "delicate", "chime", "pristine", "clarity", "glassy", "melod",
         "gleam", "composition", "classical", "chamber", "arrange", "piano", "string", "formal",
         "intricate", "filigree",
+        "glossy", "immaculate", "lacquered", "crisp", "polished", "sleek", "hyperreal",
     ),
     "propulsive": (
         "rhythm", "drive", "motorik", "groove", "pulse", "momentum", "kinetic", "percussi", "drum",
         "funk", "velocity", "propuls", "math", "angular", "geometr", "polyrhythm", "syncopat",
         "krautrock", "jazz", "insistent",
+        "shuffled", "swung", "loping", "locked", "elastic", "interlocking", "buoyant", "kinetic",
+        "uneven", "greasy", "lurching", "wonky", "rubbery", "muscular", "mechanised", "jittery",
+        "limber", "rolling", "virtuosic", "conversational",
     ),
     "spare": (
         "minimal", "quiet", "sparse", "silence", "restraint", "hushed", "austere", "acoustic", "fragile",
         "still", "empty", "spare", "tape", "lo-fi", "bedroom", "field record", "unadorned", "reduc",
         "understat", "stark",
+        "slack", "sketched", "unhurried",
     ),
 }
 
@@ -200,6 +212,13 @@ def infer_energy(text: str, texture: str) -> int:
     return max(1, min(10, score))
 
 
+def texture_family(row: dict) -> str:
+    """Group free-form editorial textures into stable lanes without discarding their wording."""
+    source = f"{row.get('texture', '')} {row.get('note', '')} {row.get('listen_for', '')}".casefold()
+    family = infer_texture(source)
+    return "other" if family == "unclassified" else family
+
+
 def infer_missing_fields(records: list[dict]) -> int:
     """Fill absent V3 columns from the essay prose so every guide gets a usable map."""
     touched = 0
@@ -213,31 +232,45 @@ def infer_missing_fields(records: list[dict]) -> int:
             touched += 1
         if not row.get("listen_for"):
             row["listen_for"] = f"How the {row['texture']} surface sits against the rhythm section."
+        row["texture_family"] = texture_family(row)
 
     by_section: dict[str, list[dict]] = {}
     for row in records:
-        by_section.setdefault(str(row.get("section", "General")), []).append(row)
+        by_section.setdefault(section_key(str(row.get("section", "General"))), []).append(row)
+    section_order = {section: index for index, section in enumerate(by_section)}
 
     for row in records:
         if row.get("connections"):
             continue
-        peers = by_section[str(row.get("section", "General"))]
+        peers = by_section[section_key(str(row.get("section", "General")))]
         position = peers.index(row)
         links = [peers[(position + 1) % len(peers)]["key"]] if len(peers) > 1 else []
-        cross = next(
-            (
-                other["key"]
-                for other in records
-                if other["texture"] == row["texture"]
-                and other.get("section") != row.get("section")
-                and other["key"] not in links
-            ),
-            "",
-        )
-        if cross:
-            links.append(cross)
+        cross_candidates = [other for other in records if other.get("section") != row.get("section")]
+        if cross_candidates:
+            source_section = section_order[section_key(str(row.get("section", "General")))]
+            cross = min(
+                cross_candidates,
+                key=lambda other: (
+                    0 if other["texture_family"] == row["texture_family"] else 1,
+                    abs(int(str(other.get("energy", "5"))) - int(str(row.get("energy", "5")))),
+                    abs(section_order[section_key(str(other.get("section", "General")))] - source_section),
+                ),
+            )
+            if cross["key"] not in links:
+                links.append(cross["key"])
         row["connections"] = "; ".join(dict.fromkeys(link for link in links if link != row["key"]))
     return touched
+
+
+def connection_reason(source: dict, target: dict) -> str:
+    if source.get("section") == target.get("section"):
+        return "Within-era relay"
+    if source.get("texture") == target.get("texture"):
+        return f"Shared {source.get('texture', 'surface')} texture"
+    if source.get("texture_family") == target.get("texture_family"):
+        return f"Shared {source.get('texture_family', 'sonic')} family"
+    energy_delta = abs(int(str(source.get("energy", "5"))) - int(str(target.get("energy", "5"))))
+    return f"Cross-era affinity · energy shift {energy_delta}"
 
 
 def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: int) -> str:
@@ -272,87 +305,96 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
 
     by_section: dict[str, list[dict]] = {}
     for row in records:
-        by_section.setdefault(str(row.get("section", "General")), []).append(row)
+        by_section.setdefault(section_key(str(row.get("section", "General"))), []).append(row)
 
-    textures = sorted({str(row.get("texture", "unclassified")) for row in records})
+    family_order = ["spare", "crystalline", "atmospheric", "cavernous", "propulsive", "abrasive", "other"]
+    texture_families = [family for family in family_order if any(row["texture_family"] == family for row in records)]
     for row in records:
         energy = int(str(row.get("energy", "5")))
         if not 1 <= energy <= 10:
             raise ValueError(f"Energy must be 1–10: {row['key']}")
 
-    # Row height follows the densest energy column so crowded guides stay legible.
-    bucket_sizes: dict[tuple[str, int], int] = {}
-    for row in records:
-        bucket = (str(row.get("texture", "unclassified")), int(str(row.get("energy", "5"))))
-        bucket_sizes[bucket] = bucket_sizes.get(bucket, 0) + 1
-    row_heights = {
-        texture: max(62, 30 + max((size for (tex, _), size in bucket_sizes.items() if tex == texture), default=1) * 15)
-        for texture in textures
-    }
-    row_tops: dict[str, float] = {}
-    cursor = 50.0
-    for texture in textures:
-        row_tops[texture] = cursor
-        cursor += row_heights[texture]
+    atlas_header = "".join(f"<span>{energy}</span>" for energy in range(1, 11))
+    atlas_rows: list[str] = []
+    for family in texture_families:
+        cells: list[str] = []
+        for energy in range(1, 11):
+            bucket = [
+                row for row in records
+                if row["texture_family"] == family and int(str(row.get("energy", "5"))) == energy
+            ]
+            chips = "".join(
+                f'<button class="atlas-record record-target" data-key="{html.escape(row["key"], quote=True)}" '
+                f'title="{html.escape(row["key"], quote=True)} · {html.escape(str(row.get("texture", "")), quote=True)}">'
+                f'<strong>{html.escape(str(row["artist"]))}</strong><span>{html.escape(str(row["album"]))}</span>'
+                f'<small>{html.escape(str(row.get("year", "")))} · {html.escape(str(row.get("texture", "")))}</small></button>'
+                for row in bucket
+            )
+            cells.append(f'<div class="atlas-cell" data-energy="{energy}">{chips}</div>')
+        atlas_rows.append(
+            f'<div class="atlas-row"><div class="atlas-label"><strong>{html.escape(family)}</strong>'
+            f'<small>{sum(1 for row in records if row["texture_family"] == family)} releases</small></div>{"".join(cells)}</div>'
+        )
 
-    map_width, map_height = 920, int(max(330, cursor + 40))
-    buckets: dict[tuple[int, str], int] = {}
-    map_points: list[str] = []
-    for row in records:
-        energy = int(str(row.get("energy", "5")))
-        texture = str(row.get("texture", "unclassified"))
-        bucket = (energy, texture)
-        offset = buckets.get(bucket, 0)
-        buckets[bucket] = offset + 1
-        x = 70 + ((energy - 1) / 9) * (map_width - 120) + (offset % 2) * 9
-        y = row_tops[texture] + 20 + offset * 15
-        key_attr = html.escape(row["key"], quote=True)
-        label = (
-            f'<text x="{x + 14:.1f}" y="{y + 4:.1f}">{html.escape(str(row["artist"]))}</text>'
-            if bucket_sizes[(texture, energy)] <= 6
-            else ""
-        )
-        map_points.append(
-            f'<g class="map-point record-target" data-key="{key_attr}" tabindex="0" role="button" '
-            f'aria-label="{key_attr}, energy {energy}, {html.escape(texture, quote=True)}">'
-            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="9"></circle>{label}</g>'
-        )
-    map_labels = "".join(
-        f'<text class="axis-label" x="12" y="{row_tops[texture] + 18:.1f}">{html.escape(texture)}</text>'
-        for texture in textures
-    )
-
-    graph_width, graph_height = 920, 560
-    positions: dict[str, tuple[float, float]] = {}
-    for index, row in enumerate(records):
-        angle = (2 * math.pi * index / max(1, len(records))) - math.pi / 2
-        positions[row["key"]] = (
-            graph_width / 2 + math.cos(angle) * 355,
-            graph_height / 2 + math.sin(angle) * 220,
-        )
     edges = {
         tuple(sorted((row["key"], target)))
         for row in records
         for target in row["connection_keys"]
     }
-    graph_edges = "".join(
-        f'<line x1="{positions[source][0]:.1f}" y1="{positions[source][1]:.1f}" '
-        f'x2="{positions[target][0]:.1f}" y2="{positions[target][1]:.1f}"></line>'
-        for source, target in sorted(edges)
-    )
+    record_by_key = {row["key"]: row for row in records}
+    scene_names = [str(section["heading"]) for section in sections if by_section.get(section_key(str(section["heading"])))]
+    scene_index = {section_key(name): index for index, name in enumerate(scene_names)}
+    scene_edges: dict[tuple[str, str], int] = {}
+    cross_edges: list[tuple[str, str]] = []
+    for source, target in sorted(edges):
+        source_scene = section_key(str(record_by_key[source].get("section", "General")))
+        target_scene = section_key(str(record_by_key[target].get("section", "General")))
+        if source_scene == target_scene or source_scene not in scene_index or target_scene not in scene_index:
+            continue
+        pair = tuple(sorted((source_scene, target_scene), key=scene_index.get))
+        scene_edges[pair] = scene_edges.get(pair, 0) + 1
+        cross_edges.append((source, target))
+
+    graph_width, graph_height = max(920, len(scene_names) * 155), 430
+    graph_y = 300
+    graph_positions = {
+        section_key(scene): 75 + index * ((graph_width - 150) / max(1, len(scene_names) - 1))
+        for index, scene in enumerate(scene_names)
+    }
+    graph_paths: list[str] = []
+    for (source_scene, target_scene), count in scene_edges.items():
+        source_x, target_x = graph_positions[source_scene], graph_positions[target_scene]
+        span = max(1, scene_index[target_scene] - scene_index[source_scene])
+        control_y = graph_y - 48 - span * 25
+        midpoint_x = (source_x + target_x) / 2
+        label_y = (graph_y + control_y) / 2 - 5
+        graph_paths.append(
+            f'<path d="M {source_x:.1f} {graph_y} Q {midpoint_x:.1f} {control_y:.1f} {target_x:.1f} {graph_y}" '
+            f'style="--signal-weight:{min(6, 1 + count / 3):.1f}"><title>{html.escape(source_scene)} → '
+            f'{html.escape(target_scene)}: {count} paths</title></path><text class="edge-count" x="{midpoint_x:.1f}" '
+            f'y="{label_y:.1f}">{count}</text>'
+        )
     graph_nodes = "".join(
-        f'<g class="graph-node record-target" data-key="{html.escape(row["key"], quote=True)}" '
-        f'tabindex="0" role="button" aria-label="{html.escape(row["key"], quote=True)}">'
-        f'<circle cx="{positions[row["key"]][0]:.1f}" cy="{positions[row["key"]][1]:.1f}" r="9"></circle>'
-        f'<text x="{positions[row["key"]][0] + 13:.1f}" y="{positions[row["key"]][1] + 4:.1f}">'
-        f'{html.escape(str(row["artist"]))}</text></g>'
-        for row in records
+        f'<g class="scene-node"><circle cx="{graph_positions[section_key(scene)]:.1f}" cy="{graph_y}" r="22"></circle>'
+        f'<text x="{graph_positions[section_key(scene)]:.1f}" y="{graph_y + 4}" text-anchor="middle">{index + 1:02d}</text>'
+        f'<text class="scene-year" x="{graph_positions[section_key(scene)]:.1f}" y="{graph_y + 43}" text-anchor="middle">'
+        f'{html.escape(year_range(by_section[section_key(scene)]))}</text></g>'
+        for index, scene in enumerate(scene_names)
+    )
+    scene_key = "".join(
+        f'<article><span>{index + 1:02d}</span><div><strong>{html.escape(scene)}</strong>'
+        f'<small>{html.escape(year_range(by_section[section_key(scene)]))} · {len(by_section[section_key(scene)])} releases · '
+        f'{len({row["texture_family"] for row in by_section[section_key(scene)]})} texture families</small></div></article>'
+        for index, scene in enumerate(scene_names)
     )
     connection_list = "".join(
-        f'<li><button class="text-link record-target" data-key="{html.escape(source, quote=True)}">{html.escape(source)}</button>'
-        f'<span> connects to </span><button class="text-link record-target" data-key="{html.escape(target, quote=True)}">'
-        f"{html.escape(target)}</button></li>"
-        for source, target in sorted(edges)
+        f'<li class="connection-card"><div><span class="signal-era">Era {scene_index[section_key(str(record_by_key[source]["section"]))] + 1:02d}'
+        f' → {scene_index[section_key(str(record_by_key[target]["section"]))] + 1:02d}</span>'
+        f'<strong>{html.escape(connection_reason(record_by_key[source], record_by_key[target]))}</strong></div>'
+        f'<button class="text-link record-target" data-key="{html.escape(source, quote=True)}">{html.escape(source)}</button>'
+        f'<span aria-hidden="true">→</span><button class="text-link record-target" data-key="{html.escape(target, quote=True)}">'
+        f'{html.escape(target)}</button></li>'
+        for source, target in cross_edges
     )
 
     route_cards = "".join(
@@ -368,7 +410,7 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
     section_blocks: list[str] = []
     for index, section in enumerate(sections, 1):
         heading = str(section["heading"])
-        albums = by_section.get(heading, [])
+        albums = by_section.get(section_key(heading), [])
         years = year_range(albums)
         location = era_setting(metadata, "era_locations", heading)
         equipment = era_setting(metadata, "era_equipment", heading)
@@ -386,13 +428,22 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
               <div><small>Machines</small><strong>{html.escape(equipment)}</strong></div></div>
               <p>{html.escape(caption)}</p></aside>"""
         cards = "".join(album_card(row) for row in albums)
+        featured = next((row for row in albums if row.get("spotify_id")), None)
+        featured_player = ""
+        if featured:
+            featured_player = f"""<aside class="era-feature reveal" aria-label="Featured release for {html.escape(heading, quote=True)}">
+              <div><span class="eyebrow">First suggestion / ready to play</span>
+              <h3>{html.escape(str(featured["artist"]))} — {html.escape(str(featured["album"]))}</h3>
+              <p>{html.escape(str(featured.get("listen_for") or featured.get("note") or ""))}</p></div>
+              <iframe title="{html.escape(featured["key"], quote=True)}" src="https://open.spotify.com/embed/album/{html.escape(str(featured["spotify_id"]), quote=True)}?utm_source=generator&theme=0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></aside>"""
         section_blocks.append(
             f"""<div class="era-band" style="--era-gradient:linear-gradient(120deg,{html.escape(gradient, quote=True)})">
             <span>{index:02d}</span><div><small>{html.escape(years)} · {html.escape(location)}</small>
             <h2>{html.escape(heading)}</h2></div></div>
             <section class="story-section" id="section-{index}">
             <div class="story-copy"><span class="eyebrow">Transmission {index:02d}</span>
-            <h2>{html.escape(heading)}</h2>{paragraphs}</div>{ephemera}
+            <h2>{html.escape(heading)}</h2>{paragraphs}</div>{ephemera}{featured_player}
             <div class="album-grid">{cards}</div></section>"""
         )
 
@@ -400,10 +451,11 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
     slug = re.sub(r"[^a-z0-9]+", "-", title.casefold()).strip("-")
     subtitle = html.escape(str(metadata.get("subtitle", "A long-session listening companion.")))
     hero_label = html.escape(str(metadata.get("hero_label", "Musiculum / long-form listening")))
+    playlist_name = html.escape(f"{title} · Musiculum", quote=True)
     hero_copy = "".join(f"<p>{paragraph}</p>" for paragraph in hero_paragraphs)
     texture_options = "".join(
-        f'<option value="{html.escape(texture, quote=True)}">{html.escape(texture)}</option>'
-        for texture in textures
+        f'<option value="{html.escape(family, quote=True)}">{html.escape(family)}</option>'
+        for family in texture_families
     )
     inference_note = (
         f'<p>Energy and texture were inferred from the essay text for this guide. '
@@ -433,7 +485,7 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
 <main class="main" id="content"><header class="hero"><div class="hero-content reveal"><span class="eyebrow">{hero_label}</span>
 <h1>{title_text}</h1><p class="subtitle">{subtitle}</p><div class="hero-summary">{hero_copy}</div></div></header>
 <nav class="feature-nav" aria-label="Guide tools"><a href="#routes">Listening routes</a><a href="#energy-map">Energy map</a>
-<a href="#connections">Connections</a><a href="#session-notes">Notes</a><button class="reset crate-dig">Crate dig</button></nav>
+<a href="#connections">Connections</a><a href="#playlist">Playlist</a><a href="#session-notes">Notes</a><button class="reset crate-dig">Crate dig</button></nav>
 <section class="lab" id="routes"><div class="lab-head"><span class="eyebrow">Curated paths</span>
 <h2>Choose a route through the music</h2><p>Each path loads one release at a time into the persistent player.</p></div>
 <div class="route-grid">{route_cards}</div></section>
@@ -443,15 +495,38 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
 <label>Texture <select id="texture-filter"><option value="">All textures</option>{texture_options}</select></label>
 <label>Minimum energy <input id="energy-filter" type="range" min="1" max="10" value="1"></label>
 <button class="reset" id="reset-filters">Reset</button><output id="result-count" aria-live="polite"></output></div>
-<div class="map-wrap"><svg viewBox="0 0 {map_width} {map_height}" role="img" aria-labelledby="map-title">
-<title id="map-title">Energy and texture map of selected releases</title>{map_labels}{"".join(map_points)}</svg></div>
+<div class="atlas-wrap" role="region" aria-label="Energy and texture atlas"><div class="atlas">
+<div class="atlas-scale"><span>Texture family</span>{atlas_header}</div>{"".join(atlas_rows)}</div></div>
 <div class="energy-axis"><span>Lower energy</span><span>Higher energy</span></div></section>
 <section class="lab" id="connections"><div class="lab-head"><span class="eyebrow">Signal paths</span>
-<h2>Connections across scenes and eras</h2><p>Follow affinities in sound, production method, and historical role.</p></div>
+<h2>Connections across scenes and eras</h2><p>Arc weight shows how many record-level paths bridge two eras. Select any detailed path below to hear either endpoint.</p></div>
 <div class="graph-wrap"><svg viewBox="0 0 {graph_width} {graph_height}" role="img" aria-labelledby="graph-title">
-<title id="graph-title">Connections between selected releases</title><g>{graph_edges}</g><g>{graph_nodes}</g></svg></div>
+<title id="graph-title">Chronological connections between eras</title><line class="signal-baseline" x1="50" y1="{graph_y}" x2="{graph_width - 50}" y2="{graph_y}"></line>
+<g class="signal-arcs">{"".join(graph_paths)}</g><g>{graph_nodes}</g></svg></div>
+<div class="scene-key">{scene_key}</div>
 <ul class="connection-list">{connection_list}</ul></section>
 {"".join(section_blocks)}
+<section class="lab" id="playlist"><div class="lab-head"><span class="eyebrow">Export to Spotify</span>
+<h2>Turn this guide into a playlist</h2><p>Sign in with your own Spotify account and build a playlist from these {len(records)} releases.
+The sign-in runs entirely in this browser using PKCE, so no secret is stored in the page and nothing is sent to a server other than Spotify.</p></div>
+<div class="playlist-panel"><div class="playlist-form">
+<label for="playlist-name">Playlist name</label><input id="playlist-name" type="text" value="{playlist_name}">
+<label for="playlist-scope">Which records</label><select id="playlist-scope">
+<option value="all">Every release in this guide ({len(records)})</option>
+<option value="filtered">Whatever the energy map filters currently show</option>
+<option value="bookmarks">Bookmarked releases only</option></select>
+<label for="playlist-depth">How much of each</label><select id="playlist-depth">
+<option value="album">Every track, album by album</option>
+<option value="single">Opening track only</option></select>
+<label class="playlist-check"><input id="playlist-public" type="checkbox"> Make the playlist public</label>
+<button class="btn playlist-send" id="playlist-send">Send to Spotify</button></div>
+<div class="playlist-setup"><label for="playlist-client">Your Spotify app client ID</label>
+<input id="playlist-client" type="text" placeholder="Client ID from your Spotify app" autocomplete="off" spellcheck="false">
+<p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
+register the redirect URI below against it, then paste the client ID here. It is kept in this browser only, and no client secret is needed.</p>
+<p>Redirect URI to register: <code id="playlist-redirect"></code></p>
+<p>Spotify only accepts HTTPS or loopback addresses, so serve the guide with something like <code>python -m http.server 8000 --bind 127.0.0.1</code> rather than opening the file directly.</p></div></div>
+<output class="playlist-status" id="playlist-status" aria-live="polite">Not connected to Spotify yet.</output></section>
 <section class="lab" id="session-notes"><div class="lab-head"><span class="eyebrow">Private listening journal</span>
 <h2>Keep what the session reveals</h2><p>Bookmarks and notes stay in this browser. Export them as Markdown.</p></div>
 <div class="notes-panel"><div><h3>Saved releases</h3><div class="saved-list" id="saved-list"></div></div>

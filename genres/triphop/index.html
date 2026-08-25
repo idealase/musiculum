@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="After the Ecstasy: Bristol, Tokyo, and the Haunted Beat long-session listening guide"><title>After the Ecstasy: Bristol, Tokyo, and the Haunted Beat</title>
+<style>:root {
+  color-scheme: dark;
+  --bg: #08090b;
+  --panel: #111218;
+  --panel2: #181922;
+  --ink: #f5f2eb;
+  --muted: #a9a4ae;
+  --line: rgba(255, 255, 255, .12);
+  --acid: #d8ff3e;
+  --pink: #ff5fb7;
+  --cyan: #43e8d8;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: radial-gradient(circle at 80% 0, #28123d 0, transparent 34rem), var(--bg); color: var(--ink); font: 16px/1.62 Inter, system-ui, sans-serif; padding-bottom: 12rem; }
+button, input, select, textarea { font: inherit; }
+.skip { position: absolute; top: -4rem; left: 1rem; z-index: 50; background: var(--acid); color: #111; padding: .6rem; }
+.skip:focus { top: 1rem; }
+.layout { display: grid; grid-template-columns: 17rem minmax(0, 1fr); }
+.rail { position: sticky; top: 0; height: 100vh; padding: 1.5rem 1rem; border-right: 1px solid var(--line); background: rgba(8, 9, 11, .9); backdrop-filter: blur(15px); display: flex; flex-direction: column; gap: 1.5rem; z-index: 8; }
+.brand { color: var(--acid); font: 800 .7rem/1.4 ui-monospace, monospace; text-transform: uppercase; letter-spacing: .12em; }
+.brand strong { display: block; color: var(--ink); font: 750 1rem/1.1 Inter, sans-serif; letter-spacing: -.02em; text-transform: none; margin-top: .35rem; }
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: .2rem; overflow: auto; }
+.timeline a { display: grid; padding: .55rem .65rem; border-left: 2px solid transparent; color: var(--muted); text-decoration: none; font-size: .76rem; line-height: 1.25; }
+.timeline a:hover, .timeline a.active { border-color: var(--acid); background: #d8ff3e10; color: var(--ink); }
+.timeline small { color: var(--pink); font: 650 .63rem ui-monospace, monospace; }
+.rail-actions { margin-top: auto; display: grid; gap: .5rem; }
+.btn, .route-start, .load-player, .bookmark, .reset, .text-link { border: 1px solid var(--line); background: var(--panel2); color: var(--ink); padding: .65rem .8rem; cursor: pointer; }
+.btn:hover, .route-start:hover, .load-player:hover, .bookmark:hover, .reset:hover { border-color: var(--acid); color: var(--acid); }
+.main { min-width: 0; }
+.hero { min-height: min(56rem, 100vh); padding: clamp(4rem, 9vw, 9rem) clamp(1.4rem, 7vw, 7rem); display: grid; align-content: center; position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.hero::after { content: "303"; position: absolute; right: -.05em; bottom: -.25em; font: 900 clamp(13rem, 31vw, 31rem)/.7 Inter; color: #ffffff08; pointer-events: none; }
+.hero-content { position: relative; z-index: 1; max-width: 56rem; }
+.eyebrow { color: var(--acid); font: 750 .67rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .13em; }
+h1, h2, h3, p { margin-top: 0; }
+.hero h1 { max-width: 11ch; margin: .6rem 0 1.2rem; font-size: clamp(3.3rem, 8vw, 7.8rem); line-height: .88; letter-spacing: -.07em; }
+.subtitle { max-width: 44rem; font-size: clamp(1rem, 2vw, 1.3rem); color: #d3cdd6; }
+.hero-summary { max-width: 52rem; color: var(--muted); }
+.feature-nav { padding: 1rem clamp(1.4rem, 7vw, 7rem); display: flex; gap: .65rem; flex-wrap: wrap; position: sticky; top: 0; z-index: 6; background: #08090bea; border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
+.feature-nav a { color: var(--muted); font: 700 .68rem ui-monospace, monospace; text-decoration: none; text-transform: uppercase; letter-spacing: .08em; }
+.feature-nav a:hover { color: var(--acid); }
+.lab { padding: clamp(3rem, 7vw, 6rem) clamp(1.4rem, 7vw, 7rem); border-bottom: 1px solid var(--line); }
+.lab-head { max-width: 48rem; margin-bottom: 2rem; }
+.lab-head h2, .story-copy h2 { font-size: clamp(2rem, 4vw, 4rem); line-height: .95; letter-spacing: -.055em; margin: .5rem 0 1rem; }
+.lab-head p, .story-copy p { color: #c8c2ca; }
+.route-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
+.route-card { padding: 1.2rem; border: 1px solid var(--line); background: linear-gradient(145deg, #d8ff3e0c, #ff5fb70b); }
+.route-card span, .route-card small { color: var(--pink); font: 700 .63rem ui-monospace, monospace; text-transform: uppercase; }
+.route-card h3 { margin: .5rem 0; }
+.route-card p { color: var(--muted); min-height: 3.2rem; font-size: .85rem; }
+
+.atlas-wrap, .graph-wrap { overflow: auto; border: 1px solid var(--line); background: linear-gradient(145deg, #0d0e13, #090a0d); }
+.atlas { min-width: 1080px; }
+.atlas-scale, .atlas-row { display: grid; grid-template-columns: 9rem repeat(10, minmax(8rem, 1fr)); }
+.atlas-scale { position: sticky; top: 0; z-index: 2; background: #0b0c10; border-bottom: 1px solid var(--line); color: var(--muted); font: 700 .62rem ui-monospace, monospace; text-align: center; text-transform: uppercase; }
+.atlas-scale span { padding: .65rem; border-right: 1px solid #ffffff0a; }
+.atlas-scale span:first-child { text-align: left; color: var(--cyan); }
+.atlas-row { min-height: 7.5rem; border-bottom: 1px solid var(--line); }
+.atlas-row:last-child { border-bottom: 0; }
+.atlas-label { position: sticky; left: 0; z-index: 1; padding: .8rem; background: #101117; border-right: 1px solid var(--line); box-shadow: .8rem 0 1.2rem #0006; }
+.atlas-label strong, .atlas-label small { display: block; }
+.atlas-label strong { color: var(--cyan); font: 800 .7rem ui-monospace, monospace; text-transform: uppercase; }
+.atlas-label small { color: var(--muted); font-size: .65rem; }
+.atlas-cell { display: flex; flex-direction: column; gap: .35rem; padding: .4rem; border-right: 1px solid #ffffff0a; background: linear-gradient(180deg, transparent, #ffffff03); }
+.atlas-record { width: 100%; min-width: 0; padding: .5rem; text-align: left; border: 1px solid #ffffff14; border-left: 2px solid var(--acid); background: #171921; color: var(--ink); cursor: pointer; transition: .18s; }
+.atlas-record:hover, .atlas-record:focus { border-color: var(--pink); background: #20222c; transform: translateY(-1px); outline: none; }
+.atlas-record strong, .atlas-record span, .atlas-record small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.atlas-record strong { font-size: .7rem; }
+.atlas-record span { color: #d4ced7; font-size: .65rem; }
+.atlas-record small { color: var(--muted); font: 600 .56rem ui-monospace, monospace; text-transform: uppercase; }
+.energy-axis { display: flex; justify-content: space-between; color: var(--muted); font: 700 .65rem ui-monospace, monospace; margin-top: .5rem; }
+.graph-wrap svg { min-width: 800px; width: 100%; height: auto; }
+.signal-baseline { stroke: #ffffff20; stroke-width: 1; }
+.signal-arcs path { fill: none; stroke: var(--cyan); stroke-width: var(--signal-weight); stroke-opacity: .48; }
+.edge-count { fill: var(--pink); font: 700 11px ui-monospace, monospace; text-anchor: middle; paint-order: stroke; stroke: #0c0d11; stroke-width: 5; }
+.scene-node circle { fill: #15171d; stroke: var(--acid); stroke-width: 2; }
+.scene-node text { fill: var(--ink); font: 800 11px ui-monospace, monospace; }
+.scene-node .scene-year { fill: var(--muted); font-size: 10px; }
+.scene-key { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .6rem; margin: 1rem 0 2rem; }
+.scene-key article { display: flex; gap: .7rem; padding: .8rem; border: 1px solid var(--line); background: var(--panel); }
+.scene-key span { color: var(--acid); font: 800 1rem ui-monospace, monospace; }
+.scene-key strong, .scene-key small { display: block; }
+.scene-key strong { font-size: .78rem; line-height: 1.25; }
+.scene-key small { margin-top: .25rem; color: var(--muted); font: 600 .6rem ui-monospace, monospace; text-transform: uppercase; }
+.connection-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: .65rem; list-style: none; padding: 0; }
+.connection-card { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: .65rem; padding: .8rem; border: 1px solid var(--line); background: #0d0e13; color: var(--muted); font-size: .74rem; }
+.connection-card > div { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px solid #ffffff0a; padding-bottom: .35rem; }
+.connection-card > div strong { color: #d4ced7; font-size: .68rem; }
+.signal-era { color: var(--pink); font: 700 .61rem ui-monospace, monospace; text-transform: uppercase; }
+.text-link { border: 0; background: none; padding: 0; color: var(--cyan); text-decoration: underline; text-align: left; }
+
+.era-band { min-height: 14rem; padding: 2rem clamp(1.4rem, 7vw, 7rem); display: flex; align-items: end; gap: 1.5rem; background: var(--era-gradient); border-bottom: 1px solid var(--line); }
+.era-band > span { font: 850 clamp(3rem, 9vw, 8rem)/.75 ui-monospace, monospace; color: #ffffff24; }
+.era-band small { color: var(--acid); font: 700 .68rem ui-monospace, monospace; text-transform: uppercase; }
+.era-band h2 { max-width: 22ch; margin: .35rem 0 0; font-size: clamp(1.6rem, 3.5vw, 3.5rem); line-height: .95; letter-spacing: -.05em; }
+.story-section { padding: clamp(3rem, 7vw, 6rem) clamp(1.4rem, 7vw, 7rem); border-bottom: 1px solid var(--line); }
+.story-copy { max-width: 48rem; }
+.ephemera { max-width: 55rem; margin: 2.5rem 0; padding: 1.2rem; border: 1px solid var(--line); background: repeating-linear-gradient(-45deg, #14151c, #14151c 8px, #111218 8px, #111218 16px); position: relative; }
+.ephemera > span { color: var(--pink); font: 700 .63rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .1em; }
+.ephemera-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+.ephemera small { display: block; color: var(--muted); font: 650 .62rem ui-monospace, monospace; text-transform: uppercase; }
+.ephemera p { margin: 0; color: #cec7d0; font-style: italic; }
+.era-feature { display: grid; grid-template-columns: minmax(14rem, .7fr) minmax(20rem, 1.3fr); gap: 1.2rem; align-items: center; margin: 2.5rem 0; padding: 1rem; border: 1px solid #d8ff3e38; background: linear-gradient(135deg, #d8ff3e0b, #43e8d80b); }
+.era-feature h3 { margin: .35rem 0; font-size: 1.15rem; }
+.era-feature p { margin: 0; color: var(--muted); font-size: .82rem; }
+.era-feature iframe { display: block; width: 100%; height: 152px; border: 0; }
+.album-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+.album-card { display: flex; flex-direction: column; padding: 1.1rem; border: 1px solid var(--line); border-top: 2px solid transparent; background: var(--panel); min-width: 0; transition: .22s; }
+.album-card:hover, .album-card.selected { border-top-color: var(--acid); transform: translateY(-3px); }
+.album-card.bookmarked { box-shadow: inset 0 0 0 1px var(--pink); }
+.card-meta { display: flex; justify-content: space-between; gap: .7rem; color: var(--pink); font: 700 .62rem ui-monospace, monospace; text-transform: uppercase; }
+.album-card h3 { margin: .55rem 0 .35rem; line-height: 1.15; }
+.note { color: var(--muted); font-size: .86rem; min-height: 4rem; }
+.cue { padding: .75rem; border-left: 2px solid var(--acid); background: #d8ff3e0a; font-size: .82rem; color: #d8d2da; }
+.cue strong { display: block; color: var(--acid); font: 700 .61rem ui-monospace, monospace; text-transform: uppercase; }
+.tags { display: flex; gap: .4rem; flex-wrap: wrap; margin: .8rem 0; }
+.tag { padding: .2rem .45rem; border: 1px solid var(--line); color: var(--cyan); font: 700 .61rem ui-monospace, monospace; text-transform: uppercase; }
+.card-actions { display: flex; gap: .5rem; margin-top: auto; }
+.load-player { flex: 1; background: var(--acid); color: #111; border-color: var(--acid); font-weight: 800; }
+.load-player:hover { color: #111; background: #e5ff75; }
+.bookmark { width: 2.8rem; }
+.notes-panel { display: grid; grid-template-columns: minmax(16rem, .7fr) minmax(0, 1.3fr); gap: 1.2rem; }
+.saved-list { display: grid; gap: .5rem; align-content: start; }
+.saved-item { display: flex; justify-content: space-between; gap: .5rem; padding: .7rem; border: 1px solid var(--line); background: var(--panel); }
+textarea { width: 100%; min-height: 15rem; resize: vertical; background: var(--panel); border: 1px solid var(--line); color: var(--ink); padding: 1rem; }
+.notes-actions { display: flex; gap: .5rem; margin-top: .6rem; }
+.dock { position: fixed; z-index: 30; left: 17rem; right: 0; bottom: 0; display: grid; grid-template-columns: minmax(13rem, .6fr) minmax(20rem, 1.4fr) auto; gap: 1rem; align-items: center; padding: 1rem clamp(1rem, 3vw, 2rem); background: #0a0b0ff5; border-top: 1px solid var(--acid); box-shadow: 0 -15px 45px #0008; backdrop-filter: blur(16px); }
+.dock.empty .player-mount { display: none; }
+.dock-copy small { display: block; color: var(--pink); font: 700 .61rem ui-monospace, monospace; text-transform: uppercase; }
+.dock-copy strong { display: block; }
+.dock-copy span { color: var(--muted); font-size: .8rem; }
+.player-mount iframe { display: block; width: 100%; height: 152px; border: 0; }
+.route-progress { display: flex; gap: .5rem; align-items: center; }
+.route-progress[hidden] { display: none; }
+.route-progress span { color: var(--muted); font: 700 .65rem ui-monospace, monospace; }
+.reveal { opacity: 0; transform: translateY(1.2rem); transition: .5s; }
+.reveal.visible { opacity: 1; transform: none; }
+[hidden] { display: none !important; }
+
+@media (max-width: 880px) {
+  body { padding-bottom: 19rem; }
+  .layout { grid-template-columns: 1fr; }
+  .rail { position: sticky; height: auto; display: flex; flex-direction: row; align-items: center; padding: .7rem 1rem; border-right: 0; border-bottom: 1px solid var(--line); }
+  .brand strong, .rail-actions { display: none; }
+  .timeline { display: flex; overflow: auto; }
+  .timeline a { min-width: 8rem; }
+  .dock { left: 0; grid-template-columns: 1fr; gap: .5rem; }
+  .player-mount iframe { height: 80px; }
+  .feature-nav { top: 3.2rem; }
+}
+
+@media (max-width: 560px) {
+  .album-grid, .notes-panel, .ephemera-grid, .era-feature { grid-template-columns: 1fr; }
+  .card-actions { flex-wrap: wrap; }
+  .route-grid, .connection-list { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .album-card, .atlas-record { transition: none; }
+}
+</style></head><body><a class="skip" href="#content">Skip to guide</a><div class="layout">
+<aside class="rail"><div class="brand">Musiculum / V3<strong>After the Ecstasy: Bristol, Tokyo, and the Haunted Beat</strong></div>
+<nav aria-label="Era timeline"><ol class="timeline"><li><a href="#section-1"><span>Night after the night</span><small>1991–1998</small></a></li><li><a href="#section-2"><span>Bristol weather</span><small>1994–1997</small></a></li><li><a href="#section-3"><span>The sampler as ghost machine</span><small>1995–2001</small></a></li><li><a href="#section-4"><span>Tokyo receives and transforms the beat</span><small>1994–2008</small></a></li><li><a href="#section-5"><span>Tokyo after midnight</span><small></small></a></li><li><a href="#section-6"><span>Timeline and closing synthesis</span><small></small></a></li></ol></nav>
+<div class="rail-actions"><button class="btn crate-dig">Crate dig</button><a class="btn" href="#session-notes">Session notes</a></div></aside>
+<main class="main" id="content"><header class="hero"><div class="hero-content reveal"><span class="eyebrow">Musiculum / long-form listening</span>
+<h1>After the Ecstasy: Bristol, Tokyo, and the Haunted Beat</h1><p class="subtitle">A long-session listening companion.</p><div class="hero-summary"><p>The most illuminating way to organise a narrative about trip-hop is not to treat it as a stable genre first and a historical scene second, but to flip that order. The sound coheres if you hear it as a <em>social function</em>: music for the after-hours, the walk home, the cigarette on the curb, the comedown after the rave’s collective acceleration. The term itself emerged in 1994 around Mo’ Wax, DJ Shadow, and London after-hours circulation, while the style’s deepest roots lay in Bristol’s slower, bass-heavy, dub-inflected sound-system culture and its post-punk bohemia. Even then, many of the artists most associated with the label distrusted or outright disliked it.</p><p>Bristol matters here less as a single city with a single sound than as a weather system: a port city whose Black British sound-system culture, reggae and dub inheritance, hip-hop uptake, and post-punk melancholy made <em>Blue Lines</em>, <em>Dummy</em>, and <em>Maxinquaye</em> possible. The Wild Bunch’s genre promiscuity—hip-hop, reggae, punk, soul, ambient drift—was not a side detail; it was the method. That is why Bristol produced a “scene” that was always already more than one sound.</p><p>Tokyo matters because it did not merely imitate this weather. It translated and transformed it. Japanese hip-hop culture had already been catalysed by the early circulation of <em>Wild Style</em> and by local club and record-shop infrastructures; DJ Krush turned turntablism into an austere, spatial, almost calligraphic art, while Shibuya-kei and club-jazz scenes in Tokyo created a parallel cosmopolitan ecology of quotation, sophistication, and groove. By the time Hydeout Productions and <em>Samurai Champloo</em> arrived, Tokyo had become one of the key sites where trip-hop’s darker noir vocabulary was softened, thinned into air, and reissued globally as something warmer, more melodic, and more intimate.</p><p>A final methodological note: some of the records below are “pure” trip-hop only if one uses the term very loosely. That looseness is part of the argument. The scene’s most fertile records often live at the borders—abstract hip-hop, downtempo, club-jazz, acid jazz, Shibuya-kei, sampledelia, soundtrack work—because trip-hop was always more a sensibility of tempo, density, bass pressure, and haunted sampling than a cleanly bounded style.</p><p>Useful primary or near-primary reference links for key claims include <a href="https://www.massiveattack.co.uk/" target="_blank" rel="noopener">Massive Attack’s official site</a>, <a href="https://www.portishead.co.uk/" target="_blank" rel="noopener">Portishead’s official site</a>, <a href="https://www.trickysite.com/nearly-god/" target="_blank" rel="noopener">Tricky’s official page for <em>Nearly God</em></a>, <a href="https://djkrush.jp/en/disco/" target="_blank" rel="noopener">DJ KRUSH’s official discography</a>, <a href="https://www.jvcmusic.co.jp/-/Discography/A018999/VTJL-7.html" target="_blank" rel="noopener">Victor/FlyingDog’s official page for <em>samurai champloo music record &quot;departure&quot;</em></a>, <a href="https://www.silentpoets.net/discography/words-and-silence/" target="_blank" rel="noopener">SILENT POETS’ official discography</a>, <a href="https://articles.roland.com/label-spotlight-mo-wax-records-and-unkle/" target="_blank" rel="noopener">Roland’s label spotlight on Mo’ Wax and UNKLE</a>, and the Hydeout-related official press material archived via <a href="https://prtimes.jp/main/html/rd/p/000000640.000011969.html" target="_blank" rel="noopener">PR TIMES</a>.</p><p>Illustrative cover and image links: <a href="https://100best.music.apple.com/us/album/87" target="_blank" rel="noopener"><em>Blue Lines</em> cover page on Apple Music 100</a>, <a href="https://www.moma.org/collection/works/189267" target="_blank" rel="noopener">Ben Drury’s <em>Meiso</em> cover in MoMA’s collection</a>, and <a href="https://www.jvcmusic.co.jp/-/Discography/A018999/VTJL-7.html" target="_blank" rel="noopener">the official <em>samurai champloo music record &quot;departure&quot;</em> release page with jacket image</a>.</p></div></div></header>
+<nav class="feature-nav" aria-label="Guide tools"><a href="#routes">Listening routes</a><a href="#energy-map">Energy map</a>
+<a href="#connections">Connections</a><a href="#session-notes">Notes</a><button class="reset crate-dig">Crate dig</button></nav>
+<section class="lab" id="routes"><div class="lab-head"><span class="eyebrow">Curated paths</span>
+<h2>Choose a route through the music</h2><p>Each path loads one release at a time into the persistent player.</p></div>
+<div class="route-grid"><article class="route-card"><span>4 stops</span><h3>Start Here</h3><p>Massive Attack → Portishead → Tricky → Nightmares on Wax</p><button class="route-start" data-route="start-here">Start route</button></article></div></section>
+<section class="lab" id="energy-map"><div class="lab-head"><span class="eyebrow">Energy / texture atlas</span>
+<h2>Find the pressure you want</h2><p>Records move from lower to higher energy and group by their dominant surface.</p><p>Energy and texture were inferred from the essay text for this guide. Add <code>Energy</code>, <code>Texture</code>, <code>Listen for</code> and <code>Connections</code> columns to the source tables to set them deliberately.</p></div>
+<div class="feature-nav" aria-label="Map filters"><label>Artist <input id="artist-filter" type="search" placeholder="Filter artist"></label>
+<label>Texture <select id="texture-filter"><option value="">All textures</option><option value="spare">spare</option><option value="crystalline">crystalline</option><option value="atmospheric">atmospheric</option><option value="cavernous">cavernous</option><option value="propulsive">propulsive</option><option value="abrasive">abrasive</option></select></label>
+<label>Minimum energy <input id="energy-filter" type="range" min="1" max="10" value="1"></label>
+<button class="reset" id="reset-filters">Reset</button><output id="result-count" aria-live="polite"></output></div>
+<div class="atlas-wrap" role="region" aria-label="Energy and texture atlas"><div class="atlas">
+<div class="atlas-scale"><span>Texture family</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div><div class="atlas-row"><div class="atlas-label"><strong>spare</strong><small>2 releases</small></div><div class="atlas-cell" data-energy="1"><button class="atlas-record record-target" data-key="DJ KRUSH - Strictly Turntablized" title="DJ KRUSH - Strictly Turntablized · spare"><strong>DJ KRUSH</strong><span>Strictly Turntablized</span><small>1994 · spare</small></button><button class="atlas-record record-target" data-key="SILENT POETS - For Nothing" title="SILENT POETS - For Nothing · spare"><strong>SILENT POETS</strong><span>For Nothing</span><small>1998 · spare</small></button></div><div class="atlas-cell" data-energy="2"></div><div class="atlas-cell" data-energy="3"></div><div class="atlas-cell" data-energy="4"></div><div class="atlas-cell" data-energy="5"></div><div class="atlas-cell" data-energy="6"></div><div class="atlas-cell" data-energy="7"></div><div class="atlas-cell" data-energy="8"></div><div class="atlas-cell" data-energy="9"></div><div class="atlas-cell" data-energy="10"></div></div><div class="atlas-row"><div class="atlas-label"><strong>crystalline</strong><small>2 releases</small></div><div class="atlas-cell" data-energy="1"></div><div class="atlas-cell" data-energy="2"></div><div class="atlas-cell" data-energy="3"></div><div class="atlas-cell" data-energy="4"><button class="atlas-record record-target" data-key="Sneaker Pimps - Becoming X" title="Sneaker Pimps - Becoming X · crystalline"><strong>Sneaker Pimps</strong><span>Becoming X</span><small>1996 · crystalline</small></button><button class="atlas-record record-target" data-key="Nujabes - Modal Soul" title="Nujabes - Modal Soul · crystalline"><strong>Nujabes</strong><span>Modal Soul</span><small>2005 · crystalline</small></button></div><div class="atlas-cell" data-energy="5"></div><div class="atlas-cell" data-energy="6"></div><div class="atlas-cell" data-energy="7"></div><div class="atlas-cell" data-energy="8"></div><div class="atlas-cell" data-energy="9"></div><div class="atlas-cell" data-energy="10"></div></div><div class="atlas-row"><div class="atlas-label"><strong>atmospheric</strong><small>6 releases</small></div><div class="atlas-cell" data-energy="1"></div><div class="atlas-cell" data-energy="2"><button class="atlas-record record-target" data-key="Tricky - Pre-Millennium Tension" title="Tricky - Pre-Millennium Tension · atmospheric"><strong>Tricky</strong><span>Pre-Millennium Tension</span><small>1996 · atmospheric</small></button></div><div class="atlas-cell" data-energy="3"></div><div class="atlas-cell" data-energy="4"></div><div class="atlas-cell" data-energy="5"><button class="atlas-record record-target" data-key="Bowery Electric - Beat" title="Bowery Electric - Beat · atmospheric"><strong>Bowery Electric</strong><span>Beat</span><small>1996 · atmospheric</small></button><button class="atlas-record record-target" data-key="Alpha - Come From Heaven" title="Alpha - Come From Heaven · atmospheric"><strong>Alpha</strong><span>Come From Heaven</span><small>1997 · atmospheric</small></button><button class="atlas-record record-target" data-key="Thievery Corporation - Sounds From The Thievery Hi-Fi" title="Thievery Corporation - Sounds From The Thievery Hi-Fi · atmospheric"><strong>Thievery Corporation</strong><span>Sounds From The Thievery Hi-Fi</span><small>1997 · atmospheric</small></button></div><div class="atlas-cell" data-energy="6"><button class="atlas-record record-target" data-key="Calm - Moonage Electric Ensemble" title="Calm - Moonage Electric Ensemble · atmospheric"><strong>Calm</strong><span>Moonage Electric Ensemble</span><small>1999 · atmospheric</small></button></div><div class="atlas-cell" data-energy="7"><button class="atlas-record record-target" data-key="UNKLE - Psyence Fiction" title="UNKLE - Psyence Fiction · atmospheric"><strong>UNKLE</strong><span>Psyence Fiction</span><small>1998 · atmospheric</small></button></div><div class="atlas-cell" data-energy="8"></div><div class="atlas-cell" data-energy="9"></div><div class="atlas-cell" data-energy="10"></div></div><div class="atlas-row"><div class="atlas-label"><strong>cavernous</strong><small>6 releases</small></div><div class="atlas-cell" data-energy="1"></div><div class="atlas-cell" data-energy="2"></div><div class="atlas-cell" data-energy="3"><button class="atlas-record record-target" data-key="Morcheeba - Big Calm" title="Morcheeba - Big Calm · cavernous"><strong>Morcheeba</strong><span>Big Calm</span><small>1998 · cavernous</small></button></div><div class="atlas-cell" data-energy="4"></div><div class="atlas-cell" data-energy="5"><button class="atlas-record record-target" data-key="DJ KRUSH - Jaku" title="DJ KRUSH - Jaku · cavernous"><strong>DJ KRUSH</strong><span>Jaku</span><small>2004 · cavernous</small></button></div><div class="atlas-cell" data-energy="6"><button class="atlas-record record-target" data-key="Archive - Londinium" title="Archive - Londinium · cavernous"><strong>Archive</strong><span>Londinium</span><small>1996 · cavernous</small></button><button class="atlas-record record-target" data-key="Massive Attack - Protection" title="Massive Attack - Protection · cavernous"><strong>Massive Attack</strong><span>Protection</span><small>1994 · cavernous</small></button><button class="atlas-record record-target" data-key="DJ KRUSH - Meiso" title="DJ KRUSH - Meiso · cavernous"><strong>DJ KRUSH</strong><span>Meiso</span><small>1995 · cavernous</small></button><button class="atlas-record record-target" data-key="Cornelius - Fantasma" title="Cornelius - Fantasma · cavernous"><strong>Cornelius</strong><span>Fantasma</span><small>1997 · cavernous</small></button></div><div class="atlas-cell" data-energy="7"></div><div class="atlas-cell" data-energy="8"></div><div class="atlas-cell" data-energy="9"></div><div class="atlas-cell" data-energy="10"></div></div><div class="atlas-row"><div class="atlas-label"><strong>propulsive</strong><small>27 releases</small></div><div class="atlas-cell" data-energy="1"></div><div class="atlas-cell" data-energy="2"></div><div class="atlas-cell" data-energy="3"><button class="atlas-record record-target" data-key="Nearly God - Nearly God" title="Nearly God - Nearly God · unclassified"><strong>Nearly God</strong><span>Nearly God</span><small>1996 · unclassified</small></button><button class="atlas-record record-target" data-key="Hooverphonic - A New Stereophonic Sound Spectacular" title="Hooverphonic - A New Stereophonic Sound Spectacular · atmospheric"><strong>Hooverphonic</strong><span>A New Stereophonic Sound Spectacular</span><small>1996 · atmospheric</small></button></div><div class="atlas-cell" data-energy="4"><button class="atlas-record record-target" data-key="Massive Attack - Blue Lines" title="Massive Attack - Blue Lines · unclassified"><strong>Massive Attack</strong><span>Blue Lines</span><small>1991 · unclassified</small></button><button class="atlas-record record-target" data-key="United Future Organization - 3rd Perspective" title="United Future Organization - 3rd Perspective · crystalline"><strong>United Future Organization</strong><span>3rd Perspective</span><small>1997 · crystalline</small></button></div><div class="atlas-cell" data-energy="5"><button class="atlas-record record-target" data-key="Tricky - Maxinquaye" title="Tricky - Maxinquaye · unclassified"><strong>Tricky</strong><span>Maxinquaye</span><small>1995 · unclassified</small></button><button class="atlas-record record-target" data-key="Smith &amp; Mighty - Bass Is Maternal" title="Smith &amp; Mighty - Bass Is Maternal · unclassified"><strong>Smith &amp; Mighty</strong><span>Bass Is Maternal</span><small>1995 · unclassified</small></button><button class="atlas-record record-target" data-key="DJ Shadow - Endtroducing….." title="DJ Shadow - Endtroducing….. · unclassified"><strong>DJ Shadow</strong><span>Endtroducing…..</span><small>1996 · unclassified</small></button><button class="atlas-record record-target" data-key="DJ Food - A Recipe For Disaster" title="DJ Food - A Recipe For Disaster · unclassified"><strong>DJ Food</strong><span>A Recipe For Disaster</span><small>1995 · unclassified</small></button><button class="atlas-record record-target" data-key="DJ Cam - Underground Vibes" title="DJ Cam - Underground Vibes · propulsive"><strong>DJ Cam</strong><span>Underground Vibes</span><small>1995 · propulsive</small></button><button class="atlas-record record-target" data-key="Kid Loco - A Grand Love Story" title="Kid Loco - A Grand Love Story · unclassified"><strong>Kid Loco</strong><span>A Grand Love Story</span><small>1997 · unclassified</small></button><button class="atlas-record record-target" data-key="Kruder &amp; Dorfmeister - The K&amp;D Sessions" title="Kruder &amp; Dorfmeister - The K&amp;D Sessions · unclassified"><strong>Kruder &amp; Dorfmeister</strong><span>The K&amp;D Sessions</span><small>1998 · unclassified</small></button><button class="atlas-record record-target" data-key="Tosca - Suzuki" title="Tosca - Suzuki · unclassified"><strong>Tosca</strong><span>Suzuki</span><small>2000 · unclassified</small></button><button class="atlas-record record-target" data-key="Lovage - Music to Make Love to Your Old Lady By" title="Lovage - Music to Make Love to Your Old Lady By · unclassified"><strong>Lovage</strong><span>Music to Make Love to Your Old Lady By</span><small>2001 · unclassified</small></button><button class="atlas-record record-target" data-key="DJ KRUSH &amp; Toshinori Kondo - Ki-Oku" title="DJ KRUSH &amp; Toshinori Kondo - Ki-Oku · atmospheric"><strong>DJ KRUSH &amp; Toshinori Kondo</strong><span>Ki-Oku</span><small>1996 · atmospheric</small></button><button class="atlas-record record-target" data-key="TOWA TEI - Sound Museum" title="TOWA TEI - Sound Museum · unclassified"><strong>TOWA TEI</strong><span>Sound Museum</span><small>1997 · unclassified</small></button><button class="atlas-record record-target" data-key="Nujabes, Fat Jon, Shing02, MINMI - samurai champloo music record &quot;departure&quot;" title="Nujabes, Fat Jon, Shing02, MINMI - samurai champloo music record &quot;departure&quot; · unclassified"><strong>Nujabes, Fat Jon, Shing02, MINMI</strong><span>samurai champloo music record &quot;departure&quot;</span><small>2004 · unclassified</small></button></div><div class="atlas-cell" data-energy="6"><button class="atlas-record record-target" data-key="Smoke City - Flying Away" title="Smoke City - Flying Away · propulsive"><strong>Smoke City</strong><span>Flying Away</span><small>1997 · propulsive</small></button><button class="atlas-record record-target" data-key="SILENT POETS - Words and Silence" title="SILENT POETS - Words and Silence · propulsive"><strong>SILENT POETS</strong><span>Words and Silence</span><small>1994 · propulsive</small></button><button class="atlas-record record-target" data-key="Nujabes - Metaphorical Music" title="Nujabes - Metaphorical Music · propulsive"><strong>Nujabes</strong><span>Metaphorical Music</span><small>2003 · propulsive</small></button></div><div class="atlas-cell" data-energy="7"><button class="atlas-record record-target" data-key="Nightmares on Wax - Smokers Delight" title="Nightmares on Wax - Smokers Delight · propulsive"><strong>Nightmares on Wax</strong><span>Smokers Delight</span><small>1995 · propulsive</small></button><button class="atlas-record record-target" data-key="Esthero - Breath from Another" title="Esthero - Breath from Another · propulsive"><strong>Esthero</strong><span>Breath from Another</span><small>1998 · propulsive</small></button><button class="atlas-record record-target" data-key="The Herbaliser - Remedies" title="The Herbaliser - Remedies · propulsive"><strong>The Herbaliser</strong><span>Remedies</span><small>1995 · propulsive</small></button><button class="atlas-record record-target" data-key="United Future Organization - No Sound Is Too Taboo" title="United Future Organization - No Sound Is Too Taboo · propulsive"><strong>United Future Organization</strong><span>No Sound Is Too Taboo</span><small>1994 · propulsive</small></button><button class="atlas-record record-target" data-key="MONDO GROSSO - Born Free" title="MONDO GROSSO - Born Free · propulsive"><strong>MONDO GROSSO</strong><span>Born Free</span><small>1995 · propulsive</small></button><button class="atlas-record record-target" data-key="Monday Michiru - MAIDEN JAPAN" title="Monday Michiru - MAIDEN JAPAN · propulsive"><strong>Monday Michiru</strong><span>MAIDEN JAPAN</span><small>1999 · propulsive</small></button><button class="atlas-record record-target" data-key="Uyama Hiroto - A Son of the Sun" title="Uyama Hiroto - A Son of the Sun · propulsive"><strong>Uyama Hiroto</strong><span>A Son of the Sun</span><small>2008 · propulsive</small></button></div><div class="atlas-cell" data-energy="8"><button class="atlas-record record-target" data-key="Lamb - Lamb" title="Lamb - Lamb · propulsive"><strong>Lamb</strong><span>Lamb</span><small>1996 · propulsive</small></button></div><div class="atlas-cell" data-energy="9"></div><div class="atlas-cell" data-energy="10"></div></div><div class="atlas-row"><div class="atlas-label"><strong>abrasive</strong><small>4 releases</small></div><div class="atlas-cell" data-energy="1"></div><div class="atlas-cell" data-energy="2"></div><div class="atlas-cell" data-energy="3"></div><div class="atlas-cell" data-energy="4"></div><div class="atlas-cell" data-energy="5"></div><div class="atlas-cell" data-energy="6"></div><div class="atlas-cell" data-energy="7"></div><div class="atlas-cell" data-energy="8"><button class="atlas-record record-target" data-key="Portishead - Dummy" title="Portishead - Dummy · abrasive"><strong>Portishead</strong><span>Dummy</span><small>1994 · abrasive</small></button><button class="atlas-record record-target" data-key="Portishead - Portishead" title="Portishead - Portishead · abrasive"><strong>Portishead</strong><span>Portishead</span><small>1997 · abrasive</small></button><button class="atlas-record record-target" data-key="Mono - Formica Blues" title="Mono - Formica Blues · abrasive"><strong>Mono</strong><span>Formica Blues</span><small>1997 · abrasive</small></button><button class="atlas-record record-target" data-key="The Third Eye Foundation - Ghost" title="The Third Eye Foundation - Ghost · abrasive"><strong>The Third Eye Foundation</strong><span>Ghost</span><small>1997 · abrasive</small></button></div><div class="atlas-cell" data-energy="9"></div><div class="atlas-cell" data-energy="10"></div></div></div></div>
+<div class="energy-axis"><span>Lower energy</span><span>Higher energy</span></div></section>
+<section class="lab" id="connections"><div class="lab-head"><span class="eyebrow">Signal paths</span>
+<h2>Connections across scenes and eras</h2><p>Arc weight shows how many record-level paths bridge two eras. Select any detailed path below to hear either endpoint.</p></div>
+<div class="graph-wrap"><svg viewBox="0 0 920 430" role="img" aria-labelledby="graph-title">
+<title id="graph-title">Chronological connections between eras</title><line class="signal-baseline" x1="50" y1="300" x2="870" y2="300"></line>
+<g class="signal-arcs"><path d="M 75.0 300 Q 203.3 227.0 331.7 300" style="--signal-weight:4.0"><title>night after the night → bristol weather: 9 paths</title></path><text class="edge-count" x="203.3" y="258.5">9</text><path d="M 331.7 300 Q 460.0 227.0 588.3 300" style="--signal-weight:3.7"><title>bristol weather → the sampler as ghost machine: 8 paths</title></path><text class="edge-count" x="460.0" y="258.5">8</text><path d="M 588.3 300 Q 716.7 227.0 845.0 300" style="--signal-weight:3.7"><title>the sampler as ghost machine → tokyo receives and transforms the beat: 8 paths</title></path><text class="edge-count" x="716.7" y="258.5">8</text><path d="M 331.7 300 Q 588.3 202.0 845.0 300" style="--signal-weight:3.3"><title>bristol weather → tokyo receives and transforms the beat: 7 paths</title></path><text class="edge-count" x="588.3" y="246.0">7</text><path d="M 75.0 300 Q 460.0 177.0 845.0 300" style="--signal-weight:2.0"><title>night after the night → tokyo receives and transforms the beat: 3 paths</title></path><text class="edge-count" x="460.0" y="233.5">3</text><path d="M 75.0 300 Q 331.7 202.0 588.3 300" style="--signal-weight:2.0"><title>night after the night → the sampler as ghost machine: 3 paths</title></path><text class="edge-count" x="331.7" y="246.0">3</text></g><g><g class="scene-node"><circle cx="75.0" cy="300" r="22"></circle><text x="75.0" y="304" text-anchor="middle">01</text><text class="scene-year" x="75.0" y="343" text-anchor="middle">1991–1998</text></g><g class="scene-node"><circle cx="331.7" cy="300" r="22"></circle><text x="331.7" y="304" text-anchor="middle">02</text><text class="scene-year" x="331.7" y="343" text-anchor="middle">1994–1997</text></g><g class="scene-node"><circle cx="588.3" cy="300" r="22"></circle><text x="588.3" y="304" text-anchor="middle">03</text><text class="scene-year" x="588.3" y="343" text-anchor="middle">1995–2001</text></g><g class="scene-node"><circle cx="845.0" cy="300" r="22"></circle><text x="845.0" y="304" text-anchor="middle">04</text><text class="scene-year" x="845.0" y="343" text-anchor="middle">1994–2008</text></g></g></svg></div>
+<div class="scene-key"><article><span>01</span><div><strong>Night after the night</strong><small>1991–1998 · 10 releases · 5 texture families</small></div></article><article><span>02</span><div><strong>Bristol weather</strong><small>1994–1997 · 10 releases · 4 texture families</small></div></article><article><span>03</span><div><strong>The sampler as ghost machine</strong><small>1995–2001 · 10 releases · 2 texture families</small></div></article><article><span>04</span><div><strong>Tokyo receives and transforms the beat</strong><small>1994–2008 · 17 releases · 5 texture families</small></div></article></div>
+<ul class="connection-list"><li class="connection-card"><div><span class="signal-era">Era 02 → 01</span><strong>Shared atmospheric texture</strong></div><button class="text-link record-target" data-key="Alpha - Come From Heaven">Alpha - Come From Heaven</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Bowery Electric - Beat">Bowery Electric - Beat</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 03</span><strong>Shared atmospheric texture</strong></div><button class="text-link record-target" data-key="Alpha - Come From Heaven">Alpha - Come From Heaven</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Thievery Corporation - Sounds From The Thievery Hi-Fi">Thievery Corporation - Sounds From The Thievery Hi-Fi</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 02</span><strong>Shared cavernous texture</strong></div><button class="text-link record-target" data-key="Archive - Londinium">Archive - Londinium</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Massive Attack - Protection">Massive Attack - Protection</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 02</span><strong>Shared atmospheric texture</strong></div><button class="text-link record-target" data-key="Bowery Electric - Beat">Bowery Electric - Beat</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Tricky - Pre-Millennium Tension">Tricky - Pre-Millennium Tension</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 03</span><strong>Shared atmospheric texture</strong></div><button class="text-link record-target" data-key="Calm - Moonage Electric Ensemble">Calm - Moonage Electric Ensemble</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="UNKLE - Psyence Fiction">UNKLE - Psyence Fiction</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 02</span><strong>Shared cavernous texture</strong></div><button class="text-link record-target" data-key="Cornelius - Fantasma">Cornelius - Fantasma</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Massive Attack - Protection">Massive Attack - Protection</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 02</span><strong>Shared propulsive family</strong></div><button class="text-link record-target" data-key="DJ Cam - Underground Vibes">DJ Cam - Underground Vibes</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Smith &amp; Mighty - Bass Is Maternal">Smith &amp; Mighty - Bass Is Maternal</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 02</span><strong>Shared unclassified texture</strong></div><button class="text-link record-target" data-key="DJ Food - A Recipe For Disaster">DJ Food - A Recipe For Disaster</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Smith &amp; Mighty - Bass Is Maternal">Smith &amp; Mighty - Bass Is Maternal</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 03</span><strong>Shared propulsive family</strong></div><button class="text-link record-target" data-key="DJ KRUSH &amp; Toshinori Kondo - Ki-Oku">DJ KRUSH &amp; Toshinori Kondo - Ki-Oku</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="DJ Shadow - Endtroducing…..">DJ Shadow - Endtroducing…..</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 02</span><strong>Shared cavernous texture</strong></div><button class="text-link record-target" data-key="DJ KRUSH - Jaku">DJ KRUSH - Jaku</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Massive Attack - Protection">Massive Attack - Protection</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 01</span><strong>Shared cavernous texture</strong></div><button class="text-link record-target" data-key="DJ KRUSH - Jaku">DJ KRUSH - Jaku</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Morcheeba - Big Calm">Morcheeba - Big Calm</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 02</span><strong>Shared cavernous texture</strong></div><button class="text-link record-target" data-key="DJ KRUSH - Meiso">DJ KRUSH - Meiso</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Massive Attack - Protection">Massive Attack - Protection</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 02</span><strong>Cross-era affinity · energy shift 1</strong></div><button class="text-link record-target" data-key="DJ KRUSH - Strictly Turntablized">DJ KRUSH - Strictly Turntablized</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Tricky - Pre-Millennium Tension">Tricky - Pre-Millennium Tension</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 04</span><strong>Shared unclassified texture</strong></div><button class="text-link record-target" data-key="DJ Shadow - Endtroducing…..">DJ Shadow - Endtroducing…..</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Nujabes, Fat Jon, Shing02, MINMI - samurai champloo music record &quot;departure&quot;">Nujabes, Fat Jon, Shing02, MINMI - samurai champloo music record &quot;departure&quot;</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 02</span><strong>Shared unclassified texture</strong></div><button class="text-link record-target" data-key="DJ Shadow - Endtroducing…..">DJ Shadow - Endtroducing…..</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Smith &amp; Mighty - Bass Is Maternal">Smith &amp; Mighty - Bass Is Maternal</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 04</span><strong>Shared unclassified texture</strong></div><button class="text-link record-target" data-key="DJ Shadow - Endtroducing…..">DJ Shadow - Endtroducing…..</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="TOWA TEI - Sound Museum">TOWA TEI - Sound Museum</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 03</span><strong>Shared propulsive texture</strong></div><button class="text-link record-target" data-key="Esthero - Breath from Another">Esthero - Breath from Another</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="The Herbaliser - Remedies">The Herbaliser - Remedies</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 01</span><strong>Shared propulsive family</strong></div><button class="text-link record-target" data-key="Hooverphonic - A New Stereophonic Sound Spectacular">Hooverphonic - A New Stereophonic Sound Spectacular</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Massive Attack - Blue Lines">Massive Attack - Blue Lines</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 02</span><strong>Shared unclassified texture</strong></div><button class="text-link record-target" data-key="Kid Loco - A Grand Love Story">Kid Loco - A Grand Love Story</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Smith &amp; Mighty - Bass Is Maternal">Smith &amp; Mighty - Bass Is Maternal</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 02</span><strong>Shared unclassified texture</strong></div><button class="text-link record-target" data-key="Kruder &amp; Dorfmeister - The K&amp;D Sessions">Kruder &amp; Dorfmeister - The K&amp;D Sessions</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Smith &amp; Mighty - Bass Is Maternal">Smith &amp; Mighty - Bass Is Maternal</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 03</span><strong>Shared propulsive texture</strong></div><button class="text-link record-target" data-key="Lamb - Lamb">Lamb - Lamb</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="The Herbaliser - Remedies">The Herbaliser - Remedies</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 02</span><strong>Shared unclassified texture</strong></div><button class="text-link record-target" data-key="Lovage - Music to Make Love to Your Old Lady By">Lovage - Music to Make Love to Your Old Lady By</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Smith &amp; Mighty - Bass Is Maternal">Smith &amp; Mighty - Bass Is Maternal</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 03</span><strong>Shared propulsive texture</strong></div><button class="text-link record-target" data-key="MONDO GROSSO - Born Free">MONDO GROSSO - Born Free</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="The Herbaliser - Remedies">The Herbaliser - Remedies</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 02</span><strong>Shared unclassified texture</strong></div><button class="text-link record-target" data-key="Massive Attack - Blue Lines">Massive Attack - Blue Lines</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Nearly God - Nearly God">Nearly God - Nearly God</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 04</span><strong>Shared propulsive family</strong></div><button class="text-link record-target" data-key="Massive Attack - Blue Lines">Massive Attack - Blue Lines</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="United Future Organization - 3rd Perspective">United Future Organization - 3rd Perspective</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 03</span><strong>Shared propulsive texture</strong></div><button class="text-link record-target" data-key="Monday Michiru - MAIDEN JAPAN">Monday Michiru - MAIDEN JAPAN</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="The Herbaliser - Remedies">The Herbaliser - Remedies</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 01</span><strong>Shared abrasive texture</strong></div><button class="text-link record-target" data-key="Mono - Formica Blues">Mono - Formica Blues</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Portishead - Dummy">Portishead - Dummy</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 03</span><strong>Shared propulsive texture</strong></div><button class="text-link record-target" data-key="Nightmares on Wax - Smokers Delight">Nightmares on Wax - Smokers Delight</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="The Herbaliser - Remedies">The Herbaliser - Remedies</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 02</span><strong>Shared propulsive texture</strong></div><button class="text-link record-target" data-key="Nujabes - Metaphorical Music">Nujabes - Metaphorical Music</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Smoke City - Flying Away">Smoke City - Flying Away</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 01</span><strong>Shared crystalline texture</strong></div><button class="text-link record-target" data-key="Nujabes - Modal Soul">Nujabes - Modal Soul</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Sneaker Pimps - Becoming X">Sneaker Pimps - Becoming X</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 02</span><strong>Shared abrasive texture</strong></div><button class="text-link record-target" data-key="Portishead - Dummy">Portishead - Dummy</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Portishead - Portishead">Portishead - Portishead</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 02</span><strong>Shared abrasive texture</strong></div><button class="text-link record-target" data-key="Portishead - Dummy">Portishead - Dummy</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="The Third Eye Foundation - Ghost">The Third Eye Foundation - Ghost</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 02</span><strong>Cross-era affinity · energy shift 1</strong></div><button class="text-link record-target" data-key="SILENT POETS - For Nothing">SILENT POETS - For Nothing</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Tricky - Pre-Millennium Tension">Tricky - Pre-Millennium Tension</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 02</span><strong>Shared propulsive texture</strong></div><button class="text-link record-target" data-key="SILENT POETS - Words and Silence">SILENT POETS - Words and Silence</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Smoke City - Flying Away">Smoke City - Flying Away</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 03</span><strong>Shared unclassified texture</strong></div><button class="text-link record-target" data-key="Smith &amp; Mighty - Bass Is Maternal">Smith &amp; Mighty - Bass Is Maternal</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Tosca - Suzuki">Tosca - Suzuki</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 01</span><strong>Shared unclassified texture</strong></div><button class="text-link record-target" data-key="Smith &amp; Mighty - Bass Is Maternal">Smith &amp; Mighty - Bass Is Maternal</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Tricky - Maxinquaye">Tricky - Maxinquaye</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 04</span><strong>Shared propulsive texture</strong></div><button class="text-link record-target" data-key="The Herbaliser - Remedies">The Herbaliser - Remedies</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="United Future Organization - No Sound Is Too Taboo">United Future Organization - No Sound Is Too Taboo</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 04</span><strong>Shared propulsive texture</strong></div><button class="text-link record-target" data-key="The Herbaliser - Remedies">The Herbaliser - Remedies</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Uyama Hiroto - A Son of the Sun">Uyama Hiroto - A Son of the Sun</button></li></ul></section>
+<div class="era-band" style="--era-gradient:linear-gradient(120deg,#32105d,#092940)">
+            <span>01</span><div><small>1991–1998 · </small>
+            <h2>Night after the night</h2></div></div>
+            <section class="story-section" id="section-1">
+            <div class="story-copy"><span class="eyebrow">Transmission 01</span>
+            <h2>Night after the night</h2><div class="reveal"><p>The “comedown thesis” is best understood as an inference from the documented social life of the music. Trip-hop was attached early to after-hours listening and club circulation, but it refused club music’s imperative to peak. It took the architecture of hip-hop—breaks, loops, samples, bass, suspended repetition—and drained it of triumphal certainty. Instead it offered narcotic drift, dread, erotic fatigue, and the strange lucidity that follows overstimulation. That helps explain why so many canonical records feel less like party records than like records that <em>remember</em> the party from the next room over.</p></div><div class="reveal"><p>This is also why the best entry points are not necessarily the “most representative” records in a taxonomic sense. They are the ones that most persuasively stage the transition from kinetic rave modernity to slower, more reflective, haunted listening: from the floor to the sofa, from collective ecstasy to private fallout.</p></div></div><aside class="era-feature reveal" aria-label="Featured release for Night after the night">
+              <div><span class="eyebrow">First suggestion / ready to play</span>
+              <h3>Massive Attack — Blue Lines</h3>
+              <p>How the unclassified surface sits against the rhythm section.</p></div>
+              <iframe title="Massive Attack - Blue Lines" src="https://open.spotify.com/embed/album/5mAPk4qeNqVLtNydaWbWlf?utm_source=generator&theme=0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></aside>
+            <div class="album-grid"><article class="album-card" data-key="Massive Attack - Blue Lines" data-card-key="Massive Attack - Blue Lines">
+      <div class="card-meta"><span>Massive Attack</span><span>1991</span></div>
+      <h3>Blue Lines</h3><p class="note">The ur-text: hip-hop cadence, dub depth, soul lament, and sound-system patience fused into an album that feels physically slow without ever becoming inert. Start here if you want the &quot;before the term existed&quot; version of the thesis.</p>
+      <p class="cue"><strong>Listen for</strong>How the unclassified surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 4/10</span><span class="tag">unclassified</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Massive Attack - Blue Lines">Load player</button>
+      <button class="bookmark" data-key="Massive Attack - Blue Lines" aria-label="Bookmark Massive Attack - Blue Lines" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Portishead - Dummy" data-card-key="Portishead - Dummy">
+      <div class="card-meta"><span>Portishead</span><span>1994</span></div>
+      <h3>Dummy</h3><p class="note">Noir without kitsch: turntable abrasion, spy-soundtrack melodrama, and Beth Gibbons&#x27; voice as a form of wounded interiorscape. It sounds like insomnia staged as design.</p>
+      <p class="cue"><strong>Listen for</strong>How the abrasive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 8/10</span><span class="tag">abrasive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Portishead - Dummy">Load player</button>
+      <button class="bookmark" data-key="Portishead - Dummy" aria-label="Bookmark Portishead - Dummy" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Tricky - Maxinquaye" data-card-key="Tricky - Maxinquaye">
+      <div class="card-meta"><span>Tricky</span><span>1995</span></div>
+      <h3>Maxinquaye</h3><p class="note">The genre&#x27;s most destabilising masterpiece—half-whispered, paranoid, intimate, anti-spectacular. If Blue Lines is the city at dusk, this is the city after midnight, when every corner feels psychically charged.</p>
+      <p class="cue"><strong>Listen for</strong>How the unclassified surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">unclassified</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Tricky - Maxinquaye">Load player</button>
+      <button class="bookmark" data-key="Tricky - Maxinquaye" aria-label="Bookmark Tricky - Maxinquaye" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Nightmares on Wax - Smokers Delight" data-card-key="Nightmares on Wax - Smokers Delight">
+      <div class="card-meta"><span>Nightmares on Wax</span><span>1995</span></div>
+      <h3>Smokers Delight</h3><p class="note">Less gothic than Bristol, more horizontally blissed-out, but crucial for hearing the comedown as groove rather than crisis. The beats recline instead of lurch.</p>
+      <p class="cue"><strong>Listen for</strong>How the propulsive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">propulsive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Nightmares on Wax - Smokers Delight">Load player</button>
+      <button class="bookmark" data-key="Nightmares on Wax - Smokers Delight" aria-label="Bookmark Nightmares on Wax - Smokers Delight" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Lamb - Lamb" data-card-key="Lamb - Lamb">
+      <div class="card-meta"><span>Lamb</span><span>1996</span></div>
+      <h3>Lamb</h3><p class="note">A Manchester variant where trip-hop rubs against drum-and-bass fracture and torch-song intensity. Lou Rhodes gives the style a rare, almost devotional ache.</p>
+      <p class="cue"><strong>Listen for</strong>How the propulsive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 8/10</span><span class="tag">propulsive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Lamb - Lamb">Load player</button>
+      <button class="bookmark" data-key="Lamb - Lamb" aria-label="Bookmark Lamb - Lamb" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Bowery Electric - Beat" data-card-key="Bowery Electric - Beat">
+      <div class="card-meta"><span>Bowery Electric</span><span>1996</span></div>
+      <h3>Beat</h3><p class="note">A New York answer from the shoegaze edge: less urban-noir cinema, more narcotic fog and negative space. Essential if you want to hear how trip-hop bled into dream-pop and post-rock atmospherics.</p>
+      <p class="cue"><strong>Listen for</strong>How the atmospheric surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">atmospheric</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Bowery Electric - Beat">Load player</button>
+      <button class="bookmark" data-key="Bowery Electric - Beat" aria-label="Bookmark Bowery Electric - Beat" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Archive - Londinium" data-card-key="Archive - Londinium">
+      <div class="card-meta"><span>Archive</span><span>1996</span></div>
+      <h3>Londinium</h3><p class="note">Colder and more architectural than many Bristol records, with rap, melancholy, and metropolitan scale. An excellent bridge between trip-hop and later European downtempo.</p>
+      <p class="cue"><strong>Listen for</strong>How the cavernous surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">cavernous</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Archive - Londinium">Load player</button>
+      <button class="bookmark" data-key="Archive - Londinium" aria-label="Bookmark Archive - Londinium" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Sneaker Pimps - Becoming X" data-card-key="Sneaker Pimps - Becoming X">
+      <div class="card-meta"><span>Sneaker Pimps</span><span>1996</span></div>
+      <h3>Becoming X</h3><p class="note">Pop-minded but never trivial: sleek hooks, covert menace, and a sense of late-&#x27;90s stylish alienation. A good reminder that trip-hop&#x27;s commercial edge did not always flatten its mood.</p>
+      <p class="cue"><strong>Listen for</strong>How the crystalline surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 4/10</span><span class="tag">crystalline</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Sneaker Pimps - Becoming X">Load player</button>
+      <button class="bookmark" data-key="Sneaker Pimps - Becoming X" aria-label="Bookmark Sneaker Pimps - Becoming X" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Morcheeba - Big Calm" data-card-key="Morcheeba - Big Calm">
+      <div class="card-meta"><span>Morcheeba</span><span>1998</span></div>
+      <h3>Big Calm</h3><p class="note">Warmer, sunnier, and more organic than the Bristol core, but still unmistakably post-club in its loosened pulse and low-lit spaciousness. Ideal for hearing the style turn from dread toward ease.</p>
+      <p class="cue"><strong>Listen for</strong>How the cavernous surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 3/10</span><span class="tag">cavernous</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Morcheeba - Big Calm">Load player</button>
+      <button class="bookmark" data-key="Morcheeba - Big Calm" aria-label="Bookmark Morcheeba - Big Calm" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Esthero - Breath from Another" data-card-key="Esthero - Breath from Another">
+      <div class="card-meta"><span>Esthero</span><span>1998</span></div>
+      <h3>Breath from Another</h3><p class="note">A beautifully overdressed detour: lounge, acid jazz, trip-hop, and sly theatricality. It proves the genre could be glamorous without losing its undertow.</p>
+      <p class="cue"><strong>Listen for</strong>How the propulsive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">propulsive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Esthero - Breath from Another">Load player</button>
+      <button class="bookmark" data-key="Esthero - Breath from Another" aria-label="Bookmark Esthero - Breath from Another" aria-pressed="false">☆</button></div>
+    </article></div></section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#521234,#27170b)">
+            <span>02</span><div><small>1994–1997 · </small>
+            <h2>Bristol weather</h2></div></div>
+            <section class="story-section" id="section-2">
+            <div class="story-copy"><span class="eyebrow">Transmission 02</span>
+            <h2>Bristol weather</h2><div class="reveal"><p>Bristol’s centrality is not just a matter of chronology. It is a matter of atmosphere and infrastructure. Britannica, the British Council, and scholarship on the so-called “Bristol sound” all emphasise the same cluster of conditions: a port city, racial and musical plurality, Jamaican sound-system influence, post-punk residue, and a scene in which DJs and producers treated genre as material rather than allegiance. The Wild Bunch’s significance lies precisely in that promiscuous method of assembly.</p></div><div class="reveal"><p>That is why Bristol should be pictured less as an origin point and more as a pressure system that kept generating variants. Even within a narrow temporal window, Massive Attack, Portishead, Tricky, Smith &amp; Mighty, and Alpha do not sound interchangeable. What they share is not a single template but a shared climate: heavy low end, slowed hip-hop logic, dub spaciousness, and an insistence that melancholy can be produced, arranged, and engineered with as much care as euphoria.</p></div></div><aside class="era-feature reveal" aria-label="Featured release for Bristol weather">
+              <div><span class="eyebrow">First suggestion / ready to play</span>
+              <h3>Smith &amp; Mighty — Bass Is Maternal</h3>
+              <p>How the unclassified surface sits against the rhythm section.</p></div>
+              <iframe title="Smith &amp; Mighty - Bass Is Maternal" src="https://open.spotify.com/embed/album/0bxjgfzmhTln5tgxzjmQtC?utm_source=generator&theme=0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></aside>
+            <div class="album-grid"><article class="album-card" data-key="Smith &amp; Mighty - Bass Is Maternal" data-card-key="Smith &amp; Mighty - Bass Is Maternal">
+      <div class="card-meta"><span>Smith &amp; Mighty</span><span>1995</span></div>
+      <h3>Bass Is Maternal</h3><p class="note">The deep prehistory made audible: dub bass, Bristol break science, and a clear sense that the city&#x27;s contribution began below the canonical &quot;big three.&quot; If you need a foundation text for Bristol before canon ossified, this is it.</p>
+      <p class="cue"><strong>Listen for</strong>How the unclassified surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">unclassified</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Smith &amp; Mighty - Bass Is Maternal">Load player</button>
+      <button class="bookmark" data-key="Smith &amp; Mighty - Bass Is Maternal" aria-label="Bookmark Smith &amp; Mighty - Bass Is Maternal" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Massive Attack - Protection" data-card-key="Massive Attack - Protection">
+      <div class="card-meta"><span>Massive Attack</span><span>1994</span></div>
+      <h3>Protection</h3><p class="note">More liquid and nocturnal than Blue Lines, with a richer sense of dub as emotional architecture. It is the record where the Bristol atmosphere becomes almost tactile.</p>
+      <p class="cue"><strong>Listen for</strong>How the cavernous surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">cavernous</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Massive Attack - Protection">Load player</button>
+      <button class="bookmark" data-key="Massive Attack - Protection" aria-label="Bookmark Massive Attack - Protection" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Portishead - Portishead" data-card-key="Portishead - Portishead">
+      <div class="card-meta"><span>Portishead</span><span>1997</span></div>
+      <h3>Portishead</h3><p class="note">Harsher and more self-manufactured than Dummy: less reliant on external samples, more obsessed with creating its own internal decay. Hear it as self-conscious artifice turned uncanny.</p>
+      <p class="cue"><strong>Listen for</strong>How the abrasive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 8/10</span><span class="tag">abrasive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Portishead - Portishead">Load player</button>
+      <button class="bookmark" data-key="Portishead - Portishead" aria-label="Bookmark Portishead - Portishead" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Nearly God - Nearly God" data-card-key="Nearly God - Nearly God">
+      <div class="card-meta"><span>Nearly God</span><span>1996</span></div>
+      <h3>Nearly God</h3><p class="note">Tricky under an alias, but really Tricky as curator of psychic weather: unfinished demos, guest voices, and a strange stasis that feels more private than theatrical.</p>
+      <p class="cue"><strong>Listen for</strong>How the unclassified surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 3/10</span><span class="tag">unclassified</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Nearly God - Nearly God">Load player</button>
+      <button class="bookmark" data-key="Nearly God - Nearly God" aria-label="Bookmark Nearly God - Nearly God" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Tricky - Pre-Millennium Tension" data-card-key="Tricky - Pre-Millennium Tension">
+      <div class="card-meta"><span>Tricky</span><span>1996</span></div>
+      <h3>Pre-Millennium Tension</h3><p class="note">More difficult and claustrophobic than Maxinquaye, but rewarding precisely because it resists ambient prettiness. The comedown here becomes fever rather than drift.</p>
+      <p class="cue"><strong>Listen for</strong>How the atmospheric surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 2/10</span><span class="tag">atmospheric</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Tricky - Pre-Millennium Tension">Load player</button>
+      <button class="bookmark" data-key="Tricky - Pre-Millennium Tension" aria-label="Bookmark Tricky - Pre-Millennium Tension" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Alpha - Come From Heaven" data-card-key="Alpha - Come From Heaven">
+      <div class="card-meta"><span>Alpha</span><span>1997</span></div>
+      <h3>Come From Heaven</h3><p class="note">Released on Massive Attack&#x27;s Melankolic imprint, it is one of the great &quot;second-ring&quot; Bristol records: softer focus, narcotic romance, and rain-streaked melancholy at every turn.</p>
+      <p class="cue"><strong>Listen for</strong>How the atmospheric surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">atmospheric</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Alpha - Come From Heaven">Load player</button>
+      <button class="bookmark" data-key="Alpha - Come From Heaven" aria-label="Bookmark Alpha - Come From Heaven" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Smoke City - Flying Away" data-card-key="Smoke City - Flying Away">
+      <div class="card-meta"><span>Smoke City</span><span>1997</span></div>
+      <h3>Flying Away</h3><p class="note">Brazilian textures and metropolitan trip-hop restraint combine into something sensuous and unusually buoyant. It widens the palette without losing the late-night aura.</p>
+      <p class="cue"><strong>Listen for</strong>How the propulsive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">propulsive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Smoke City - Flying Away">Load player</button>
+      <button class="bookmark" data-key="Smoke City - Flying Away" aria-label="Bookmark Smoke City - Flying Away" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Hooverphonic - A New Stereophonic Sound Spectacular" data-card-key="Hooverphonic - A New Stereophonic Sound Spectacular">
+      <div class="card-meta"><span>Hooverphonic</span><span>1996</span></div>
+      <h3>A New Stereophonic Sound Spectacular</h3><p class="note">Belgian rather than Bristolian, but a crucial proof of diffusion: the style travels into ambient pop and widescreen mood design without losing its low-lit pulse.</p>
+      <p class="cue"><strong>Listen for</strong>How the atmospheric surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 3/10</span><span class="tag">atmospheric</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Hooverphonic - A New Stereophonic Sound Spectacular">Load player</button>
+      <button class="bookmark" data-key="Hooverphonic - A New Stereophonic Sound Spectacular" aria-label="Bookmark Hooverphonic - A New Stereophonic Sound Spectacular" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Mono - Formica Blues" data-card-key="Mono - Formica Blues">
+      <div class="card-meta"><span>Mono</span><span>1997</span></div>
+      <h3>Formica Blues</h3><p class="note">Glossy, urban, and curiously weightless, with &quot;Life in Mono&quot; as one of the style&#x27;s purest expressions of glamorous sadness. A useful counterexample to the assumption that trip-hop must feel grimy.</p>
+      <p class="cue"><strong>Listen for</strong>How the abrasive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 8/10</span><span class="tag">abrasive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Mono - Formica Blues">Load player</button>
+      <button class="bookmark" data-key="Mono - Formica Blues" aria-label="Bookmark Mono - Formica Blues" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="The Third Eye Foundation - Ghost" data-card-key="The Third Eye Foundation - Ghost">
+      <div class="card-meta"><span>The Third Eye Foundation</span><span>1997</span></div>
+      <h3>Ghost</h3><p class="note">Not &quot;trip-hop&quot; in any orthodox sense, but vital if you want the Bristol weather pushed into harsher, more abstract territory. An edge case that clarifies the scene&#x27;s sonic perimeter.</p>
+      <p class="cue"><strong>Listen for</strong>How the abrasive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 8/10</span><span class="tag">abrasive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="The Third Eye Foundation - Ghost">Load player</button>
+      <button class="bookmark" data-key="The Third Eye Foundation - Ghost" aria-label="Bookmark The Third Eye Foundation - Ghost" aria-pressed="false">☆</button></div>
+    </article></div></section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#073e3c,#171335)">
+            <span>03</span><div><small>1995–2001 · </small>
+            <h2>The sampler as ghost machine</h2></div></div>
+            <section class="story-section" id="section-3">
+            <div class="story-copy"><span class="eyebrow">Transmission 03</span>
+            <h2>The sampler as ghost machine</h2><div class="reveal"><p>If Bristol explains the weather, labels explain the circulation. The term “trip-hop” first attached itself in print to DJ Shadow and Mo’ Wax, and that matters because Mo’ Wax and, in a parallel but distinct way, Ninja Tune turned local mood into a transnational network of records, sleeves, shops, and affinities. Mo’ Wax’s importance was not simply that it released records; it provided a graphic and conceptual frame joining turntablism, abstract hip-hop, downtempo drift, and art-school design. Ninja Tune, founded by Coldcut in 1990, did something similar with a broader roster and a more overtly experimental remit.</p></div><div class="reveal"><p>This is where the sampler starts to behave like a ghost machine. Its function is not merely quotation; it makes memory audible, turns debris into atmosphere, and makes geographically distant scenes feel uncannily proximate. DJ Shadow in California, DJ Krush in Tokyo, UNKLE in London, DJ Food and The Herbaliser in the Ninja Tune orbit, and later Thievery Corporation in Washington all share this logic: the beat as archive, the loop as séance, the mix as architecture of recall.</p></div></div><aside class="era-feature reveal" aria-label="Featured release for The sampler as ghost machine">
+              <div><span class="eyebrow">First suggestion / ready to play</span>
+              <h3>DJ Shadow — Endtroducing…..</h3>
+              <p>How the unclassified surface sits against the rhythm section.</p></div>
+              <iframe title="DJ Shadow - Endtroducing….." src="https://open.spotify.com/embed/album/4tUVkNYSFrrEqqrxBQW9PN?utm_source=generator&theme=0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></aside>
+            <div class="album-grid"><article class="album-card" data-key="DJ Shadow - Endtroducing….." data-card-key="DJ Shadow - Endtroducing…..">
+      <div class="card-meta"><span>DJ Shadow</span><span>1996</span></div>
+      <h3>Endtroducing…..</h3><p class="note">The definitive sampler-as-consciousness record: shadowy, allusive, and built almost entirely from vinyl fragments. It is less a set of songs than a theory of memory in beat form.</p>
+      <p class="cue"><strong>Listen for</strong>How the unclassified surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">unclassified</span></div>
+      <div class="card-actions"><button class="load-player" data-key="DJ Shadow - Endtroducing…..">Load player</button>
+      <button class="bookmark" data-key="DJ Shadow - Endtroducing….." aria-label="Bookmark DJ Shadow - Endtroducing….." aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="DJ Food - A Recipe For Disaster" data-card-key="DJ Food - A Recipe For Disaster">
+      <div class="card-meta"><span>DJ Food</span><span>1995</span></div>
+      <h3>A Recipe For Disaster</h3><p class="note">A Ninja Tune cornerstone that hears the kitchen, the studio, and the collage suite as one space. Fantastic for tracing how trip-hop&#x27;s methods overlap with cut-up comic absurdity.</p>
+      <p class="cue"><strong>Listen for</strong>How the unclassified surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">unclassified</span></div>
+      <div class="card-actions"><button class="load-player" data-key="DJ Food - A Recipe For Disaster">Load player</button>
+      <button class="bookmark" data-key="DJ Food - A Recipe For Disaster" aria-label="Bookmark DJ Food - A Recipe For Disaster" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="The Herbaliser - Remedies" data-card-key="The Herbaliser - Remedies">
+      <div class="card-meta"><span>The Herbaliser</span><span>1995</span></div>
+      <h3>Remedies</h3><p class="note">More hip-hop-forward, jazzier, and more playful than the Bristol core, but deeply relevant for understanding the Ninja Tune branch of downbeat culture.</p>
+      <p class="cue"><strong>Listen for</strong>How the propulsive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">propulsive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="The Herbaliser - Remedies">Load player</button>
+      <button class="bookmark" data-key="The Herbaliser - Remedies" aria-label="Bookmark The Herbaliser - Remedies" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="DJ Cam - Underground Vibes" data-card-key="DJ Cam - Underground Vibes">
+      <div class="card-meta"><span>DJ Cam</span><span>1995</span></div>
+      <h3>Underground Vibes</h3><p class="note">A French answer to Mo&#x27; Wax minimalism: smoked jazz loops, cool surfaces, elegant groove control. A sleeper classic if you want trip-hop without gothic melodrama.</p>
+      <p class="cue"><strong>Listen for</strong>How the propulsive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">propulsive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="DJ Cam - Underground Vibes">Load player</button>
+      <button class="bookmark" data-key="DJ Cam - Underground Vibes" aria-label="Bookmark DJ Cam - Underground Vibes" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="UNKLE - Psyence Fiction" data-card-key="UNKLE - Psyence Fiction">
+      <div class="card-meta"><span>UNKLE</span><span>1998</span></div>
+      <h3>Psyence Fiction</h3><p class="note">Mo&#x27; Wax grown cinematic and maximal: guest-heavy, brittle, and ambitious. Hear it as the moment the scene&#x27;s underground grammar began speaking blockbuster scale.</p>
+      <p class="cue"><strong>Listen for</strong>How the atmospheric surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">atmospheric</span></div>
+      <div class="card-actions"><button class="load-player" data-key="UNKLE - Psyence Fiction">Load player</button>
+      <button class="bookmark" data-key="UNKLE - Psyence Fiction" aria-label="Bookmark UNKLE - Psyence Fiction" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Kid Loco - A Grand Love Story" data-card-key="Kid Loco - A Grand Love Story">
+      <div class="card-meta"><span>Kid Loco</span><span>1997</span></div>
+      <h3>A Grand Love Story</h3><p class="note">Velvet, kitsch, and blissed-out romanticism. It shows how the trip-hop toolkit could be used for hedonism and charm rather than dread.</p>
+      <p class="cue"><strong>Listen for</strong>How the unclassified surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">unclassified</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Kid Loco - A Grand Love Story">Load player</button>
+      <button class="bookmark" data-key="Kid Loco - A Grand Love Story" aria-label="Bookmark Kid Loco - A Grand Love Story" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Thievery Corporation - Sounds From The Thievery Hi-Fi" data-card-key="Thievery Corporation - Sounds From The Thievery Hi-Fi">
+      <div class="card-meta"><span>Thievery Corporation</span><span>1997</span></div>
+      <h3>Sounds From The Thievery Hi-Fi</h3><p class="note">One of the clearest early signs that the style had become globally portable: dub, electronica, lounge, and cosmopolitan crate-digging fused into a highly exportable nocturne.</p>
+      <p class="cue"><strong>Listen for</strong>How the atmospheric surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">atmospheric</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Thievery Corporation - Sounds From The Thievery Hi-Fi">Load player</button>
+      <button class="bookmark" data-key="Thievery Corporation - Sounds From The Thievery Hi-Fi" aria-label="Bookmark Thievery Corporation - Sounds From The Thievery Hi-Fi" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Kruder &amp; Dorfmeister - The K&amp;D Sessions" data-card-key="Kruder &amp; Dorfmeister - The K&amp;D Sessions">
+      <div class="card-meta"><span>Kruder &amp; Dorfmeister</span><span>1998</span></div>
+      <h3>The K&amp;D Sessions</h3><p class="note">Remixes as atmosphere engineering. Not a studio album in the strict sense, but indispensable for hearing how downtempo became a continental design language.</p>
+      <p class="cue"><strong>Listen for</strong>How the unclassified surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">unclassified</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Kruder &amp; Dorfmeister - The K&amp;D Sessions">Load player</button>
+      <button class="bookmark" data-key="Kruder &amp; Dorfmeister - The K&amp;D Sessions" aria-label="Bookmark Kruder &amp; Dorfmeister - The K&amp;D Sessions" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Tosca - Suzuki" data-card-key="Tosca - Suzuki">
+      <div class="card-meta"><span>Tosca</span><span>2000</span></div>
+      <h3>Suzuki</h3><p class="note">Vienna&#x27;s dub-techno elegance brought down to sofa tempo. If you want the cigarette-smoke side of early-2000s downtempo, this is the record.</p>
+      <p class="cue"><strong>Listen for</strong>How the unclassified surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">unclassified</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Tosca - Suzuki">Load player</button>
+      <button class="bookmark" data-key="Tosca - Suzuki" aria-label="Bookmark Tosca - Suzuki" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Lovage - Music to Make Love to Your Old Lady By" data-card-key="Lovage - Music to Make Love to Your Old Lady By">
+      <div class="card-meta"><span>Lovage</span><span>2001</span></div>
+      <h3>Music to Make Love to Your Old Lady By</h3><p class="note">A knowingly decadent late mutation: lounge parody, seduction pastiche, and genuine downbeat craft all at once. It works best when heard as the genre becoming self-aware.</p>
+      <p class="cue"><strong>Listen for</strong>How the unclassified surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">unclassified</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Lovage - Music to Make Love to Your Old Lady By">Load player</button>
+      <button class="bookmark" data-key="Lovage - Music to Make Love to Your Old Lady By" aria-label="Bookmark Lovage - Music to Make Love to Your Old Lady By" aria-pressed="false">☆</button></div>
+    </article></div></section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#4a1a13,#30082f)">
+            <span>04</span><div><small>1994–2008 · </small>
+            <h2>Tokyo receives and transforms the beat</h2></div></div>
+            <section class="story-section" id="section-4">
+            <div class="story-copy"><span class="eyebrow">Transmission 04</span>
+            <h2>Tokyo receives and transforms the beat</h2><div class="reveal"><p>Tokyo’s role in this history is not secondary or merely “influenced by.” It is co-constitutive. Japanese hip-hop took shape in dialogue with imported films, records, and styles in the early 1980s, and one of the most repeated origin stories is DJ Krush seeing <em>Wild Style</em> and deciding, effectively, to step into the culture. From there, Tokyo developed multiple overlapping routes into haunted-beat music: turntablism and abstract hip-hop; Shibuya-kei’s exquisitely curated pop cosmopolitanism; club-jazz and acid-jazz hybrids; and, later, Hydeout’s intimate, jazz-rap-inflected afterlife of trip-hop.</p></div><div class="reveal"><p>What changed in Tokyo was affect. Bristol often sounds rain-dark, nicotine-stained, burdened by post-punk gravity. Tokyo frequently thins the same materials into cleaner contours: more air between elements, more attention to texture as texture, a stronger tolerance for elegance, and eventually a shift from noir anxiety toward reflective warmth. <em>Samurai Champloo</em> then globalised that transformation by embedding underground hip-hop production into one of the 2000s’ most influential anime sound worlds, carried officially through four soundtrack albums and repeatedly reissued.</p></div></div><aside class="era-feature reveal" aria-label="Featured release for Tokyo receives and transforms the beat">
+              <div><span class="eyebrow">First suggestion / ready to play</span>
+              <h3>DJ KRUSH — Strictly Turntablized</h3>
+              <p>How the spare surface sits against the rhythm section.</p></div>
+              <iframe title="DJ KRUSH - Strictly Turntablized" src="https://open.spotify.com/embed/album/5FzUnPRyOKXUSkhRPhUNzL?utm_source=generator&theme=0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></aside>
+            <div class="album-grid"><article class="album-card" data-key="DJ KRUSH - Strictly Turntablized" data-card-key="DJ KRUSH - Strictly Turntablized">
+      <div class="card-meta"><span>DJ KRUSH</span><span>1994</span></div>
+      <h3>Strictly Turntablized</h3><p class="note">The Tokyo-London hinge: austere, beat-led, and spatially disciplined. It is one of the cleanest demonstrations of how Japanese minimalism sharpened Mo&#x27; Wax-era downbeat logic.</p>
+      <p class="cue"><strong>Listen for</strong>How the spare surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 1/10</span><span class="tag">spare</span></div>
+      <div class="card-actions"><button class="load-player" data-key="DJ KRUSH - Strictly Turntablized">Load player</button>
+      <button class="bookmark" data-key="DJ KRUSH - Strictly Turntablized" aria-label="Bookmark DJ KRUSH - Strictly Turntablized" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="DJ KRUSH - Meiso" data-card-key="DJ KRUSH - Meiso">
+      <div class="card-meta"><span>DJ KRUSH</span><span>1995</span></div>
+      <h3>Meiso</h3><p class="note">Krush&#x27;s breakthrough statement of meditative force—less &quot;trip-hop&quot; as genre badge than beat architecture as urban calligraphy. The guest features never disturb its poise.</p>
+      <p class="cue"><strong>Listen for</strong>How the cavernous surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">cavernous</span></div>
+      <div class="card-actions"><button class="load-player" data-key="DJ KRUSH - Meiso">Load player</button>
+      <button class="bookmark" data-key="DJ KRUSH - Meiso" aria-label="Bookmark DJ KRUSH - Meiso" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="DJ KRUSH &amp; Toshinori Kondo - Ki-Oku" data-card-key="DJ KRUSH &amp; Toshinori Kondo - Ki-Oku">
+      <div class="card-meta"><span>DJ KRUSH &amp; Toshinori Kondo</span><span>1996</span></div>
+      <h3>Ki-Oku</h3><p class="note">A serene, uncanny fusion of trumpet jazz and beat science. Essential for hearing Tokyo make abstract hip-hop feel ceremonial rather than merely smoked-out.</p>
+      <p class="cue"><strong>Listen for</strong>How the atmospheric surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">atmospheric</span></div>
+      <div class="card-actions"><button class="load-player" data-key="DJ KRUSH &amp; Toshinori Kondo - Ki-Oku">Load player</button>
+      <button class="bookmark" data-key="DJ KRUSH &amp; Toshinori Kondo - Ki-Oku" aria-label="Bookmark DJ KRUSH &amp; Toshinori Kondo - Ki-Oku" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="DJ KRUSH - Jaku" data-card-key="DJ KRUSH - Jaku">
+      <div class="card-meta"><span>DJ KRUSH</span><span>2004</span></div>
+      <h3>Jaku</h3><p class="note">By the 2000s Krush was folding more explicitly Japanese instrumental colour into his sound. The result is grander and darker, but still disciplined by emptiness.</p>
+      <p class="cue"><strong>Listen for</strong>How the cavernous surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">cavernous</span></div>
+      <div class="card-actions"><button class="load-player" data-key="DJ KRUSH - Jaku">Load player</button>
+      <button class="bookmark" data-key="DJ KRUSH - Jaku" aria-label="Bookmark DJ KRUSH - Jaku" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="SILENT POETS - Words and Silence" data-card-key="SILENT POETS - Words and Silence">
+      <div class="card-meta"><span>SILENT POETS</span><span>1994</span></div>
+      <h3>Words and Silence</h3><p class="note">One of the strongest Japanese counterparts to early trip-hop proper: dubwise bass, spoken-word lineage, and a spacious, contemplative pulse.</p>
+      <p class="cue"><strong>Listen for</strong>How the propulsive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">propulsive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="SILENT POETS - Words and Silence">Load player</button>
+      <button class="bookmark" data-key="SILENT POETS - Words and Silence" aria-label="Bookmark SILENT POETS - Words and Silence" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="SILENT POETS - For Nothing" data-card-key="SILENT POETS - For Nothing">
+      <div class="card-meta"><span>SILENT POETS</span><span>1998</span></div>
+      <h3>For Nothing</h3><p class="note">A later refinement of the project&#x27;s moody, dub-inflected poetics. Slightly glossier, but still fundamentally nocturnal and suspended.</p>
+      <p class="cue"><strong>Listen for</strong>How the spare surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 1/10</span><span class="tag">spare</span></div>
+      <div class="card-actions"><button class="load-player" data-key="SILENT POETS - For Nothing">Load player</button>
+      <button class="bookmark" data-key="SILENT POETS - For Nothing" aria-label="Bookmark SILENT POETS - For Nothing" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="United Future Organization - No Sound Is Too Taboo" data-card-key="United Future Organization - No Sound Is Too Taboo">
+      <div class="card-meta"><span>United Future Organization</span><span>1994</span></div>
+      <h3>No Sound Is Too Taboo</h3><p class="note">Not orthodox trip-hop, but indispensable for Tokyo&#x27;s club-jazz wing: stylish, cosmopolitan, and built from deep crate knowledge. It shows how the city translated downbeat sensibility into urbane motion.</p>
+      <p class="cue"><strong>Listen for</strong>How the propulsive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">propulsive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="United Future Organization - No Sound Is Too Taboo">Load player</button>
+      <button class="bookmark" data-key="United Future Organization - No Sound Is Too Taboo" aria-label="Bookmark United Future Organization - No Sound Is Too Taboo" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="United Future Organization - 3rd Perspective" data-card-key="United Future Organization - 3rd Perspective">
+      <div class="card-meta"><span>United Future Organization</span><span>1997</span></div>
+      <h3>3rd Perspective</h3><p class="note">Sleeker and more internationally poised than the earlier work. A perfect example of Tokyo&#x27;s 1990s ability to make sophistication itself into a groove.</p>
+      <p class="cue"><strong>Listen for</strong>How the crystalline surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 4/10</span><span class="tag">crystalline</span></div>
+      <div class="card-actions"><button class="load-player" data-key="United Future Organization - 3rd Perspective">Load player</button>
+      <button class="bookmark" data-key="United Future Organization - 3rd Perspective" aria-label="Bookmark United Future Organization - 3rd Perspective" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="MONDO GROSSO - Born Free" data-card-key="MONDO GROSSO - Born Free">
+      <div class="card-meta"><span>MONDO GROSSO</span><span>1995</span></div>
+      <h3>Born Free</h3><p class="note">Acid jazz, house, Brazilian influence, and downtempo intelligence converging in one of the era&#x27;s key Tokyo club albums. Think of it as part of the same citywide ecosystem, not a genre outlier.</p>
+      <p class="cue"><strong>Listen for</strong>How the propulsive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">propulsive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="MONDO GROSSO - Born Free">Load player</button>
+      <button class="bookmark" data-key="MONDO GROSSO - Born Free" aria-label="Bookmark MONDO GROSSO - Born Free" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="TOWA TEI - Sound Museum" data-card-key="TOWA TEI - Sound Museum">
+      <div class="card-meta"><span>TOWA TEI</span><span>1997</span></div>
+      <h3>Sound Museum</h3><p class="note">A Shibuya-kei/pop-art route into the same cosmopolitan, sample-savvy universe. More playful than haunted, but deeply relevant to Tokyo&#x27;s aesthetics of quotation and polish.</p>
+      <p class="cue"><strong>Listen for</strong>How the unclassified surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">unclassified</span></div>
+      <div class="card-actions"><button class="load-player" data-key="TOWA TEI - Sound Museum">Load player</button>
+      <button class="bookmark" data-key="TOWA TEI - Sound Museum" aria-label="Bookmark TOWA TEI - Sound Museum" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Cornelius - Fantasma" data-card-key="Cornelius - Fantasma">
+      <div class="card-meta"><span>Cornelius</span><span>1997</span></div>
+      <h3>Fantasma</h3><p class="note">Again, not strict trip-hop, but crucial context: a dazzling collage album from Tokyo&#x27;s quotation culture, making eclectic sampling feel architectural and intimate all at once.</p>
+      <p class="cue"><strong>Listen for</strong>How the cavernous surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">cavernous</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Cornelius - Fantasma">Load player</button>
+      <button class="bookmark" data-key="Cornelius - Fantasma" aria-label="Bookmark Cornelius - Fantasma" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Monday Michiru - MAIDEN JAPAN" data-card-key="Monday Michiru - MAIDEN JAPAN">
+      <div class="card-meta"><span>Monday Michiru</span><span>1999</span></div>
+      <h3>MAIDEN JAPAN</h3><p class="note">Soulful, jazzy, and city-pop adjacent, with enough downtempo poise to belong in this wider Tokyo constellation. A fine route for listeners who want less noir and more midnight elegance.</p>
+      <p class="cue"><strong>Listen for</strong>How the propulsive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">propulsive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Monday Michiru - MAIDEN JAPAN">Load player</button>
+      <button class="bookmark" data-key="Monday Michiru - MAIDEN JAPAN" aria-label="Bookmark Monday Michiru - MAIDEN JAPAN" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Calm - Moonage Electric Ensemble" data-card-key="Calm - Moonage Electric Ensemble">
+      <div class="card-meta"><span>Calm</span><span>1999</span></div>
+      <h3>Moonage Electric Ensemble</h3><p class="note">Dreamier and more open-hearted than the Krush line, but beautifully demonstrates Tokyo&#x27;s capacity to make downtempo feel expansive rather than enclosed.</p>
+      <p class="cue"><strong>Listen for</strong>How the atmospheric surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">atmospheric</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Calm - Moonage Electric Ensemble">Load player</button>
+      <button class="bookmark" data-key="Calm - Moonage Electric Ensemble" aria-label="Bookmark Calm - Moonage Electric Ensemble" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Nujabes - Metaphorical Music" data-card-key="Nujabes - Metaphorical Music">
+      <div class="card-meta"><span>Nujabes</span><span>2003</span></div>
+      <h3>Metaphorical Music</h3><p class="note">Hydeout&#x27;s first full revelation: jazz-rap, downtempo, cracked-beat tenderness, and a new emotional directness. This is where trip-hop&#x27;s haunted beat begins turning toward memory as solace.</p>
+      <p class="cue"><strong>Listen for</strong>How the propulsive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">propulsive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Nujabes - Metaphorical Music">Load player</button>
+      <button class="bookmark" data-key="Nujabes - Metaphorical Music" aria-label="Bookmark Nujabes - Metaphorical Music" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Nujabes - Modal Soul" data-card-key="Nujabes - Modal Soul">
+      <div class="card-meta"><span>Nujabes</span><span>2005</span></div>
+      <h3>Modal Soul</h3><p class="note">The most beloved Hydeout full-length for good reason: lyrical soul, immaculate sequencing, and a near-perfect balance between beat craft and emotional release.</p>
+      <p class="cue"><strong>Listen for</strong>How the crystalline surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 4/10</span><span class="tag">crystalline</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Nujabes - Modal Soul">Load player</button>
+      <button class="bookmark" data-key="Nujabes - Modal Soul" aria-label="Bookmark Nujabes - Modal Soul" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Nujabes, Fat Jon, Shing02, MINMI - samurai champloo music record &quot;departure&quot;" data-card-key="Nujabes, Fat Jon, Shing02, MINMI - samurai champloo music record &quot;departure&quot;">
+      <div class="card-meta"><span>Nujabes, Fat Jon, Shing02, MINMI</span><span>2004</span></div>
+      <h3>samurai champloo music record &quot;departure&quot;</h3><p class="note">A crucial globalising vector. The soundtrack&#x27;s hip-hop/Edo-period hybrid turned Tokyo&#x27;s underground beat aesthetics into a worldwide point of entry for a generation of listeners.</p>
+      <p class="cue"><strong>Listen for</strong>How the unclassified surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">unclassified</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Nujabes, Fat Jon, Shing02, MINMI - samurai champloo music record &quot;departure&quot;">Load player</button>
+      <button class="bookmark" data-key="Nujabes, Fat Jon, Shing02, MINMI - samurai champloo music record &quot;departure&quot;" aria-label="Bookmark Nujabes, Fat Jon, Shing02, MINMI - samurai champloo music record &quot;departure&quot;" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Uyama Hiroto - A Son of the Sun" data-card-key="Uyama Hiroto - A Son of the Sun">
+      <div class="card-meta"><span>Uyama Hiroto</span><span>2008</span></div>
+      <h3>A Son of the Sun</h3><p class="note">Hydeout after Nujabes, but not merely derivative: more live instrumentation, more jazz horizon, and a sense of continuity without imitation. One of the essential &quot;after trip-hop&quot; records from Japan.</p>
+      <p class="cue"><strong>Listen for</strong>How the propulsive surface sits against the rhythm section.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">propulsive</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Uyama Hiroto - A Son of the Sun">Load player</button>
+      <button class="bookmark" data-key="Uyama Hiroto - A Son of the Sun" aria-label="Bookmark Uyama Hiroto - A Son of the Sun" aria-pressed="false">☆</button></div>
+    </article></div></section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#253e0c,#1c0b2f)">
+            <span>05</span><div><small> · </small>
+            <h2>Tokyo after midnight</h2></div></div>
+            <section class="story-section" id="section-5">
+            <div class="story-copy"><span class="eyebrow">Transmission 05</span>
+            <h2>Tokyo after midnight</h2><div class="reveal"><p>For a cousin in Japan and his Japanese girlfriend, the most hospitable listening route is not “the best albums in order,” but a sequence that moves from the immediately inviting to the more severe, while staying inside Japanese scenes as much as possible. That route also shows how broad Tokyo’s contribution really was: anime gateway, abstract beat craft, club-jazz sophistication, Shibuya quotation, and Hydeout intimacy all belong to one story.</p></div><div class="reveal"><p>If you want a single seven-evening Japanese sequence, I would program it this way: <em>Modal Soul</em>; <em>departure</em>; <em>Meiso</em>; <em>Words and Silence</em>; <em>No Sound Is Too Taboo</em>; <em>Fantasma</em>; <em>A Son of the Sun</em>. That path moves from immediately lovable to historically deeper, without losing coherence of mood.</p></div></div>
+            <div class="album-grid"></div></section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#32105d,#092940)">
+            <span>06</span><div><small> · </small>
+            <h2>Timeline and closing synthesis</h2></div></div>
+            <section class="story-section" id="section-6">
+            <div class="story-copy"><span class="eyebrow">Transmission 06</span>
+            <h2>Timeline and closing synthesis</h2><div class="reveal"><p>The releases below track the argument’s main arc: Bristol’s early weather system, Mo’ Wax and Ninja Tune’s transnational circulation, and Tokyo’s transformation of the haunted beat into new forms between 1991 and 2010.</p></div><div class="reveal"><p>Bristol gave trip-hop its pressure, pace, and weather; Tokyo gave it a second life by cleaning its lines, widening its emotional register, and sending it back into the world through club culture, design culture, label culture, and anime culture. If Bristol made the haunted beat sound like the city after ecstasy, Tokyo taught it how to endure the morning after—clearer, lonelier, and, sometimes, unexpectedly consoling.</p></div></div>
+            <div class="album-grid"></div></section>
+<section class="lab" id="session-notes"><div class="lab-head"><span class="eyebrow">Private listening journal</span>
+<h2>Keep what the session reveals</h2><p>Bookmarks and notes stay in this browser. Export them as Markdown.</p></div>
+<div class="notes-panel"><div><h3>Saved releases</h3><div class="saved-list" id="saved-list"></div></div>
+<div><label for="notes-record">Release</label><select id="notes-record"></select>
+<label for="session-note">Your note</label><textarea id="session-note" placeholder="What did you notice?"></textarea>
+<div class="notes-actions"><button class="btn" id="export-notes">Export Markdown</button>
+<button class="btn" id="clear-notes">Clear saved data</button></div></div></div></section>
+<footer class="lab">Built with Musiculum · V3 · 47/47 Spotify releases resolved</footer></main></div>
+<aside class="dock empty" id="dock" aria-label="Listening dock" aria-live="polite"><div class="dock-copy">
+<small>Now exploring</small><strong id="dock-artist">Choose a release</strong>
+<span id="dock-album">The player loads only when requested.</span><span id="dock-cue"></span></div>
+<div class="player-mount" id="player-mount"></div><div class="route-progress" id="route-progress" hidden>
+<button class="btn route-prev">Previous</button><span></span><button class="btn route-next">Next</button></div></aside>
+<script>(() => {
+  const records = [{"artist": "Massive Attack", "album": "Blue Lines", "year": "1991", "note": "The ur-text: hip-hop cadence, dub depth, soul lament, and sound-system patience fused into an album that feels physically slow without ever becoming inert. Start here if you want the \"before the term existed\" version of the thesis.", "section": "Night after the night", "spotify_id": "5mAPk4qeNqVLtNydaWbWlf", "key": "Massive Attack - Blue Lines", "texture": "unclassified", "energy": "4", "listen_for": "How the unclassified surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Portishead - Dummy; United Future Organization - 3rd Perspective", "connection_keys": ["Portishead - Dummy", "United Future Organization - 3rd Perspective"]}, {"artist": "Portishead", "album": "Dummy", "year": "1994", "note": "Noir without kitsch: turntable abrasion, spy-soundtrack melodrama, and Beth Gibbons' voice as a form of wounded interiorscape. It sounds like insomnia staged as design.", "section": "Night after the night", "spotify_id": "3539EbNgIdEDGBKkUf4wno", "key": "Portishead - Dummy", "texture": "abrasive", "energy": "8", "listen_for": "How the abrasive surface sits against the rhythm section.", "texture_family": "abrasive", "connections": "Tricky - Maxinquaye; Portishead - Portishead", "connection_keys": ["Tricky - Maxinquaye", "Portishead - Portishead"]}, {"artist": "Tricky", "album": "Maxinquaye", "year": "1995", "note": "The genre's most destabilising masterpiece—half-whispered, paranoid, intimate, anti-spectacular. If Blue Lines is the city at dusk, this is the city after midnight, when every corner feels psychically charged.", "section": "Night after the night", "spotify_id": "7qlZpMib7D0riFPQ5JHDT8", "key": "Tricky - Maxinquaye", "texture": "unclassified", "energy": "5", "listen_for": "How the unclassified surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Nightmares on Wax - Smokers Delight; Smith & Mighty - Bass Is Maternal", "connection_keys": ["Nightmares on Wax - Smokers Delight", "Smith & Mighty - Bass Is Maternal"]}, {"artist": "Nightmares on Wax", "album": "Smokers Delight", "year": "1995", "note": "Less gothic than Bristol, more horizontally blissed-out, but crucial for hearing the comedown as groove rather than crisis. The beats recline instead of lurch.", "section": "Night after the night", "spotify_id": "3stVzMomzhVGw0prDxLY0K", "key": "Nightmares on Wax - Smokers Delight", "texture": "propulsive", "energy": "7", "listen_for": "How the propulsive surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Lamb - Lamb; The Herbaliser - Remedies", "connection_keys": ["Lamb - Lamb", "The Herbaliser - Remedies"]}, {"artist": "Lamb", "album": "Lamb", "year": "1996", "note": "A Manchester variant where trip-hop rubs against drum-and-bass fracture and torch-song intensity. Lou Rhodes gives the style a rare, almost devotional ache.", "section": "Night after the night", "spotify_id": "5pMiACEneeuFtoFR9tEzOO", "key": "Lamb - Lamb", "texture": "propulsive", "energy": "8", "listen_for": "How the propulsive surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Bowery Electric - Beat; The Herbaliser - Remedies", "connection_keys": ["Bowery Electric - Beat", "The Herbaliser - Remedies"]}, {"artist": "Bowery Electric", "album": "Beat", "year": "1996", "note": "A New York answer from the shoegaze edge: less urban-noir cinema, more narcotic fog and negative space. Essential if you want to hear how trip-hop bled into dream-pop and post-rock atmospherics.", "section": "Night after the night", "spotify_id": "6jbGBeBtwD05O0EV9RFjlC", "key": "Bowery Electric - Beat", "texture": "atmospheric", "energy": "5", "listen_for": "How the atmospheric surface sits against the rhythm section.", "texture_family": "atmospheric", "connections": "Archive - Londinium; Alpha - Come From Heaven", "connection_keys": ["Archive - Londinium", "Alpha - Come From Heaven"]}, {"artist": "Archive", "album": "Londinium", "year": "1996", "note": "Colder and more architectural than many Bristol records, with rap, melancholy, and metropolitan scale. An excellent bridge between trip-hop and later European downtempo.", "section": "Night after the night", "spotify_id": "6SpDB8znJJGwcuoj2GW1cV", "key": "Archive - Londinium", "texture": "cavernous", "energy": "6", "listen_for": "How the cavernous surface sits against the rhythm section.", "texture_family": "cavernous", "connections": "Sneaker Pimps - Becoming X; Massive Attack - Protection", "connection_keys": ["Sneaker Pimps - Becoming X", "Massive Attack - Protection"]}, {"artist": "Sneaker Pimps", "album": "Becoming X", "year": "1996", "note": "Pop-minded but never trivial: sleek hooks, covert menace, and a sense of late-'90s stylish alienation. A good reminder that trip-hop's commercial edge did not always flatten its mood.", "section": "Night after the night", "spotify_id": "4CqepH0gmnNKTgENheRgT7", "key": "Sneaker Pimps - Becoming X", "texture": "crystalline", "energy": "4", "listen_for": "How the crystalline surface sits against the rhythm section.", "texture_family": "crystalline", "connections": "Morcheeba - Big Calm; Nujabes - Modal Soul", "connection_keys": ["Morcheeba - Big Calm", "Nujabes - Modal Soul"]}, {"artist": "Morcheeba", "album": "Big Calm", "year": "1998", "note": "Warmer, sunnier, and more organic than the Bristol core, but still unmistakably post-club in its loosened pulse and low-lit spaciousness. Ideal for hearing the style turn from dread toward ease.", "section": "Night after the night", "spotify_id": "1ILnMWNKUXzcXug4Tq2JRP", "key": "Morcheeba - Big Calm", "texture": "cavernous", "energy": "3", "listen_for": "How the cavernous surface sits against the rhythm section.", "texture_family": "cavernous", "connections": "Esthero - Breath from Another; DJ KRUSH - Jaku", "connection_keys": ["Esthero - Breath from Another", "DJ KRUSH - Jaku"]}, {"artist": "Esthero", "album": "Breath from Another", "year": "1998", "note": "A beautifully overdressed detour: lounge, acid jazz, trip-hop, and sly theatricality. It proves the genre could be glamorous without losing its undertow.", "section": "Night after the night", "spotify_id": "5IjiTlH5NjwgFjfCxXlY0S", "key": "Esthero - Breath from Another", "texture": "propulsive", "energy": "7", "listen_for": "How the propulsive surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Massive Attack - Blue Lines; The Herbaliser - Remedies", "connection_keys": ["Massive Attack - Blue Lines", "The Herbaliser - Remedies"]}, {"artist": "Smith & Mighty", "album": "Bass Is Maternal", "year": "1995", "note": "The deep prehistory made audible: dub bass, Bristol break science, and a clear sense that the city's contribution began below the canonical \"big three.\" If you need a foundation text for Bristol before canon ossified, this is it.", "section": "Bristol weather", "spotify_id": "0bxjgfzmhTln5tgxzjmQtC", "key": "Smith & Mighty - Bass Is Maternal", "texture": "unclassified", "energy": "5", "listen_for": "How the unclassified surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Massive Attack - Protection; Tricky - Maxinquaye", "connection_keys": ["Massive Attack - Protection", "Tricky - Maxinquaye"]}, {"artist": "Massive Attack", "album": "Protection", "year": "1994", "note": "More liquid and nocturnal than Blue Lines, with a richer sense of dub as emotional architecture. It is the record where the Bristol atmosphere becomes almost tactile.", "section": "Bristol weather", "spotify_id": "5CnZjFfPDmxOX7KnWLLqpC", "key": "Massive Attack - Protection", "texture": "cavernous", "energy": "6", "listen_for": "How the cavernous surface sits against the rhythm section.", "texture_family": "cavernous", "connections": "Portishead - Portishead; Archive - Londinium", "connection_keys": ["Portishead - Portishead", "Archive - Londinium"]}, {"artist": "Portishead", "album": "Portishead", "year": "1997", "note": "Harsher and more self-manufactured than Dummy: less reliant on external samples, more obsessed with creating its own internal decay. Hear it as self-conscious artifice turned uncanny.", "section": "Bristol weather", "spotify_id": "3G36754KQVLyGuskraEAVA", "key": "Portishead - Portishead", "texture": "abrasive", "energy": "8", "listen_for": "How the abrasive surface sits against the rhythm section.", "texture_family": "abrasive", "connections": "Nearly God - Nearly God; Portishead - Dummy", "connection_keys": ["Nearly God - Nearly God", "Portishead - Dummy"]}, {"artist": "Nearly God", "album": "Nearly God", "year": "1996", "note": "Tricky under an alias, but really Tricky as curator of psychic weather: unfinished demos, guest voices, and a strange stasis that feels more private than theatrical.", "section": "Bristol weather", "spotify_id": "5NYiyNqu9Joe1qtgJN01w3", "key": "Nearly God - Nearly God", "texture": "unclassified", "energy": "3", "listen_for": "How the unclassified surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Tricky - Pre-Millennium Tension; Massive Attack - Blue Lines", "connection_keys": ["Tricky - Pre-Millennium Tension", "Massive Attack - Blue Lines"]}, {"artist": "Tricky", "album": "Pre-Millennium Tension", "year": "1996", "note": "More difficult and claustrophobic than Maxinquaye, but rewarding precisely because it resists ambient prettiness. The comedown here becomes fever rather than drift.", "section": "Bristol weather", "spotify_id": "540zw9ShTu9bsY984xS3Hu", "key": "Tricky - Pre-Millennium Tension", "texture": "atmospheric", "energy": "2", "listen_for": "How the atmospheric surface sits against the rhythm section.", "texture_family": "atmospheric", "connections": "Alpha - Come From Heaven; Bowery Electric - Beat", "connection_keys": ["Alpha - Come From Heaven", "Bowery Electric - Beat"]}, {"artist": "Alpha", "album": "Come From Heaven", "year": "1997", "note": "Released on Massive Attack's Melankolic imprint, it is one of the great \"second-ring\" Bristol records: softer focus, narcotic romance, and rain-streaked melancholy at every turn.", "section": "Bristol weather", "spotify_id": "0blm7ESsfrsrTSKtpt7npY", "key": "Alpha - Come From Heaven", "texture": "atmospheric", "energy": "5", "listen_for": "How the atmospheric surface sits against the rhythm section.", "texture_family": "atmospheric", "connections": "Smoke City - Flying Away; Bowery Electric - Beat", "connection_keys": ["Smoke City - Flying Away", "Bowery Electric - Beat"]}, {"artist": "Smoke City", "album": "Flying Away", "year": "1997", "note": "Brazilian textures and metropolitan trip-hop restraint combine into something sensuous and unusually buoyant. It widens the palette without losing the late-night aura.", "section": "Bristol weather", "spotify_id": "52g3C6ZdK60MAWsiGxAQz1", "key": "Smoke City - Flying Away", "texture": "propulsive", "energy": "6", "listen_for": "How the propulsive surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Hooverphonic - A New Stereophonic Sound Spectacular; SILENT POETS - Words and Silence", "connection_keys": ["Hooverphonic - A New Stereophonic Sound Spectacular", "SILENT POETS - Words and Silence"]}, {"artist": "Hooverphonic", "album": "A New Stereophonic Sound Spectacular", "year": "1996", "note": "Belgian rather than Bristolian, but a crucial proof of diffusion: the style travels into ambient pop and widescreen mood design without losing its low-lit pulse.", "section": "Bristol weather", "spotify_id": "6FFKUYyfC9S8fDy725qLAq", "key": "Hooverphonic - A New Stereophonic Sound Spectacular", "texture": "atmospheric", "energy": "3", "listen_for": "How the atmospheric surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Mono - Formica Blues; Massive Attack - Blue Lines", "connection_keys": ["Mono - Formica Blues", "Massive Attack - Blue Lines"]}, {"artist": "Mono", "album": "Formica Blues", "year": "1997", "note": "Glossy, urban, and curiously weightless, with \"Life in Mono\" as one of the style's purest expressions of glamorous sadness. A useful counterexample to the assumption that trip-hop must feel grimy.", "section": "Bristol weather", "spotify_id": "5HMZTqSusVo6QDstVaqPBV", "key": "Mono - Formica Blues", "texture": "abrasive", "energy": "8", "listen_for": "How the abrasive surface sits against the rhythm section.", "texture_family": "abrasive", "connections": "The Third Eye Foundation - Ghost; Portishead - Dummy", "connection_keys": ["The Third Eye Foundation - Ghost", "Portishead - Dummy"]}, {"artist": "The Third Eye Foundation", "album": "Ghost", "year": "1997", "note": "Not \"trip-hop\" in any orthodox sense, but vital if you want the Bristol weather pushed into harsher, more abstract territory. An edge case that clarifies the scene's sonic perimeter.", "section": "Bristol weather", "spotify_id": "0Hld51wfO7z3AH2byoF3fO", "key": "The Third Eye Foundation - Ghost", "texture": "abrasive", "energy": "8", "listen_for": "How the abrasive surface sits against the rhythm section.", "texture_family": "abrasive", "connections": "Smith & Mighty - Bass Is Maternal; Portishead - Dummy", "connection_keys": ["Smith & Mighty - Bass Is Maternal", "Portishead - Dummy"]}, {"artist": "DJ Shadow", "album": "Endtroducing…..", "year": "1996", "note": "The definitive sampler-as-consciousness record: shadowy, allusive, and built almost entirely from vinyl fragments. It is less a set of songs than a theory of memory in beat form.", "section": "The sampler as ghost machine", "spotify_id": "4tUVkNYSFrrEqqrxBQW9PN", "key": "DJ Shadow - Endtroducing…..", "texture": "unclassified", "energy": "5", "listen_for": "How the unclassified surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "DJ Food - A Recipe For Disaster; Smith & Mighty - Bass Is Maternal", "connection_keys": ["DJ Food - A Recipe For Disaster", "Smith & Mighty - Bass Is Maternal"]}, {"artist": "DJ Food", "album": "A Recipe For Disaster", "year": "1995", "note": "A Ninja Tune cornerstone that hears the kitchen, the studio, and the collage suite as one space. Fantastic for tracing how trip-hop's methods overlap with cut-up comic absurdity.", "section": "The sampler as ghost machine", "spotify_id": "5hWHgBqt3wSzp3sMnciQuO", "key": "DJ Food - A Recipe For Disaster", "texture": "unclassified", "energy": "5", "listen_for": "How the unclassified surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "The Herbaliser - Remedies; Smith & Mighty - Bass Is Maternal", "connection_keys": ["The Herbaliser - Remedies", "Smith & Mighty - Bass Is Maternal"]}, {"artist": "The Herbaliser", "album": "Remedies", "year": "1995", "note": "More hip-hop-forward, jazzier, and more playful than the Bristol core, but deeply relevant for understanding the Ninja Tune branch of downbeat culture.", "section": "The sampler as ghost machine", "spotify_id": "6pEiSu3D6LY8lrxSIFbdfu", "key": "The Herbaliser - Remedies", "texture": "propulsive", "energy": "7", "listen_for": "How the propulsive surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "DJ Cam - Underground Vibes; United Future Organization - No Sound Is Too Taboo", "connection_keys": ["DJ Cam - Underground Vibes", "United Future Organization - No Sound Is Too Taboo"]}, {"artist": "DJ Cam", "album": "Underground Vibes", "year": "1995", "note": "A French answer to Mo' Wax minimalism: smoked jazz loops, cool surfaces, elegant groove control. A sleeper classic if you want trip-hop without gothic melodrama.", "section": "The sampler as ghost machine", "spotify_id": "3KbEXCBCtDk1gUIJrQirIA", "key": "DJ Cam - Underground Vibes", "texture": "propulsive", "energy": "5", "listen_for": "How the propulsive surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "UNKLE - Psyence Fiction; Smith & Mighty - Bass Is Maternal", "connection_keys": ["UNKLE - Psyence Fiction", "Smith & Mighty - Bass Is Maternal"]}, {"artist": "UNKLE", "album": "Psyence Fiction", "year": "1998", "note": "Mo' Wax grown cinematic and maximal: guest-heavy, brittle, and ambitious. Hear it as the moment the scene's underground grammar began speaking blockbuster scale.", "section": "The sampler as ghost machine", "spotify_id": "0LFPjvWEaHP7WKQD6F5pVS", "key": "UNKLE - Psyence Fiction", "texture": "atmospheric", "energy": "7", "listen_for": "How the atmospheric surface sits against the rhythm section.", "texture_family": "atmospheric", "connections": "Kid Loco - A Grand Love Story; Calm - Moonage Electric Ensemble", "connection_keys": ["Kid Loco - A Grand Love Story", "Calm - Moonage Electric Ensemble"]}, {"artist": "Kid Loco", "album": "A Grand Love Story", "year": "1997", "note": "Velvet, kitsch, and blissed-out romanticism. It shows how the trip-hop toolkit could be used for hedonism and charm rather than dread.", "section": "The sampler as ghost machine", "spotify_id": "6R1VyRo1cFv2JDC1diCkPS", "key": "Kid Loco - A Grand Love Story", "texture": "unclassified", "energy": "5", "listen_for": "How the unclassified surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Thievery Corporation - Sounds From The Thievery Hi-Fi; Smith & Mighty - Bass Is Maternal", "connection_keys": ["Thievery Corporation - Sounds From The Thievery Hi-Fi", "Smith & Mighty - Bass Is Maternal"]}, {"artist": "Thievery Corporation", "album": "Sounds From The Thievery Hi-Fi", "year": "1997", "note": "One of the clearest early signs that the style had become globally portable: dub, electronica, lounge, and cosmopolitan crate-digging fused into a highly exportable nocturne.", "section": "The sampler as ghost machine", "spotify_id": "3n4Zqt489pJfqDkjRuqN05", "key": "Thievery Corporation - Sounds From The Thievery Hi-Fi", "texture": "atmospheric", "energy": "5", "listen_for": "How the atmospheric surface sits against the rhythm section.", "texture_family": "atmospheric", "connections": "Kruder & Dorfmeister - The K&D Sessions; Alpha - Come From Heaven", "connection_keys": ["Kruder & Dorfmeister - The K&D Sessions", "Alpha - Come From Heaven"]}, {"artist": "Kruder & Dorfmeister", "album": "The K&D Sessions", "year": "1998", "note": "Remixes as atmosphere engineering. Not a studio album in the strict sense, but indispensable for hearing how downtempo became a continental design language.", "section": "The sampler as ghost machine", "spotify_id": "2aOsuFTEy1JLReCIUsOEBG", "key": "Kruder & Dorfmeister - The K&D Sessions", "texture": "unclassified", "energy": "5", "listen_for": "How the unclassified surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Tosca - Suzuki; Smith & Mighty - Bass Is Maternal", "connection_keys": ["Tosca - Suzuki", "Smith & Mighty - Bass Is Maternal"]}, {"artist": "Tosca", "album": "Suzuki", "year": "2000", "note": "Vienna's dub-techno elegance brought down to sofa tempo. If you want the cigarette-smoke side of early-2000s downtempo, this is the record.", "section": "The sampler as ghost machine", "spotify_id": "3OJjPjV1kmPanucFQnh2x1", "key": "Tosca - Suzuki", "texture": "unclassified", "energy": "5", "listen_for": "How the unclassified surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Lovage - Music to Make Love to Your Old Lady By; Smith & Mighty - Bass Is Maternal", "connection_keys": ["Lovage - Music to Make Love to Your Old Lady By", "Smith & Mighty - Bass Is Maternal"]}, {"artist": "Lovage", "album": "Music to Make Love to Your Old Lady By", "year": "2001", "note": "A knowingly decadent late mutation: lounge parody, seduction pastiche, and genuine downbeat craft all at once. It works best when heard as the genre becoming self-aware.", "section": "The sampler as ghost machine", "spotify_id": "4cJSjRnQTXkzbXuwcZKsbA", "key": "Lovage - Music to Make Love to Your Old Lady By", "texture": "unclassified", "energy": "5", "listen_for": "How the unclassified surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "DJ Shadow - Endtroducing…..; Smith & Mighty - Bass Is Maternal", "connection_keys": ["DJ Shadow - Endtroducing…..", "Smith & Mighty - Bass Is Maternal"]}, {"artist": "DJ KRUSH", "album": "Strictly Turntablized", "year": "1994", "note": "The Tokyo-London hinge: austere, beat-led, and spatially disciplined. It is one of the cleanest demonstrations of how Japanese minimalism sharpened Mo' Wax-era downbeat logic.", "section": "Tokyo receives and transforms the beat", "spotify_id": "5FzUnPRyOKXUSkhRPhUNzL", "key": "DJ KRUSH - Strictly Turntablized", "texture": "spare", "energy": "1", "listen_for": "How the spare surface sits against the rhythm section.", "texture_family": "spare", "connections": "DJ KRUSH - Meiso; Tricky - Pre-Millennium Tension", "connection_keys": ["DJ KRUSH - Meiso", "Tricky - Pre-Millennium Tension"]}, {"artist": "DJ KRUSH", "album": "Meiso", "year": "1995", "note": "Krush's breakthrough statement of meditative force—less \"trip-hop\" as genre badge than beat architecture as urban calligraphy. The guest features never disturb its poise.", "section": "Tokyo receives and transforms the beat", "spotify_id": "4CP9eTY7tIcp3w2idhLwvQ", "key": "DJ KRUSH - Meiso", "texture": "cavernous", "energy": "6", "listen_for": "How the cavernous surface sits against the rhythm section.", "texture_family": "cavernous", "connections": "DJ KRUSH & Toshinori Kondo - Ki-Oku; Massive Attack - Protection", "connection_keys": ["DJ KRUSH & Toshinori Kondo - Ki-Oku", "Massive Attack - Protection"]}, {"artist": "DJ KRUSH & Toshinori Kondo", "album": "Ki-Oku", "year": "1996", "note": "A serene, uncanny fusion of trumpet jazz and beat science. Essential for hearing Tokyo make abstract hip-hop feel ceremonial rather than merely smoked-out.", "section": "Tokyo receives and transforms the beat", "spotify_id": "4hk2QVSMMF1SdcL3iibyDN", "key": "DJ KRUSH & Toshinori Kondo - Ki-Oku", "texture": "atmospheric", "energy": "5", "listen_for": "How the atmospheric surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "DJ KRUSH - Jaku; DJ Shadow - Endtroducing…..", "connection_keys": ["DJ KRUSH - Jaku", "DJ Shadow - Endtroducing….."]}, {"artist": "DJ KRUSH", "album": "Jaku", "year": "2004", "note": "By the 2000s Krush was folding more explicitly Japanese instrumental colour into his sound. The result is grander and darker, but still disciplined by emptiness.", "section": "Tokyo receives and transforms the beat", "spotify_id": "3dmRqnSSeMcPOrFGAmy2sm", "key": "DJ KRUSH - Jaku", "texture": "cavernous", "energy": "5", "listen_for": "How the cavernous surface sits against the rhythm section.", "texture_family": "cavernous", "connections": "SILENT POETS - Words and Silence; Massive Attack - Protection", "connection_keys": ["SILENT POETS - Words and Silence", "Massive Attack - Protection"]}, {"artist": "SILENT POETS", "album": "Words and Silence", "year": "1994", "note": "One of the strongest Japanese counterparts to early trip-hop proper: dubwise bass, spoken-word lineage, and a spacious, contemplative pulse.", "section": "Tokyo receives and transforms the beat", "spotify_id": "4wMF6T7x8NIdD1GQvaNMn0", "key": "SILENT POETS - Words and Silence", "texture": "propulsive", "energy": "6", "listen_for": "How the propulsive surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "SILENT POETS - For Nothing; Smoke City - Flying Away", "connection_keys": ["SILENT POETS - For Nothing", "Smoke City - Flying Away"]}, {"artist": "SILENT POETS", "album": "For Nothing", "year": "1998", "note": "A later refinement of the project's moody, dub-inflected poetics. Slightly glossier, but still fundamentally nocturnal and suspended.", "section": "Tokyo receives and transforms the beat", "spotify_id": "7wR7udye21tIeJWr1EyRuC", "key": "SILENT POETS - For Nothing", "texture": "spare", "energy": "1", "listen_for": "How the spare surface sits against the rhythm section.", "texture_family": "spare", "connections": "United Future Organization - No Sound Is Too Taboo; Tricky - Pre-Millennium Tension", "connection_keys": ["United Future Organization - No Sound Is Too Taboo", "Tricky - Pre-Millennium Tension"]}, {"artist": "United Future Organization", "album": "No Sound Is Too Taboo", "year": "1994", "note": "Not orthodox trip-hop, but indispensable for Tokyo's club-jazz wing: stylish, cosmopolitan, and built from deep crate knowledge. It shows how the city translated downbeat sensibility into urbane motion.", "section": "Tokyo receives and transforms the beat", "spotify_id": "1TLK7fd9YL4wmr0i80lcei", "key": "United Future Organization - No Sound Is Too Taboo", "texture": "propulsive", "energy": "7", "listen_for": "How the propulsive surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "United Future Organization - 3rd Perspective; The Herbaliser - Remedies", "connection_keys": ["United Future Organization - 3rd Perspective", "The Herbaliser - Remedies"]}, {"artist": "United Future Organization", "album": "3rd Perspective", "year": "1997", "note": "Sleeker and more internationally poised than the earlier work. A perfect example of Tokyo's 1990s ability to make sophistication itself into a groove.", "section": "Tokyo receives and transforms the beat", "spotify_id": "5uE7OpuM8N1oo5IllhELGe", "key": "United Future Organization - 3rd Perspective", "texture": "crystalline", "energy": "4", "listen_for": "How the crystalline surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "MONDO GROSSO - Born Free; Massive Attack - Blue Lines", "connection_keys": ["MONDO GROSSO - Born Free", "Massive Attack - Blue Lines"]}, {"artist": "MONDO GROSSO", "album": "Born Free", "year": "1995", "note": "Acid jazz, house, Brazilian influence, and downtempo intelligence converging in one of the era's key Tokyo club albums. Think of it as part of the same citywide ecosystem, not a genre outlier.", "section": "Tokyo receives and transforms the beat", "spotify_id": "206sG42PumsnSOtjoLrjK9", "key": "MONDO GROSSO - Born Free", "texture": "propulsive", "energy": "7", "listen_for": "How the propulsive surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "TOWA TEI - Sound Museum; The Herbaliser - Remedies", "connection_keys": ["TOWA TEI - Sound Museum", "The Herbaliser - Remedies"]}, {"artist": "TOWA TEI", "album": "Sound Museum", "year": "1997", "note": "A Shibuya-kei/pop-art route into the same cosmopolitan, sample-savvy universe. More playful than haunted, but deeply relevant to Tokyo's aesthetics of quotation and polish.", "section": "Tokyo receives and transforms the beat", "spotify_id": "0W0SAbwjURrbew0Q9wrFPj", "key": "TOWA TEI - Sound Museum", "texture": "unclassified", "energy": "5", "listen_for": "How the unclassified surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Cornelius - Fantasma; DJ Shadow - Endtroducing…..", "connection_keys": ["Cornelius - Fantasma", "DJ Shadow - Endtroducing….."]}, {"artist": "Cornelius", "album": "Fantasma", "year": "1997", "note": "Again, not strict trip-hop, but crucial context: a dazzling collage album from Tokyo's quotation culture, making eclectic sampling feel architectural and intimate all at once.", "section": "Tokyo receives and transforms the beat", "spotify_id": "3Wml3n8kxQ1S14zXynLduY", "key": "Cornelius - Fantasma", "texture": "cavernous", "energy": "6", "listen_for": "How the cavernous surface sits against the rhythm section.", "texture_family": "cavernous", "connections": "Monday Michiru - MAIDEN JAPAN; Massive Attack - Protection", "connection_keys": ["Monday Michiru - MAIDEN JAPAN", "Massive Attack - Protection"]}, {"artist": "Monday Michiru", "album": "MAIDEN JAPAN", "year": "1999", "note": "Soulful, jazzy, and city-pop adjacent, with enough downtempo poise to belong in this wider Tokyo constellation. A fine route for listeners who want less noir and more midnight elegance.", "section": "Tokyo receives and transforms the beat", "spotify_id": "3ylJex0tchhP3TrNeQbA6W", "key": "Monday Michiru - MAIDEN JAPAN", "texture": "propulsive", "energy": "7", "listen_for": "How the propulsive surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Calm - Moonage Electric Ensemble; The Herbaliser - Remedies", "connection_keys": ["Calm - Moonage Electric Ensemble", "The Herbaliser - Remedies"]}, {"artist": "Calm", "album": "Moonage Electric Ensemble", "year": "1999", "note": "Dreamier and more open-hearted than the Krush line, but beautifully demonstrates Tokyo's capacity to make downtempo feel expansive rather than enclosed.", "section": "Tokyo receives and transforms the beat", "spotify_id": "3IY23B2w3XO2ffnuUXySA9", "key": "Calm - Moonage Electric Ensemble", "texture": "atmospheric", "energy": "6", "listen_for": "How the atmospheric surface sits against the rhythm section.", "texture_family": "atmospheric", "connections": "Nujabes - Metaphorical Music; UNKLE - Psyence Fiction", "connection_keys": ["Nujabes - Metaphorical Music", "UNKLE - Psyence Fiction"]}, {"artist": "Nujabes", "album": "Metaphorical Music", "year": "2003", "note": "Hydeout's first full revelation: jazz-rap, downtempo, cracked-beat tenderness, and a new emotional directness. This is where trip-hop's haunted beat begins turning toward memory as solace.", "section": "Tokyo receives and transforms the beat", "spotify_id": "0j7bgcyO7uKQtgpYwbbi7Q", "key": "Nujabes - Metaphorical Music", "texture": "propulsive", "energy": "6", "listen_for": "How the propulsive surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Nujabes - Modal Soul; Smoke City - Flying Away", "connection_keys": ["Nujabes - Modal Soul", "Smoke City - Flying Away"]}, {"artist": "Nujabes", "album": "Modal Soul", "year": "2005", "note": "The most beloved Hydeout full-length for good reason: lyrical soul, immaculate sequencing, and a near-perfect balance between beat craft and emotional release.", "section": "Tokyo receives and transforms the beat", "spotify_id": "6b08FpNaFFTjc1dJ9DSWfn", "key": "Nujabes - Modal Soul", "texture": "crystalline", "energy": "4", "listen_for": "How the crystalline surface sits against the rhythm section.", "texture_family": "crystalline", "connections": "Nujabes, Fat Jon, Shing02, MINMI - samurai champloo music record \"departure\"; Sneaker Pimps - Becoming X", "connection_keys": ["Nujabes, Fat Jon, Shing02, MINMI - samurai champloo music record \"departure\"", "Sneaker Pimps - Becoming X"]}, {"artist": "Nujabes, Fat Jon, Shing02, MINMI", "album": "samurai champloo music record \"departure\"", "year": "2004", "note": "A crucial globalising vector. The soundtrack's hip-hop/Edo-period hybrid turned Tokyo's underground beat aesthetics into a worldwide point of entry for a generation of listeners.", "section": "Tokyo receives and transforms the beat", "spotify_id": "3uNaLrScYulpXLRmQquP9I", "key": "Nujabes, Fat Jon, Shing02, MINMI - samurai champloo music record \"departure\"", "texture": "unclassified", "energy": "5", "listen_for": "How the unclassified surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "Uyama Hiroto - A Son of the Sun; DJ Shadow - Endtroducing…..", "connection_keys": ["Uyama Hiroto - A Son of the Sun", "DJ Shadow - Endtroducing….."]}, {"artist": "Uyama Hiroto", "album": "A Son of the Sun", "year": "2008", "note": "Hydeout after Nujabes, but not merely derivative: more live instrumentation, more jazz horizon, and a sense of continuity without imitation. One of the essential \"after trip-hop\" records from Japan.", "section": "Tokyo receives and transforms the beat", "spotify_id": "5ijARtDaIxPLVG8lseDf2y", "key": "Uyama Hiroto - A Son of the Sun", "texture": "propulsive", "energy": "7", "listen_for": "How the propulsive surface sits against the rhythm section.", "texture_family": "propulsive", "connections": "DJ KRUSH - Strictly Turntablized; The Herbaliser - Remedies", "connection_keys": ["DJ KRUSH - Strictly Turntablized", "The Herbaliser - Remedies"]}];
+  const routes = {"start-here": ["Massive Attack - Blue Lines", "Portishead - Dummy", "Tricky - Maxinquaye", "Nightmares on Wax - Smokers Delight"]};
+  const byKey = new Map(records.map(record => [record.key, record]));
+  const storageKey = 'musiculum:after-the-ecstasy-bristol-tokyo-and-the-haunted-beat:v3';
+  const emptyState = () => ({ bookmarks: [], notes: {}, recent: [], activeKey: '', route: null });
+  let state;
+  try { state = { ...emptyState(), ...JSON.parse(localStorage.getItem(storageKey) || '{}') }; }
+  catch { state = emptyState(); }
+  if (!Array.isArray(state.bookmarks)) state.bookmarks = [];
+  if (!Array.isArray(state.recent)) state.recent = [];
+  if (!state.notes || typeof state.notes !== 'object') state.notes = {};
+  let activeRoute = state.route;
+  const save = () => {
+    try { localStorage.setItem(storageKey, JSON.stringify(state)); }
+    catch { /* Keep the listening session usable when storage is unavailable. */ }
+  };
+  const dock = document.querySelector('#dock');
+  const playerMount = document.querySelector('#player-mount');
+  const dockArtist = document.querySelector('#dock-artist');
+  const dockAlbum = document.querySelector('#dock-album');
+  const dockCue = document.querySelector('#dock-cue');
+  const routeProgress = document.querySelector('#route-progress');
+
+  const selectRecord = (key, options = {}) => {
+    const record = byKey.get(key);
+    if (!record) return;
+    playerMount.replaceChildren();
+    if (record.spotify_id) {
+      const iframe = document.createElement('iframe');
+      iframe.title = `${record.artist} - ${record.album}`;
+      iframe.src = `https://open.spotify.com/embed/album/${record.spotify_id}?utm_source=generator&theme=0`;
+      iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+      iframe.loading = 'lazy';
+      playerMount.append(iframe);
+    }
+    dock.classList.remove('empty');
+    dockArtist.textContent = record.artist;
+    dockAlbum.textContent = record.album;
+    dockCue.textContent = record.listen_for || record.note || '';
+    state.activeKey = key;
+    state.recent = [key, ...state.recent.filter(value => value !== key)].slice(0, 8);
+    save();
+    document.querySelectorAll('.album-card').forEach(card => card.classList.toggle('selected', card.dataset.key === key));
+    notesSelect.value = key;
+    loadNote();
+    if (!options.keepPosition) document.querySelector(`[data-card-key="${CSS.escape(key)}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    updateRouteProgress();
+  };
+
+  const updateRouteProgress = () => {
+    if (!activeRoute || !routes[activeRoute.name]) {
+      routeProgress.hidden = true;
+      return;
+    }
+    const route = routes[activeRoute.name];
+    routeProgress.hidden = false;
+    routeProgress.querySelector('span').textContent = `${activeRoute.name.replaceAll('-', ' ')} · ${activeRoute.index + 1}/${route.length}`;
+    routeProgress.querySelector('.route-prev').disabled = activeRoute.index === 0;
+    routeProgress.querySelector('.route-next').disabled = activeRoute.index >= route.length - 1;
+  };
+
+  document.addEventListener('click', event => {
+    const target = event.target.closest('.load-player,.record-target');
+    if (target) selectRecord(target.dataset.key, { keepPosition: !target.matches('.load-player') });
+    const bookmark = event.target.closest('.bookmark');
+    if (bookmark) {
+      const key = bookmark.dataset.key;
+      state.bookmarks = state.bookmarks.includes(key) ? state.bookmarks.filter(value => value !== key) : [...state.bookmarks, key];
+      save(); renderBookmarks();
+    }
+    const routeButton = event.target.closest('.route-start');
+    if (routeButton) {
+      activeRoute = { name: routeButton.dataset.route, index: 0 };
+      state.route = activeRoute; save();
+      selectRecord(routes[activeRoute.name][0], { keepPosition: true });
+    }
+  });
+  document.addEventListener('keydown', event => {
+    if ((event.key === 'Enter' || event.key === ' ') && event.target.matches('.record-target')) {
+      event.preventDefault(); selectRecord(event.target.dataset.key);
+    }
+  });
+  routeProgress.querySelector('.route-prev').addEventListener('click', () => {
+    if (activeRoute.index > 0) activeRoute.index -= 1;
+    state.route = activeRoute; save(); selectRecord(routes[activeRoute.name][activeRoute.index], { keepPosition: true });
+  });
+  routeProgress.querySelector('.route-next').addEventListener('click', () => {
+    if (activeRoute.index < routes[activeRoute.name].length - 1) activeRoute.index += 1;
+    state.route = activeRoute; save(); selectRecord(routes[activeRoute.name][activeRoute.index], { keepPosition: true });
+  });
+
+  const artistFilter = document.querySelector('#artist-filter');
+  const textureFilter = document.querySelector('#texture-filter');
+  const energyFilter = document.querySelector('#energy-filter');
+  const visibleRecords = () => records.filter(record =>
+    (!artistFilter.value || record.artist.toLocaleLowerCase().includes(artistFilter.value.toLocaleLowerCase())) &&
+    (!textureFilter.value || (record.texture_family || 'other') === textureFilter.value) &&
+    Number(record.energy || 5) >= Number(energyFilter.value)
+  );
+  const updateFilters = () => {
+    const visible = new Set(visibleRecords().map(record => record.key));
+    document.querySelectorAll('.album-card,.atlas-record').forEach(element => {
+      const isVisible = visible.has(element.dataset.key);
+      element.toggleAttribute('hidden', !isVisible);
+      element.style.display = isVisible ? '' : 'none';
+    });
+    document.querySelector('#result-count').textContent = `${visible.size} of ${records.length} releases`;
+  };
+  [artistFilter, textureFilter, energyFilter].forEach(control => control.addEventListener('input', updateFilters));
+  document.querySelector('#reset-filters').addEventListener('click', () => {
+    artistFilter.value = ''; textureFilter.value = ''; energyFilter.value = '1'; updateFilters();
+  });
+  updateFilters();
+
+  document.querySelectorAll('.crate-dig').forEach(button => button.addEventListener('click', () => {
+    const visible = visibleRecords();
+    const fresh = visible.filter(record => !state.recent.includes(record.key));
+    const pool = fresh.length ? fresh : visible;
+    if (!pool.length) return;
+    const record = pool[Math.floor(Math.random() * pool.length)];
+    selectRecord(record.key);
+  }));
+
+  const notesSelect = document.querySelector('#notes-record');
+  records.forEach(record => {
+    const option = document.createElement('option'); option.value = record.key; option.textContent = record.key; notesSelect.append(option);
+  });
+  const notesArea = document.querySelector('#session-note');
+  const loadNote = () => notesArea.value = state.notes[notesSelect.value] || '';
+  notesSelect.addEventListener('change', loadNote);
+  notesArea.addEventListener('input', () => {
+    if (notesArea.value) state.notes[notesSelect.value] = notesArea.value;
+    else delete state.notes[notesSelect.value];
+    save();
+  });
+  const renderBookmarks = () => {
+    document.querySelectorAll('.album-card').forEach(card => card.classList.toggle('bookmarked', state.bookmarks.includes(card.dataset.key)));
+    document.querySelectorAll('.bookmark').forEach(button => {
+      const saved = state.bookmarks.includes(button.dataset.key);
+      button.textContent = saved ? '★' : '☆'; button.setAttribute('aria-pressed', String(saved));
+    });
+    const list = document.querySelector('#saved-list');
+    list.replaceChildren();
+    state.bookmarks.forEach(key => {
+      const item = document.createElement('div'); item.className = 'saved-item';
+      const button = document.createElement('button'); button.className = 'text-link record-target'; button.dataset.key = key; button.textContent = key;
+      const marker = document.createElement('span'); marker.textContent = state.notes[key] ? 'note saved' : 'bookmarked';
+      item.append(button, marker); list.append(item);
+    });
+    if (!state.bookmarks.length) list.textContent = 'No saved releases yet.';
+  };
+  document.querySelector('#export-notes').addEventListener('click', () => {
+    const lines = ['# After the Ecstasy: Bristol, Tokyo, and the Haunted Beat — session notes', ''];
+    for (const record of records) {
+      if (!state.bookmarks.includes(record.key) && !state.notes[record.key]) continue;
+      lines.push(`## ${record.key}`, '', state.notes[record.key] || '_Bookmarked_', '');
+    }
+    const blob = new Blob([lines.join('\n')], { type: 'text/markdown' });
+    const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'after-the-ecstasy-bristol-tokyo-and-the-haunted-beat-session-notes.md'; link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  });
+  document.querySelector('#clear-notes').addEventListener('click', () => {
+    state = { ...emptyState(), recent: state.recent, activeKey: state.activeKey };
+    save(); notesArea.value = ''; renderBookmarks();
+  });
+  if (state.activeKey && byKey.has(state.activeKey)) { notesSelect.value = state.activeKey; }
+  loadNote(); renderBookmarks(); updateRouteProgress();
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    }), { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+  }
+  const timelineLinks = [...document.querySelectorAll('.timeline a')];
+  const sectionObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) timelineLinks.forEach(link => link.classList.toggle('active', link.hash === `#${entry.target.id}`));
+  }), { rootMargin: '-35% 0px -55% 0px' });
+  document.querySelectorAll('.story-section').forEach(section => sectionObserver.observe(section));
+})();
+</script></body></html>
