@@ -1,0 +1,1171 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Trance and Techno: The Grid and the Ascent long-session listening guide"><title>Trance and Techno: The Grid and the Ascent</title>
+<style>:root {
+  color-scheme: dark;
+  --bg: #08090b;
+  --panel: #111218;
+  --panel2: #181922;
+  --ink: #f5f2eb;
+  --muted: #a9a4ae;
+  --line: rgba(255, 255, 255, .12);
+  --acid: #d8ff3e;
+  --pink: #ff5fb7;
+  --cyan: #43e8d8;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: radial-gradient(circle at 80% 0, #28123d 0, transparent 34rem), var(--bg); color: var(--ink); font: 16px/1.62 Inter, system-ui, sans-serif; padding-bottom: 12rem; }
+button, input, select, textarea { font: inherit; }
+.skip { position: absolute; top: -4rem; left: 1rem; z-index: 50; background: var(--acid); color: #111; padding: .6rem; }
+.skip:focus { top: 1rem; }
+.layout { display: grid; grid-template-columns: 17rem minmax(0, 1fr); }
+.rail { position: sticky; top: 0; height: 100vh; padding: 1.5rem 1rem; border-right: 1px solid var(--line); background: rgba(8, 9, 11, .9); backdrop-filter: blur(15px); display: flex; flex-direction: column; gap: 1.5rem; z-index: 8; }
+.brand { color: var(--acid); font: 800 .7rem/1.4 ui-monospace, monospace; text-transform: uppercase; letter-spacing: .12em; }
+.brand strong { display: block; color: var(--ink); font: 750 1rem/1.1 Inter, sans-serif; letter-spacing: -.02em; text-transform: none; margin-top: .35rem; }
+.timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: .2rem; overflow: auto; }
+.timeline a { display: grid; padding: .55rem .65rem; border-left: 2px solid transparent; color: var(--muted); text-decoration: none; font-size: .76rem; line-height: 1.25; }
+.timeline a:hover, .timeline a.active { border-color: var(--acid); background: #d8ff3e10; color: var(--ink); }
+.timeline small { color: var(--pink); font: 650 .63rem ui-monospace, monospace; }
+.rail-actions { margin-top: auto; display: grid; gap: .5rem; }
+.btn, .route-start, .load-player, .bookmark, .reset, .text-link { border: 1px solid var(--line); background: var(--panel2); color: var(--ink); padding: .65rem .8rem; cursor: pointer; }
+.btn:hover, .route-start:hover, .load-player:hover, .bookmark:hover, .reset:hover { border-color: var(--acid); color: var(--acid); }
+.main { min-width: 0; }
+.hero { min-height: min(56rem, 100vh); padding: clamp(4rem, 9vw, 9rem) clamp(1.4rem, 7vw, 7rem); display: grid; align-content: center; position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+.hero::after { content: "303"; position: absolute; right: -.05em; bottom: -.25em; font: 900 clamp(13rem, 31vw, 31rem)/.7 Inter; color: #ffffff08; pointer-events: none; }
+.hero-content { position: relative; z-index: 1; max-width: 56rem; }
+.eyebrow { color: var(--acid); font: 750 .67rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .13em; }
+h1, h2, h3, p { margin-top: 0; }
+.hero h1 { max-width: 11ch; margin: .6rem 0 1.2rem; font-size: clamp(3.3rem, 8vw, 7.8rem); line-height: .88; letter-spacing: -.07em; }
+.subtitle { max-width: 44rem; font-size: clamp(1rem, 2vw, 1.3rem); color: #d3cdd6; }
+.hero-summary { max-width: 52rem; color: var(--muted); }
+.feature-nav { padding: 1rem clamp(1.4rem, 7vw, 7rem); display: flex; gap: .65rem; flex-wrap: wrap; position: sticky; top: 0; z-index: 6; background: #08090bea; border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
+.feature-nav a { color: var(--muted); font: 700 .68rem ui-monospace, monospace; text-decoration: none; text-transform: uppercase; letter-spacing: .08em; }
+.feature-nav a:hover { color: var(--acid); }
+.lab { padding: clamp(3rem, 7vw, 6rem) clamp(1.4rem, 7vw, 7rem); border-bottom: 1px solid var(--line); }
+.lab-head { max-width: 48rem; margin-bottom: 2rem; }
+.lab-head h2, .story-copy h2 { font-size: clamp(2rem, 4vw, 4rem); line-height: .95; letter-spacing: -.055em; margin: .5rem 0 1rem; }
+.lab-head p, .story-copy p { color: #c8c2ca; }
+.route-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
+.route-card { padding: 1.2rem; border: 1px solid var(--line); background: linear-gradient(145deg, #d8ff3e0c, #ff5fb70b); }
+.route-card span, .route-card small { color: var(--pink); font: 700 .63rem ui-monospace, monospace; text-transform: uppercase; }
+.route-card h3 { margin: .5rem 0; }
+.route-card p { color: var(--muted); min-height: 3.2rem; font-size: .85rem; }
+
+.atlas-wrap, .graph-wrap { overflow: auto; border: 1px solid var(--line); background: linear-gradient(145deg, #0d0e13, #090a0d); }
+.atlas { min-width: 1080px; }
+.atlas-scale, .atlas-row { display: grid; grid-template-columns: 9rem repeat(10, minmax(8rem, 1fr)); }
+.atlas-scale { position: sticky; top: 0; z-index: 2; background: #0b0c10; border-bottom: 1px solid var(--line); color: var(--muted); font: 700 .62rem ui-monospace, monospace; text-align: center; text-transform: uppercase; }
+.atlas-scale span { padding: .65rem; border-right: 1px solid #ffffff0a; }
+.atlas-scale span:first-child { text-align: left; color: var(--cyan); }
+.atlas-row { min-height: 7.5rem; border-bottom: 1px solid var(--line); }
+.atlas-row:last-child { border-bottom: 0; }
+.atlas-label { position: sticky; left: 0; z-index: 1; padding: .8rem; background: #101117; border-right: 1px solid var(--line); box-shadow: .8rem 0 1.2rem #0006; }
+.atlas-label strong, .atlas-label small { display: block; }
+.atlas-label strong { color: var(--cyan); font: 800 .7rem ui-monospace, monospace; text-transform: uppercase; }
+.atlas-label small { color: var(--muted); font-size: .65rem; }
+.atlas-cell { display: flex; flex-direction: column; gap: .35rem; padding: .4rem; border-right: 1px solid #ffffff0a; background: linear-gradient(180deg, transparent, #ffffff03); }
+.atlas-record { width: 100%; min-width: 0; padding: .5rem; text-align: left; border: 1px solid #ffffff14; border-left: 2px solid var(--acid); background: #171921; color: var(--ink); cursor: pointer; transition: .18s; }
+.atlas-record:hover, .atlas-record:focus { border-color: var(--pink); background: #20222c; transform: translateY(-1px); outline: none; }
+.atlas-record strong, .atlas-record span, .atlas-record small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.atlas-record strong { font-size: .7rem; }
+.atlas-record span { color: #d4ced7; font-size: .65rem; }
+.atlas-record small { color: var(--muted); font: 600 .56rem ui-monospace, monospace; text-transform: uppercase; }
+.energy-axis { display: flex; justify-content: space-between; color: var(--muted); font: 700 .65rem ui-monospace, monospace; margin-top: .5rem; }
+.graph-wrap svg { min-width: 800px; width: 100%; height: auto; }
+.signal-baseline { stroke: #ffffff20; stroke-width: 1; }
+.signal-arcs path { fill: none; stroke: var(--cyan); stroke-width: var(--signal-weight); stroke-opacity: .48; }
+.edge-count { fill: var(--pink); font: 700 11px ui-monospace, monospace; text-anchor: middle; paint-order: stroke; stroke: #0c0d11; stroke-width: 5; }
+.scene-node circle { fill: #15171d; stroke: var(--acid); stroke-width: 2; }
+.scene-node text { fill: var(--ink); font: 800 11px ui-monospace, monospace; }
+.scene-node .scene-year { fill: var(--muted); font-size: 10px; }
+.scene-key { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .6rem; margin: 1rem 0 2rem; }
+.scene-key article { display: flex; gap: .7rem; padding: .8rem; border: 1px solid var(--line); background: var(--panel); }
+.scene-key span { color: var(--acid); font: 800 1rem ui-monospace, monospace; }
+.scene-key strong, .scene-key small { display: block; }
+.scene-key strong { font-size: .78rem; line-height: 1.25; }
+.scene-key small { margin-top: .25rem; color: var(--muted); font: 600 .6rem ui-monospace, monospace; text-transform: uppercase; }
+.connection-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: .65rem; list-style: none; padding: 0; }
+.connection-card { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: .65rem; padding: .8rem; border: 1px solid var(--line); background: #0d0e13; color: var(--muted); font-size: .74rem; }
+.connection-card > div { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px solid #ffffff0a; padding-bottom: .35rem; }
+.connection-card > div strong { color: #d4ced7; font-size: .68rem; }
+.signal-era { color: var(--pink); font: 700 .61rem ui-monospace, monospace; text-transform: uppercase; }
+.text-link { border: 0; background: none; padding: 0; color: var(--cyan); text-decoration: underline; text-align: left; }
+
+.era-band { min-height: 14rem; padding: 2rem clamp(1.4rem, 7vw, 7rem); display: flex; align-items: end; gap: 1.5rem; background: var(--era-gradient); border-bottom: 1px solid var(--line); }
+.era-band > span { font: 850 clamp(3rem, 9vw, 8rem)/.75 ui-monospace, monospace; color: #ffffff24; }
+.era-band small { color: var(--acid); font: 700 .68rem ui-monospace, monospace; text-transform: uppercase; }
+.era-band h2 { max-width: 22ch; margin: .35rem 0 0; font-size: clamp(1.6rem, 3.5vw, 3.5rem); line-height: .95; letter-spacing: -.05em; }
+.story-section { padding: clamp(3rem, 7vw, 6rem) clamp(1.4rem, 7vw, 7rem); border-bottom: 1px solid var(--line); }
+.story-copy { max-width: 48rem; }
+.ephemera { max-width: 55rem; margin: 2.5rem 0; padding: 1.2rem; border: 1px solid var(--line); background: repeating-linear-gradient(-45deg, #14151c, #14151c 8px, #111218 8px, #111218 16px); position: relative; }
+.ephemera > span { color: var(--pink); font: 700 .63rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .1em; }
+.ephemera-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+.ephemera small { display: block; color: var(--muted); font: 650 .62rem ui-monospace, monospace; text-transform: uppercase; }
+.ephemera p { margin: 0; color: #cec7d0; font-style: italic; }
+.era-feature { display: grid; grid-template-columns: minmax(14rem, .7fr) minmax(20rem, 1.3fr); gap: 1.2rem; align-items: center; margin: 2.5rem 0; padding: 1rem; border: 1px solid #d8ff3e38; background: linear-gradient(135deg, #d8ff3e0b, #43e8d80b); }
+.era-feature h3 { margin: .35rem 0; font-size: 1.15rem; }
+.era-feature p { margin: 0; color: var(--muted); font-size: .82rem; }
+.era-feature iframe { display: block; width: 100%; height: 152px; border: 0; }
+.album-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+.album-card { display: flex; flex-direction: column; padding: 1.1rem; border: 1px solid var(--line); border-top: 2px solid transparent; background: var(--panel); min-width: 0; transition: .22s; }
+.album-card:hover, .album-card.selected { border-top-color: var(--acid); transform: translateY(-3px); }
+.album-card.bookmarked { box-shadow: inset 0 0 0 1px var(--pink); }
+.card-meta { display: flex; justify-content: space-between; gap: .7rem; color: var(--pink); font: 700 .62rem ui-monospace, monospace; text-transform: uppercase; }
+.album-card h3 { margin: .55rem 0 .35rem; line-height: 1.15; }
+.note { color: var(--muted); font-size: .86rem; min-height: 4rem; }
+.cue { padding: .75rem; border-left: 2px solid var(--acid); background: #d8ff3e0a; font-size: .82rem; color: #d8d2da; }
+.cue strong { display: block; color: var(--acid); font: 700 .61rem ui-monospace, monospace; text-transform: uppercase; }
+.tags { display: flex; gap: .4rem; flex-wrap: wrap; margin: .8rem 0; }
+.tag { padding: .2rem .45rem; border: 1px solid var(--line); color: var(--cyan); font: 700 .61rem ui-monospace, monospace; text-transform: uppercase; }
+.card-actions { display: flex; gap: .5rem; margin-top: auto; }
+.load-player { flex: 1; background: var(--acid); color: #111; border-color: var(--acid); font-weight: 800; }
+.load-player:hover { color: #111; background: #e5ff75; }
+.bookmark { width: 2.8rem; }
+.notes-panel { display: grid; grid-template-columns: minmax(16rem, .7fr) minmax(0, 1.3fr); gap: 1.2rem; }
+.saved-list { display: grid; gap: .5rem; align-content: start; }
+.saved-item { display: flex; justify-content: space-between; gap: .5rem; padding: .7rem; border: 1px solid var(--line); background: var(--panel); }
+.playlist-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1.2rem; align-items: start; }
+.playlist-form, .playlist-setup { display: grid; gap: .3rem; align-content: start; padding: 1.1rem; border: 1px solid var(--line); background: var(--panel); }
+.playlist-panel label { margin-top: .7rem; color: var(--muted); font: 700 .62rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; }
+.playlist-panel input[type="text"], .playlist-panel select { min-width: 0; padding: .6rem; border: 1px solid var(--line); background: var(--panel2); color: var(--ink); }
+.playlist-check { display: flex; align-items: center; gap: .5rem; font: 600 .82rem Inter, sans-serif; color: #c8c2ca; text-transform: none; letter-spacing: 0; }
+.playlist-send { margin-top: 1.1rem; border-color: var(--acid); background: var(--acid); color: #111; font-weight: 800; }
+.playlist-send:hover:not(:disabled) { background: #e5ff75; color: #111; }
+.playlist-send:disabled { opacity: .45; cursor: progress; }
+.playlist-setup p { margin: .5rem 0 0; color: var(--muted); font-size: .78rem; }
+.playlist-setup a { color: var(--cyan); }
+.playlist-setup em { color: #c8c2ca; font-style: normal; font-weight: 700; }
+.playlist-setup code { padding: .1rem .3rem; border: 1px solid var(--line); background: var(--panel2); color: var(--acid); font-size: .72rem; overflow-wrap: anywhere; }
+.playlist-setup #playlist-redirect { display: block; margin-top: .35rem; padding: .45rem; }
+.btn-inline { margin-top: .4rem; padding: .35rem .7rem; font-size: .7rem; }
+.playlist-status { display: block; margin-top: 1.2rem; padding: .8rem; border-left: 2px solid var(--cyan); background: #43e8d80a; color: #d8d2da; font-size: .82rem; }
+.playlist-status a { color: var(--acid); }
+.playlist-status.error { border-left-color: var(--pink); background: #ff5fb70a; }
+.liner-share { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(14rem, .6fr); gap: 1.2rem; align-items: start; margin-top: 1.2rem; padding: 1.1rem; border: 1px solid #ff5fb738; background: linear-gradient(135deg, #ff5fb70b, #43e8d80b); }
+.liner-share h3 { margin: .4rem 0 .5rem; font-size: 1.1rem; }
+.liner-share p { margin: 0; color: var(--muted); font-size: .82rem; }
+.liner-share a { color: var(--cyan); }
+.liner-actions { display: grid; gap: .5rem; align-content: start; }
+.liner-status { color: var(--muted); font: 600 .72rem ui-monospace, monospace; }
+textarea { width: 100%; min-height: 15rem; resize: vertical; background: var(--panel); border: 1px solid var(--line); color: var(--ink); padding: 1rem; }
+.notes-actions { display: flex; gap: .5rem; margin-top: .6rem; }
+.dock { position: fixed; z-index: 30; left: 17rem; right: 0; bottom: 0; display: grid; grid-template-columns: minmax(13rem, .6fr) minmax(20rem, 1.4fr) auto; gap: 1rem; align-items: center; padding: 1rem clamp(1rem, 3vw, 2rem); background: #0a0b0ff5; border-top: 1px solid var(--acid); box-shadow: 0 -15px 45px #0008; backdrop-filter: blur(16px); }
+.dock.empty .player-mount { display: none; }
+.dock-copy small { display: block; color: var(--pink); font: 700 .61rem ui-monospace, monospace; text-transform: uppercase; }
+.dock-copy strong { display: block; }
+.dock-copy span { color: var(--muted); font-size: .8rem; }
+.player-mount iframe { display: block; width: 100%; height: 152px; border: 0; }
+.route-progress { display: flex; gap: .5rem; align-items: center; }
+.route-progress[hidden] { display: none; }
+.route-progress span { color: var(--muted); font: 700 .65rem ui-monospace, monospace; }
+.reveal { opacity: 0; transform: translateY(1.2rem); transition: .5s; }
+.reveal.visible { opacity: 1; transform: none; }
+[hidden] { display: none !important; }
+
+@media (max-width: 880px) {
+  body { padding-bottom: 19rem; }
+  .layout { grid-template-columns: 1fr; }
+  .rail { position: sticky; height: auto; display: flex; flex-direction: row; align-items: center; padding: .7rem 1rem; border-right: 0; border-bottom: 1px solid var(--line); }
+  .brand strong, .rail-actions { display: none; }
+  .timeline { display: flex; overflow: auto; }
+  .timeline a { min-width: 8rem; }
+  .dock { left: 0; grid-template-columns: 1fr; gap: .5rem; }
+  .player-mount iframe { height: 80px; }
+  .feature-nav { top: 3.2rem; }
+}
+
+@media (max-width: 560px) {
+  .album-grid, .notes-panel, .ephemera-grid, .era-feature, .playlist-panel, .liner-share { grid-template-columns: 1fr; }
+  .card-actions { flex-wrap: wrap; }
+  .route-grid, .connection-list { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .album-card, .atlas-record { transition: none; }
+}
+</style></head><body><a class="skip" href="#content">Skip to guide</a><div class="layout">
+<aside class="rail"><div class="brand">Musiculum / V3<strong>Trance and Techno: The Grid and the Ascent</strong></div>
+<nav aria-label="Era timeline"><ol class="timeline"><li><a href="#section-1"><span>1983-1993: two cities, one drum machine</span><small>1983–1993</small></a></li><li><a href="#section-2"><span>1993-1996: the melody climbs, the drums get harder</span><small>1993–1996</small></a></li><li><a href="#section-3"><span>1997-2001: the superclub cathedral</span><small>1997–2001</small></a></li><li><a href="#section-4"><span>2002-2009: the minimal correction</span><small>2002–2009</small></a></li><li><a href="#section-5"><span>2010-2014: hypnosis as discipline, euphoria as spectacle</span><small>2010–2014</small></a></li><li><a href="#section-6"><span>2018-present: the argument dissolves</span><small>2018–2023</small></a></li></ol></nav>
+<div class="rail-actions"><button class="btn crate-dig">Crate dig</button><a class="btn" href="#session-notes">Session notes</a></div></aside>
+<main class="main" id="content"><header class="hero"><div class="hero-content reveal"><span class="eyebrow">Trance / techno / long-form listening</span>
+<h1>Trance and Techno: The Grid and the Ascent</h1><p class="subtitle">Six eras of four-to-the-floor music, tracing the argument between techno&#x27;s grid and trance&#x27;s ascent.</p><div class="hero-summary"><p><strong>These two genres share a drum machine and disagree about what to do with it.</strong> Techno treats the four-to-the-floor grid as an architecture: something to inhabit, extend, and gradually alter until time behaves differently. Trance treats the same grid as a launch rail, a way of arriving somewhere higher than where the record started. One withholds; the other promises.</p><p>For most of forty years that difference has been argued as a moral question, with techno cast as the serious one and trance as the sentimental one. It is more useful to hear them as two answers to the same problem: how do you sustain attention across eight minutes with almost no words? Techno answers with texture and patience. Trance answers with harmony and delayed gratification. Both are systems for making repetition feel like motion.</p><p>This guide follows the argument in six stages, from Detroit and Frankfurt through the superclub decade, the minimal correction, the hypnotic revival, and the current moment where producers raid both traditions without embarrassment. Listen for how each record handles its build: what it holds back, when it releases, and whether it releases at all.</p></div></div></header>
+<nav class="feature-nav" aria-label="Guide tools"><a href="#routes">Listening routes</a><a href="#energy-map">Energy map</a>
+<a href="#connections">Connections</a><a href="#playlist">Playlist</a><a href="#session-notes">Notes</a><a href="share.html">Share sheet</a><button class="reset crate-dig">Crate dig</button></nav>
+<section class="lab" id="routes"><div class="lab-head"><span class="eyebrow">Curated paths</span>
+<h2>Choose a route through the music</h2><p>Each path loads one release at a time into the persistent player.</p></div>
+<div class="route-grid"><article class="route-card"><span>4 stops</span><h3>First Ascent</h3><p>Cybotron → Jam &amp; Spoon → Paul van Dyk → Chicane</p><button class="route-start" data-route="first-ascent">Start route</button></article><article class="route-card"><span>4 stops</span><h3>The Long Hypnosis</h3><p>Basic Channel → Plastikman → Donato Dozzy → Rrose</p><button class="route-start" data-route="the-long-hypnosis">Start route</button></article><article class="route-card"><span>4 stops</span><h3>Hard Floor Pressure</h3><p>Robert Hood → Dave Clarke → Marcel Dettmann → Blawan</p><button class="route-start" data-route="hard-floor-pressure">Start route</button></article><article class="route-card"><span>4 stops</span><h3>Melody Returns</h3><p>Robert Miles → Nathan Fake → Nathan Micay → Bicep</p><button class="route-start" data-route="melody-returns">Start route</button></article></div></section>
+<section class="lab" id="energy-map"><div class="lab-head"><span class="eyebrow">Energy / texture atlas</span>
+<h2>Find the pressure you want</h2><p>Records move from lower to higher energy and group by their dominant surface.</p></div>
+<div class="feature-nav" aria-label="Map filters"><label>Artist <input id="artist-filter" type="search" placeholder="Filter artist"></label>
+<label>Texture <select id="texture-filter"><option value="">All textures</option><option value="spare">spare</option><option value="crystalline">crystalline</option><option value="atmospheric">atmospheric</option><option value="propulsive">propulsive</option><option value="abrasive">abrasive</option><option value="other">other</option></select></label>
+<label>Minimum energy <input id="energy-filter" type="range" min="1" max="10" value="1"></label>
+<button class="reset" id="reset-filters">Reset</button><output id="result-count" aria-live="polite"></output></div>
+<div class="atlas-wrap" role="region" aria-label="Energy and texture atlas"><div class="atlas">
+<div class="atlas-scale"><span>Texture family</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div><div class="atlas-row"><div class="atlas-label"><strong>spare</strong><small>3 releases</small></div><div class="atlas-cell" data-energy="1"></div><div class="atlas-cell" data-energy="2"></div><div class="atlas-cell" data-energy="3"><button class="atlas-record record-target" data-key="Plastikman - Consumed" title="Plastikman - Consumed · subterranean"><strong>Plastikman</strong><span>Consumed</span><small>1998 · subterranean</small></button></div><div class="atlas-cell" data-energy="4"></div><div class="atlas-cell" data-energy="5"></div><div class="atlas-cell" data-energy="6"></div><div class="atlas-cell" data-energy="7"></div><div class="atlas-cell" data-energy="8"><button class="atlas-record record-target" data-key="Robert Hood - Minimal Nation" title="Robert Hood - Minimal Nation · austere"><strong>Robert Hood</strong><span>Minimal Nation</span><small>1994 · austere</small></button><button class="atlas-record record-target" data-key="Paul van Dyk - Out There and Back" title="Paul van Dyk - Out There and Back · crystalline"><strong>Paul van Dyk</strong><span>Out There and Back</span><small>2000 · crystalline</small></button></div><div class="atlas-cell" data-energy="9"></div><div class="atlas-cell" data-energy="10"></div></div><div class="atlas-row"><div class="atlas-label"><strong>crystalline</strong><small>13 releases</small></div><div class="atlas-cell" data-energy="1"></div><div class="atlas-cell" data-energy="2"></div><div class="atlas-cell" data-energy="3"></div><div class="atlas-cell" data-energy="4"></div><div class="atlas-cell" data-energy="5"><button class="atlas-record record-target" data-key="Robert Miles - Dreamland" title="Robert Miles - Dreamland · wistful"><strong>Robert Miles</strong><span>Dreamland</span><small>1996 · wistful</small></button><button class="atlas-record record-target" data-key="Isolée - We Are Monster" title="Isolée - We Are Monster · filigree"><strong>Isolée</strong><span>We Are Monster</span><small>2005 · filigree</small></button><button class="atlas-record record-target" data-key="Recondite - Hinterland" title="Recondite - Hinterland · nocturnal"><strong>Recondite</strong><span>Hinterland</span><small>2013 · nocturnal</small></button></div><div class="atlas-cell" data-energy="6"><button class="atlas-record record-target" data-key="Orbital - Orbital" title="Orbital - Orbital · euphoric"><strong>Orbital</strong><span>Orbital</span><small>1991 · euphoric</small></button><button class="atlas-record record-target" data-key="Sven Väth - Accident In Paradise" title="Sven Väth - Accident In Paradise · ceremonial"><strong>Sven Väth</strong><span>Accident In Paradise</span><small>1993 · ceremonial</small></button><button class="atlas-record record-target" data-key="BT - Ima" title="BT - Ima · crystalline"><strong>BT</strong><span>Ima</span><small>1995 · crystalline</small></button><button class="atlas-record record-target" data-key="James Holden - The Idiots Are Winning" title="James Holden - The Idiots Are Winning · unstable"><strong>James Holden</strong><span>The Idiots Are Winning</span><small>2006 · unstable</small></button><button class="atlas-record record-target" data-key="Nathan Micay - Blue Spring" title="Nathan Micay - Blue Spring · luminous"><strong>Nathan Micay</strong><span>Blue Spring</span><small>2019 · luminous</small></button></div><div class="atlas-cell" data-energy="7"><button class="atlas-record record-target" data-key="Jam &amp; Spoon - Tripomatic Fairytales 2001" title="Jam &amp; Spoon - Tripomatic Fairytales 2001 · euphoric"><strong>Jam &amp; Spoon</strong><span>Tripomatic Fairytales 2001</span><small>1993 · euphoric</small></button><button class="atlas-record record-target" data-key="Paul van Dyk - Seven Ways" title="Paul van Dyk - Seven Ways · crystalline"><strong>Paul van Dyk</strong><span>Seven Ways</span><small>1996 · crystalline</small></button></div><div class="atlas-cell" data-energy="8"><button class="atlas-record record-target" data-key="System F - Out of the Blue" title="System F - Out of the Blue · anthemic"><strong>System F</strong><span>Out of the Blue</span><small>1999 · anthemic</small></button><button class="atlas-record record-target" data-key="Marcel Dettmann - Dettmann" title="Marcel Dettmann - Dettmann · granite"><strong>Marcel Dettmann</strong><span>Dettmann</span><small>2010 · granite</small></button></div><div class="atlas-cell" data-energy="9"><button class="atlas-record record-target" data-key="Infected Mushroom - Classical Mushroom" title="Infected Mushroom - Classical Mushroom · maximal"><strong>Infected Mushroom</strong><span>Classical Mushroom</span><small>2000 · maximal</small></button></div><div class="atlas-cell" data-energy="10"></div></div><div class="atlas-row"><div class="atlas-label"><strong>atmospheric</strong><small>12 releases</small></div><div class="atlas-cell" data-energy="1"></div><div class="atlas-cell" data-energy="2"></div><div class="atlas-cell" data-energy="3"><button class="atlas-record record-target" data-key="The Orb - Adventures Beyond the Ultraworld" title="The Orb - Adventures Beyond the Ultraworld · oceanic"><strong>The Orb</strong><span>Adventures Beyond the Ultraworld</span><small>1991 · oceanic</small></button><button class="atlas-record record-target" data-key="Sasha - Airdrawndagger" title="Sasha - Airdrawndagger · nocturnal"><strong>Sasha</strong><span>Airdrawndagger</span><small>2002 · nocturnal</small></button></div><div class="atlas-cell" data-energy="4"><button class="atlas-record record-target" data-key="Trentemøller - The Last Resort" title="Trentemøller - The Last Resort · nocturnal"><strong>Trentemøller</strong><span>The Last Resort</span><small>2006 · nocturnal</small></button><button class="atlas-record record-target" data-key="Donato Dozzy - The Aquaplano Sessions" title="Donato Dozzy - The Aquaplano Sessions · submerged"><strong>Donato Dozzy</strong><span>The Aquaplano Sessions</span><small>2009 · submerged</small></button></div><div class="atlas-cell" data-energy="5"><button class="atlas-record record-target" data-key="Basic Channel - BCD" title="Basic Channel - BCD · submerged"><strong>Basic Channel</strong><span>BCD</span><small>1995 · submerged</small></button><button class="atlas-record record-target" data-key="Chicane - Far from the Maddening Crowds" title="Chicane - Far from the Maddening Crowds · pastoral"><strong>Chicane</strong><span>Far from the Maddening Crowds</span><small>1997 · pastoral</small></button><button class="atlas-record record-target" data-key="Daniel Avery - Song for Alpha" title="Daniel Avery - Song for Alpha · vaporous"><strong>Daniel Avery</strong><span>Song for Alpha</span><small>2018 · vaporous</small></button><button class="atlas-record record-target" data-key="Objekt - Cocoon Crush" title="Objekt - Cocoon Crush · machined"><strong>Objekt</strong><span>Cocoon Crush</span><small>2018 · machined</small></button></div><div class="atlas-cell" data-energy="6"></div><div class="atlas-cell" data-energy="7"><button class="atlas-record record-target" data-key="Underworld - dubnobasswithmyheadman" title="Underworld - dubnobasswithmyheadman · hypnotic"><strong>Underworld</strong><span>dubnobasswithmyheadman</span><small>1994 · hypnotic</small></button><button class="atlas-record record-target" data-key="Rrose - Hymn to Moisture" title="Rrose - Hymn to Moisture · subterranean"><strong>Rrose</strong><span>Hymn to Moisture</span><small>2019 · subterranean</small></button></div><div class="atlas-cell" data-energy="8"><button class="atlas-record record-target" data-key="Ben Klock - One" title="Ben Klock - One · granite"><strong>Ben Klock</strong><span>One</span><small>2009 · granite</small></button></div><div class="atlas-cell" data-energy="9"><button class="atlas-record record-target" data-key="Blawan - Wet Will Always Dry" title="Blawan - Wet Will Always Dry · corroded"><strong>Blawan</strong><span>Wet Will Always Dry</span><small>2018 · corroded</small></button></div><div class="atlas-cell" data-energy="10"></div></div><div class="atlas-row"><div class="atlas-label"><strong>propulsive</strong><small>14 releases</small></div><div class="atlas-cell" data-energy="1"></div><div class="atlas-cell" data-energy="2"></div><div class="atlas-cell" data-energy="3"></div><div class="atlas-cell" data-energy="4"><button class="atlas-record record-target" data-key="The Future Sound of London - Lifeforms" title="The Future Sound of London - Lifeforms · oceanic"><strong>The Future Sound of London</strong><span>Lifeforms</span><small>1994 · oceanic</small></button><button class="atlas-record record-target" data-key="DJ Python - Mas Amable" title="DJ Python - Mas Amable · vaporous"><strong>DJ Python</strong><span>Mas Amable</span><small>2020 · vaporous</small></button></div><div class="atlas-cell" data-energy="5"><button class="atlas-record record-target" data-key="Cybotron - Enter" title="Cybotron - Enter · electro"><strong>Cybotron</strong><span>Enter</span><small>1983 · electro</small></button><button class="atlas-record record-target" data-key="Ricardo Villalobos - Salvador" title="Ricardo Villalobos - Salvador · wonky"><strong>Ricardo Villalobos</strong><span>Salvador</span><small>2006 · wonky</small></button><button class="atlas-record record-target" data-key="Nina Kraviz - Nina Kraviz" title="Nina Kraviz - Nina Kraviz · intimate"><strong>Nina Kraviz</strong><span>Nina Kraviz</span><small>2012 · intimate</small></button><button class="atlas-record record-target" data-key="Barker - Utility" title="Barker - Utility · weightless"><strong>Barker</strong><span>Utility</span><small>2019 · weightless</small></button></div><div class="atlas-cell" data-energy="6"><button class="atlas-record record-target" data-key="Model 500 - Classics" title="Model 500 - Classics · electro"><strong>Model 500</strong><span>Classics</span><small>1993 · electro</small></button><button class="atlas-record record-target" data-key="Carl Craig - Landcruising" title="Carl Craig - Landcruising · luminous"><strong>Carl Craig</strong><span>Landcruising</span><small>1995 · luminous</small></button><button class="atlas-record record-target" data-key="Function - Incubation" title="Function - Incubation · glacial"><strong>Function</strong><span>Incubation</span><small>2013 · glacial</small></button></div><div class="atlas-cell" data-energy="7"><button class="atlas-record record-target" data-key="808 State - Ex:El" title="808 State - Ex:El · kinetic"><strong>808 State</strong><span>Ex:El</span><small>1991 · kinetic</small></button><button class="atlas-record record-target" data-key="Juno Reactor - Beyond the Infinite" title="Juno Reactor - Beyond the Infinite · ceremonial"><strong>Juno Reactor</strong><span>Beyond the Infinite</span><small>1995 · ceremonial</small></button><button class="atlas-record record-target" data-key="Objekt - Flatland" title="Objekt - Flatland · machined"><strong>Objekt</strong><span>Flatland</span><small>2014 · machined</small></button><button class="atlas-record record-target" data-key="Answer Code Request - Code" title="Answer Code Request - Code · machined"><strong>Answer Code Request</strong><span>Code</span><small>2014 · machined</small></button><button class="atlas-record record-target" data-key="HAAi - Baby, We&#x27;re Ascending" title="HAAi - Baby, We&#x27;re Ascending · kinetic"><strong>HAAi</strong><span>Baby, We&#x27;re Ascending</span><small>2022 · kinetic</small></button></div><div class="atlas-cell" data-energy="8"></div><div class="atlas-cell" data-energy="9"></div><div class="atlas-cell" data-energy="10"></div></div><div class="atlas-row"><div class="atlas-label"><strong>abrasive</strong><small>5 releases</small></div><div class="atlas-cell" data-energy="1"></div><div class="atlas-cell" data-energy="2"></div><div class="atlas-cell" data-energy="3"></div><div class="atlas-cell" data-energy="4"><button class="atlas-record record-target" data-key="Aphex Twin - Selected Ambient Works 85-92" title="Aphex Twin - Selected Ambient Works 85-92 · narcotic"><strong>Aphex Twin</strong><span>Selected Ambient Works 85-92</span><small>1992 · narcotic</small></button></div><div class="atlas-cell" data-energy="5"></div><div class="atlas-cell" data-energy="6"><button class="atlas-record record-target" data-key="Plastikman - Sheet One" title="Plastikman - Sheet One · corroded"><strong>Plastikman</strong><span>Sheet One</span><small>1993 · corroded</small></button><button class="atlas-record record-target" data-key="Nathan Fake - Drowning in a Sea of Love" title="Nathan Fake - Drowning in a Sea of Love · corroded"><strong>Nathan Fake</strong><span>Drowning in a Sea of Love</span><small>2006 · corroded</small></button><button class="atlas-record record-target" data-key="Jon Hopkins - Immunity" title="Jon Hopkins - Immunity · organic"><strong>Jon Hopkins</strong><span>Immunity</span><small>2013 · organic</small></button></div><div class="atlas-cell" data-energy="7"></div><div class="atlas-cell" data-energy="8"></div><div class="atlas-cell" data-energy="9"><button class="atlas-record record-target" data-key="Dave Clarke - Archive One" title="Dave Clarke - Archive One · relentless"><strong>Dave Clarke</strong><span>Archive One</span><small>1996 · relentless</small></button></div><div class="atlas-cell" data-energy="10"></div></div><div class="atlas-row"><div class="atlas-label"><strong>other</strong><small>10 releases</small></div><div class="atlas-cell" data-energy="1"></div><div class="atlas-cell" data-energy="2"></div><div class="atlas-cell" data-energy="3"></div><div class="atlas-cell" data-energy="4"></div><div class="atlas-cell" data-energy="5"></div><div class="atlas-cell" data-energy="6"><button class="atlas-record record-target" data-key="Bicep - Isles" title="Bicep - Isles · wistful"><strong>Bicep</strong><span>Isles</span><small>2021 · wistful</small></button><button class="atlas-record record-target" data-key="Overmono - Good Lies" title="Overmono - Good Lies · wistful"><strong>Overmono</strong><span>Good Lies</span><small>2023 · wistful</small></button></div><div class="atlas-cell" data-energy="7"><button class="atlas-record record-target" data-key="BT - ESCM" title="BT - ESCM · crystalline"><strong>BT</strong><span>ESCM</span><small>1997 · crystalline</small></button><button class="atlas-record record-target" data-key="Above &amp; Beyond - Tri-State" title="Above &amp; Beyond - Tri-State · anthemic"><strong>Above &amp; Beyond</strong><span>Tri-State</span><small>2006 · anthemic</small></button><button class="atlas-record record-target" data-key="Sandwell District - Feed Forward" title="Sandwell District - Feed Forward · grey"><strong>Sandwell District</strong><span>Feed Forward</span><small>2010 · grey</small></button><button class="atlas-record record-target" data-key="Above &amp; Beyond - Group Therapy" title="Above &amp; Beyond - Group Therapy · anthemic"><strong>Above &amp; Beyond</strong><span>Group Therapy</span><small>2011 · anthemic</small></button><button class="atlas-record record-target" data-key="Daniel Avery - Drone Logic" title="Daniel Avery - Drone Logic · corroded"><strong>Daniel Avery</strong><span>Drone Logic</span><small>2013 · corroded</small></button></div><div class="atlas-cell" data-energy="8"><button class="atlas-record record-target" data-key="Tiësto - In My Memory" title="Tiësto - In My Memory · anthemic"><strong>Tiësto</strong><span>In My Memory</span><small>2001 · anthemic</small></button><button class="atlas-record record-target" data-key="Armin van Buuren - Imagine" title="Armin van Buuren - Imagine · anthemic"><strong>Armin van Buuren</strong><span>Imagine</span><small>2008 · anthemic</small></button></div><div class="atlas-cell" data-energy="9"><button class="atlas-record record-target" data-key="Special Request - Vortex" title="Special Request - Vortex · maximal"><strong>Special Request</strong><span>Vortex</span><small>2019 · maximal</small></button></div><div class="atlas-cell" data-energy="10"></div></div></div></div>
+<div class="energy-axis"><span>Lower energy</span><span>Higher energy</span></div></section>
+<section class="lab" id="connections"><div class="lab-head"><span class="eyebrow">Signal paths</span>
+<h2>Connections across scenes and eras</h2><p>Arc weight shows how many record-level paths bridge two eras. Select any detailed path below to hear either endpoint.</p></div>
+<div class="graph-wrap"><svg viewBox="0 0 930 430" role="img" aria-labelledby="graph-title">
+<title id="graph-title">Chronological connections between eras</title><line class="signal-baseline" x1="50" y1="300" x2="880" y2="300"></line>
+<g class="signal-arcs"><path d="M 543.0 300 Q 621.0 227.0 699.0 300" style="--signal-weight:3.7"><title>2002-2009: the minimal correction → 2010-2014: hypnosis as discipline, euphoria as spectacle: 8 paths</title></path><text class="edge-count" x="621.0" y="258.5">8</text><path d="M 387.0 300 Q 465.0 227.0 543.0 300" style="--signal-weight:2.0"><title>1997-2001: the superclub cathedral → 2002-2009: the minimal correction: 3 paths</title></path><text class="edge-count" x="465.0" y="258.5">3</text><path d="M 75.0 300 Q 153.0 227.0 231.0 300" style="--signal-weight:4.0"><title>1983-1993: two cities, one drum machine → 1993-1996: the melody climbs, the drums get harder: 9 paths</title></path><text class="edge-count" x="153.0" y="258.5">9</text><path d="M 231.0 300 Q 309.0 227.0 387.0 300" style="--signal-weight:2.7"><title>1993-1996: the melody climbs, the drums get harder → 1997-2001: the superclub cathedral: 5 paths</title></path><text class="edge-count" x="309.0" y="258.5">5</text><path d="M 231.0 300 Q 387.0 202.0 543.0 300" style="--signal-weight:1.3"><title>1993-1996: the melody climbs, the drums get harder → 2002-2009: the minimal correction: 1 paths</title></path><text class="edge-count" x="387.0" y="246.0">1</text><path d="M 699.0 300 Q 777.0 227.0 855.0 300" style="--signal-weight:2.0"><title>2010-2014: hypnosis as discipline, euphoria as spectacle → 2018-present: the argument dissolves: 3 paths</title></path><text class="edge-count" x="777.0" y="258.5">3</text><path d="M 231.0 300 Q 465.0 177.0 699.0 300" style="--signal-weight:1.3"><title>1993-1996: the melody climbs, the drums get harder → 2010-2014: hypnosis as discipline, euphoria as spectacle: 1 paths</title></path><text class="edge-count" x="465.0" y="233.5">1</text><path d="M 543.0 300 Q 699.0 202.0 855.0 300" style="--signal-weight:1.7"><title>2002-2009: the minimal correction → 2018-present: the argument dissolves: 2 paths</title></path><text class="edge-count" x="699.0" y="246.0">2</text><path d="M 387.0 300 Q 621.0 177.0 855.0 300" style="--signal-weight:1.3"><title>1997-2001: the superclub cathedral → 2018-present: the argument dissolves: 1 paths</title></path><text class="edge-count" x="621.0" y="233.5">1</text><path d="M 75.0 300 Q 231.0 202.0 387.0 300" style="--signal-weight:1.3"><title>1983-1993: two cities, one drum machine → 1997-2001: the superclub cathedral: 1 paths</title></path><text class="edge-count" x="231.0" y="246.0">1</text></g><g><g class="scene-node"><circle cx="75.0" cy="300" r="22"></circle><text x="75.0" y="304" text-anchor="middle">01</text><text class="scene-year" x="75.0" y="343" text-anchor="middle">1983–1993</text></g><g class="scene-node"><circle cx="231.0" cy="300" r="22"></circle><text x="231.0" y="304" text-anchor="middle">02</text><text class="scene-year" x="231.0" y="343" text-anchor="middle">1993–1996</text></g><g class="scene-node"><circle cx="387.0" cy="300" r="22"></circle><text x="387.0" y="304" text-anchor="middle">03</text><text class="scene-year" x="387.0" y="343" text-anchor="middle">1997–2001</text></g><g class="scene-node"><circle cx="543.0" cy="300" r="22"></circle><text x="543.0" y="304" text-anchor="middle">04</text><text class="scene-year" x="543.0" y="343" text-anchor="middle">2002–2009</text></g><g class="scene-node"><circle cx="699.0" cy="300" r="22"></circle><text x="699.0" y="304" text-anchor="middle">05</text><text class="scene-year" x="699.0" y="343" text-anchor="middle">2010–2014</text></g><g class="scene-node"><circle cx="855.0" cy="300" r="22"></circle><text x="855.0" y="304" text-anchor="middle">06</text><text class="scene-year" x="855.0" y="343" text-anchor="middle">2018–2023</text></g></g></svg></div>
+<div class="scene-key"><article><span>01</span><div><strong>1983-1993: two cities, one drum machine</strong><small>1983–1993 · 8 releases · 4 texture families</small></div></article><article><span>02</span><div><strong>1993-1996: the melody climbs, the drums get harder</strong><small>1993–1996 · 11 releases · 5 texture families</small></div></article><article><span>03</span><div><strong>1997-2001: the superclub cathedral</strong><small>1997–2001 · 7 releases · 4 texture families</small></div></article><article><span>04</span><div><strong>2002-2009: the minimal correction</strong><small>2002–2009 · 10 releases · 5 texture families</small></div></article><article><span>05</span><div><strong>2010-2014: hypnosis as discipline, euphoria as spectacle</strong><small>2010–2014 · 10 releases · 4 texture families</small></div></article><article><span>06</span><div><strong>2018-present: the argument dissolves</strong><small>2018–2023 · 11 releases · 4 texture families</small></div></article></div>
+<ul class="connection-list"><li class="connection-card"><div><span class="signal-era">Era 05 → 04</span><strong>Shared anthemic texture</strong></div><button class="text-link record-target" data-key="Above &amp; Beyond - Group Therapy">Above &amp; Beyond - Group Therapy</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Above &amp; Beyond - Tri-State">Above &amp; Beyond - Tri-State</button></li><li class="connection-card"><div><span class="signal-era">Era 05 → 04</span><strong>Shared anthemic texture</strong></div><button class="text-link record-target" data-key="Above &amp; Beyond - Group Therapy">Above &amp; Beyond - Group Therapy</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Armin van Buuren - Imagine">Armin van Buuren - Imagine</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 03</span><strong>Cross-era affinity · energy shift 1</strong></div><button class="text-link record-target" data-key="Above &amp; Beyond - Tri-State">Above &amp; Beyond - Tri-State</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Paul van Dyk - Out There and Back">Paul van Dyk - Out There and Back</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 02</span><strong>Cross-era affinity · energy shift 1</strong></div><button class="text-link record-target" data-key="Aphex Twin - Selected Ambient Works 85-92">Aphex Twin - Selected Ambient Works 85-92</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Basic Channel - BCD">Basic Channel - BCD</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 02</span><strong>Cross-era affinity · energy shift 0</strong></div><button class="text-link record-target" data-key="Aphex Twin - Selected Ambient Works 85-92">Aphex Twin - Selected Ambient Works 85-92</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="The Future Sound of London - Lifeforms">The Future Sound of London - Lifeforms</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 03</span><strong>Shared anthemic texture</strong></div><button class="text-link record-target" data-key="Armin van Buuren - Imagine">Armin van Buuren - Imagine</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Tiësto - In My Memory">Tiësto - In My Memory</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 02</span><strong>Shared crystalline texture</strong></div><button class="text-link record-target" data-key="BT - ESCM">BT - ESCM</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="BT - Ima">BT - Ima</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 04</span><strong>Shared submerged texture</strong></div><button class="text-link record-target" data-key="Basic Channel - BCD">Basic Channel - BCD</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Donato Dozzy - The Aquaplano Sessions">Donato Dozzy - The Aquaplano Sessions</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 03</span><strong>Cross-era affinity · energy shift 2</strong></div><button class="text-link record-target" data-key="Basic Channel - BCD">Basic Channel - BCD</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Plastikman - Consumed">Plastikman - Consumed</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 05</span><strong>Shared granite texture</strong></div><button class="text-link record-target" data-key="Ben Klock - One">Ben Klock - One</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Marcel Dettmann - Dettmann">Marcel Dettmann - Dettmann</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 05</span><strong>Cross-era affinity · energy shift 1</strong></div><button class="text-link record-target" data-key="Ben Klock - One">Ben Klock - One</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Sandwell District - Feed Forward">Sandwell District - Feed Forward</button></li><li class="connection-card"><div><span class="signal-era">Era 06 → 05</span><strong>Cross-era affinity · energy shift 1</strong></div><button class="text-link record-target" data-key="Blawan - Wet Will Always Dry">Blawan - Wet Will Always Dry</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Marcel Dettmann - Dettmann">Marcel Dettmann - Dettmann</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 01</span><strong>Shared propulsive family</strong></div><button class="text-link record-target" data-key="Carl Craig - Landcruising">Carl Craig - Landcruising</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Model 500 - Classics">Model 500 - Classics</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 02</span><strong>Cross-era affinity · energy shift 0</strong></div><button class="text-link record-target" data-key="Chicane - Far from the Maddening Crowds">Chicane - Far from the Maddening Crowds</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Robert Miles - Dreamland">Robert Miles - Dreamland</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 04</span><strong>Shared atmospheric family</strong></div><button class="text-link record-target" data-key="Chicane - Far from the Maddening Crowds">Chicane - Far from the Maddening Crowds</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Sasha - Airdrawndagger">Sasha - Airdrawndagger</button></li><li class="connection-card"><div><span class="signal-era">Era 05 → 06</span><strong>Cross-era affinity · energy shift 2</strong></div><button class="text-link record-target" data-key="Daniel Avery - Drone Logic">Daniel Avery - Drone Logic</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Daniel Avery - Song for Alpha">Daniel Avery - Song for Alpha</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 05</span><strong>Cross-era affinity · energy shift 1</strong></div><button class="text-link record-target" data-key="Dave Clarke - Archive One">Dave Clarke - Archive One</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Marcel Dettmann - Dettmann">Marcel Dettmann - Dettmann</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 05</span><strong>Cross-era affinity · energy shift 1</strong></div><button class="text-link record-target" data-key="Donato Dozzy - The Aquaplano Sessions">Donato Dozzy - The Aquaplano Sessions</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Recondite - Hinterland">Recondite - Hinterland</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 06</span><strong>Shared atmospheric family</strong></div><button class="text-link record-target" data-key="Donato Dozzy - The Aquaplano Sessions">Donato Dozzy - The Aquaplano Sessions</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Rrose - Hymn to Moisture">Rrose - Hymn to Moisture</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 02</span><strong>Cross-era affinity · energy shift 2</strong></div><button class="text-link record-target" data-key="Infected Mushroom - Classical Mushroom">Infected Mushroom - Classical Mushroom</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Juno Reactor - Beyond the Infinite">Juno Reactor - Beyond the Infinite</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 06</span><strong>Shared maximal texture</strong></div><button class="text-link record-target" data-key="Infected Mushroom - Classical Mushroom">Infected Mushroom - Classical Mushroom</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Special Request - Vortex">Special Request - Vortex</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 01</span><strong>Shared euphoric texture</strong></div><button class="text-link record-target" data-key="Jam &amp; Spoon - Tripomatic Fairytales 2001">Jam &amp; Spoon - Tripomatic Fairytales 2001</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Orbital - Orbital">Orbital - Orbital</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 01</span><strong>Shared crystalline family</strong></div><button class="text-link record-target" data-key="Jam &amp; Spoon - Tripomatic Fairytales 2001">Jam &amp; Spoon - Tripomatic Fairytales 2001</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Sven Väth - Accident In Paradise">Sven Väth - Accident In Paradise</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 05</span><strong>Cross-era affinity · energy shift 0</strong></div><button class="text-link record-target" data-key="James Holden - The Idiots Are Winning">James Holden - The Idiots Are Winning</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Jon Hopkins - Immunity">Jon Hopkins - Immunity</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 01</span><strong>Shared ceremonial texture</strong></div><button class="text-link record-target" data-key="Juno Reactor - Beyond the Infinite">Juno Reactor - Beyond the Infinite</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Sven Väth - Accident In Paradise">Sven Väth - Accident In Paradise</button></li><li class="connection-card"><div><span class="signal-era">Era 04 → 06</span><strong>Cross-era affinity · energy shift 0</strong></div><button class="text-link record-target" data-key="Nathan Fake - Drowning in a Sea of Love">Nathan Fake - Drowning in a Sea of Love</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Nathan Micay - Blue Spring">Nathan Micay - Blue Spring</button></li><li class="connection-card"><div><span class="signal-era">Era 05 → 04</span><strong>Shared propulsive family</strong></div><button class="text-link record-target" data-key="Nina Kraviz - Nina Kraviz">Nina Kraviz - Nina Kraviz</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Ricardo Villalobos - Salvador">Ricardo Villalobos - Salvador</button></li><li class="connection-card"><div><span class="signal-era">Era 06 → 05</span><strong>Shared machined texture</strong></div><button class="text-link record-target" data-key="Objekt - Cocoon Crush">Objekt - Cocoon Crush</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Objekt - Flatland">Objekt - Flatland</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 02</span><strong>Cross-era affinity · energy shift 1</strong></div><button class="text-link record-target" data-key="Orbital - Orbital">Orbital - Orbital</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Underworld - dubnobasswithmyheadman">Underworld - dubnobasswithmyheadman</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 02</span><strong>Shared crystalline texture</strong></div><button class="text-link record-target" data-key="Paul van Dyk - Out There and Back">Paul van Dyk - Out There and Back</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Paul van Dyk - Seven Ways">Paul van Dyk - Seven Ways</button></li><li class="connection-card"><div><span class="signal-era">Era 03 → 01</span><strong>Cross-era affinity · energy shift 3</strong></div><button class="text-link record-target" data-key="Plastikman - Consumed">Plastikman - Consumed</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Plastikman - Sheet One">Plastikman - Sheet One</button></li><li class="connection-card"><div><span class="signal-era">Era 01 → 02</span><strong>Cross-era affinity · energy shift 2</strong></div><button class="text-link record-target" data-key="Plastikman - Sheet One">Plastikman - Sheet One</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Robert Hood - Minimal Nation">Robert Hood - Minimal Nation</button></li><li class="connection-card"><div><span class="signal-era">Era 05 → 04</span><strong>Shared nocturnal texture</strong></div><button class="text-link record-target" data-key="Recondite - Hinterland">Recondite - Hinterland</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="Trentemøller - The Last Resort">Trentemøller - The Last Resort</button></li><li class="connection-card"><div><span class="signal-era">Era 02 → 01</span><strong>Shared oceanic texture</strong></div><button class="text-link record-target" data-key="The Future Sound of London - Lifeforms">The Future Sound of London - Lifeforms</button><span aria-hidden="true">→</span><button class="text-link record-target" data-key="The Orb - Adventures Beyond the Ultraworld">The Orb - Adventures Beyond the Ultraworld</button></li></ul></section>
+<div class="era-band" style="--era-gradient:linear-gradient(120deg,#08203e,#1a0b3a)">
+            <span>01</span><div><small>1983–1993 · Detroit, Manchester, Frankfurt</small>
+            <h2>1983-1993: two cities, one drum machine</h2></div></div>
+            <section class="story-section" id="section-1">
+            <div class="story-copy"><span class="eyebrow">Transmission 01</span>
+            <h2>1983-1993: two cities, one drum machine</h2><div class="reveal"><p>Detroit&#x27;s founding records were science fiction written in machine parts. Juan Atkins, Derrick May, and Kevin Saunderson were listening to Kraftwerk, Parliament, and Italo disco, and they heard in cheap sequencers a way to describe a city that had already lost its industrial future. The result carried a strange emotional temperature: precise, funky, and melancholy at once. Jeff Mills and Underground Resistance would soon harden that stance into something closer to insurgency than entertainment, but the vocabulary was set here.</p></div><div class="reveal"><p>In Europe the same equipment produced something rounder. British acts filtered Detroit through rave and ambient house, while Frankfurt producers pushed the tempo up and discovered that a sustained chord over a fast kick makes people put their hands in the air. The word trance described that effect before it described a genre. By 1993 both possibilities were fully audible, and the records below contain the whole later argument in embryo.</p></div></div><aside class="ephemera reveal" aria-label="Era ephemera">
+              <span>Scene fragment / 1983–1993</span>
+              <div class="ephemera-grid"><div><small>Location</small><strong>Detroit, Manchester, Frankfurt</strong></div>
+              <div><small>Machines</small><strong>TR-808, Juno-106, cheap sequencers, borrowed studio time</strong></div></div>
+              <p>Two cities imagine the future with the same drum machine and reach opposite conclusions.</p></aside><aside class="era-feature reveal" aria-label="Featured release for 1983-1993: two cities, one drum machine">
+              <div><span class="eyebrow">First suggestion / ready to play</span>
+              <h3>Cybotron — Enter</h3>
+              <p>The vocoder and the bassline pulling in different emotional directions.</p></div>
+              <iframe title="Cybotron - Enter" src="https://open.spotify.com/embed/album/6J50u8Uj59kR11TncrdoDB?utm_source=generator&theme=0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></aside>
+            <div class="album-grid"><article class="album-card" data-key="Cybotron - Enter" data-card-key="Cybotron - Enter">
+      <div class="card-meta"><span>Cybotron</span><span>1983</span></div>
+      <h3>Enter</h3><p class="note">Juan Atkins and Rick Davis write the founding text: electro-funk as urban science fiction.</p>
+      <p class="cue"><strong>Listen for</strong>The vocoder and the bassline pulling in different emotional directions.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">electro</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Cybotron - Enter">Load player</button>
+      <button class="bookmark" data-key="Cybotron - Enter" aria-label="Bookmark Cybotron - Enter" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Model 500 - Classics" data-card-key="Model 500 - Classics">
+      <div class="card-meta"><span>Model 500</span><span>1993</span></div>
+      <h3>Classics</h3><p class="note">Atkins alone, collecting the Metroplex sides that taught Europe what techno was.</p>
+      <p class="cue"><strong>Listen for</strong>Basslines that swing like funk while the drums stay perfectly rigid.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">electro</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Model 500 - Classics">Load player</button>
+      <button class="bookmark" data-key="Model 500 - Classics" aria-label="Bookmark Model 500 - Classics" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Orbital - Orbital" data-card-key="Orbital - Orbital">
+      <div class="card-meta"><span>Orbital</span><span>1991</span></div>
+      <h3>Orbital</h3><p class="note">Rave energy arranged with the patience of an album rather than a twelve-inch.</p>
+      <p class="cue"><strong>Listen for</strong>Sequences layering into melody without a single obvious drop.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">euphoric</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Orbital - Orbital">Load player</button>
+      <button class="bookmark" data-key="Orbital - Orbital" aria-label="Bookmark Orbital - Orbital" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="The Orb - Adventures Beyond the Ultraworld" data-card-key="The Orb - Adventures Beyond the Ultraworld">
+      <div class="card-meta"><span>The Orb</span><span>1991</span></div>
+      <h3>Adventures Beyond the Ultraworld</h3><p class="note">Ambient house proves dance music can be a place instead of an event.</p>
+      <p class="cue"><strong>Listen for</strong>Samples drifting past like weather rather than arriving as hooks.</p>
+      <div class="tags"><span class="tag">Energy 3/10</span><span class="tag">oceanic</span></div>
+      <div class="card-actions"><button class="load-player" data-key="The Orb - Adventures Beyond the Ultraworld">Load player</button>
+      <button class="bookmark" data-key="The Orb - Adventures Beyond the Ultraworld" aria-label="Bookmark The Orb - Adventures Beyond the Ultraworld" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="808 State - Ex:El" data-card-key="808 State - Ex:El">
+      <div class="card-meta"><span>808 State</span><span>1991</span></div>
+      <h3>Ex:El</h3><p class="note">Manchester translates Detroit into something brighter, denser, and more pop.</p>
+      <p class="cue"><strong>Listen for</strong>Bright synth lines locking to a rhythm section that stays elastic.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">kinetic</span></div>
+      <div class="card-actions"><button class="load-player" data-key="808 State - Ex:El">Load player</button>
+      <button class="bookmark" data-key="808 State - Ex:El" aria-label="Bookmark 808 State - Ex:El" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Aphex Twin - Selected Ambient Works 85-92" data-card-key="Aphex Twin - Selected Ambient Works 85-92">
+      <div class="card-meta"><span>Aphex Twin</span><span>1992</span></div>
+      <h3>Selected Ambient Works 85-92</h3><p class="note">The most influential argument that machine music could be tender.</p>
+      <p class="cue"><strong>Listen for</strong>Detuned pads that sound like tape slowly failing.</p>
+      <div class="tags"><span class="tag">Energy 4/10</span><span class="tag">narcotic</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Aphex Twin - Selected Ambient Works 85-92">Load player</button>
+      <button class="bookmark" data-key="Aphex Twin - Selected Ambient Works 85-92" aria-label="Bookmark Aphex Twin - Selected Ambient Works 85-92" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Plastikman - Sheet One" data-card-key="Plastikman - Sheet One">
+      <div class="card-meta"><span>Plastikman</span><span>1993</span></div>
+      <h3>Sheet One</h3><p class="note">Windsor-side techno at its most hallucinatory and most disciplined.</p>
+      <p class="cue"><strong>Listen for</strong>A single acid line treated as a character rather than a riff.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">corroded</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Plastikman - Sheet One">Load player</button>
+      <button class="bookmark" data-key="Plastikman - Sheet One" aria-label="Bookmark Plastikman - Sheet One" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Sven Väth - Accident In Paradise" data-card-key="Sven Väth - Accident In Paradise">
+      <div class="card-meta"><span>Sven Väth</span><span>1993</span></div>
+      <h3>Accident In Paradise</h3><p class="note">Frankfurt&#x27;s key figure turns trance into a long-form, faintly psychedelic album.</p>
+      <p class="cue"><strong>Listen for</strong>Melodic phrases stretched far past where a single would resolve them.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">ceremonial</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Sven Väth - Accident In Paradise">Load player</button>
+      <button class="bookmark" data-key="Sven Väth - Accident In Paradise" aria-label="Bookmark Sven Väth - Accident In Paradise" aria-pressed="false">☆</button></div>
+    </article></div></section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#3a0f4a,#0b2a33)">
+            <span>02</span><div><small>1993–1996 · Frankfurt, Berlin, Sheffield</small>
+            <h2>1993-1996: the melody climbs, the drums get harder</h2></div></div>
+            <section class="story-section" id="section-2">
+            <div class="story-copy"><span class="eyebrow">Transmission 02</span>
+            <h2>1993-1996: the melody climbs, the drums get harder</h2><div class="reveal"><p>This is where the two lineages genuinely separate. Trance producers found the formula that would define the next decade: a long filtered build, a breakdown that removes the drums entirely, and a chord change that lands like sunrise. Jam &amp; Spoon and Paul van Dyk did it with real compositional care, and Robert Miles turned the same shape into a global hit by slowing it down and putting a piano at the front.</p></div><div class="reveal"><p>Techno went the other way. Robert Hood stripped the music to its skeleton and proved subtraction could be the whole idea. Basic Channel put dub delay and hiss into the signal path and founded a lineage of records that sound received rather than played. Dave Clarke took the opposite route and made techno as blunt-force entertainment. Underworld, unusually, held every impulse at once: club-length arrangements with a lyricist muttering over the top.</p></div></div><aside class="ephemera reveal" aria-label="Era ephemera">
+              <span>Scene fragment / 1993–1996</span>
+              <div class="ephemera-grid"><div><small>Location</small><strong>Frankfurt, Berlin, Sheffield</strong></div>
+              <div><small>Machines</small><strong>TR-909, supersaw leads, Akai samplers, dub delay chains</strong></div></div>
+              <p>The melody climbs while the drums get harder, and the split becomes a real argument.</p></aside><aside class="era-feature reveal" aria-label="Featured release for 1993-1996: the melody climbs, the drums get harder">
+              <div><span class="eyebrow">First suggestion / ready to play</span>
+              <h3>Jam &amp; Spoon — Tripomatic Fairytales 2001</h3>
+              <p>The breakdown that drops every drum and rebuilds from a single chord.</p></div>
+              <iframe title="Jam &amp; Spoon - Tripomatic Fairytales 2001" src="https://open.spotify.com/embed/album/24srMCTo4eOojmFVk9iLdt?utm_source=generator&theme=0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></aside>
+            <div class="album-grid"><article class="album-card" data-key="Jam &amp; Spoon - Tripomatic Fairytales 2001" data-card-key="Jam &amp; Spoon - Tripomatic Fairytales 2001">
+      <div class="card-meta"><span>Jam &amp; Spoon</span><span>1993</span></div>
+      <h3>Tripomatic Fairytales 2001</h3><p class="note">The trance album as an actual album, ambitious and unashamed of melody.</p>
+      <p class="cue"><strong>Listen for</strong>The breakdown that drops every drum and rebuilds from a single chord.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">euphoric</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Jam &amp; Spoon - Tripomatic Fairytales 2001">Load player</button>
+      <button class="bookmark" data-key="Jam &amp; Spoon - Tripomatic Fairytales 2001" aria-label="Bookmark Jam &amp; Spoon - Tripomatic Fairytales 2001" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Underworld - dubnobasswithmyheadman" data-card-key="Underworld - dubnobasswithmyheadman">
+      <div class="card-meta"><span>Underworld</span><span>1994</span></div>
+      <h3>dubnobasswithmyheadman</h3><p class="note">Proof a dance record could carry a voice without becoming a pop record.</p>
+      <p class="cue"><strong>Listen for</strong>Loops mutating underneath a vocal that never quite becomes a chorus.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">hypnotic</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Underworld - dubnobasswithmyheadman">Load player</button>
+      <button class="bookmark" data-key="Underworld - dubnobasswithmyheadman" aria-label="Bookmark Underworld - dubnobasswithmyheadman" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Robert Hood - Minimal Nation" data-card-key="Robert Hood - Minimal Nation">
+      <div class="card-meta"><span>Robert Hood</span><span>1994</span></div>
+      <h3>Minimal Nation</h3><p class="note">Minimal techno&#x27;s founding document: everything unnecessary removed.</p>
+      <p class="cue"><strong>Listen for</strong>The way a single hi-hat change reads as a major event.</p>
+      <div class="tags"><span class="tag">Energy 8/10</span><span class="tag">austere</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Robert Hood - Minimal Nation">Load player</button>
+      <button class="bookmark" data-key="Robert Hood - Minimal Nation" aria-label="Bookmark Robert Hood - Minimal Nation" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="The Future Sound of London - Lifeforms" data-card-key="The Future Sound of London - Lifeforms">
+      <div class="card-meta"><span>The Future Sound of London</span><span>1994</span></div>
+      <h3>Lifeforms</h3><p class="note">The furthest expansion of what a dance act could put on a double album.</p>
+      <p class="cue"><strong>Listen for</strong>Rhythms dissolving into environments and reassembling.</p>
+      <div class="tags"><span class="tag">Energy 4/10</span><span class="tag">oceanic</span></div>
+      <div class="card-actions"><button class="load-player" data-key="The Future Sound of London - Lifeforms">Load player</button>
+      <button class="bookmark" data-key="The Future Sound of London - Lifeforms" aria-label="Bookmark The Future Sound of London - Lifeforms" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Basic Channel - BCD" data-card-key="Basic Channel - BCD">
+      <div class="card-meta"><span>Basic Channel</span><span>1995</span></div>
+      <h3>BCD</h3><p class="note">Dub technique applied to techno, creating the deepest lineage in the genre.</p>
+      <p class="cue"><strong>Listen for</strong>Chords buried in hiss, surfacing only when the delay allows it.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">submerged</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Basic Channel - BCD">Load player</button>
+      <button class="bookmark" data-key="Basic Channel - BCD" aria-label="Bookmark Basic Channel - BCD" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Carl Craig - Landcruising" data-card-key="Carl Craig - Landcruising">
+      <div class="card-meta"><span>Carl Craig</span><span>1995</span></div>
+      <h3>Landcruising</h3><p class="note">Detroit&#x27;s second generation makes techno that is openly beautiful.</p>
+      <p class="cue"><strong>Listen for</strong>Jazz-informed chord voicings sitting on a machine rhythm.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">luminous</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Carl Craig - Landcruising">Load player</button>
+      <button class="bookmark" data-key="Carl Craig - Landcruising" aria-label="Bookmark Carl Craig - Landcruising" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="BT - Ima" data-card-key="BT - Ima">
+      <div class="card-meta"><span>BT</span><span>1995</span></div>
+      <h3>Ima</h3><p class="note">American trance built with obsessive, almost classical attention to arrangement.</p>
+      <p class="cue"><strong>Listen for</strong>Edited vocal fragments used as a percussion layer.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">crystalline</span></div>
+      <div class="card-actions"><button class="load-player" data-key="BT - Ima">Load player</button>
+      <button class="bookmark" data-key="BT - Ima" aria-label="Bookmark BT - Ima" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Juno Reactor - Beyond the Infinite" data-card-key="Juno Reactor - Beyond the Infinite">
+      <div class="card-meta"><span>Juno Reactor</span><span>1995</span></div>
+      <h3>Beyond the Infinite</h3><p class="note">Psychedelic trance as ritual music rather than club fodder.</p>
+      <p class="cue"><strong>Listen for</strong>Percussion patterns that behave like drumming, not programming.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">ceremonial</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Juno Reactor - Beyond the Infinite">Load player</button>
+      <button class="bookmark" data-key="Juno Reactor - Beyond the Infinite" aria-label="Bookmark Juno Reactor - Beyond the Infinite" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Paul van Dyk - Seven Ways" data-card-key="Paul van Dyk - Seven Ways">
+      <div class="card-meta"><span>Paul van Dyk</span><span>1996</span></div>
+      <h3>Seven Ways</h3><p class="note">The template for melodic trance: patient, bright, structurally disciplined.</p>
+      <p class="cue"><strong>Listen for</strong>How long the main theme is withheld before it finally arrives.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">crystalline</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Paul van Dyk - Seven Ways">Load player</button>
+      <button class="bookmark" data-key="Paul van Dyk - Seven Ways" aria-label="Bookmark Paul van Dyk - Seven Ways" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Robert Miles - Dreamland" data-card-key="Robert Miles - Dreamland">
+      <div class="card-meta"><span>Robert Miles</span><span>1996</span></div>
+      <h3>Dreamland</h3><p class="note">Trance slowed to a walking pace and taken to the top of the charts.</p>
+      <p class="cue"><strong>Listen for</strong>Piano used as the lead instrument instead of a supersaw.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">wistful</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Robert Miles - Dreamland">Load player</button>
+      <button class="bookmark" data-key="Robert Miles - Dreamland" aria-label="Bookmark Robert Miles - Dreamland" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Dave Clarke - Archive One" data-card-key="Dave Clarke - Archive One">
+      <div class="card-meta"><span>Dave Clarke</span><span>1996</span></div>
+      <h3>Archive One</h3><p class="note">British techno at its hardest and most direct, built for peak-time damage.</p>
+      <p class="cue"><strong>Listen for</strong>Drums mixed so far forward that everything else becomes decoration.</p>
+      <div class="tags"><span class="tag">Energy 9/10</span><span class="tag">relentless</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Dave Clarke - Archive One">Load player</button>
+      <button class="bookmark" data-key="Dave Clarke - Archive One" aria-label="Bookmark Dave Clarke - Archive One" aria-pressed="false">☆</button></div>
+    </article></div></section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#123a5c,#3d1145)">
+            <span>03</span><div><small>1997–2001 · Ibiza, London, Tel Aviv</small>
+            <h2>1997-2001: the superclub cathedral</h2></div></div>
+            <section class="story-section" id="section-3">
+            <div class="story-copy"><span class="eyebrow">Transmission 03</span>
+            <h2>1997-2001: the superclub cathedral</h2><div class="reveal"><p>Trance got infrastructure. Superclubs, Ibiza residencies, compilation series, and the invention of the superstar DJ turned a European club style into a global product. The best records from the period are genuinely well made: Chicane&#x27;s is essentially a pastoral album with a kick drum, and Paul van Dyk&#x27;s peak-era work is meticulous. The worst are formula, and the formula&#x27;s success is exactly what made the following decade react so hard against it.</p></div><div class="reveal"><p>Techno spent the same years going inward. Plastikman&#x27;s <em>Consumed</em> is close to silence for long stretches, and Richie Hawtin&#x27;s mixing became a compositional act in itself, layering three records into something none of them contained alone. Israeli psytrance built a parallel world with its own festivals and its own tolerance for maximalism. Three scenes, three completely different ideas of what a big room is for.</p></div></div><aside class="ephemera reveal" aria-label="Era ephemera">
+              <span>Scene fragment / 1997–2001</span>
+              <div class="ephemera-grid"><div><small>Location</small><strong>Ibiza, London, Tel Aviv</strong></div>
+              <div><small>Machines</small><strong>Big-room compression, DAT masters, three-deck mixing</strong></div></div>
+              <p>The music gets a cathedral, a superstar DJ, and a marketing department.</p></aside><aside class="era-feature reveal" aria-label="Featured release for 1997-2001: the superclub cathedral">
+              <div><span class="eyebrow">First suggestion / ready to play</span>
+              <h3>Chicane — Far from the Maddening Crowds</h3>
+              <p>Guitar and pads carrying the melody instead of a lead synth.</p></div>
+              <iframe title="Chicane - Far from the Maddening Crowds" src="https://open.spotify.com/embed/album/38STXsjk42fP4pBr8dHgi3?utm_source=generator&theme=0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></aside>
+            <div class="album-grid"><article class="album-card" data-key="Chicane - Far from the Maddening Crowds" data-card-key="Chicane - Far from the Maddening Crowds">
+      <div class="card-meta"><span>Chicane</span><span>1997</span></div>
+      <h3>Far from the Maddening Crowds</h3><p class="note">Trance written as landscape music, warm rather than triumphal.</p>
+      <p class="cue"><strong>Listen for</strong>Guitar and pads carrying the melody instead of a lead synth.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">pastoral</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Chicane - Far from the Maddening Crowds">Load player</button>
+      <button class="bookmark" data-key="Chicane - Far from the Maddening Crowds" aria-label="Bookmark Chicane - Far from the Maddening Crowds" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="BT - ESCM" data-card-key="BT - ESCM">
+      <div class="card-meta"><span>BT</span><span>1997</span></div>
+      <h3>ESCM</h3><p class="note">The most technically ambitious trance record of the decade.</p>
+      <p class="cue"><strong>Listen for</strong>Micro-edited stutters years before the technique became a cliché.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">crystalline</span></div>
+      <div class="card-actions"><button class="load-player" data-key="BT - ESCM">Load player</button>
+      <button class="bookmark" data-key="BT - ESCM" aria-label="Bookmark BT - ESCM" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Plastikman - Consumed" data-card-key="Plastikman - Consumed">
+      <div class="card-meta"><span>Plastikman</span><span>1998</span></div>
+      <h3>Consumed</h3><p class="note">Techno reduced almost to absence, and far more unsettling for it.</p>
+      <p class="cue"><strong>Listen for</strong>Long passages where the sub-bass is the only real information.</p>
+      <div class="tags"><span class="tag">Energy 3/10</span><span class="tag">subterranean</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Plastikman - Consumed">Load player</button>
+      <button class="bookmark" data-key="Plastikman - Consumed" aria-label="Bookmark Plastikman - Consumed" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="System F - Out of the Blue" data-card-key="System F - Out of the Blue">
+      <div class="card-meta"><span>System F</span><span>1999</span></div>
+      <h3>Out of the Blue</h3><p class="note">Ferry Corsten&#x27;s alias delivers the definitive uplifting-trance statement.</p>
+      <p class="cue"><strong>Listen for</strong>The lead line arriving exactly where the arrangement has promised it.</p>
+      <div class="tags"><span class="tag">Energy 8/10</span><span class="tag">anthemic</span></div>
+      <div class="card-actions"><button class="load-player" data-key="System F - Out of the Blue">Load player</button>
+      <button class="bookmark" data-key="System F - Out of the Blue" aria-label="Bookmark System F - Out of the Blue" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Paul van Dyk - Out There and Back" data-card-key="Paul van Dyk - Out There and Back">
+      <div class="card-meta"><span>Paul van Dyk</span><span>2000</span></div>
+      <h3>Out There and Back</h3><p class="note">Peak-era melodic trance executed with unusual restraint.</p>
+      <p class="cue"><strong>Listen for</strong>Countermelodies quietly answering the lead line.</p>
+      <div class="tags"><span class="tag">Energy 8/10</span><span class="tag">crystalline</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Paul van Dyk - Out There and Back">Load player</button>
+      <button class="bookmark" data-key="Paul van Dyk - Out There and Back" aria-label="Bookmark Paul van Dyk - Out There and Back" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Infected Mushroom - Classical Mushroom" data-card-key="Infected Mushroom - Classical Mushroom">
+      <div class="card-meta"><span>Infected Mushroom</span><span>2000</span></div>
+      <h3>Classical Mushroom</h3><p class="note">Psytrance at its most virtuosic and most gleefully excessive.</p>
+      <p class="cue"><strong>Listen for</strong>Melodic runs played at a speed that borders on comedy.</p>
+      <div class="tags"><span class="tag">Energy 9/10</span><span class="tag">maximal</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Infected Mushroom - Classical Mushroom">Load player</button>
+      <button class="bookmark" data-key="Infected Mushroom - Classical Mushroom" aria-label="Bookmark Infected Mushroom - Classical Mushroom" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Tiësto - In My Memory" data-card-key="Tiësto - In My Memory">
+      <div class="card-meta"><span>Tiësto</span><span>2001</span></div>
+      <h3>In My Memory</h3><p class="note">The commercial summit of the trance decade, for better and worse.</p>
+      <p class="cue"><strong>Listen for</strong>The formula in its purest, most efficient state.</p>
+      <div class="tags"><span class="tag">Energy 8/10</span><span class="tag">anthemic</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Tiësto - In My Memory">Load player</button>
+      <button class="bookmark" data-key="Tiësto - In My Memory" aria-label="Bookmark Tiësto - In My Memory" aria-pressed="false">☆</button></div>
+    </article></div></section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#1c1c22,#0d3330)">
+            <span>04</span><div><small>2002–2009 · Berlin, Cologne, Santiago</small>
+            <h2>2002-2009: the minimal correction</h2></div></div>
+            <section class="story-section" id="section-4">
+            <div class="story-copy"><span class="eyebrow">Transmission 04</span>
+            <h2>2002-2009: the minimal correction</h2><div class="reveal"><p>The reaction was severe. If trance had become a machine for delivering a single emotion, the response was to build records that refused emotional resolution altogether. Ricardo Villalobos stretched tracks past twenty minutes and made the groove itself the subject. Cologne&#x27;s microhouse producers wrote dance music out of clicks and room noise. Berlin&#x27;s Berghain sound arrived hard, dry, and completely uninterested in a breakdown.</p></div><div class="reveal"><p>Melody did not disappear; it moved to a different address. Border Community records by Nathan Fake and James Holden took trance&#x27;s harmonic instincts and put them through distortion and analogue drift, which is essentially trance rewritten by people who found the original embarrassing. Sasha, meanwhile, made a beatless-leaning art album, and Above &amp; Beyond and Armin van Buuren kept the mainstream lineage running with more craft than critics allowed.</p></div></div><aside class="ephemera reveal" aria-label="Era ephemera">
+              <span>Scene fragment / 2002–2009</span>
+              <div class="ephemera-grid"><div><small>Location</small><strong>Berlin, Cologne, Santiago</strong></div>
+              <div><small>Machines</small><strong>Laptops, Ableton Live, modular racks, digital DJ rigs</strong></div></div>
+              <p>A correction sets in: fewer notes, longer arrangements, more room in the mix.</p></aside><aside class="era-feature reveal" aria-label="Featured release for 2002-2009: the minimal correction">
+              <div><span class="eyebrow">First suggestion / ready to play</span>
+              <h3>Sasha — Airdrawndagger</h3>
+              <p>Beats arriving late, if at all, under long harmonic washes.</p></div>
+              <iframe title="Sasha - Airdrawndagger" src="https://open.spotify.com/embed/album/3EDpoJZaAOddQOVoOMbki7?utm_source=generator&theme=0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></aside>
+            <div class="album-grid"><article class="album-card" data-key="Sasha - Airdrawndagger" data-card-key="Sasha - Airdrawndagger">
+      <div class="card-meta"><span>Sasha</span><span>2002</span></div>
+      <h3>Airdrawndagger</h3><p class="note">A superstar DJ walks away from the dance floor mid-career.</p>
+      <p class="cue"><strong>Listen for</strong>Beats arriving late, if at all, under long harmonic washes.</p>
+      <div class="tags"><span class="tag">Energy 3/10</span><span class="tag">nocturnal</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Sasha - Airdrawndagger">Load player</button>
+      <button class="bookmark" data-key="Sasha - Airdrawndagger" aria-label="Bookmark Sasha - Airdrawndagger" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Isolée - We Are Monster" data-card-key="Isolée - We Are Monster">
+      <div class="card-meta"><span>Isolée</span><span>2005</span></div>
+      <h3>We Are Monster</h3><p class="note">Microhouse with real songwriting hiding inside the detail.</p>
+      <p class="cue"><strong>Listen for</strong>Tiny clicks accumulating into something that reads as melody.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">filigree</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Isolée - We Are Monster">Load player</button>
+      <button class="bookmark" data-key="Isolée - We Are Monster" aria-label="Bookmark Isolée - We Are Monster" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Ricardo Villalobos - Salvador" data-card-key="Ricardo Villalobos - Salvador">
+      <div class="card-meta"><span>Ricardo Villalobos</span><span>2006</span></div>
+      <h3>Salvador</h3><p class="note">Minimal made warm, strange, and unmistakably human.</p>
+      <p class="cue"><strong>Listen for</strong>Percussion that swings enough to feel played rather than programmed.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">wonky</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Ricardo Villalobos - Salvador">Load player</button>
+      <button class="bookmark" data-key="Ricardo Villalobos - Salvador" aria-label="Bookmark Ricardo Villalobos - Salvador" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Nathan Fake - Drowning in a Sea of Love" data-card-key="Nathan Fake - Drowning in a Sea of Love">
+      <div class="card-meta"><span>Nathan Fake</span><span>2006</span></div>
+      <h3>Drowning in a Sea of Love</h3><p class="note">Trance harmony smuggled back in under layers of distortion.</p>
+      <p class="cue"><strong>Listen for</strong>Melodies clipping and breaking up as they get louder.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">corroded</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Nathan Fake - Drowning in a Sea of Love">Load player</button>
+      <button class="bookmark" data-key="Nathan Fake - Drowning in a Sea of Love" aria-label="Bookmark Nathan Fake - Drowning in a Sea of Love" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="James Holden - The Idiots Are Winning" data-card-key="James Holden - The Idiots Are Winning">
+      <div class="card-meta"><span>James Holden</span><span>2006</span></div>
+      <h3>The Idiots Are Winning</h3><p class="note">Analogue instability treated as a compositional resource.</p>
+      <p class="cue"><strong>Listen for</strong>Sequences drifting out of time on purpose and staying there.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">unstable</span></div>
+      <div class="card-actions"><button class="load-player" data-key="James Holden - The Idiots Are Winning">Load player</button>
+      <button class="bookmark" data-key="James Holden - The Idiots Are Winning" aria-label="Bookmark James Holden - The Idiots Are Winning" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Trentemøller - The Last Resort" data-card-key="Trentemøller - The Last Resort">
+      <div class="card-meta"><span>Trentemøller</span><span>2006</span></div>
+      <h3>The Last Resort</h3><p class="note">The Scandinavian answer: melancholy techno with cinematic patience.</p>
+      <p class="cue"><strong>Listen for</strong>Acoustic textures placed inside an otherwise electronic mix.</p>
+      <div class="tags"><span class="tag">Energy 4/10</span><span class="tag">nocturnal</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Trentemøller - The Last Resort">Load player</button>
+      <button class="bookmark" data-key="Trentemøller - The Last Resort" aria-label="Bookmark Trentemøller - The Last Resort" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Above &amp; Beyond - Tri-State" data-card-key="Above &amp; Beyond - Tri-State">
+      <div class="card-meta"><span>Above &amp; Beyond</span><span>2006</span></div>
+      <h3>Tri-State</h3><p class="note">Vocal trance built with genuine songwriting rather than a topline bolted on.</p>
+      <p class="cue"><strong>Listen for</strong>Lyrics phrased to fit the build instead of fighting it.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">anthemic</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Above &amp; Beyond - Tri-State">Load player</button>
+      <button class="bookmark" data-key="Above &amp; Beyond - Tri-State" aria-label="Bookmark Above &amp; Beyond - Tri-State" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Armin van Buuren - Imagine" data-card-key="Armin van Buuren - Imagine">
+      <div class="card-meta"><span>Armin van Buuren</span><span>2008</span></div>
+      <h3>Imagine</h3><p class="note">The mainstream lineage at full scale and full confidence.</p>
+      <p class="cue"><strong>Listen for</strong>How the mix is engineered for a field rather than a room.</p>
+      <div class="tags"><span class="tag">Energy 8/10</span><span class="tag">anthemic</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Armin van Buuren - Imagine">Load player</button>
+      <button class="bookmark" data-key="Armin van Buuren - Imagine" aria-label="Bookmark Armin van Buuren - Imagine" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Ben Klock - One" data-card-key="Ben Klock - One">
+      <div class="card-meta"><span>Ben Klock</span><span>2009</span></div>
+      <h3>One</h3><p class="note">The Berghain sound codified: dry, heavy, and endlessly patient.</p>
+      <p class="cue"><strong>Listen for</strong>Reverb used for depth rather than for drama.</p>
+      <div class="tags"><span class="tag">Energy 8/10</span><span class="tag">granite</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Ben Klock - One">Load player</button>
+      <button class="bookmark" data-key="Ben Klock - One" aria-label="Bookmark Ben Klock - One" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Donato Dozzy - The Aquaplano Sessions" data-card-key="Donato Dozzy - The Aquaplano Sessions">
+      <div class="card-meta"><span>Donato Dozzy</span><span>2009</span></div>
+      <h3>The Aquaplano Sessions</h3><p class="note">Hypnotic techno as an unhurried, almost meditative practice.</p>
+      <p class="cue"><strong>Listen for</strong>Filter movement so slow it registers as breathing.</p>
+      <div class="tags"><span class="tag">Energy 4/10</span><span class="tag">submerged</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Donato Dozzy - The Aquaplano Sessions">Load player</button>
+      <button class="bookmark" data-key="Donato Dozzy - The Aquaplano Sessions" aria-label="Bookmark Donato Dozzy - The Aquaplano Sessions" aria-pressed="false">☆</button></div>
+    </article></div></section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#2c0a1e,#101a3c)">
+            <span>05</span><div><small>2010–2014 · Berghain, Bristol, the festival circuit</small>
+            <h2>2010-2014: hypnosis as discipline, euphoria as spectacle</h2></div></div>
+            <section class="story-section" id="section-5">
+            <div class="story-copy"><span class="eyebrow">Transmission 05</span>
+            <h2>2010-2014: hypnosis as discipline, euphoria as spectacle</h2><div class="reveal"><p>Two things happened at once. In clubs, techno rediscovered the long hypnotic form, played on hardware, with a preference for texture over event. Sandwell District, Function, and Answer Code Request made records built for four-hour sets where the pleasure is accumulation. Objekt came at it from the other side, using the same tools with the precision of a sound designer.</p></div><div class="reveal"><p>On festival stages, trance was absorbed into EDM&#x27;s arms race and briefly lost its plot, while Above &amp; Beyond kept the emotional thread intact for an audience that had grown up with it. Between the two poles, Jon Hopkins and Daniel Avery made records that sold to people who would never call themselves clubbers, which turned out to be the route by which the next generation found all of this.</p></div></div><aside class="ephemera reveal" aria-label="Era ephemera">
+              <span>Scene fragment / 2010–2014</span>
+              <div class="ephemera-grid"><div><small>Location</small><strong>Berghain, Bristol, the festival circuit</strong></div>
+              <div><small>Machines</small><strong>Hardware jams, granular processing, festival PAs</strong></div></div>
+              <p>Hypnosis returns as a discipline while the festival stage doubles down on euphoria.</p></aside><aside class="era-feature reveal" aria-label="Featured release for 2010-2014: hypnosis as discipline, euphoria as spectacle">
+              <div><span class="eyebrow">First suggestion / ready to play</span>
+              <h3>Sandwell District — Feed Forward</h3>
+              <p>How individual tracks refuse to announce themselves.</p></div>
+              <iframe title="Sandwell District - Feed Forward" src="https://open.spotify.com/embed/album/7m6cRQ8mKlVkaqHJsBHpJ6?utm_source=generator&theme=0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></aside>
+            <div class="album-grid"><article class="album-card" data-key="Sandwell District - Feed Forward" data-card-key="Sandwell District - Feed Forward">
+      <div class="card-meta"><span>Sandwell District</span><span>2010</span></div>
+      <h3>Feed Forward</h3><p class="note">A label aesthetic compressed into one grey, brilliant album.</p>
+      <p class="cue"><strong>Listen for</strong>How individual tracks refuse to announce themselves.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">grey</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Sandwell District - Feed Forward">Load player</button>
+      <button class="bookmark" data-key="Sandwell District - Feed Forward" aria-label="Bookmark Sandwell District - Feed Forward" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Marcel Dettmann - Dettmann" data-card-key="Marcel Dettmann - Dettmann">
+      <div class="card-meta"><span>Marcel Dettmann</span><span>2010</span></div>
+      <h3>Dettmann</h3><p class="note">Berlin techno at its most physically direct.</p>
+      <p class="cue"><strong>Listen for</strong>Kick and hat treated as the only melody required.</p>
+      <div class="tags"><span class="tag">Energy 8/10</span><span class="tag">granite</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Marcel Dettmann - Dettmann">Load player</button>
+      <button class="bookmark" data-key="Marcel Dettmann - Dettmann" aria-label="Bookmark Marcel Dettmann - Dettmann" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Above &amp; Beyond - Group Therapy" data-card-key="Above &amp; Beyond - Group Therapy">
+      <div class="card-meta"><span>Above &amp; Beyond</span><span>2011</span></div>
+      <h3>Group Therapy</h3><p class="note">Trance as communal ritual, played to arenas without irony.</p>
+      <p class="cue"><strong>Listen for</strong>The pause before the drop, used as the emotional peak.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">anthemic</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Above &amp; Beyond - Group Therapy">Load player</button>
+      <button class="bookmark" data-key="Above &amp; Beyond - Group Therapy" aria-label="Bookmark Above &amp; Beyond - Group Therapy" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Nina Kraviz - Nina Kraviz" data-card-key="Nina Kraviz - Nina Kraviz">
+      <div class="card-meta"><span>Nina Kraviz</span><span>2012</span></div>
+      <h3>Nina Kraviz</h3><p class="note">House and techno with an intimate, slightly unsettling vocal presence.</p>
+      <p class="cue"><strong>Listen for</strong>Voice used as texture, close-miked against a spare rhythm.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">intimate</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Nina Kraviz - Nina Kraviz">Load player</button>
+      <button class="bookmark" data-key="Nina Kraviz - Nina Kraviz" aria-label="Bookmark Nina Kraviz - Nina Kraviz" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Function - Incubation" data-card-key="Function - Incubation">
+      <div class="card-meta"><span>Function</span><span>2013</span></div>
+      <h3>Incubation</h3><p class="note">The long-form techno album taken seriously as a listening object.</p>
+      <p class="cue"><strong>Listen for</strong>Chord pads holding still while the drums evolve underneath.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">glacial</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Function - Incubation">Load player</button>
+      <button class="bookmark" data-key="Function - Incubation" aria-label="Bookmark Function - Incubation" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Recondite - Hinterland" data-card-key="Recondite - Hinterland">
+      <div class="card-meta"><span>Recondite</span><span>2013</span></div>
+      <h3>Hinterland</h3><p class="note">Melodic techno with real restraint, years before the term got cheapened.</p>
+      <p class="cue"><strong>Listen for</strong>Bass melodies doing the emotional work instead of leads.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">nocturnal</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Recondite - Hinterland">Load player</button>
+      <button class="bookmark" data-key="Recondite - Hinterland" aria-label="Bookmark Recondite - Hinterland" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Jon Hopkins - Immunity" data-card-key="Jon Hopkins - Immunity">
+      <div class="card-meta"><span>Jon Hopkins</span><span>2013</span></div>
+      <h3>Immunity</h3><p class="note">Club structure applied with the dynamics of a piano record.</p>
+      <p class="cue"><strong>Listen for</strong>Distortion applied to the drums as an expressive control.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">organic</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Jon Hopkins - Immunity">Load player</button>
+      <button class="bookmark" data-key="Jon Hopkins - Immunity" aria-label="Bookmark Jon Hopkins - Immunity" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Daniel Avery - Drone Logic" data-card-key="Daniel Avery - Drone Logic">
+      <div class="card-meta"><span>Daniel Avery</span><span>2013</span></div>
+      <h3>Drone Logic</h3><p class="note">A modern acid-inflected techno album that works at home and at 3am.</p>
+      <p class="cue"><strong>Listen for</strong>The main sequence slowly opening across whole tracks.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">corroded</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Daniel Avery - Drone Logic">Load player</button>
+      <button class="bookmark" data-key="Daniel Avery - Drone Logic" aria-label="Bookmark Daniel Avery - Drone Logic" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Objekt - Flatland" data-card-key="Objekt - Flatland">
+      <div class="card-meta"><span>Objekt</span><span>2014</span></div>
+      <h3>Flatland</h3><p class="note">Sound design precision applied to rhythm without losing the funk.</p>
+      <p class="cue"><strong>Listen for</strong>Every percussive hit engineered as a distinct object.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">machined</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Objekt - Flatland">Load player</button>
+      <button class="bookmark" data-key="Objekt - Flatland" aria-label="Bookmark Objekt - Flatland" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Answer Code Request - Code" data-card-key="Answer Code Request - Code">
+      <div class="card-meta"><span>Answer Code Request</span><span>2014</span></div>
+      <h3>Code</h3><p class="note">Broken rhythm folded into the Berlin template.</p>
+      <p class="cue"><strong>Listen for</strong>Kick patterns that slip out of four-to-the-floor and back.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">machined</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Answer Code Request - Code">Load player</button>
+      <button class="bookmark" data-key="Answer Code Request - Code" aria-label="Bookmark Answer Code Request - Code" aria-pressed="false">☆</button></div>
+    </article></div></section><div class="era-band" style="--era-gradient:linear-gradient(120deg,#093a35,#331046)">
+            <span>06</span><div><small>2018–2023 · Munich, Glasgow, everywhere at once</small>
+            <h2>2018-present: the argument dissolves</h2></div></div>
+            <section class="story-section" id="section-6">
+            <div class="story-copy"><span class="eyebrow">Transmission 06</span>
+            <h2>2018-present: the argument dissolves</h2><div class="reveal"><p>The current generation grew up with everything available at once and no reason to pick a side. Barker made an album with almost no kick drums that is nonetheless unmistakably rave music. Nathan Micay and Bicep write openly trance-derived melodies and get taken seriously, which would have been unthinkable in 2005. DJ Python dissolves the grid into something closer to weather.</p></div><div class="reveal"><p>At the same time the hard end got harder and stranger. Blawan builds tracks from distorted synthesis that behaves like a malfunctioning voice, and Rrose keeps the hypnotic lineage running at its most austere. What unites the era is a comfort with sentiment. After twenty years of treating euphoria as suspect, producers decided the ascent was always part of the architecture.</p></div></div><aside class="ephemera reveal" aria-label="Era ephemera">
+              <span>Scene fragment / 2018–2023</span>
+              <div class="ephemera-grid"><div><small>Location</small><strong>Munich, Glasgow, everywhere at once</strong></div>
+              <div><small>Machines</small><strong>Hybrid rigs, rave archives, streaming-first release cycles</strong></div></div>
+              <p>The two lineages stop arguing and start borrowing from each other in public.</p></aside><aside class="era-feature reveal" aria-label="Featured release for 2018-present: the argument dissolves">
+              <div><span class="eyebrow">First suggestion / ready to play</span>
+              <h3>Blawan — Wet Will Always Dry</h3>
+              <p>Modular voices bending as if under load.</p></div>
+              <iframe title="Blawan - Wet Will Always Dry" src="https://open.spotify.com/embed/album/0tAeHP4BXGplGcD6rdYXjy?utm_source=generator&theme=0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></aside>
+            <div class="album-grid"><article class="album-card" data-key="Blawan - Wet Will Always Dry" data-card-key="Blawan - Wet Will Always Dry">
+      <div class="card-meta"><span>Blawan</span><span>2018</span></div>
+      <h3>Wet Will Always Dry</h3><p class="note">Techno built from synthesis that sounds physically strained.</p>
+      <p class="cue"><strong>Listen for</strong>Modular voices bending as if under load.</p>
+      <div class="tags"><span class="tag">Energy 9/10</span><span class="tag">corroded</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Blawan - Wet Will Always Dry">Load player</button>
+      <button class="bookmark" data-key="Blawan - Wet Will Always Dry" aria-label="Bookmark Blawan - Wet Will Always Dry" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Daniel Avery - Song for Alpha" data-card-key="Daniel Avery - Song for Alpha">
+      <div class="card-meta"><span>Daniel Avery</span><span>2018</span></div>
+      <h3>Song for Alpha</h3><p class="note">Club tools and ambient interludes arranged as one long piece.</p>
+      <p class="cue"><strong>Listen for</strong>The ambient passages carrying the same tension as the beats.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">vaporous</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Daniel Avery - Song for Alpha">Load player</button>
+      <button class="bookmark" data-key="Daniel Avery - Song for Alpha" aria-label="Bookmark Daniel Avery - Song for Alpha" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Objekt - Cocoon Crush" data-card-key="Objekt - Cocoon Crush">
+      <div class="card-meta"><span>Objekt</span><span>2018</span></div>
+      <h3>Cocoon Crush</h3><p class="note">Rhythmic precision turned inward and made oddly emotional.</p>
+      <p class="cue"><strong>Listen for</strong>Small organic sounds placed inside a synthetic frame.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">machined</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Objekt - Cocoon Crush">Load player</button>
+      <button class="bookmark" data-key="Objekt - Cocoon Crush" aria-label="Bookmark Objekt - Cocoon Crush" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Nathan Micay - Blue Spring" data-card-key="Nathan Micay - Blue Spring">
+      <div class="card-meta"><span>Nathan Micay</span><span>2019</span></div>
+      <h3>Blue Spring</h3><p class="note">Trance melody rehabilitated without a trace of apology.</p>
+      <p class="cue"><strong>Listen for</strong>Themes returning like a score rather than a drop.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">luminous</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Nathan Micay - Blue Spring">Load player</button>
+      <button class="bookmark" data-key="Nathan Micay - Blue Spring" aria-label="Bookmark Nathan Micay - Blue Spring" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Barker - Utility" data-card-key="Barker - Utility">
+      <div class="card-meta"><span>Barker</span><span>2019</span></div>
+      <h3>Utility</h3><p class="note">Rave euphoria constructed almost entirely without kick drums.</p>
+      <p class="cue"><strong>Listen for</strong>Momentum generated by harmony alone.</p>
+      <div class="tags"><span class="tag">Energy 5/10</span><span class="tag">weightless</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Barker - Utility">Load player</button>
+      <button class="bookmark" data-key="Barker - Utility" aria-label="Bookmark Barker - Utility" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Special Request - Vortex" data-card-key="Special Request - Vortex">
+      <div class="card-meta"><span>Special Request</span><span>2019</span></div>
+      <h3>Vortex</h3><p class="note">Hardcore, jungle, and trance archives detonated across four discs.</p>
+      <p class="cue"><strong>Listen for</strong>Rave signifiers used as raw material rather than nostalgia.</p>
+      <div class="tags"><span class="tag">Energy 9/10</span><span class="tag">maximal</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Special Request - Vortex">Load player</button>
+      <button class="bookmark" data-key="Special Request - Vortex" aria-label="Bookmark Special Request - Vortex" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Rrose - Hymn to Moisture" data-card-key="Rrose - Hymn to Moisture">
+      <div class="card-meta"><span>Rrose</span><span>2019</span></div>
+      <h3>Hymn to Moisture</h3><p class="note">The hypnotic tradition at its most rigorous and physical.</p>
+      <p class="cue"><strong>Listen for</strong>Timbres shifting so gradually the change is felt before heard.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">subterranean</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Rrose - Hymn to Moisture">Load player</button>
+      <button class="bookmark" data-key="Rrose - Hymn to Moisture" aria-label="Bookmark Rrose - Hymn to Moisture" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="DJ Python - Mas Amable" data-card-key="DJ Python - Mas Amable">
+      <div class="card-meta"><span>DJ Python</span><span>2020</span></div>
+      <h3>Mas Amable</h3><p class="note">Reggaeton rhythm, ambient haze, and club logic held in one shape.</p>
+      <p class="cue"><strong>Listen for</strong>The pulse implied by percussion rather than stated by a kick.</p>
+      <div class="tags"><span class="tag">Energy 4/10</span><span class="tag">vaporous</span></div>
+      <div class="card-actions"><button class="load-player" data-key="DJ Python - Mas Amable">Load player</button>
+      <button class="bookmark" data-key="DJ Python - Mas Amable" aria-label="Bookmark DJ Python - Mas Amable" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Bicep - Isles" data-card-key="Bicep - Isles">
+      <div class="card-meta"><span>Bicep</span><span>2021</span></div>
+      <h3>Isles</h3><p class="note">Rave melancholy made into a genuinely popular album.</p>
+      <p class="cue"><strong>Listen for</strong>Vocal samples pitched into instruments.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">wistful</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Bicep - Isles">Load player</button>
+      <button class="bookmark" data-key="Bicep - Isles" aria-label="Bookmark Bicep - Isles" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="HAAi - Baby, We&#x27;re Ascending" data-card-key="HAAi - Baby, We&#x27;re Ascending">
+      <div class="card-meta"><span>HAAi</span><span>2022</span></div>
+      <h3>Baby, We&#x27;re Ascending</h3><p class="note">Psychedelic club music that keeps one hand on the trance lineage.</p>
+      <p class="cue"><strong>Listen for</strong>Long builds that resolve somewhere other than expected.</p>
+      <div class="tags"><span class="tag">Energy 7/10</span><span class="tag">kinetic</span></div>
+      <div class="card-actions"><button class="load-player" data-key="HAAi - Baby, We&#x27;re Ascending">Load player</button>
+      <button class="bookmark" data-key="HAAi - Baby, We&#x27;re Ascending" aria-label="Bookmark HAAi - Baby, We&#x27;re Ascending" aria-pressed="false">☆</button></div>
+    </article><article class="album-card" data-key="Overmono - Good Lies" data-card-key="Overmono - Good Lies">
+      <div class="card-meta"><span>Overmono</span><span>2023</span></div>
+      <h3>Good Lies</h3><p class="note">The current mainstream of British club music, warm and vocal-led.</p>
+      <p class="cue"><strong>Listen for</strong>Chopped vocals treated with real tenderness.</p>
+      <div class="tags"><span class="tag">Energy 6/10</span><span class="tag">wistful</span></div>
+      <div class="card-actions"><button class="load-player" data-key="Overmono - Good Lies">Load player</button>
+      <button class="bookmark" data-key="Overmono - Good Lies" aria-label="Bookmark Overmono - Good Lies" aria-pressed="false">☆</button></div>
+    </article></div></section>
+<section class="lab" id="playlist"><div class="lab-head"><span class="eyebrow">Export to Spotify</span>
+<h2>Turn this guide into a playlist</h2><p>Sign in with your own Spotify account and build a playlist from these 57 releases.
+The sign-in runs entirely in this browser using PKCE, so no secret is stored in the page and nothing is sent to a server other than Spotify.</p></div>
+<div class="playlist-panel"><div class="playlist-form">
+<label for="playlist-name">Playlist name</label><input id="playlist-name" type="text" value="Trance and Techno: The Grid and the Ascent · Musiculum">
+<label for="playlist-scope">Which records</label><select id="playlist-scope">
+<option value="all">Every release in this guide (57)</option>
+<option value="filtered">Whatever the energy map filters currently show</option>
+<option value="bookmarks">Bookmarked releases only</option></select>
+<label for="playlist-depth">How much of each</label><select id="playlist-depth">
+<option value="album">Every track, album by album</option>
+<option value="single">Opening track only</option></select>
+<label class="playlist-check"><input id="playlist-public" type="checkbox"> Make the playlist public</label>
+<button class="btn playlist-send" id="playlist-send">Send to Spotify</button></div>
+<div class="playlist-setup"><label for="playlist-client">Your Spotify app client ID</label>
+<input id="playlist-client" type="text" placeholder="Client ID from your Spotify app" autocomplete="off" spellcheck="false">
+<p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
+register the redirect URI below against it, then paste the client ID here. It is kept in this browser only, and no client secret is needed.</p>
+<p>Redirect URI to register: <code id="playlist-redirect"></code>
+<button class="btn btn-inline" id="playlist-redirect-copy">Copy</button></p>
+<p>Spotify matches this character for character. Paste it into <em>Edit settings &rarr; Redirect URIs</em>, press Add, then Save.
+A different port or <code>localhost</code> instead of <code>127.0.0.1</code> produces <em>redirect_uri: Not matching configuration</em>,
+and Spotify only reports it after you have signed in. Every guide on this address shares this one entry, so you only register it once.</p>
+<p>Spotify only accepts HTTPS or loopback addresses, so serve the guide with something like <code>python -m http.server 8000 --bind 127.0.0.1</code> rather than opening the file directly.</p>
+<p>If Spotify shows its own error page with nothing but a help link, the app itself is the problem rather than this guide.
+A new app sits in <em>development mode</em>, which requires the owning account to have Spotify Premium, and admits at most five listeners &mdash;
+each one added by name and email under <em>Settings &rarr; User Management</em>. An account that signs in without being on that list
+gets as far as the sign-in screen and is then refused.</p></div></div>
+<output class="playlist-status" id="playlist-status" aria-live="polite">Not connected to Spotify yet.</output>
+<div class="liner-share"><div><span class="eyebrow">Send the words with the music</span>
+<h3>Liner notes for whoever you share this with</h3>
+<p>A playlist arrives without context. This exports the same selection as Markdown — era by era, with every note, listening cue,
+energy and texture — and includes the playlist link once you have built one. It works even without a Spotify sign-in.
+For a version anyone can open in a browser, send them <a href="share.html">share.html — the same guide with no Spotify embeds</a>.</p></div>
+<div class="liner-actions"><button class="btn" id="liner-copy">Copy liner notes</button>
+<button class="btn" id="liner-download">Download Markdown</button>
+<output class="liner-status" id="liner-status" aria-live="polite"></output></div></div></section>
+<section class="lab" id="session-notes"><div class="lab-head"><span class="eyebrow">Private listening journal</span>
+<h2>Keep what the session reveals</h2><p>Bookmarks and notes stay in this browser. Export them as Markdown.</p></div>
+<div class="notes-panel"><div><h3>Saved releases</h3><div class="saved-list" id="saved-list"></div></div>
+<div><label for="notes-record">Release</label><select id="notes-record"></select>
+<label for="session-note">Your note</label><textarea id="session-note" placeholder="What did you notice?"></textarea>
+<div class="notes-actions"><button class="btn" id="export-notes">Export Markdown</button>
+<button class="btn" id="clear-notes">Clear saved data</button></div></div></div></section>
+<footer class="lab">Built with Musiculum · V3 · 57/57 Spotify releases resolved</footer></main></div>
+<aside class="dock empty" id="dock" aria-label="Listening dock" aria-live="polite"><div class="dock-copy">
+<small>Now exploring</small><strong id="dock-artist">Choose a release</strong>
+<span id="dock-album">The player loads only when requested.</span><span id="dock-cue"></span></div>
+<div class="player-mount" id="player-mount"></div><div class="route-progress" id="route-progress" hidden>
+<button class="btn route-prev">Previous</button><span></span><button class="btn route-next">Next</button></div></aside>
+<script>(() => {
+  const records = [{"artist": "Cybotron", "album": "Enter", "year": "1983", "note": "Juan Atkins and Rick Davis write the founding text: electro-funk as urban science fiction.", "section": "1983-1993: two cities, one drum machine", "listen_for": "The vocoder and the bassline pulling in different emotional directions.", "energy": "5", "texture": "electro", "connections": "Model 500 - Classics; 808 State - Ex:El", "spotify_id": "6J50u8Uj59kR11TncrdoDB", "key": "Cybotron - Enter", "texture_family": "propulsive", "connection_keys": ["Model 500 - Classics", "808 State - Ex:El"]}, {"artist": "Model 500", "album": "Classics", "year": "1993", "note": "Atkins alone, collecting the Metroplex sides that taught Europe what techno was.", "section": "1983-1993: two cities, one drum machine", "listen_for": "Basslines that swing like funk while the drums stay perfectly rigid.", "energy": "6", "texture": "electro", "connections": "Cybotron - Enter; Carl Craig - Landcruising", "spotify_id": "2LFSdOptnLt2lslUi5M68n", "key": "Model 500 - Classics", "texture_family": "propulsive", "connection_keys": ["Cybotron - Enter", "Carl Craig - Landcruising"]}, {"artist": "Orbital", "album": "Orbital", "year": "1991", "note": "Rave energy arranged with the patience of an album rather than a twelve-inch.", "section": "1983-1993: two cities, one drum machine", "listen_for": "Sequences layering into melody without a single obvious drop.", "energy": "6", "texture": "euphoric", "connections": "The Orb - Adventures Beyond the Ultraworld; Jam & Spoon - Tripomatic Fairytales 2001", "spotify_id": "7a129X2pYyMqHFfpKidRtr", "key": "Orbital - Orbital", "texture_family": "crystalline", "connection_keys": ["The Orb - Adventures Beyond the Ultraworld", "Jam & Spoon - Tripomatic Fairytales 2001"]}, {"artist": "The Orb", "album": "Adventures Beyond the Ultraworld", "year": "1991", "note": "Ambient house proves dance music can be a place instead of an event.", "section": "1983-1993: two cities, one drum machine", "listen_for": "Samples drifting past like weather rather than arriving as hooks.", "energy": "3", "texture": "oceanic", "connections": "Aphex Twin - Selected Ambient Works 85-92; Orbital - Orbital", "spotify_id": "0ee1sAau9a2DXQkAyezdwk", "key": "The Orb - Adventures Beyond the Ultraworld", "texture_family": "atmospheric", "connection_keys": ["Aphex Twin - Selected Ambient Works 85-92", "Orbital - Orbital"]}, {"artist": "808 State", "album": "Ex:El", "year": "1991", "note": "Manchester translates Detroit into something brighter, denser, and more pop.", "section": "1983-1993: two cities, one drum machine", "listen_for": "Bright synth lines locking to a rhythm section that stays elastic.", "energy": "7", "texture": "kinetic", "connections": "Orbital - Orbital; Cybotron - Enter", "spotify_id": "5q3FCcPTqLUT0UkrqMb45z", "key": "808 State - Ex:El", "texture_family": "propulsive", "connection_keys": ["Orbital - Orbital", "Cybotron - Enter"]}, {"artist": "Aphex Twin", "album": "Selected Ambient Works 85-92", "year": "1992", "note": "The most influential argument that machine music could be tender.", "section": "1983-1993: two cities, one drum machine", "listen_for": "Detuned pads that sound like tape slowly failing.", "energy": "4", "texture": "narcotic", "connections": "The Orb - Adventures Beyond the Ultraworld; Basic Channel - BCD", "spotify_id": "7aNclGRxTysfh6z0d8671k", "key": "Aphex Twin - Selected Ambient Works 85-92", "texture_family": "abrasive", "connection_keys": ["The Orb - Adventures Beyond the Ultraworld", "Basic Channel - BCD"]}, {"artist": "Plastikman", "album": "Sheet One", "year": "1993", "note": "Windsor-side techno at its most hallucinatory and most disciplined.", "section": "1983-1993: two cities, one drum machine", "listen_for": "A single acid line treated as a character rather than a riff.", "energy": "6", "texture": "corroded", "connections": "Plastikman - Consumed; Robert Hood - Minimal Nation", "spotify_id": "31wRVrTfonpur6rpM8wZ84", "key": "Plastikman - Sheet One", "texture_family": "abrasive", "connection_keys": ["Plastikman - Consumed", "Robert Hood - Minimal Nation"]}, {"artist": "Sven Väth", "album": "Accident In Paradise", "year": "1993", "note": "Frankfurt's key figure turns trance into a long-form, faintly psychedelic album.", "section": "1983-1993: two cities, one drum machine", "listen_for": "Melodic phrases stretched far past where a single would resolve them.", "energy": "6", "texture": "ceremonial", "connections": "Jam & Spoon - Tripomatic Fairytales 2001; Juno Reactor - Beyond the Infinite", "spotify_id": "3hy49YlLtUfF4rc6GRsZsv", "key": "Sven Väth - Accident In Paradise", "texture_family": "crystalline", "connection_keys": ["Jam & Spoon - Tripomatic Fairytales 2001", "Juno Reactor - Beyond the Infinite"]}, {"artist": "Jam & Spoon", "album": "Tripomatic Fairytales 2001", "year": "1993", "note": "The trance album as an actual album, ambitious and unashamed of melody.", "section": "1993-1996: the melody climbs, the drums get harder", "listen_for": "The breakdown that drops every drum and rebuilds from a single chord.", "energy": "7", "texture": "euphoric", "connections": "Paul van Dyk - Seven Ways; Sven Väth - Accident In Paradise", "spotify_id": "24srMCTo4eOojmFVk9iLdt", "key": "Jam & Spoon - Tripomatic Fairytales 2001", "texture_family": "crystalline", "connection_keys": ["Paul van Dyk - Seven Ways", "Sven Väth - Accident In Paradise"]}, {"artist": "Underworld", "album": "dubnobasswithmyheadman", "year": "1994", "note": "Proof a dance record could carry a voice without becoming a pop record.", "section": "1993-1996: the melody climbs, the drums get harder", "listen_for": "Loops mutating underneath a vocal that never quite becomes a chorus.", "energy": "7", "texture": "hypnotic", "connections": "Orbital - Orbital; Carl Craig - Landcruising", "spotify_id": "3WQpmFc7GonmzN40EjbbKY", "key": "Underworld - dubnobasswithmyheadman", "texture_family": "atmospheric", "connection_keys": ["Orbital - Orbital", "Carl Craig - Landcruising"]}, {"artist": "Robert Hood", "album": "Minimal Nation", "year": "1994", "note": "Minimal techno's founding document: everything unnecessary removed.", "section": "1993-1996: the melody climbs, the drums get harder", "listen_for": "The way a single hi-hat change reads as a major event.", "energy": "8", "texture": "austere", "connections": "Plastikman - Sheet One; Basic Channel - BCD", "spotify_id": "4vBBFo44z0W1hVpCBwcxUF", "key": "Robert Hood - Minimal Nation", "texture_family": "spare", "connection_keys": ["Plastikman - Sheet One", "Basic Channel - BCD"]}, {"artist": "The Future Sound of London", "album": "Lifeforms", "year": "1994", "note": "The furthest expansion of what a dance act could put on a double album.", "section": "1993-1996: the melody climbs, the drums get harder", "listen_for": "Rhythms dissolving into environments and reassembling.", "energy": "4", "texture": "oceanic", "connections": "The Orb - Adventures Beyond the Ultraworld; Aphex Twin - Selected Ambient Works 85-92", "spotify_id": "0UcHfoo7KMso767JwePBMh", "key": "The Future Sound of London - Lifeforms", "texture_family": "propulsive", "connection_keys": ["The Orb - Adventures Beyond the Ultraworld", "Aphex Twin - Selected Ambient Works 85-92"]}, {"artist": "Basic Channel", "album": "BCD", "year": "1995", "note": "Dub technique applied to techno, creating the deepest lineage in the genre.", "section": "1993-1996: the melody climbs, the drums get harder", "listen_for": "Chords buried in hiss, surfacing only when the delay allows it.", "energy": "5", "texture": "submerged", "connections": "Robert Hood - Minimal Nation; Donato Dozzy - The Aquaplano Sessions", "spotify_id": "3QiuQrKMLpt7MDgjUDvv8d", "key": "Basic Channel - BCD", "texture_family": "atmospheric", "connection_keys": ["Robert Hood - Minimal Nation", "Donato Dozzy - The Aquaplano Sessions"]}, {"artist": "Carl Craig", "album": "Landcruising", "year": "1995", "note": "Detroit's second generation makes techno that is openly beautiful.", "section": "1993-1996: the melody climbs, the drums get harder", "listen_for": "Jazz-informed chord voicings sitting on a machine rhythm.", "energy": "6", "texture": "luminous", "connections": "Underworld - dubnobasswithmyheadman; Model 500 - Classics", "spotify_id": "7nqlK1wMrmiWegPGQNS1lg", "key": "Carl Craig - Landcruising", "texture_family": "propulsive", "connection_keys": ["Underworld - dubnobasswithmyheadman", "Model 500 - Classics"]}, {"artist": "BT", "album": "Ima", "year": "1995", "note": "American trance built with obsessive, almost classical attention to arrangement.", "section": "1993-1996: the melody climbs, the drums get harder", "listen_for": "Edited vocal fragments used as a percussion layer.", "energy": "6", "texture": "crystalline", "connections": "Paul van Dyk - Seven Ways; BT - ESCM", "spotify_id": "275RXZENAjhGHPTSxelhOW", "key": "BT - Ima", "texture_family": "crystalline", "connection_keys": ["Paul van Dyk - Seven Ways", "BT - ESCM"]}, {"artist": "Juno Reactor", "album": "Beyond the Infinite", "year": "1995", "note": "Psychedelic trance as ritual music rather than club fodder.", "section": "1993-1996: the melody climbs, the drums get harder", "listen_for": "Percussion patterns that behave like drumming, not programming.", "energy": "7", "texture": "ceremonial", "connections": "Infected Mushroom - Classical Mushroom; Sven Väth - Accident In Paradise", "spotify_id": "5enrIwWSPfoefpfSgKp0xG", "key": "Juno Reactor - Beyond the Infinite", "texture_family": "propulsive", "connection_keys": ["Infected Mushroom - Classical Mushroom", "Sven Väth - Accident In Paradise"]}, {"artist": "Paul van Dyk", "album": "Seven Ways", "year": "1996", "note": "The template for melodic trance: patient, bright, structurally disciplined.", "section": "1993-1996: the melody climbs, the drums get harder", "listen_for": "How long the main theme is withheld before it finally arrives.", "energy": "7", "texture": "crystalline", "connections": "Jam & Spoon - Tripomatic Fairytales 2001; Paul van Dyk - Out There and Back", "spotify_id": "4v25SciPFniE5QNthhtJHD", "key": "Paul van Dyk - Seven Ways", "texture_family": "crystalline", "connection_keys": ["Jam & Spoon - Tripomatic Fairytales 2001", "Paul van Dyk - Out There and Back"]}, {"artist": "Robert Miles", "album": "Dreamland", "year": "1996", "note": "Trance slowed to a walking pace and taken to the top of the charts.", "section": "1993-1996: the melody climbs, the drums get harder", "listen_for": "Piano used as the lead instrument instead of a supersaw.", "energy": "5", "texture": "wistful", "connections": "Chicane - Far from the Maddening Crowds; Jam & Spoon - Tripomatic Fairytales 2001", "spotify_id": "2xmbUGAemV1kLrMswpmQpQ", "key": "Robert Miles - Dreamland", "texture_family": "crystalline", "connection_keys": ["Chicane - Far from the Maddening Crowds", "Jam & Spoon - Tripomatic Fairytales 2001"]}, {"artist": "Dave Clarke", "album": "Archive One", "year": "1996", "note": "British techno at its hardest and most direct, built for peak-time damage.", "section": "1993-1996: the melody climbs, the drums get harder", "listen_for": "Drums mixed so far forward that everything else becomes decoration.", "energy": "9", "texture": "relentless", "connections": "Robert Hood - Minimal Nation; Marcel Dettmann - Dettmann", "spotify_id": "28hk5zc37dtBb62DY1gM9B", "key": "Dave Clarke - Archive One", "texture_family": "abrasive", "connection_keys": ["Robert Hood - Minimal Nation", "Marcel Dettmann - Dettmann"]}, {"artist": "Chicane", "album": "Far from the Maddening Crowds", "year": "1997", "note": "Trance written as landscape music, warm rather than triumphal.", "section": "1997-2001: the superclub cathedral", "listen_for": "Guitar and pads carrying the melody instead of a lead synth.", "energy": "5", "texture": "pastoral", "connections": "Robert Miles - Dreamland; Paul van Dyk - Out There and Back", "spotify_id": "38STXsjk42fP4pBr8dHgi3", "key": "Chicane - Far from the Maddening Crowds", "texture_family": "atmospheric", "connection_keys": ["Robert Miles - Dreamland", "Paul van Dyk - Out There and Back"]}, {"artist": "BT", "album": "ESCM", "year": "1997", "note": "The most technically ambitious trance record of the decade.", "section": "1997-2001: the superclub cathedral", "listen_for": "Micro-edited stutters years before the technique became a cliché.", "energy": "7", "texture": "crystalline", "connections": "BT - Ima; Paul van Dyk - Out There and Back", "spotify_id": "7LkeNAcWSToYuUjuasAFMh", "key": "BT - ESCM", "texture_family": "other", "connection_keys": ["BT - Ima", "Paul van Dyk - Out There and Back"]}, {"artist": "Plastikman", "album": "Consumed", "year": "1998", "note": "Techno reduced almost to absence, and far more unsettling for it.", "section": "1997-2001: the superclub cathedral", "listen_for": "Long passages where the sub-bass is the only real information.", "energy": "3", "texture": "subterranean", "connections": "Plastikman - Sheet One; Basic Channel - BCD", "spotify_id": "1U7aY4kI9xeMuI3nD4LKBy", "key": "Plastikman - Consumed", "texture_family": "spare", "connection_keys": ["Plastikman - Sheet One", "Basic Channel - BCD"]}, {"artist": "System F", "album": "Out of the Blue", "year": "1999", "note": "Ferry Corsten's alias delivers the definitive uplifting-trance statement.", "section": "1997-2001: the superclub cathedral", "listen_for": "The lead line arriving exactly where the arrangement has promised it.", "energy": "8", "texture": "anthemic", "connections": "Paul van Dyk - Out There and Back; Tiësto - In My Memory", "spotify_id": "0Wd7GMaUkqotsEb1RCYx2V", "key": "System F - Out of the Blue", "texture_family": "crystalline", "connection_keys": ["Paul van Dyk - Out There and Back", "Tiësto - In My Memory"]}, {"artist": "Paul van Dyk", "album": "Out There and Back", "year": "2000", "note": "Peak-era melodic trance executed with unusual restraint.", "section": "1997-2001: the superclub cathedral", "listen_for": "Countermelodies quietly answering the lead line.", "energy": "8", "texture": "crystalline", "connections": "Paul van Dyk - Seven Ways; Above & Beyond - Tri-State", "spotify_id": "0PhFrwkE9TyaE6sHO83Kgv", "key": "Paul van Dyk - Out There and Back", "texture_family": "spare", "connection_keys": ["Paul van Dyk - Seven Ways", "Above & Beyond - Tri-State"]}, {"artist": "Infected Mushroom", "album": "Classical Mushroom", "year": "2000", "note": "Psytrance at its most virtuosic and most gleefully excessive.", "section": "1997-2001: the superclub cathedral", "listen_for": "Melodic runs played at a speed that borders on comedy.", "energy": "9", "texture": "maximal", "connections": "Juno Reactor - Beyond the Infinite; Special Request - Vortex", "spotify_id": "0Xj5VOTAXztlpdmgyNzoWY", "key": "Infected Mushroom - Classical Mushroom", "texture_family": "crystalline", "connection_keys": ["Juno Reactor - Beyond the Infinite", "Special Request - Vortex"]}, {"artist": "Tiësto", "album": "In My Memory", "year": "2001", "note": "The commercial summit of the trance decade, for better and worse.", "section": "1997-2001: the superclub cathedral", "listen_for": "The formula in its purest, most efficient state.", "energy": "8", "texture": "anthemic", "connections": "System F - Out of the Blue; Armin van Buuren - Imagine", "spotify_id": "4dKbxFiAYlhd7TqCosUJww", "key": "Tiësto - In My Memory", "texture_family": "other", "connection_keys": ["System F - Out of the Blue", "Armin van Buuren - Imagine"]}, {"artist": "Sasha", "album": "Airdrawndagger", "year": "2002", "note": "A superstar DJ walks away from the dance floor mid-career.", "section": "2002-2009: the minimal correction", "listen_for": "Beats arriving late, if at all, under long harmonic washes.", "energy": "3", "texture": "nocturnal", "connections": "Chicane - Far from the Maddening Crowds; James Holden - The Idiots Are Winning", "spotify_id": "3EDpoJZaAOddQOVoOMbki7", "key": "Sasha - Airdrawndagger", "texture_family": "atmospheric", "connection_keys": ["Chicane - Far from the Maddening Crowds", "James Holden - The Idiots Are Winning"]}, {"artist": "Isolée", "album": "We Are Monster", "year": "2005", "note": "Microhouse with real songwriting hiding inside the detail.", "section": "2002-2009: the minimal correction", "listen_for": "Tiny clicks accumulating into something that reads as melody.", "energy": "5", "texture": "filigree", "connections": "Ricardo Villalobos - Salvador; Nathan Fake - Drowning in a Sea of Love", "spotify_id": "3zfaDqsRGwSZrDvoJccolT", "key": "Isolée - We Are Monster", "texture_family": "crystalline", "connection_keys": ["Ricardo Villalobos - Salvador", "Nathan Fake - Drowning in a Sea of Love"]}, {"artist": "Ricardo Villalobos", "album": "Salvador", "year": "2006", "note": "Minimal made warm, strange, and unmistakably human.", "section": "2002-2009: the minimal correction", "listen_for": "Percussion that swings enough to feel played rather than programmed.", "energy": "5", "texture": "wonky", "connections": "Isolée - We Are Monster; Nina Kraviz - Nina Kraviz", "spotify_id": "6yaGP4bQqS3OowkQNs9NiL", "key": "Ricardo Villalobos - Salvador", "texture_family": "propulsive", "connection_keys": ["Isolée - We Are Monster", "Nina Kraviz - Nina Kraviz"]}, {"artist": "Nathan Fake", "album": "Drowning in a Sea of Love", "year": "2006", "note": "Trance harmony smuggled back in under layers of distortion.", "section": "2002-2009: the minimal correction", "listen_for": "Melodies clipping and breaking up as they get louder.", "energy": "6", "texture": "corroded", "connections": "James Holden - The Idiots Are Winning; Nathan Micay - Blue Spring", "spotify_id": "72o9woMj9a9eq8bcc1yGbI", "key": "Nathan Fake - Drowning in a Sea of Love", "texture_family": "abrasive", "connection_keys": ["James Holden - The Idiots Are Winning", "Nathan Micay - Blue Spring"]}, {"artist": "James Holden", "album": "The Idiots Are Winning", "year": "2006", "note": "Analogue instability treated as a compositional resource.", "section": "2002-2009: the minimal correction", "listen_for": "Sequences drifting out of time on purpose and staying there.", "energy": "6", "texture": "unstable", "connections": "Nathan Fake - Drowning in a Sea of Love; Jon Hopkins - Immunity", "spotify_id": "2AoS2OI3y6wHDeZ5KfSw13", "key": "James Holden - The Idiots Are Winning", "texture_family": "crystalline", "connection_keys": ["Nathan Fake - Drowning in a Sea of Love", "Jon Hopkins - Immunity"]}, {"artist": "Trentemøller", "album": "The Last Resort", "year": "2006", "note": "The Scandinavian answer: melancholy techno with cinematic patience.", "section": "2002-2009: the minimal correction", "listen_for": "Acoustic textures placed inside an otherwise electronic mix.", "energy": "4", "texture": "nocturnal", "connections": "Isolée - We Are Monster; Recondite - Hinterland", "spotify_id": "77yan5ZgQeCzOUNWX8qwsu", "key": "Trentemøller - The Last Resort", "texture_family": "atmospheric", "connection_keys": ["Isolée - We Are Monster", "Recondite - Hinterland"]}, {"artist": "Above & Beyond", "album": "Tri-State", "year": "2006", "note": "Vocal trance built with genuine songwriting rather than a topline bolted on.", "section": "2002-2009: the minimal correction", "listen_for": "Lyrics phrased to fit the build instead of fighting it.", "energy": "7", "texture": "anthemic", "connections": "Paul van Dyk - Out There and Back; Above & Beyond - Group Therapy", "spotify_id": "7oGejxIa9yVGrUvwt74OPU", "key": "Above & Beyond - Tri-State", "texture_family": "other", "connection_keys": ["Paul van Dyk - Out There and Back", "Above & Beyond - Group Therapy"]}, {"artist": "Armin van Buuren", "album": "Imagine", "year": "2008", "note": "The mainstream lineage at full scale and full confidence.", "section": "2002-2009: the minimal correction", "listen_for": "How the mix is engineered for a field rather than a room.", "energy": "8", "texture": "anthemic", "connections": "Tiësto - In My Memory; Above & Beyond - Group Therapy", "spotify_id": "0DJcrAJy2n8luCPGvxM5sl", "key": "Armin van Buuren - Imagine", "texture_family": "other", "connection_keys": ["Tiësto - In My Memory", "Above & Beyond - Group Therapy"]}, {"artist": "Ben Klock", "album": "One", "year": "2009", "note": "The Berghain sound codified: dry, heavy, and endlessly patient.", "section": "2002-2009: the minimal correction", "listen_for": "Reverb used for depth rather than for drama.", "energy": "8", "texture": "granite", "connections": "Marcel Dettmann - Dettmann; Sandwell District - Feed Forward", "spotify_id": "70953C7J7cSV9JUnSD2ujN", "key": "Ben Klock - One", "texture_family": "atmospheric", "connection_keys": ["Marcel Dettmann - Dettmann", "Sandwell District - Feed Forward"]}, {"artist": "Donato Dozzy", "album": "The Aquaplano Sessions", "year": "2009", "note": "Hypnotic techno as an unhurried, almost meditative practice.", "section": "2002-2009: the minimal correction", "listen_for": "Filter movement so slow it registers as breathing.", "energy": "4", "texture": "submerged", "connections": "Basic Channel - BCD; Rrose - Hymn to Moisture", "spotify_id": "48Q9AkNGWuhtutg55ekM8l", "key": "Donato Dozzy - The Aquaplano Sessions", "texture_family": "atmospheric", "connection_keys": ["Basic Channel - BCD", "Rrose - Hymn to Moisture"]}, {"artist": "Sandwell District", "album": "Feed Forward", "year": "2010", "note": "A label aesthetic compressed into one grey, brilliant album.", "section": "2010-2014: hypnosis as discipline, euphoria as spectacle", "listen_for": "How individual tracks refuse to announce themselves.", "energy": "7", "texture": "grey", "connections": "Ben Klock - One; Function - Incubation", "spotify_id": "7m6cRQ8mKlVkaqHJsBHpJ6", "key": "Sandwell District - Feed Forward", "texture_family": "other", "connection_keys": ["Ben Klock - One", "Function - Incubation"]}, {"artist": "Marcel Dettmann", "album": "Dettmann", "year": "2010", "note": "Berlin techno at its most physically direct.", "section": "2010-2014: hypnosis as discipline, euphoria as spectacle", "listen_for": "Kick and hat treated as the only melody required.", "energy": "8", "texture": "granite", "connections": "Ben Klock - One; Blawan - Wet Will Always Dry", "spotify_id": "75ilFqVdPdEXeA1EZmW8oC", "key": "Marcel Dettmann - Dettmann", "texture_family": "crystalline", "connection_keys": ["Ben Klock - One", "Blawan - Wet Will Always Dry"]}, {"artist": "Above & Beyond", "album": "Group Therapy", "year": "2011", "note": "Trance as communal ritual, played to arenas without irony.", "section": "2010-2014: hypnosis as discipline, euphoria as spectacle", "listen_for": "The pause before the drop, used as the emotional peak.", "energy": "7", "texture": "anthemic", "connections": "Above & Beyond - Tri-State; Armin van Buuren - Imagine", "spotify_id": "2I6sty06i8pXtu175kAfHa", "key": "Above & Beyond - Group Therapy", "texture_family": "other", "connection_keys": ["Above & Beyond - Tri-State", "Armin van Buuren - Imagine"]}, {"artist": "Nina Kraviz", "album": "Nina Kraviz", "year": "2012", "note": "House and techno with an intimate, slightly unsettling vocal presence.", "section": "2010-2014: hypnosis as discipline, euphoria as spectacle", "listen_for": "Voice used as texture, close-miked against a spare rhythm.", "energy": "5", "texture": "intimate", "connections": "Ricardo Villalobos - Salvador; Objekt - Flatland", "spotify_id": "4obvGroj4Sg4PbuLfdhFSo", "key": "Nina Kraviz - Nina Kraviz", "texture_family": "propulsive", "connection_keys": ["Ricardo Villalobos - Salvador", "Objekt - Flatland"]}, {"artist": "Function", "album": "Incubation", "year": "2013", "note": "The long-form techno album taken seriously as a listening object.", "section": "2010-2014: hypnosis as discipline, euphoria as spectacle", "listen_for": "Chord pads holding still while the drums evolve underneath.", "energy": "6", "texture": "glacial", "connections": "Sandwell District - Feed Forward; Answer Code Request - Code", "spotify_id": "5qCv1rG71oIVIYEmDAej9T", "key": "Function - Incubation", "texture_family": "propulsive", "connection_keys": ["Sandwell District - Feed Forward", "Answer Code Request - Code"]}, {"artist": "Recondite", "album": "Hinterland", "year": "2013", "note": "Melodic techno with real restraint, years before the term got cheapened.", "section": "2010-2014: hypnosis as discipline, euphoria as spectacle", "listen_for": "Bass melodies doing the emotional work instead of leads.", "energy": "5", "texture": "nocturnal", "connections": "Trentemøller - The Last Resort; Donato Dozzy - The Aquaplano Sessions", "spotify_id": "2jLfr5ScoumKyGPN27IHbW", "key": "Recondite - Hinterland", "texture_family": "crystalline", "connection_keys": ["Trentemøller - The Last Resort", "Donato Dozzy - The Aquaplano Sessions"]}, {"artist": "Jon Hopkins", "album": "Immunity", "year": "2013", "note": "Club structure applied with the dynamics of a piano record.", "section": "2010-2014: hypnosis as discipline, euphoria as spectacle", "listen_for": "Distortion applied to the drums as an expressive control.", "energy": "6", "texture": "organic", "connections": "James Holden - The Idiots Are Winning; Daniel Avery - Drone Logic", "spotify_id": "0Dg1KwgmtUzeMQonDCUFhQ", "key": "Jon Hopkins - Immunity", "texture_family": "abrasive", "connection_keys": ["James Holden - The Idiots Are Winning", "Daniel Avery - Drone Logic"]}, {"artist": "Daniel Avery", "album": "Drone Logic", "year": "2013", "note": "A modern acid-inflected techno album that works at home and at 3am.", "section": "2010-2014: hypnosis as discipline, euphoria as spectacle", "listen_for": "The main sequence slowly opening across whole tracks.", "energy": "7", "texture": "corroded", "connections": "Jon Hopkins - Immunity; Daniel Avery - Song for Alpha", "spotify_id": "4YyIMkBBycarBwHmccNQCL", "key": "Daniel Avery - Drone Logic", "texture_family": "other", "connection_keys": ["Jon Hopkins - Immunity", "Daniel Avery - Song for Alpha"]}, {"artist": "Objekt", "album": "Flatland", "year": "2014", "note": "Sound design precision applied to rhythm without losing the funk.", "section": "2010-2014: hypnosis as discipline, euphoria as spectacle", "listen_for": "Every percussive hit engineered as a distinct object.", "energy": "7", "texture": "machined", "connections": "Answer Code Request - Code; Objekt - Cocoon Crush", "spotify_id": "6ivoB6sPFTK6QstDknrer5", "key": "Objekt - Flatland", "texture_family": "propulsive", "connection_keys": ["Answer Code Request - Code", "Objekt - Cocoon Crush"]}, {"artist": "Answer Code Request", "album": "Code", "year": "2014", "note": "Broken rhythm folded into the Berlin template.", "section": "2010-2014: hypnosis as discipline, euphoria as spectacle", "listen_for": "Kick patterns that slip out of four-to-the-floor and back.", "energy": "7", "texture": "machined", "connections": "Function - Incubation; Objekt - Flatland", "spotify_id": "641zmopewAWlGoaiYDBXQF", "key": "Answer Code Request - Code", "texture_family": "propulsive", "connection_keys": ["Function - Incubation", "Objekt - Flatland"]}, {"artist": "Blawan", "album": "Wet Will Always Dry", "year": "2018", "note": "Techno built from synthesis that sounds physically strained.", "section": "2018-present: the argument dissolves", "listen_for": "Modular voices bending as if under load.", "energy": "9", "texture": "corroded", "connections": "Marcel Dettmann - Dettmann; Rrose - Hymn to Moisture", "spotify_id": "0tAeHP4BXGplGcD6rdYXjy", "key": "Blawan - Wet Will Always Dry", "texture_family": "atmospheric", "connection_keys": ["Marcel Dettmann - Dettmann", "Rrose - Hymn to Moisture"]}, {"artist": "Daniel Avery", "album": "Song for Alpha", "year": "2018", "note": "Club tools and ambient interludes arranged as one long piece.", "section": "2018-present: the argument dissolves", "listen_for": "The ambient passages carrying the same tension as the beats.", "energy": "5", "texture": "vaporous", "connections": "Daniel Avery - Drone Logic; Barker - Utility", "spotify_id": "1pRW9QUwa7gr8qSBs0T59N", "key": "Daniel Avery - Song for Alpha", "texture_family": "atmospheric", "connection_keys": ["Daniel Avery - Drone Logic", "Barker - Utility"]}, {"artist": "Objekt", "album": "Cocoon Crush", "year": "2018", "note": "Rhythmic precision turned inward and made oddly emotional.", "section": "2018-present: the argument dissolves", "listen_for": "Small organic sounds placed inside a synthetic frame.", "energy": "5", "texture": "machined", "connections": "Objekt - Flatland; DJ Python - Mas Amable", "spotify_id": "2vE3mTa7olXTXbHb6t2XjE", "key": "Objekt - Cocoon Crush", "texture_family": "atmospheric", "connection_keys": ["Objekt - Flatland", "DJ Python - Mas Amable"]}, {"artist": "Nathan Micay", "album": "Blue Spring", "year": "2019", "note": "Trance melody rehabilitated without a trace of apology.", "section": "2018-present: the argument dissolves", "listen_for": "Themes returning like a score rather than a drop.", "energy": "6", "texture": "luminous", "connections": "Nathan Fake - Drowning in a Sea of Love; Bicep - Isles", "spotify_id": "4K8ggbbaVkoq9rRLeV593t", "key": "Nathan Micay - Blue Spring", "texture_family": "crystalline", "connection_keys": ["Nathan Fake - Drowning in a Sea of Love", "Bicep - Isles"]}, {"artist": "Barker", "album": "Utility", "year": "2019", "note": "Rave euphoria constructed almost entirely without kick drums.", "section": "2018-present: the argument dissolves", "listen_for": "Momentum generated by harmony alone.", "energy": "5", "texture": "weightless", "connections": "Daniel Avery - Song for Alpha; Bicep - Isles", "spotify_id": "5F3YJdIjGHhnUVuD96G1mz", "key": "Barker - Utility", "texture_family": "propulsive", "connection_keys": ["Daniel Avery - Song for Alpha", "Bicep - Isles"]}, {"artist": "Special Request", "album": "Vortex", "year": "2019", "note": "Hardcore, jungle, and trance archives detonated across four discs.", "section": "2018-present: the argument dissolves", "listen_for": "Rave signifiers used as raw material rather than nostalgia.", "energy": "9", "texture": "maximal", "connections": "Infected Mushroom - Classical Mushroom; HAAi - Baby, We're Ascending", "spotify_id": "0An9ajAlra8S61UiP3YY8w", "key": "Special Request - Vortex", "texture_family": "other", "connection_keys": ["Infected Mushroom - Classical Mushroom", "HAAi - Baby, We're Ascending"]}, {"artist": "Rrose", "album": "Hymn to Moisture", "year": "2019", "note": "The hypnotic tradition at its most rigorous and physical.", "section": "2018-present: the argument dissolves", "listen_for": "Timbres shifting so gradually the change is felt before heard.", "energy": "7", "texture": "subterranean", "connections": "Donato Dozzy - The Aquaplano Sessions; Blawan - Wet Will Always Dry", "spotify_id": "5r2XnC9GffhrQZH6o21EYl", "key": "Rrose - Hymn to Moisture", "texture_family": "atmospheric", "connection_keys": ["Donato Dozzy - The Aquaplano Sessions", "Blawan - Wet Will Always Dry"]}, {"artist": "DJ Python", "album": "Mas Amable", "year": "2020", "note": "Reggaeton rhythm, ambient haze, and club logic held in one shape.", "section": "2018-present: the argument dissolves", "listen_for": "The pulse implied by percussion rather than stated by a kick.", "energy": "4", "texture": "vaporous", "connections": "Objekt - Cocoon Crush; Barker - Utility", "spotify_id": "1mYtdqUb7u9yJQLybac7CR", "key": "DJ Python - Mas Amable", "texture_family": "propulsive", "connection_keys": ["Objekt - Cocoon Crush", "Barker - Utility"]}, {"artist": "Bicep", "album": "Isles", "year": "2021", "note": "Rave melancholy made into a genuinely popular album.", "section": "2018-present: the argument dissolves", "listen_for": "Vocal samples pitched into instruments.", "energy": "6", "texture": "wistful", "connections": "Nathan Micay - Blue Spring; Overmono - Good Lies", "spotify_id": "0EdtTRCl3J22AnWrNpH1w9", "key": "Bicep - Isles", "texture_family": "other", "connection_keys": ["Nathan Micay - Blue Spring", "Overmono - Good Lies"]}, {"artist": "HAAi", "album": "Baby, We're Ascending", "year": "2022", "note": "Psychedelic club music that keeps one hand on the trance lineage.", "section": "2018-present: the argument dissolves", "listen_for": "Long builds that resolve somewhere other than expected.", "energy": "7", "texture": "kinetic", "connections": "Barker - Utility; Overmono - Good Lies", "spotify_id": "78C99zbd0p19B2OmCKVbaN", "key": "HAAi - Baby, We're Ascending", "texture_family": "propulsive", "connection_keys": ["Barker - Utility", "Overmono - Good Lies"]}, {"artist": "Overmono", "album": "Good Lies", "year": "2023", "note": "The current mainstream of British club music, warm and vocal-led.", "section": "2018-present: the argument dissolves", "listen_for": "Chopped vocals treated with real tenderness.", "energy": "6", "texture": "wistful", "connections": "Bicep - Isles; HAAi - Baby, We're Ascending", "spotify_id": "7m2yEFYxnjmEyq7IXa9sXp", "key": "Overmono - Good Lies", "texture_family": "other", "connection_keys": ["Bicep - Isles", "HAAi - Baby, We're Ascending"]}];
+  const routes = {"first-ascent": ["Cybotron - Enter", "Jam & Spoon - Tripomatic Fairytales 2001", "Paul van Dyk - Seven Ways", "Chicane - Far from the Maddening Crowds"], "the-long-hypnosis": ["Basic Channel - BCD", "Plastikman - Consumed", "Donato Dozzy - The Aquaplano Sessions", "Rrose - Hymn to Moisture"], "hard-floor-pressure": ["Robert Hood - Minimal Nation", "Dave Clarke - Archive One", "Marcel Dettmann - Dettmann", "Blawan - Wet Will Always Dry"], "melody-returns": ["Robert Miles - Dreamland", "Nathan Fake - Drowning in a Sea of Love", "Nathan Micay - Blue Spring", "Bicep - Isles"]};
+  const byKey = new Map(records.map(record => [record.key, record]));
+  const storageKey = 'musiculum:trance-and-techno-the-grid-and-the-ascent:v3';
+  const emptyState = () => ({ bookmarks: [], notes: {}, recent: [], activeKey: '', route: null });
+  let state;
+  try { state = { ...emptyState(), ...JSON.parse(localStorage.getItem(storageKey) || '{}') }; }
+  catch { state = emptyState(); }
+  if (!Array.isArray(state.bookmarks)) state.bookmarks = [];
+  if (!Array.isArray(state.recent)) state.recent = [];
+  if (!state.notes || typeof state.notes !== 'object') state.notes = {};
+  let activeRoute = state.route;
+  const save = () => {
+    try { localStorage.setItem(storageKey, JSON.stringify(state)); }
+    catch { /* Keep the listening session usable when storage is unavailable. */ }
+  };
+  const dock = document.querySelector('#dock');
+  const playerMount = document.querySelector('#player-mount');
+  const dockArtist = document.querySelector('#dock-artist');
+  const dockAlbum = document.querySelector('#dock-album');
+  const dockCue = document.querySelector('#dock-cue');
+  const routeProgress = document.querySelector('#route-progress');
+
+  const selectRecord = (key, options = {}) => {
+    const record = byKey.get(key);
+    if (!record) return;
+    playerMount.replaceChildren();
+    if (record.spotify_id) {
+      const iframe = document.createElement('iframe');
+      iframe.title = `${record.artist} - ${record.album}`;
+      iframe.src = `https://open.spotify.com/embed/album/${record.spotify_id}?utm_source=generator&theme=0`;
+      iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+      iframe.loading = 'lazy';
+      playerMount.append(iframe);
+    }
+    dock.classList.remove('empty');
+    dockArtist.textContent = record.artist;
+    dockAlbum.textContent = record.album;
+    dockCue.textContent = record.listen_for || record.note || '';
+    state.activeKey = key;
+    state.recent = [key, ...state.recent.filter(value => value !== key)].slice(0, 8);
+    save();
+    document.querySelectorAll('.album-card').forEach(card => card.classList.toggle('selected', card.dataset.key === key));
+    notesSelect.value = key;
+    loadNote();
+    if (!options.keepPosition) document.querySelector(`[data-card-key="${CSS.escape(key)}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    updateRouteProgress();
+  };
+
+  const updateRouteProgress = () => {
+    if (!activeRoute || !routes[activeRoute.name]) {
+      routeProgress.hidden = true;
+      return;
+    }
+    const route = routes[activeRoute.name];
+    routeProgress.hidden = false;
+    routeProgress.querySelector('span').textContent = `${activeRoute.name.replaceAll('-', ' ')} · ${activeRoute.index + 1}/${route.length}`;
+    routeProgress.querySelector('.route-prev').disabled = activeRoute.index === 0;
+    routeProgress.querySelector('.route-next').disabled = activeRoute.index >= route.length - 1;
+  };
+
+  document.addEventListener('click', event => {
+    const target = event.target.closest('.load-player,.record-target');
+    if (target) selectRecord(target.dataset.key, { keepPosition: !target.matches('.load-player') });
+    const bookmark = event.target.closest('.bookmark');
+    if (bookmark) {
+      const key = bookmark.dataset.key;
+      state.bookmarks = state.bookmarks.includes(key) ? state.bookmarks.filter(value => value !== key) : [...state.bookmarks, key];
+      save(); renderBookmarks();
+    }
+    const routeButton = event.target.closest('.route-start');
+    if (routeButton) {
+      activeRoute = { name: routeButton.dataset.route, index: 0 };
+      state.route = activeRoute; save();
+      selectRecord(routes[activeRoute.name][0], { keepPosition: true });
+    }
+  });
+  document.addEventListener('keydown', event => {
+    if ((event.key === 'Enter' || event.key === ' ') && event.target.matches('.record-target')) {
+      event.preventDefault(); selectRecord(event.target.dataset.key);
+    }
+  });
+  routeProgress.querySelector('.route-prev').addEventListener('click', () => {
+    if (activeRoute.index > 0) activeRoute.index -= 1;
+    state.route = activeRoute; save(); selectRecord(routes[activeRoute.name][activeRoute.index], { keepPosition: true });
+  });
+  routeProgress.querySelector('.route-next').addEventListener('click', () => {
+    if (activeRoute.index < routes[activeRoute.name].length - 1) activeRoute.index += 1;
+    state.route = activeRoute; save(); selectRecord(routes[activeRoute.name][activeRoute.index], { keepPosition: true });
+  });
+
+  const artistFilter = document.querySelector('#artist-filter');
+  const textureFilter = document.querySelector('#texture-filter');
+  const energyFilter = document.querySelector('#energy-filter');
+  const visibleRecords = () => records.filter(record =>
+    (!artistFilter.value || record.artist.toLocaleLowerCase().includes(artistFilter.value.toLocaleLowerCase())) &&
+    (!textureFilter.value || (record.texture_family || 'other') === textureFilter.value) &&
+    Number(record.energy || 5) >= Number(energyFilter.value)
+  );
+  const updateFilters = () => {
+    const visible = new Set(visibleRecords().map(record => record.key));
+    document.querySelectorAll('.album-card,.atlas-record').forEach(element => {
+      const isVisible = visible.has(element.dataset.key);
+      element.toggleAttribute('hidden', !isVisible);
+      element.style.display = isVisible ? '' : 'none';
+    });
+    document.querySelector('#result-count').textContent = `${visible.size} of ${records.length} releases`;
+  };
+  [artistFilter, textureFilter, energyFilter].forEach(control => control.addEventListener('input', updateFilters));
+  document.querySelector('#reset-filters').addEventListener('click', () => {
+    artistFilter.value = ''; textureFilter.value = ''; energyFilter.value = '1'; updateFilters();
+  });
+  updateFilters();
+
+  document.querySelectorAll('.crate-dig').forEach(button => button.addEventListener('click', () => {
+    const visible = visibleRecords();
+    const fresh = visible.filter(record => !state.recent.includes(record.key));
+    const pool = fresh.length ? fresh : visible;
+    if (!pool.length) return;
+    const record = pool[Math.floor(Math.random() * pool.length)];
+    selectRecord(record.key);
+  }));
+
+  const notesSelect = document.querySelector('#notes-record');
+  records.forEach(record => {
+    const option = document.createElement('option'); option.value = record.key; option.textContent = record.key; notesSelect.append(option);
+  });
+  const notesArea = document.querySelector('#session-note');
+  const loadNote = () => notesArea.value = state.notes[notesSelect.value] || '';
+  notesSelect.addEventListener('change', loadNote);
+  notesArea.addEventListener('input', () => {
+    if (notesArea.value) state.notes[notesSelect.value] = notesArea.value;
+    else delete state.notes[notesSelect.value];
+    save();
+  });
+  const renderBookmarks = () => {
+    document.querySelectorAll('.album-card').forEach(card => card.classList.toggle('bookmarked', state.bookmarks.includes(card.dataset.key)));
+    document.querySelectorAll('.bookmark').forEach(button => {
+      const saved = state.bookmarks.includes(button.dataset.key);
+      button.textContent = saved ? '★' : '☆'; button.setAttribute('aria-pressed', String(saved));
+    });
+    const list = document.querySelector('#saved-list');
+    list.replaceChildren();
+    state.bookmarks.forEach(key => {
+      const item = document.createElement('div'); item.className = 'saved-item';
+      const button = document.createElement('button'); button.className = 'text-link record-target'; button.dataset.key = key; button.textContent = key;
+      const marker = document.createElement('span'); marker.textContent = state.notes[key] ? 'note saved' : 'bookmarked';
+      item.append(button, marker); list.append(item);
+    });
+    if (!state.bookmarks.length) list.textContent = 'No saved releases yet.';
+  };
+  document.querySelector('#export-notes').addEventListener('click', () => {
+    const lines = ['# Trance and Techno: The Grid and the Ascent — session notes', ''];
+    for (const record of records) {
+      if (!state.bookmarks.includes(record.key) && !state.notes[record.key]) continue;
+      lines.push(`## ${record.key}`, '', state.notes[record.key] || '_Bookmarked_', '');
+    }
+    const blob = new Blob([lines.join('\n')], { type: 'text/markdown' });
+    const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'trance-and-techno-the-grid-and-the-ascent-session-notes.md'; link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  });
+  document.querySelector('#clear-notes').addEventListener('click', () => {
+    state = { ...emptyState(), recent: state.recent, activeKey: state.activeKey };
+    save(); notesArea.value = ''; renderBookmarks();
+  });
+  if (state.activeKey && byKey.has(state.activeKey)) { notesSelect.value = state.activeKey; }
+  loadNote(); renderBookmarks(); updateRouteProgress();
+
+  // Spotify playlist export: Authorization Code with PKCE, so the page needs no client secret and no server.
+  const playlistName = document.querySelector('#playlist-name');
+  const playlistScope = document.querySelector('#playlist-scope');
+  const playlistDepth = document.querySelector('#playlist-depth');
+  const playlistPublic = document.querySelector('#playlist-public');
+  const playlistClient = document.querySelector('#playlist-client');
+  const playlistSend = document.querySelector('#playlist-send');
+  const playlistStatus = document.querySelector('#playlist-status');
+  const linerCopy = document.querySelector('#liner-copy');
+  const linerDownload = document.querySelector('#liner-download');
+  const linerStatus = document.querySelector('#liner-status');
+  // One redirect URI for every guide on this host, so only a single entry needs registering with Spotify.
+  const redirectUri = new URL('../callback.html', location.href).href;
+  const clientStorageKey = 'musiculum:spotify-client-id';
+  const pkceKey = 'musiculum:spotify-pkce';
+  const returnKey = 'musiculum:spotify-return';
+  const resultKey = 'musiculum:spotify-result';
+  const intentKey = 'musiculum:spotify-intent:trance-and-techno-the-grid-and-the-ascent';
+  let accessToken = '';
+  document.querySelector('#playlist-redirect').textContent = redirectUri;
+  document.querySelector('#playlist-redirect-copy').addEventListener('click', async event => {
+    try { await navigator.clipboard.writeText(redirectUri); event.target.textContent = 'Copied'; }
+    catch { event.target.textContent = 'Select it manually'; }
+    setTimeout(() => event.target.textContent = 'Copy', 2000);
+  });
+  playlistClient.value = localStorage.getItem(clientStorageKey) || '';
+
+  const setPlaylistStatus = (message, isError = false) => {
+    playlistStatus.replaceChildren(message instanceof Node ? message : document.createTextNode(message));
+    playlistStatus.classList.toggle('error', isError);
+  };
+  const readSession = key => {
+    try { const value = sessionStorage.getItem(key); sessionStorage.removeItem(key); return value ? JSON.parse(value) : null; }
+    catch { return null; }
+  };
+  const randomString = length => {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
+    return [...crypto.getRandomValues(new Uint8Array(length))].map(byte => alphabet[byte % alphabet.length]).join('');
+  };
+  const base64url = buffer => btoa(String.fromCharCode(...new Uint8Array(buffer))).replaceAll('+', '-').replaceAll('/', '_').replaceAll('=', '');
+
+  const spotifyApi = async (path, options = {}) => {
+    const url = path.startsWith('http') ? path : `https://api.spotify.com/v1${path}`;
+    const response = await fetch(url, {
+      ...options,
+      headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json', ...(options.headers || {}) }
+    });
+    if (response.status === 429) {
+      const wait = Number(response.headers.get('Retry-After') || 2);
+      await new Promise(resolve => setTimeout(resolve, (wait + 1) * 1000));
+      return spotifyApi(path, options);
+    }
+    if (response.status === 401) throw new Error('The Spotify session expired. Send again to sign in.');
+    if (response.status === 403) {
+      const detail = await response.json().catch(() => null);
+      const reason = detail?.error?.message ? `${detail.error.message}. ` : '';
+      throw new Error(`${reason}Spotify blocks this unless the app owner has Premium and every listener is added under Settings \u2192 User Management in the developer dashboard (five maximum while the app is in development mode).`);
+    }
+    if (!response.ok) {
+      const detail = await response.json().catch(() => null);
+      throw new Error(detail?.error?.message || `Spotify refused the request (HTTP ${response.status}).`);
+    }
+    return response.status === 204 ? null : response.json();
+  };
+
+  const scopedRecords = () => playlistScope.value === 'bookmarks' ? records.filter(record => state.bookmarks.includes(record.key))
+    : playlistScope.value === 'filtered' ? visibleRecords()
+    : records;
+  const playlistRecords = () => scopedRecords().filter(record => record.spotify_id);
+
+  let playlistUrl = '';
+  const linerNotes = () => {
+    const chosen = scopedRecords();
+    const lines = ['# Trance and Techno: The Grid and the Ascent', '', 'Six eras of four-to-the-floor music, tracing the argument between techno\'s grid and trance\'s ascent.', ''];
+    if (playlistUrl) lines.push(`Playlist: ${playlistUrl}`, '');
+    lines.push(`${chosen.length} releases, in listening order.`, '');
+    let era = '';
+    chosen.forEach((record, index) => {
+      if (record.section && record.section !== era) {
+        era = record.section;
+        lines.push(`## ${era}`, '');
+      }
+      const year = record.year ? ` (${record.year})` : '';
+      const missing = record.spotify_id ? '' : ' — not on Spotify';
+      lines.push(`### ${String(index + 1).padStart(2, '0')}. ${record.artist} — ${record.album}${year}${missing}`, '');
+      if (record.note) lines.push(record.note, '');
+      if (record.listen_for) lines.push(`*Listen for:* ${record.listen_for}`, '');
+      lines.push(`Energy ${record.energy || '5'}/10 · ${record.texture || 'unclassified'}`, '');
+    });
+    lines.push('---', '', 'Notes from the Musiculum listening guide: Trance and Techno: The Grid and the Ascent.');
+    return lines.join('\n');
+  };
+
+  const setLinerStatus = message => linerStatus.textContent = message;
+  linerCopy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(linerNotes());
+      setLinerStatus(`Copied notes for ${scopedRecords().length} releases.`);
+    } catch {
+      setLinerStatus('This browser blocked the clipboard. Use the download instead.');
+    }
+  });
+  linerDownload.addEventListener('click', () => {
+    const blob = new Blob([linerNotes()], { type: 'text/markdown' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob); link.download = 'trance-and-techno-the-grid-and-the-ascent-liner-notes.md'; link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    setLinerStatus(`Downloaded notes for ${scopedRecords().length} releases.`);
+  });
+  playlistScope.addEventListener('change', () => setLinerStatus(`Ready to share notes for ${scopedRecords().length} releases.`));
+  setLinerStatus(`Ready to share notes for ${records.length} releases.`);
+
+  const buildPlaylist = async () => {
+    const chosen = playlistRecords();
+    if (!chosen.length) { setPlaylistStatus('No releases match that selection.', true); return; }
+    playlistSend.disabled = true;
+    try {
+      const wholeAlbums = playlistDepth.value === 'album';
+      const uris = [];
+      for (let index = 0; index < chosen.length; index += 20) {
+        const batch = chosen.slice(index, index + 20);
+        setPlaylistStatus(`Reading track lists… ${index + batch.length}/${chosen.length} releases.`);
+        const data = await spotifyApi(`/albums?ids=${batch.map(record => record.spotify_id).join(',')}`);
+        for (const album of data.albums || []) {
+          if (!album) continue;
+          const tracks = [...(album.tracks?.items || [])];
+          let next = album.tracks?.next;
+          while (wholeAlbums && next) {
+            const page = await spotifyApi(next);
+            tracks.push(...(page.items || []));
+            next = page.next;
+          }
+          for (const track of wholeAlbums ? tracks : tracks.slice(0, 1)) if (track?.uri) uris.push(track.uri);
+        }
+      }
+      if (!uris.length) throw new Error('Spotify returned no playable tracks for that selection.');
+      setPlaylistStatus(`Creating a playlist of ${uris.length} tracks…`);
+      const profile = await spotifyApi('/me');
+      const playlist = await spotifyApi(`/users/${encodeURIComponent(profile.id)}/playlists`, {
+        method: 'POST',
+        body: JSON.stringify({
+          name: playlistName.value.trim() || 'Trance and Techno: The Grid and the Ascent',
+          public: playlistPublic.checked,
+          description: 'Built from the Musiculum listening guide: Trance and Techno: The Grid and the Ascent.'.slice(0, 300)
+        })
+      });
+      for (let index = 0; index < uris.length; index += 100) {
+        const slice = uris.slice(index, index + 100);
+        await spotifyApi(`/playlists/${playlist.id}/tracks`, { method: 'POST', body: JSON.stringify({ uris: slice }) });
+        setPlaylistStatus(`Adding tracks… ${index + slice.length}/${uris.length}.`);
+      }
+      const summary = document.createElement('span');
+      summary.append(`Done. ${uris.length} tracks from ${chosen.length} releases. `);
+      const link = document.createElement('a');
+      playlistUrl = playlist.external_urls?.spotify || '';
+      link.href = playlistUrl || 'https://open.spotify.com/collection/playlists';
+      link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Open the playlist in Spotify';
+      summary.append(link, ' Share the liner notes below alongside it.');
+      setPlaylistStatus(summary);
+      setLinerStatus('The notes now include a link to this playlist.');
+    } catch (error) {
+      setPlaylistStatus(error.message || 'Something went wrong talking to Spotify.', true);
+    } finally {
+      playlistSend.disabled = false;
+    }
+  };
+
+  const beginAuth = async clientId => {
+    const verifier = randomString(64);
+    const oauthState = randomString(16);
+    const challenge = base64url(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier)));
+    sessionStorage.setItem(pkceKey, JSON.stringify({ verifier, state: oauthState, clientId, redirectUri }));
+    sessionStorage.setItem(returnKey, location.href);
+    sessionStorage.setItem(intentKey, JSON.stringify({
+      name: playlistName.value, scope: playlistScope.value, depth: playlistDepth.value, isPublic: playlistPublic.checked
+    }));
+    const params = new URLSearchParams({
+      client_id: clientId, response_type: 'code', redirect_uri: redirectUri,
+      code_challenge_method: 'S256', code_challenge: challenge, state: oauthState,
+      scope: 'playlist-modify-private playlist-modify-public'
+    });
+    location.assign(`https://accounts.spotify.com/authorize?${params}`);
+  };
+
+  const resumeAuth = async () => {
+    const handoff = readSession(resultKey);
+    const code = handoff?.code;
+    const failure = handoff?.error;
+    if (!code && !failure) return;
+    const pending = readSession(pkceKey);
+    const intent = readSession(intentKey);
+    if (failure) { setPlaylistStatus(`Spotify sign-in did not complete (${failure}).`, true); return; }
+    if (!pending || pending.state !== handoff.state) { setPlaylistStatus('That sign-in could not be verified. Try again.', true); return; }
+    try {
+      setPlaylistStatus('Finishing sign-in…');
+      const response = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          client_id: pending.clientId, grant_type: 'authorization_code', code,
+          redirect_uri: pending.redirectUri, code_verifier: pending.verifier
+        })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error_description || 'Spotify rejected the sign-in.');
+      accessToken = data.access_token;
+      if (!intent) { setPlaylistStatus('Connected to Spotify. Choose your options and send again.'); return; }
+      playlistName.value = intent.name;
+      playlistScope.value = intent.scope;
+      playlistDepth.value = intent.depth;
+      playlistPublic.checked = intent.isPublic;
+      await buildPlaylist();
+    } catch (error) {
+      setPlaylistStatus(error.message || 'Could not complete the Spotify sign-in.', true);
+    }
+  };
+
+  playlistClient.addEventListener('change', () => localStorage.setItem(clientStorageKey, playlistClient.value.trim()));
+  playlistSend.addEventListener('click', async () => {
+    const clientId = playlistClient.value.trim();
+    if (!clientId) { setPlaylistStatus('Add your Spotify app client ID first.', true); playlistClient.focus(); return; }
+    localStorage.setItem(clientStorageKey, clientId);
+    if (accessToken) { await buildPlaylist(); return; }
+    setPlaylistStatus('Redirecting to Spotify to sign in…');
+    await beginAuth(clientId);
+  });
+
+  if (window.isSecureContext && window.crypto?.subtle) resumeAuth();
+  else {
+    playlistSend.disabled = true;
+    setPlaylistStatus('Spotify sign-in needs a secure page. Serve this guide from http://127.0.0.1 or an https address and reload — it cannot run from a file:// URL.', true);
+  }
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    }), { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+  }
+  const timelineLinks = [...document.querySelectorAll('.timeline a')];
+  const sectionObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) timelineLinks.forEach(link => link.classList.toggle('active', link.hash === `#${entry.target.id}`));
+  }), { rootMargin: '-35% 0px -55% 0px' });
+  document.querySelectorAll('.story-section').forEach(section => sectionObserver.observe(section));
+})();
+</script></body></html>

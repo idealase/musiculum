@@ -175,12 +175,23 @@
   const playlistClient = document.querySelector('#playlist-client');
   const playlistSend = document.querySelector('#playlist-send');
   const playlistStatus = document.querySelector('#playlist-status');
-  const redirectUri = `${location.origin}${location.pathname}`;
+  const linerCopy = document.querySelector('#liner-copy');
+  const linerDownload = document.querySelector('#liner-download');
+  const linerStatus = document.querySelector('#liner-status');
+  // One redirect URI for every guide on this host, so only a single entry needs registering with Spotify.
+  const redirectUri = new URL('../callback.html', location.href).href;
   const clientStorageKey = 'musiculum:spotify-client-id';
   const pkceKey = 'musiculum:spotify-pkce';
+  const returnKey = 'musiculum:spotify-return';
+  const resultKey = 'musiculum:spotify-result';
   const intentKey = 'musiculum:spotify-intent:__STORAGE_KEY__';
   let accessToken = '';
   document.querySelector('#playlist-redirect').textContent = redirectUri;
+  document.querySelector('#playlist-redirect-copy').addEventListener('click', async event => {
+    try { await navigator.clipboard.writeText(redirectUri); event.target.textContent = 'Copied'; }
+    catch { event.target.textContent = 'Select it manually'; }
+    setTimeout(() => event.target.textContent = 'Copy', 2000);
+  });
   playlistClient.value = localStorage.getItem(clientStorageKey) || '';
 
   const setPlaylistStatus = (message, isError = false) => {
@@ -209,6 +220,11 @@
       return spotifyApi(path, options);
     }
     if (response.status === 401) throw new Error('The Spotify session expired. Send again to sign in.');
+    if (response.status === 403) {
+      const detail = await response.json().catch(() => null);
+      const reason = detail?.error?.message ? `${detail.error.message}. ` : '';
+      throw new Error(`${reason}Spotify blocks this unless the app owner has Premium and every listener is added under Settings \u2192 User Management in the developer dashboard (five maximum while the app is in development mode).`);
+    }
     if (!response.ok) {
       const detail = await response.json().catch(() => null);
       throw new Error(detail?.error?.message || `Spotify refused the request (HTTP ${response.status}).`);
@@ -216,12 +232,52 @@
     return response.status === 204 ? null : response.json();
   };
 
-  const playlistRecords = () => {
-    const pool = playlistScope.value === 'bookmarks' ? records.filter(record => state.bookmarks.includes(record.key))
-      : playlistScope.value === 'filtered' ? visibleRecords()
-      : records;
-    return pool.filter(record => record.spotify_id);
+  const scopedRecords = () => playlistScope.value === 'bookmarks' ? records.filter(record => state.bookmarks.includes(record.key))
+    : playlistScope.value === 'filtered' ? visibleRecords()
+    : records;
+  const playlistRecords = () => scopedRecords().filter(record => record.spotify_id);
+
+  let playlistUrl = '';
+  const linerNotes = () => {
+    const chosen = scopedRecords();
+    const lines = ['# __TITLE__', '', '__SUBTITLE__', ''];
+    if (playlistUrl) lines.push(`Playlist: ${playlistUrl}`, '');
+    lines.push(`${chosen.length} releases, in listening order.`, '');
+    let era = '';
+    chosen.forEach((record, index) => {
+      if (record.section && record.section !== era) {
+        era = record.section;
+        lines.push(`## ${era}`, '');
+      }
+      const year = record.year ? ` (${record.year})` : '';
+      const missing = record.spotify_id ? '' : ' — not on Spotify';
+      lines.push(`### ${String(index + 1).padStart(2, '0')}. ${record.artist} — ${record.album}${year}${missing}`, '');
+      if (record.note) lines.push(record.note, '');
+      if (record.listen_for) lines.push(`*Listen for:* ${record.listen_for}`, '');
+      lines.push(`Energy ${record.energy || '5'}/10 · ${record.texture || 'unclassified'}`, '');
+    });
+    lines.push('---', '', 'Notes from the Musiculum listening guide: __TITLE__.');
+    return lines.join('\n');
   };
+
+  const setLinerStatus = message => linerStatus.textContent = message;
+  linerCopy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(linerNotes());
+      setLinerStatus(`Copied notes for ${scopedRecords().length} releases.`);
+    } catch {
+      setLinerStatus('This browser blocked the clipboard. Use the download instead.');
+    }
+  });
+  linerDownload.addEventListener('click', () => {
+    const blob = new Blob([linerNotes()], { type: 'text/markdown' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob); link.download = '__SLUG__-liner-notes.md'; link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    setLinerStatus(`Downloaded notes for ${scopedRecords().length} releases.`);
+  });
+  playlistScope.addEventListener('change', () => setLinerStatus(`Ready to share notes for ${scopedRecords().length} releases.`));
+  setLinerStatus(`Ready to share notes for ${records.length} releases.`);
 
   const buildPlaylist = async () => {
     const chosen = playlistRecords();
@@ -265,10 +321,12 @@
       const summary = document.createElement('span');
       summary.append(`Done. ${uris.length} tracks from ${chosen.length} releases. `);
       const link = document.createElement('a');
-      link.href = playlist.external_urls?.spotify || 'https://open.spotify.com/collection/playlists';
+      playlistUrl = playlist.external_urls?.spotify || '';
+      link.href = playlistUrl || 'https://open.spotify.com/collection/playlists';
       link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Open the playlist in Spotify';
-      summary.append(link);
+      summary.append(link, ' Share the liner notes below alongside it.');
       setPlaylistStatus(summary);
+      setLinerStatus('The notes now include a link to this playlist.');
     } catch (error) {
       setPlaylistStatus(error.message || 'Something went wrong talking to Spotify.', true);
     } finally {
@@ -281,6 +339,7 @@
     const oauthState = randomString(16);
     const challenge = base64url(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier)));
     sessionStorage.setItem(pkceKey, JSON.stringify({ verifier, state: oauthState, clientId, redirectUri }));
+    sessionStorage.setItem(returnKey, location.href);
     sessionStorage.setItem(intentKey, JSON.stringify({
       name: playlistName.value, scope: playlistScope.value, depth: playlistDepth.value, isPublic: playlistPublic.checked
     }));
@@ -293,15 +352,14 @@
   };
 
   const resumeAuth = async () => {
-    const params = new URLSearchParams(location.search);
-    const code = params.get('code');
-    const failure = params.get('error');
+    const handoff = readSession(resultKey);
+    const code = handoff?.code;
+    const failure = handoff?.error;
     if (!code && !failure) return;
     const pending = readSession(pkceKey);
     const intent = readSession(intentKey);
-    history.replaceState({}, '', location.pathname);
     if (failure) { setPlaylistStatus(`Spotify sign-in did not complete (${failure}).`, true); return; }
-    if (!pending || pending.state !== params.get('state')) { setPlaylistStatus('That sign-in could not be verified. Try again.', true); return; }
+    if (!pending || pending.state !== handoff.state) { setPlaylistStatus('That sign-in could not be verified. Try again.', true); return; }
     try {
       setPlaylistStatus('Finishing sign-in…');
       const response = await fetch('https://accounts.spotify.com/api/token', {

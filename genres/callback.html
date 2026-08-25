@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Returning to Musiculum…</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 2rem;
+    background: #0a0a0c; color: #d8d2da; font: 400 .95rem/1.6 Inter, system-ui, sans-serif; }
+  main { max-width: 32rem; text-align: center; }
+  .eyebrow { display: block; margin-bottom: .8rem; color: #8c8592;
+    font: 700 .62rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .14em; }
+  p { margin: 0; }
+  a { color: #43e8d8; }
+</style>
+</head>
+<body>
+<main>
+  <span class="eyebrow">Musiculum · Spotify</span>
+  <p id="message">Finishing the Spotify sign-in…</p>
+</main>
+<script>
+(() => {
+  const RETURN_KEY = 'musiculum:spotify-return';
+  const RESULT_KEY = 'musiculum:spotify-result';
+  const params = new URLSearchParams(location.search);
+  try {
+    sessionStorage.setItem(RESULT_KEY, JSON.stringify({
+      code: params.get('code'), error: params.get('error'), state: params.get('state')
+    }));
+  } catch { /* private browsing; the guide will report the failure instead */ }
+
+  const stored = sessionStorage.getItem(RETURN_KEY);
+  sessionStorage.removeItem(RETURN_KEY);
+  // Only ever bounce back to this origin, so a tampered value cannot turn this into an open redirect.
+  let target = null;
+  try { const url = new URL(stored, location.href); if (url.origin === location.origin) target = url.href; } catch { /* keep null */ }
+
+  if (target) location.replace(target);
+  else document.querySelector('#message').textContent =
+    'Signed in, but the guide that started this could not be identified. Open the guide again and press Send to Spotify.';
+})();
+</script>
+</body>
+</html>

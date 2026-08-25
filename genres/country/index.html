@@ -136,10 +136,19 @@ h1, h2, h3, p { margin-top: 0; }
 .playlist-send:disabled { opacity: .45; cursor: progress; }
 .playlist-setup p { margin: .5rem 0 0; color: var(--muted); font-size: .78rem; }
 .playlist-setup a { color: var(--cyan); }
-.playlist-setup code { display: block; margin-top: .35rem; padding: .45rem; border: 1px solid var(--line); background: var(--panel2); color: var(--acid); font-size: .72rem; overflow-wrap: anywhere; }
+.playlist-setup em { color: #c8c2ca; font-style: normal; font-weight: 700; }
+.playlist-setup code { padding: .1rem .3rem; border: 1px solid var(--line); background: var(--panel2); color: var(--acid); font-size: .72rem; overflow-wrap: anywhere; }
+.playlist-setup #playlist-redirect { display: block; margin-top: .35rem; padding: .45rem; }
+.btn-inline { margin-top: .4rem; padding: .35rem .7rem; font-size: .7rem; }
 .playlist-status { display: block; margin-top: 1.2rem; padding: .8rem; border-left: 2px solid var(--cyan); background: #43e8d80a; color: #d8d2da; font-size: .82rem; }
 .playlist-status a { color: var(--acid); }
 .playlist-status.error { border-left-color: var(--pink); background: #ff5fb70a; }
+.liner-share { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(14rem, .6fr); gap: 1.2rem; align-items: start; margin-top: 1.2rem; padding: 1.1rem; border: 1px solid #ff5fb738; background: linear-gradient(135deg, #ff5fb70b, #43e8d80b); }
+.liner-share h3 { margin: .4rem 0 .5rem; font-size: 1.1rem; }
+.liner-share p { margin: 0; color: var(--muted); font-size: .82rem; }
+.liner-share a { color: var(--cyan); }
+.liner-actions { display: grid; gap: .5rem; align-content: start; }
+.liner-status { color: var(--muted); font: 600 .72rem ui-monospace, monospace; }
 textarea { width: 100%; min-height: 15rem; resize: vertical; background: var(--panel); border: 1px solid var(--line); color: var(--ink); padding: 1rem; }
 .notes-actions { display: flex; gap: .5rem; margin-top: .6rem; }
 .dock { position: fixed; z-index: 30; left: 17rem; right: 0; bottom: 0; display: grid; grid-template-columns: minmax(13rem, .6fr) minmax(20rem, 1.4fr) auto; gap: 1rem; align-items: center; padding: 1rem clamp(1rem, 3vw, 2rem); background: #0a0b0ff5; border-top: 1px solid var(--acid); box-shadow: 0 -15px 45px #0008; backdrop-filter: blur(16px); }
@@ -168,7 +177,7 @@ textarea { width: 100%; min-height: 15rem; resize: vertical; background: var(--p
 }
 
 @media (max-width: 560px) {
-  .album-grid, .notes-panel, .ephemera-grid, .era-feature, .playlist-panel { grid-template-columns: 1fr; }
+  .album-grid, .notes-panel, .ephemera-grid, .era-feature, .playlist-panel, .liner-share { grid-template-columns: 1fr; }
   .card-actions { flex-wrap: wrap; }
   .route-grid, .connection-list { grid-template-columns: 1fr; }
 }
@@ -185,7 +194,7 @@ textarea { width: 100%; min-height: 15rem; resize: vertical; background: var(--p
 <main class="main" id="content"><header class="hero"><div class="hero-content reveal"><span class="eyebrow">Country music / selected records</span>
 <h1>Three Chords and the Argument: A Century of Country Music</h1><p class="subtitle">A seven-era guide to country music, from the Bristol Sessions to Cowboy Carter.</p><div class="hero-summary"><p>Country music has spent a hundred years pretending it is a tradition when it is actually a negotiation. Every era in this guide is a fight about the same handful of questions: how much city is allowed in the sound, whose voices count as authentic, whether the songs belong to the singer or the industry, and what to do about the fact that the music was never as white, as rural, or as pure as its marketing claimed.</p><p>It starts as a commercial invention. In 1927 Ralph Peer took portable recording gear to Bristol, on the Tennessee-Virginia line, and in two weeks captured both the Carter Family and Jimmie Rodgers. Those sessions did not discover a folk tradition so much as select one: a string-band repertoire with deep Black and Anglo-Celtic roots, filtered through what a record executive thought would sell to a rural mail-order market. The banjo itself is a West African instrument. The blue yodel is a blues form. The genre&#x27;s origin story is a story of erasure as much as preservation.</p><p>The next fifty years are a series of corrections and overcorrections. Honky-tonk amplifies the music for barrooms and gives it a first-person adult misery it never had before. The Nashville Sound sands that misery down with strings and vocal choruses to chase the pop charts; Bakersfield answers with Telecasters loud enough to be heard from the parking lot. The outlaws win creative control in the 1970s and prove that a country record can be as spare and literary as anything on a folk label. The 1980s neotraditionalists then reintroduce fiddle and steel, and within a decade their revival becomes the biggest arena business in American music.</p><p>The most useful way to hear the last thirty years is as a split. From roughly 1996 the commercial format and the critical canon stop overlapping: alt-country, Americana, and the O Brother phenomenon build a parallel audience with its own labels and festivals, while country radio consolidates around a narrower and more male playlist. That split never fully healed, but it did become porous. Sturgill Simpson, Chris Stapleton, Kacey Musgraves, Tyler Childers and Zach Bryan all arrived from outside the machine and were absorbed by it, and Rhiannon Giddens and Beyoncé forced the origin question back onto the table.</p><p>This guide runs seven eras and roughly ninety records. Several of the early entries are compilations rather than albums, because the album did not exist yet as a country format; treat those as the best available window onto a 78rpm world. Play it in order and you get an argument, not a museum.</p></div></div></header>
 <nav class="feature-nav" aria-label="Guide tools"><a href="#routes">Listening routes</a><a href="#energy-map">Energy map</a>
-<a href="#connections">Connections</a><a href="#playlist">Playlist</a><a href="#session-notes">Notes</a><button class="reset crate-dig">Crate dig</button></nav>
+<a href="#connections">Connections</a><a href="#playlist">Playlist</a><a href="#session-notes">Notes</a><a href="share.html">Share sheet</a><button class="reset crate-dig">Crate dig</button></nav>
 <section class="lab" id="routes"><div class="lab-head"><span class="eyebrow">Curated paths</span>
 <h2>Choose a route through the music</h2><p>Each path loads one release at a time into the persistent player.</p></div>
 <div class="route-grid"><article class="route-card"><span>7 stops</span><h3>First Century</h3><p>The Carter Family → Hank Williams → Merle Haggard → Willie Nelson → Randy Travis → Lucinda Williams → Chris Stapleton</p><button class="route-start" data-route="first-century">Start route</button></article><article class="route-card"><span>5 stops</span><h3>The Hard Stuff</h3><p>Ernest Tubb → Hank Williams → Buck Owens → Dwight Yoakam → Tyler Childers</p><button class="route-start" data-route="the-hard-stuff">Start route</button></article><article class="route-card"><span>6 stops</span><h3>Women Writing The Record</h3><p>Kitty Wells → Loretta Lynn → Dolly Parton → Emmylou Harris → Lucinda Williams → Kacey Musgraves</p><button class="route-start" data-route="women-writing-the-record">Start route</button></article><article class="route-card"><span>4 stops</span><h3>Black Roots And Returns</h3><p>Jimmie Rodgers → Charley Pride → Rhiannon Giddens → Beyoncé</p><button class="route-start" data-route="black-roots-and-returns">Start route</button></article><article class="route-card"><span>6 stops</span><h3>Cosmic Drift</h3><p>The Byrds → The Flying Burrito Brothers → Gram Parsons → Emmylou Harris → Sturgill Simpson → Waxahatchee</p><button class="route-start" data-route="cosmic-drift">Start route</button></article></div></section>
@@ -980,9 +989,25 @@ The sign-in runs entirely in this browser using PKCE, so no secret is stored in 
 <input id="playlist-client" type="text" placeholder="Client ID from your Spotify app" autocomplete="off" spellcheck="false">
 <p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
 register the redirect URI below against it, then paste the client ID here. It is kept in this browser only, and no client secret is needed.</p>
-<p>Redirect URI to register: <code id="playlist-redirect"></code></p>
-<p>Spotify only accepts HTTPS or loopback addresses, so serve the guide with something like <code>python -m http.server 8000 --bind 127.0.0.1</code> rather than opening the file directly.</p></div></div>
-<output class="playlist-status" id="playlist-status" aria-live="polite">Not connected to Spotify yet.</output></section>
+<p>Redirect URI to register: <code id="playlist-redirect"></code>
+<button class="btn btn-inline" id="playlist-redirect-copy">Copy</button></p>
+<p>Spotify matches this character for character. Paste it into <em>Edit settings &rarr; Redirect URIs</em>, press Add, then Save.
+A different port or <code>localhost</code> instead of <code>127.0.0.1</code> produces <em>redirect_uri: Not matching configuration</em>,
+and Spotify only reports it after you have signed in. Every guide on this address shares this one entry, so you only register it once.</p>
+<p>Spotify only accepts HTTPS or loopback addresses, so serve the guide with something like <code>python -m http.server 8000 --bind 127.0.0.1</code> rather than opening the file directly.</p>
+<p>If Spotify shows its own error page with nothing but a help link, the app itself is the problem rather than this guide.
+A new app sits in <em>development mode</em>, which requires the owning account to have Spotify Premium, and admits at most five listeners &mdash;
+each one added by name and email under <em>Settings &rarr; User Management</em>. An account that signs in without being on that list
+gets as far as the sign-in screen and is then refused.</p></div></div>
+<output class="playlist-status" id="playlist-status" aria-live="polite">Not connected to Spotify yet.</output>
+<div class="liner-share"><div><span class="eyebrow">Send the words with the music</span>
+<h3>Liner notes for whoever you share this with</h3>
+<p>A playlist arrives without context. This exports the same selection as Markdown — era by era, with every note, listening cue,
+energy and texture — and includes the playlist link once you have built one. It works even without a Spotify sign-in.
+For a version anyone can open in a browser, send them <a href="share.html">share.html — the same guide with no Spotify embeds</a>.</p></div>
+<div class="liner-actions"><button class="btn" id="liner-copy">Copy liner notes</button>
+<button class="btn" id="liner-download">Download Markdown</button>
+<output class="liner-status" id="liner-status" aria-live="polite"></output></div></div></section>
 <section class="lab" id="session-notes"><div class="lab-head"><span class="eyebrow">Private listening journal</span>
 <h2>Keep what the session reveals</h2><p>Bookmarks and notes stay in this browser. Export them as Markdown.</p></div>
 <div class="notes-panel"><div><h3>Saved releases</h3><div class="saved-list" id="saved-list"></div></div>
@@ -1173,12 +1198,23 @@ register the redirect URI below against it, then paste the client ID here. It is
   const playlistClient = document.querySelector('#playlist-client');
   const playlistSend = document.querySelector('#playlist-send');
   const playlistStatus = document.querySelector('#playlist-status');
-  const redirectUri = `${location.origin}${location.pathname}`;
+  const linerCopy = document.querySelector('#liner-copy');
+  const linerDownload = document.querySelector('#liner-download');
+  const linerStatus = document.querySelector('#liner-status');
+  // One redirect URI for every guide on this host, so only a single entry needs registering with Spotify.
+  const redirectUri = new URL('../callback.html', location.href).href;
   const clientStorageKey = 'musiculum:spotify-client-id';
   const pkceKey = 'musiculum:spotify-pkce';
+  const returnKey = 'musiculum:spotify-return';
+  const resultKey = 'musiculum:spotify-result';
   const intentKey = 'musiculum:spotify-intent:three-chords-and-the-argument-a-century-of-country-music';
   let accessToken = '';
   document.querySelector('#playlist-redirect').textContent = redirectUri;
+  document.querySelector('#playlist-redirect-copy').addEventListener('click', async event => {
+    try { await navigator.clipboard.writeText(redirectUri); event.target.textContent = 'Copied'; }
+    catch { event.target.textContent = 'Select it manually'; }
+    setTimeout(() => event.target.textContent = 'Copy', 2000);
+  });
   playlistClient.value = localStorage.getItem(clientStorageKey) || '';
 
   const setPlaylistStatus = (message, isError = false) => {
@@ -1207,6 +1243,11 @@ register the redirect URI below against it, then paste the client ID here. It is
       return spotifyApi(path, options);
     }
     if (response.status === 401) throw new Error('The Spotify session expired. Send again to sign in.');
+    if (response.status === 403) {
+      const detail = await response.json().catch(() => null);
+      const reason = detail?.error?.message ? `${detail.error.message}. ` : '';
+      throw new Error(`${reason}Spotify blocks this unless the app owner has Premium and every listener is added under Settings \u2192 User Management in the developer dashboard (five maximum while the app is in development mode).`);
+    }
     if (!response.ok) {
       const detail = await response.json().catch(() => null);
       throw new Error(detail?.error?.message || `Spotify refused the request (HTTP ${response.status}).`);
@@ -1214,12 +1255,52 @@ register the redirect URI below against it, then paste the client ID here. It is
     return response.status === 204 ? null : response.json();
   };
 
-  const playlistRecords = () => {
-    const pool = playlistScope.value === 'bookmarks' ? records.filter(record => state.bookmarks.includes(record.key))
-      : playlistScope.value === 'filtered' ? visibleRecords()
-      : records;
-    return pool.filter(record => record.spotify_id);
+  const scopedRecords = () => playlistScope.value === 'bookmarks' ? records.filter(record => state.bookmarks.includes(record.key))
+    : playlistScope.value === 'filtered' ? visibleRecords()
+    : records;
+  const playlistRecords = () => scopedRecords().filter(record => record.spotify_id);
+
+  let playlistUrl = '';
+  const linerNotes = () => {
+    const chosen = scopedRecords();
+    const lines = ['# Three Chords and the Argument: A Century of Country Music', '', 'A seven-era guide to country music, from the Bristol Sessions to Cowboy Carter.', ''];
+    if (playlistUrl) lines.push(`Playlist: ${playlistUrl}`, '');
+    lines.push(`${chosen.length} releases, in listening order.`, '');
+    let era = '';
+    chosen.forEach((record, index) => {
+      if (record.section && record.section !== era) {
+        era = record.section;
+        lines.push(`## ${era}`, '');
+      }
+      const year = record.year ? ` (${record.year})` : '';
+      const missing = record.spotify_id ? '' : ' — not on Spotify';
+      lines.push(`### ${String(index + 1).padStart(2, '0')}. ${record.artist} — ${record.album}${year}${missing}`, '');
+      if (record.note) lines.push(record.note, '');
+      if (record.listen_for) lines.push(`*Listen for:* ${record.listen_for}`, '');
+      lines.push(`Energy ${record.energy || '5'}/10 · ${record.texture || 'unclassified'}`, '');
+    });
+    lines.push('---', '', 'Notes from the Musiculum listening guide: Three Chords and the Argument: A Century of Country Music.');
+    return lines.join('\n');
   };
+
+  const setLinerStatus = message => linerStatus.textContent = message;
+  linerCopy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(linerNotes());
+      setLinerStatus(`Copied notes for ${scopedRecords().length} releases.`);
+    } catch {
+      setLinerStatus('This browser blocked the clipboard. Use the download instead.');
+    }
+  });
+  linerDownload.addEventListener('click', () => {
+    const blob = new Blob([linerNotes()], { type: 'text/markdown' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob); link.download = 'three-chords-and-the-argument-a-century-of-country-music-liner-notes.md'; link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    setLinerStatus(`Downloaded notes for ${scopedRecords().length} releases.`);
+  });
+  playlistScope.addEventListener('change', () => setLinerStatus(`Ready to share notes for ${scopedRecords().length} releases.`));
+  setLinerStatus(`Ready to share notes for ${records.length} releases.`);
 
   const buildPlaylist = async () => {
     const chosen = playlistRecords();
@@ -1263,10 +1344,12 @@ register the redirect URI below against it, then paste the client ID here. It is
       const summary = document.createElement('span');
       summary.append(`Done. ${uris.length} tracks from ${chosen.length} releases. `);
       const link = document.createElement('a');
-      link.href = playlist.external_urls?.spotify || 'https://open.spotify.com/collection/playlists';
+      playlistUrl = playlist.external_urls?.spotify || '';
+      link.href = playlistUrl || 'https://open.spotify.com/collection/playlists';
       link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Open the playlist in Spotify';
-      summary.append(link);
+      summary.append(link, ' Share the liner notes below alongside it.');
       setPlaylistStatus(summary);
+      setLinerStatus('The notes now include a link to this playlist.');
     } catch (error) {
       setPlaylistStatus(error.message || 'Something went wrong talking to Spotify.', true);
     } finally {
@@ -1279,6 +1362,7 @@ register the redirect URI below against it, then paste the client ID here. It is
     const oauthState = randomString(16);
     const challenge = base64url(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier)));
     sessionStorage.setItem(pkceKey, JSON.stringify({ verifier, state: oauthState, clientId, redirectUri }));
+    sessionStorage.setItem(returnKey, location.href);
     sessionStorage.setItem(intentKey, JSON.stringify({
       name: playlistName.value, scope: playlistScope.value, depth: playlistDepth.value, isPublic: playlistPublic.checked
     }));
@@ -1291,15 +1375,14 @@ register the redirect URI below against it, then paste the client ID here. It is
   };
 
   const resumeAuth = async () => {
-    const params = new URLSearchParams(location.search);
-    const code = params.get('code');
-    const failure = params.get('error');
+    const handoff = readSession(resultKey);
+    const code = handoff?.code;
+    const failure = handoff?.error;
     if (!code && !failure) return;
     const pending = readSession(pkceKey);
     const intent = readSession(intentKey);
-    history.replaceState({}, '', location.pathname);
     if (failure) { setPlaylistStatus(`Spotify sign-in did not complete (${failure}).`, true); return; }
-    if (!pending || pending.state !== params.get('state')) { setPlaylistStatus('That sign-in could not be verified. Try again.', true); return; }
+    if (!pending || pending.state !== handoff.state) { setPlaylistStatus('That sign-in could not be verified. Try again.', true); return; }
     try {
       setPlaylistStatus('Finishing sign-in…');
       const response = await fetch('https://accounts.spotify.com/api/token', {

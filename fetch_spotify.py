@@ -9,17 +9,21 @@ import json
 import os
 import re
 import time
+import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
 
 from v3_renderer import render_v3
+from share_renderer import render_share
 
 try:
     import markdown
 except ImportError:  # Optional dependency at runtime.
     markdown = None
+
+CALLBACK_TEMPLATE = Path(__file__).resolve().parent / "assets" / "callback.html"
 
 
 def load_env(path: Path) -> None:
@@ -47,45 +51,89 @@ def get_token(client_id: str, client_secret: str) -> str:
         return json.loads(resp.read())["access_token"]
 
 
-def search_album(token: str, artist: str, album: str) -> str | None:
+def compare_key(value: str) -> str:
+    """Reduce a title to a comparable core: no diacritics, punctuation, or edition suffixes."""
+    folded = unicodedata.normalize("NFKD", value)
+    folded = "".join(char for char in folded if not unicodedata.combining(char))
+    folded = re.sub(r"[\(\[].*?[\)\]]", " ", folded.casefold())
+    folded = re.sub(r"[^a-z0-9]+", " ", folded)
+    return re.sub(r"\s+", " ", folded).strip()
+
+
+def score_candidate(item: dict, artist: str, album: str, year: str) -> tuple[int, str]:
+    """Rank a Spotify search hit so exact reissues beat same-artist near-misses."""
+    wanted_album = compare_key(album)
+    found_album = compare_key(item.get("name", ""))
+    score = 0
+    if found_album == wanted_album:
+        score += 100
+    elif found_album.startswith(wanted_album) or wanted_album.startswith(found_album):
+        score += 45
+    elif wanted_album in found_album:
+        score += 20
+    else:
+        score -= 40
+
+    wanted_artist = compare_key(artist)
+    found_artists = [compare_key(entry.get("name", "")) for entry in item.get("artists", [])]
+    if wanted_artist in found_artists:
+        score += 50
+    elif any(wanted_artist in found or found in wanted_artist for found in found_artists if found):
+        score += 25
+    else:
+        score -= 30
+
+    score += {"album": 12, "compilation": 6}.get(item.get("album_type", ""), 0)
+    release_year = str(item.get("release_date", ""))[:4]
+    if year.isdigit() and release_year.isdigit():
+        score += max(0, 12 - abs(int(release_year) - int(year)))
+    return score, release_year
+
+
+def search_album(token: str, artist: str, album: str, year: str = "") -> str | None:
     def _request(search_query: str, limit: int) -> dict:
         q = urllib.parse.quote(search_query)
         url = f"https://api.spotify.com/v1/search?q={q}&type=album&limit={limit}"
         req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"})
-        with urllib.request.urlopen(req) as resp:
-            return json.loads(resp.read())
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(req, timeout=30) as resp:
+                    return json.loads(resp.read())
+            except urllib.error.HTTPError:
+                raise
+            except (urllib.error.URLError, TimeoutError, ConnectionError) as err:
+                if attempt == 2:
+                    raise
+                print(f"  [retry] {err}")
+                time.sleep(2 * (attempt + 1))
+        return {}
 
+    candidates: list[dict] = []
     try:
-        data = _request(f"album:{album} artist:{artist}", 3)
+        candidates += _request(f"album:{album} artist:{artist}", 10).get("albums", {}).get("items", [])
     except urllib.error.HTTPError as err:
         if err.code == 429:
             wait = int(err.headers.get("Retry-After", 2))
             print(f"  [rate-limit] waiting {wait}s")
             time.sleep(wait)
-            return search_album(token, artist, album)
+            return search_album(token, artist, album, year)
         print(f"  [error] HTTP {err.code}: {artist} - {album}")
         return None
 
-    items = data.get("albums", {}).get("items", [])
-    if items:
-        return items[0]["id"]
-
     try:
-        fallback = _request(f"{artist} {album}", 5)
+        candidates += _request(f"{artist} {album}", 10).get("albums", {}).get("items", [])
     except urllib.error.HTTPError:
+        pass
+
+    if not candidates:
         return None
 
-    fallback_items = fallback.get("albums", {}).get("items", [])
-    if not fallback_items:
-        return None
-
-    artist_lower = artist.lower()
-    for item in fallback_items:
-        for found_artist in item.get("artists", []):
-            candidate = found_artist.get("name", "").lower()
-            if artist_lower in candidate or candidate in artist_lower:
-                return item["id"]
-    return fallback_items[0]["id"]
+    unique = {item["id"]: item for item in candidates if item.get("id")}
+    best = max(unique.values(), key=lambda item: score_candidate(item, artist, album, year))
+    score, _ = score_candidate(best, artist, album, year)
+    if score < 60:
+        print(f"  [weak match] {artist} - {album} -> {best['artists'][0]['name']} - {best['name']}")
+    return best["id"]
 
 
 def normalize_cell(value: str) -> str:
@@ -573,6 +621,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--genres-root", default="genres", help="Root folder containing genre subfolders.")
     parser.add_argument("--markdown", default="first.md", help="Markdown essay filename inside each genre folder.")
     parser.add_argument("--html", default="index.html", help="Output HTML report filename.")
+    parser.add_argument(
+        "--share",
+        default="share.html",
+        help="Output filename for the shareable sheet with no Spotify embeds.",
+    )
     parser.add_argument("--json", default="spotify_albums.json", help="Output Spotify ID map filename.")
     parser.add_argument(
         "--catalog",
@@ -601,6 +654,50 @@ def resolve_genre_path(genre_arg: str, genres_root: str) -> Path:
     return Path(genres_root) / genre_arg
 
 
+def write_reports(
+    genre_dir: Path,
+    args: argparse.Namespace,
+    title: str,
+    markdown_text: str,
+    catalog: list[dict],
+    found: int,
+) -> list[Path]:
+    """Write the interactive guide plus, for V3, the share sheet and shared OAuth callback."""
+    html_path = genre_dir / args.html
+    if args.legacy_v1:
+        html_path.write_text(
+            render_html_report(title=title, markdown_text=markdown_text, catalog=catalog, found_count=found),
+            encoding="utf-8",
+        )
+        return [html_path]
+
+    html_path.write_text(
+        render_v3(
+            title=title,
+            markdown_text=markdown_text,
+            catalog=catalog,
+            found_count=found,
+            share_filename=args.share,
+        ),
+        encoding="utf-8",
+    )
+    share_path = genre_dir / args.share
+    share_path.write_text(
+        render_share(
+            title=title,
+            markdown_text=markdown_text,
+            catalog=catalog,
+            found_count=found,
+            guide_filename=args.html,
+        ),
+        encoding="utf-8",
+    )
+    # The guides redirect through one callback beside the genre folders, so Spotify needs a single registered URI.
+    callback_path = genre_dir.parent / "callback.html"
+    callback_path.write_text(CALLBACK_TEMPLATE.read_text(encoding="utf-8"), encoding="utf-8")
+    return [html_path, share_path, callback_path]
+
+
 def process_genre(genre_dir: Path, args: argparse.Namespace, token: str | None) -> tuple[int, int]:
     markdown_path = genre_dir / args.markdown
     if not markdown_path.exists():
@@ -626,14 +723,10 @@ def process_genre(genre_dir: Path, args: argparse.Namespace, token: str | None) 
             raise ValueError(f"Existing album catalog must be a JSON array of objects: {catalog_path}")
         catalog = merge_catalog_metadata(catalog, albums)
         found = sum(1 for row in catalog if row.get("spotify_id"))
-        html_path = genre_dir / args.html
-        renderer = render_html_report if args.legacy_v1 else render_v3
-        html_path.write_text(
-            renderer(title=title, markdown_text=markdown_text, catalog=catalog, found_count=found),
-            encoding="utf-8",
-        )
+        written = write_reports(genre_dir, args, title, markdown_text, catalog, found)
         print(f"Reused: {found}/{len(catalog)} Spotify IDs from {catalog_path}")
-        print(f"Wrote: {html_path}")
+        for path in written:
+            print(f"Wrote: {path}")
         return found, len(catalog)
 
     if token is None:
@@ -646,7 +739,7 @@ def process_genre(genre_dir: Path, args: argparse.Namespace, token: str | None) 
         artist = row["artist"]
         album = row["album"]
         key = f"{artist} - {album}"
-        spotify_id = search_album(token, artist, album)
+        spotify_id = search_album(token, artist, album, str(row.get("year", "")))
         row["spotify_id"] = spotify_id
         id_map[key] = spotify_id
         if spotify_id:
@@ -659,18 +752,16 @@ def process_genre(genre_dir: Path, args: argparse.Namespace, token: str | None) 
 
     json_path = genre_dir / args.json
     catalog_path = genre_dir / args.catalog
-    html_path = genre_dir / args.html
 
     json_path.write_text(json.dumps(id_map, indent=2, ensure_ascii=False), encoding="utf-8")
     catalog_path.write_text(json.dumps(albums, indent=2, ensure_ascii=False), encoding="utf-8")
-    renderer = render_html_report if args.legacy_v1 else render_v3
-    html_report = renderer(title=title, markdown_text=markdown_text, catalog=albums, found_count=found)
-    html_path.write_text(html_report, encoding="utf-8")
+    written = write_reports(genre_dir, args, title, markdown_text, albums, found)
 
     print(f"Done: {found}/{len(albums)} Spotify IDs resolved")
     print(f"Wrote: {json_path}")
     print(f"Wrote: {catalog_path}")
-    print(f"Wrote: {html_path}")
+    for path in written:
+        print(f"Wrote: {path}")
     return found, len(albums)
 
 

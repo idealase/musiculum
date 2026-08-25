@@ -133,10 +133,19 @@ h1, h2, h3, p { margin-top: 0; }
 .playlist-send:disabled { opacity: .45; cursor: progress; }
 .playlist-setup p { margin: .5rem 0 0; color: var(--muted); font-size: .78rem; }
 .playlist-setup a { color: var(--cyan); }
-.playlist-setup code { display: block; margin-top: .35rem; padding: .45rem; border: 1px solid var(--line); background: var(--panel2); color: var(--acid); font-size: .72rem; overflow-wrap: anywhere; }
+.playlist-setup em { color: #c8c2ca; font-style: normal; font-weight: 700; }
+.playlist-setup code { padding: .1rem .3rem; border: 1px solid var(--line); background: var(--panel2); color: var(--acid); font-size: .72rem; overflow-wrap: anywhere; }
+.playlist-setup #playlist-redirect { display: block; margin-top: .35rem; padding: .45rem; }
+.btn-inline { margin-top: .4rem; padding: .35rem .7rem; font-size: .7rem; }
 .playlist-status { display: block; margin-top: 1.2rem; padding: .8rem; border-left: 2px solid var(--cyan); background: #43e8d80a; color: #d8d2da; font-size: .82rem; }
 .playlist-status a { color: var(--acid); }
 .playlist-status.error { border-left-color: var(--pink); background: #ff5fb70a; }
+.liner-share { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(14rem, .6fr); gap: 1.2rem; align-items: start; margin-top: 1.2rem; padding: 1.1rem; border: 1px solid #ff5fb738; background: linear-gradient(135deg, #ff5fb70b, #43e8d80b); }
+.liner-share h3 { margin: .4rem 0 .5rem; font-size: 1.1rem; }
+.liner-share p { margin: 0; color: var(--muted); font-size: .82rem; }
+.liner-share a { color: var(--cyan); }
+.liner-actions { display: grid; gap: .5rem; align-content: start; }
+.liner-status { color: var(--muted); font: 600 .72rem ui-monospace, monospace; }
 textarea { width: 100%; min-height: 15rem; resize: vertical; background: var(--panel); border: 1px solid var(--line); color: var(--ink); padding: 1rem; }
 .notes-actions { display: flex; gap: .5rem; margin-top: .6rem; }
 .dock { position: fixed; z-index: 30; left: 17rem; right: 0; bottom: 0; display: grid; grid-template-columns: minmax(13rem, .6fr) minmax(20rem, 1.4fr) auto; gap: 1rem; align-items: center; padding: 1rem clamp(1rem, 3vw, 2rem); background: #0a0b0ff5; border-top: 1px solid var(--acid); box-shadow: 0 -15px 45px #0008; backdrop-filter: blur(16px); }
@@ -165,7 +174,7 @@ textarea { width: 100%; min-height: 15rem; resize: vertical; background: var(--p
 }
 
 @media (max-width: 560px) {
-  .album-grid, .notes-panel, .ephemera-grid, .era-feature, .playlist-panel { grid-template-columns: 1fr; }
+  .album-grid, .notes-panel, .ephemera-grid, .era-feature, .playlist-panel, .liner-share { grid-template-columns: 1fr; }
   .card-actions { flex-wrap: wrap; }
   .route-grid, .connection-list { grid-template-columns: 1fr; }
 }

@@ -93,12 +93,12 @@ What matters historically is not the perfectionism but the artefact. This era pr
 | --- | --- | --- | --- | --- | ---: | --- | --- |
 | Steely Dan | Aja | 1977 | The record where jazz drumming, studio perfectionism, and pop songwriting fuse completely. Purdie and Gadd on the same album, doing opposite things. | The half-time shuffle on "Home at Last"; Gadd unravelling the title track. | 5 | immaculate | Steely Dan - Gaucho; Paul Simon - Still Crazy After All These Years |
 | Steely Dan | Gaucho | 1980 | Longer, colder, more expensive, and home to "Babylon Sisters" — arguably the definitive recorded Purdie shuffle. | Ghost notes so quiet you feel them as swing rather than hear them as hits. | 4 | lacquered | Steely Dan - The Royal Scam |
-| Steely Dan | The Royal Scam | 1976 | The rawest of the trio, where the session players still sound like a band having an argument. | Drums pushing the tempo when the arrangement refuses to. | 6 | taut | Stuff - Stuff |
-| Paul Simon | Still Crazy After All These Years | 1975 | Steve Gadd's "50 Ways" pattern is one of the few drum parts non-drummers can hum. | A marching rudiment repurposed as a pop hook. | 4 | crisp | Stuff - Stuff |
+| Steely Dan | The Royal Scam | 1976 | The rawest of the trio, where the session players still sound like a band having an argument. | Drums pushing the tempo when the arrangement refuses to. | 6 | taut | Stuff - More Stuff |
+| Paul Simon | Still Crazy After All These Years | 1975 | Steve Gadd's "50 Ways" pattern is one of the few drum parts non-drummers can hum. | A marching rudiment repurposed as a pop hook. | 4 | crisp | Stuff - More Stuff |
 | Herbie Hancock | Thrust | 1974 | Mike Clark's "Actual Proof" is the linear-funk summit: a groove that never repeats and never loses the pocket. | Every limb playing a separate voice with no note doubled. | 8 | interlocking | Snarky Puppy - We Like It Here |
 | Weather Report | Heavy Weather | 1977 | Fusion at its most melodic, with a rhythm section that swings despite the technology. | How the drums stay out of Jaco's way while still driving everything. | 6 | buoyant | Kamasi Washington - The Epic |
 | Return to Forever | Romantic Warrior | 1976 | Lenny White's precision-engineered complexity — the maximalist wing of the tradition. | Odd-metre passages played as if they were natural dance rhythms. | 8 | virtuosic | GoGo Penguin - v2.0 |
-| Stuff | Stuff | 1976 | The New York session elite as their own band, with two drummers and nothing to prove to a producer. | Steve Gadd and Chris Parker sharing one groove without collision. | 5 | conversational | The RH Factor - Hard Groove |
+| Stuff | More Stuff | 1977 | The New York session elite as their own band, with two drummers and nothing to prove to a producer. | Steve Gadd and Chris Parker sharing one groove without collision. | 5 | conversational | The RH Factor - Hard Groove |
 | Bob James | Two | 1975 | The crate-digger's Rosetta Stone: sophisticated fusion carrying breaks that hip-hop would later build on wholesale. | The percussion break in "Take Me to the Mardi Gras", later the spine of "Peter Piper". | 4 | ornate | J Dilla - Donuts |
 
 ## 1988-1996: the break becomes a language
@@ -138,7 +138,7 @@ Roy Hargrove's RH Factor is the moment jazz's institutional side formally acknow
 | D'Angelo | Voodoo | 2000 | The most important rhythm record of its decade: a band playing deliberately, audibly late and never losing the pocket. | Snare consistently behind the bass, creating an almost drunken lean. | 5 | slack | Erykah Badu - Mama's Gun; Robert Glasper Experiment - Black Radio |
 | Erykah Badu | Mama's Gun | 2000 | The same rhythm section applied to songwriting, and the proof that the technique could carry hooks. | Drums that breathe with the vocal rather than under it. | 5 | woozy | Hiatus Kaiyote - Choose Your Weapon |
 | The Cinematic Orchestra | Every Day | 2002 | Ninja Tune's jazz wing: live drums recorded for depth, then edited with a producer's ear. | Loops assembled from a real kit, then left to run past the point of comfort. | 4 | cinematic | GoGo Penguin - v2.0 |
-| Jaga Jazzist | A Livingroom Hush | 2001 | Norwegian post-rock precision applied to a jazz big band, with rhythm as the organising principle. | Programmed and acoustic percussion made deliberately indistinguishable. | 7 | kinetic | BadBadNotGood - Talk Memory |
+| Jaga Jazzist | A Living Room Hush | 2001 | Norwegian post-rock precision applied to a jazz big band, with rhythm as the organising principle. | Programmed and acoustic percussion made deliberately indistinguishable. | 7 | kinetic | BadBadNotGood - Talk Memory |
 | Madlib | Shades of Blue | 2003 | Blue Note hands its vaults to a producer, who reassembles the label as a beat record. | Drums re-chopped so the original session players become sidemen to the loop. | 5 | dusty | Karriem Riggins - Alone Together |
 | Jazzanova | In Between | 2002 | Broken beat's European wing, elegant and rhythmically restless. | The bar that never quite resolves where you expect. | 5 | uneven | Kokoroko - Could We Be More |
 | The RH Factor | Hard Groove | 2003 | Roy Hargrove builds a band around the neo-soul groove, formally joining jazz to the Dilla lineage. | Horn writing that defers entirely to the rhythm section. | 6 | greasy | Robert Glasper Experiment - Black Radio |
@@ -192,13 +192,14 @@ The thread the user of this guide asked about is now closed. Purdie's ghost note
 
 ## Listening routes
 
-If you want a single evening rather than a full survey, use one of the four paths built into this guide.
+If you want a single evening rather than a full survey, four paths are built into this guide and can be loaded one record at a time from the routes panel above.
 
-| Route | Start here | Then go to | Why this works |
-| --- | --- | --- | --- |
-| Purdie to pocket | Bernard Purdie - Soul Is... Pretty Purdie | Steely Dan - Aja, then D'Angelo - Voodoo | The clearest demonstration of the central thesis: one drummer's shuffle becoming a studio artefact, then a modern technique. |
-| Break science | James Brown - The Payback | Bob James - Two, then A Tribe Called Quest - The Low End Theory | Follows a single drum performance from its recording, through its theft, to its rebirth as a genre. |
-| Afrobeat continuum | Fela Kuti - Expensive Shit | Tony Allen & Hugh Masekela - Rejoice, then Kokoroko - Could We Be More | The Lagos-to-London line, which runs parallel to the American story and eventually merges with it. |
-| Chops and clockwork | Billy Cobham - Spectrum | Herbie Hancock - Thrust, then DOMi & JD BECK - NOT TiGHT | For listeners who want the technical extreme rather than the pocket, across fifty years. |
+**Purdie to pocket** runs from *Soul Is... Pretty Purdie* through *Aja* and *Voodoo* to *Black Radio* and *Black Focus*. It is the shortest demonstration of the central thesis: one drummer's shuffle becomes a studio artefact, then a producer's reference, then a technique a modern band performs on purpose.
 
-If you only have seven evenings: *Aja*; *Head Hunters*; *The Low End Theory*; *Voodoo*; *Donuts*; *Black Radio*; *Black Focus*. That sequence contains the whole argument, in order, without a single redundant record.
+**Break science** follows *The Payback* through Bob James' *Two* into *The Low End Theory*, *Donuts*, and *In the Moment*. This is a single drum performance tracked from its recording, through its theft, to its rebirth as a genre and its return to live hands.
+
+**Afrobeat continuum** goes from *Expensive Shit* to *Rejoice*, *Could We Be More*, *Your Queen Is a Reptile*, and *Where I'm Meant to Be*. It is the Lagos-to-London line, which runs parallel to the American story for forty years before merging with it.
+
+**Chops and clockwork** is for listeners who want the technical extreme rather than the pocket: *Spectrum*, *Thrust*, *Heavy Weather*, *We Like It Here*, and *NOT TiGHT*, fifty years of drummers playing far more notes than strictly required.
+
+If you only have seven evenings, ignore all of that and play: *Aja*; *Head Hunters*; *The Low End Theory*; *Voodoo*; *Donuts*; *Black Radio*; *Black Focus*. That sequence contains the whole argument, in order, without a single redundant record.

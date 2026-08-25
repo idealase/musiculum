@@ -53,6 +53,11 @@ def inline_markdown(value: str) -> str:
     )
 
 
+def js_string(value: str) -> str:
+    """Escape essay text for a single-quoted JS literal inside an inline <script>."""
+    return value.replace("\\", "\\\\").replace("'", "\\'").replace("</", "<\\/")
+
+
 def extract_sections(markdown_text: str) -> list[dict[str, object]]:
     sections: list[dict[str, object]] = []
     current: dict[str, object] | None = None
@@ -273,7 +278,13 @@ def connection_reason(source: dict, target: dict) -> str:
     return f"Cross-era affinity · energy shift {energy_delta}"
 
 
-def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: int) -> str:
+def render_v3(
+    title: str,
+    markdown_text: str,
+    catalog: list[dict],
+    found_count: int,
+    share_filename: str = "share.html",
+) -> str:
     metadata, essay = parse_front_matter(markdown_text)
     sections = extract_sections(essay)
     hero_paragraphs: list[str] = []
@@ -449,9 +460,12 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
 
     title_text = html.escape(title)
     slug = re.sub(r"[^a-z0-9]+", "-", title.casefold()).strip("-")
-    subtitle = html.escape(str(metadata.get("subtitle", "A long-session listening companion.")))
+    subtitle_text = str(metadata.get("subtitle", "A long-session listening companion."))
+    subtitle = html.escape(subtitle_text)
     hero_label = html.escape(str(metadata.get("hero_label", "Musiculum / long-form listening")))
     playlist_name = html.escape(f"{title} · Musiculum", quote=True)
+    share_href = html.escape(share_filename, quote=True)
+    share_label = html.escape(f"{share_filename} — the same guide with no Spotify embeds")
     hero_copy = "".join(f"<p>{paragraph}</p>" for paragraph in hero_paragraphs)
     texture_options = "".join(
         f'<option value="{html.escape(family, quote=True)}">{html.escape(family)}</option>'
@@ -471,7 +485,8 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
         script.replace("__RECORDS__", json.dumps(records, ensure_ascii=False).replace("</", "<\\/"))
         .replace("__ROUTES__", json.dumps(routes, ensure_ascii=False).replace("</", "<\\/"))
         .replace("__STORAGE_KEY__", slug)
-        .replace("__TITLE__", title.replace("\\", "\\\\").replace("'", "\\'"))
+        .replace("__TITLE__", js_string(title))
+        .replace("__SUBTITLE__", js_string(subtitle_text))
         .replace("__SLUG__", slug)
     )
 
@@ -485,7 +500,7 @@ def render_v3(title: str, markdown_text: str, catalog: list[dict], found_count: 
 <main class="main" id="content"><header class="hero"><div class="hero-content reveal"><span class="eyebrow">{hero_label}</span>
 <h1>{title_text}</h1><p class="subtitle">{subtitle}</p><div class="hero-summary">{hero_copy}</div></div></header>
 <nav class="feature-nav" aria-label="Guide tools"><a href="#routes">Listening routes</a><a href="#energy-map">Energy map</a>
-<a href="#connections">Connections</a><a href="#playlist">Playlist</a><a href="#session-notes">Notes</a><button class="reset crate-dig">Crate dig</button></nav>
+<a href="#connections">Connections</a><a href="#playlist">Playlist</a><a href="#session-notes">Notes</a><a href="{share_href}">Share sheet</a><button class="reset crate-dig">Crate dig</button></nav>
 <section class="lab" id="routes"><div class="lab-head"><span class="eyebrow">Curated paths</span>
 <h2>Choose a route through the music</h2><p>Each path loads one release at a time into the persistent player.</p></div>
 <div class="route-grid">{route_cards}</div></section>
@@ -524,9 +539,25 @@ The sign-in runs entirely in this browser using PKCE, so no secret is stored in 
 <input id="playlist-client" type="text" placeholder="Client ID from your Spotify app" autocomplete="off" spellcheck="false">
 <p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
 register the redirect URI below against it, then paste the client ID here. It is kept in this browser only, and no client secret is needed.</p>
-<p>Redirect URI to register: <code id="playlist-redirect"></code></p>
-<p>Spotify only accepts HTTPS or loopback addresses, so serve the guide with something like <code>python -m http.server 8000 --bind 127.0.0.1</code> rather than opening the file directly.</p></div></div>
-<output class="playlist-status" id="playlist-status" aria-live="polite">Not connected to Spotify yet.</output></section>
+<p>Redirect URI to register: <code id="playlist-redirect"></code>
+<button class="btn btn-inline" id="playlist-redirect-copy">Copy</button></p>
+<p>Spotify matches this character for character. Paste it into <em>Edit settings &rarr; Redirect URIs</em>, press Add, then Save.
+A different port or <code>localhost</code> instead of <code>127.0.0.1</code> produces <em>redirect_uri: Not matching configuration</em>,
+and Spotify only reports it after you have signed in. Every guide on this address shares this one entry, so you only register it once.</p>
+<p>Spotify only accepts HTTPS or loopback addresses, so serve the guide with something like <code>python -m http.server 8000 --bind 127.0.0.1</code> rather than opening the file directly.</p>
+<p>If Spotify shows its own error page with nothing but a help link, the app itself is the problem rather than this guide.
+A new app sits in <em>development mode</em>, which requires the owning account to have Spotify Premium, and admits at most five listeners &mdash;
+each one added by name and email under <em>Settings &rarr; User Management</em>. An account that signs in without being on that list
+gets as far as the sign-in screen and is then refused.</p></div></div>
+<output class="playlist-status" id="playlist-status" aria-live="polite">Not connected to Spotify yet.</output>
+<div class="liner-share"><div><span class="eyebrow">Send the words with the music</span>
+<h3>Liner notes for whoever you share this with</h3>
+<p>A playlist arrives without context. This exports the same selection as Markdown — era by era, with every note, listening cue,
+energy and texture — and includes the playlist link once you have built one. It works even without a Spotify sign-in.
+For a version anyone can open in a browser, send them <a href="{share_href}">{share_label}</a>.</p></div>
+<div class="liner-actions"><button class="btn" id="liner-copy">Copy liner notes</button>
+<button class="btn" id="liner-download">Download Markdown</button>
+<output class="liner-status" id="liner-status" aria-live="polite"></output></div></div></section>
 <section class="lab" id="session-notes"><div class="lab-head"><span class="eyebrow">Private listening journal</span>
 <h2>Keep what the session reveals</h2><p>Bookmarks and notes stay in this browser. Export them as Markdown.</p></div>
 <div class="notes-panel"><div><h3>Saved releases</h3><div class="saved-list" id="saved-list"></div></div>

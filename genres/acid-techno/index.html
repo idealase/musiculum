@@ -126,6 +126,29 @@ h1, h2, h3, p { margin-top: 0; }
 .notes-panel { display: grid; grid-template-columns: minmax(16rem, .7fr) minmax(0, 1.3fr); gap: 1.2rem; }
 .saved-list { display: grid; gap: .5rem; align-content: start; }
 .saved-item { display: flex; justify-content: space-between; gap: .5rem; padding: .7rem; border: 1px solid var(--line); background: var(--panel); }
+.playlist-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1.2rem; align-items: start; }
+.playlist-form, .playlist-setup { display: grid; gap: .3rem; align-content: start; padding: 1.1rem; border: 1px solid var(--line); background: var(--panel); }
+.playlist-panel label { margin-top: .7rem; color: var(--muted); font: 700 .62rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; }
+.playlist-panel input[type="text"], .playlist-panel select { min-width: 0; padding: .6rem; border: 1px solid var(--line); background: var(--panel2); color: var(--ink); }
+.playlist-check { display: flex; align-items: center; gap: .5rem; font: 600 .82rem Inter, sans-serif; color: #c8c2ca; text-transform: none; letter-spacing: 0; }
+.playlist-send { margin-top: 1.1rem; border-color: var(--acid); background: var(--acid); color: #111; font-weight: 800; }
+.playlist-send:hover:not(:disabled) { background: #e5ff75; color: #111; }
+.playlist-send:disabled { opacity: .45; cursor: progress; }
+.playlist-setup p { margin: .5rem 0 0; color: var(--muted); font-size: .78rem; }
+.playlist-setup a { color: var(--cyan); }
+.playlist-setup em { color: #c8c2ca; font-style: normal; font-weight: 700; }
+.playlist-setup code { padding: .1rem .3rem; border: 1px solid var(--line); background: var(--panel2); color: var(--acid); font-size: .72rem; overflow-wrap: anywhere; }
+.playlist-setup #playlist-redirect { display: block; margin-top: .35rem; padding: .45rem; }
+.btn-inline { margin-top: .4rem; padding: .35rem .7rem; font-size: .7rem; }
+.playlist-status { display: block; margin-top: 1.2rem; padding: .8rem; border-left: 2px solid var(--cyan); background: #43e8d80a; color: #d8d2da; font-size: .82rem; }
+.playlist-status a { color: var(--acid); }
+.playlist-status.error { border-left-color: var(--pink); background: #ff5fb70a; }
+.liner-share { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(14rem, .6fr); gap: 1.2rem; align-items: start; margin-top: 1.2rem; padding: 1.1rem; border: 1px solid #ff5fb738; background: linear-gradient(135deg, #ff5fb70b, #43e8d80b); }
+.liner-share h3 { margin: .4rem 0 .5rem; font-size: 1.1rem; }
+.liner-share p { margin: 0; color: var(--muted); font-size: .82rem; }
+.liner-share a { color: var(--cyan); }
+.liner-actions { display: grid; gap: .5rem; align-content: start; }
+.liner-status { color: var(--muted); font: 600 .72rem ui-monospace, monospace; }
 textarea { width: 100%; min-height: 15rem; resize: vertical; background: var(--panel); border: 1px solid var(--line); color: var(--ink); padding: 1rem; }
 .notes-actions { display: flex; gap: .5rem; margin-top: .6rem; }
 .dock { position: fixed; z-index: 30; left: 17rem; right: 0; bottom: 0; display: grid; grid-template-columns: minmax(13rem, .6fr) minmax(20rem, 1.4fr) auto; gap: 1rem; align-items: center; padding: 1rem clamp(1rem, 3vw, 2rem); background: #0a0b0ff5; border-top: 1px solid var(--acid); box-shadow: 0 -15px 45px #0008; backdrop-filter: blur(16px); }
@@ -154,7 +177,7 @@ textarea { width: 100%; min-height: 15rem; resize: vertical; background: var(--p
 }
 
 @media (max-width: 560px) {
-  .album-grid, .notes-panel, .ephemera-grid, .era-feature { grid-template-columns: 1fr; }
+  .album-grid, .notes-panel, .ephemera-grid, .era-feature, .playlist-panel, .liner-share { grid-template-columns: 1fr; }
   .card-actions { flex-wrap: wrap; }
   .route-grid, .connection-list { grid-template-columns: 1fr; }
 }
@@ -171,7 +194,7 @@ textarea { width: 100%; min-height: 15rem; resize: vertical; background: var(--p
 <main class="main" id="content"><header class="hero"><div class="hero-content reveal"><span class="eyebrow">303 transmissions / selected records</span>
 <h1>Acid Techno: The Machine Learns to Snarl</h1><p class="subtitle">A five-era guide to the TB-303&#x27;s journey from Chicago experiment to free-party pressure.</p><div class="hero-summary"><p><strong>Acid techno is not simply techno with a 303 line.</strong> It is a particular use of the Roland TB-303&#x27;s unstable, resonant voice: a sequence pushed past melody and into physical pressure. Where acid house used the machine for loose, ecstatic hypnosis, acid techno hardened its repetitions with the kick drum, industrial texture, rave velocity, and the sense that a small circuit was being made to misbehave in public.</p><p>The story begins with Chicago&#x27;s acid experiment, travels through European rave culture, and becomes a durable underground language in labels, free parties, and DJs&#x27; record bags. Its defining tension is simple: disciplined grid versus liquid sound. The drums insist on forward motion while the 303 squirms, bites, and escapes its own pattern.</p></div></div></header>
 <nav class="feature-nav" aria-label="Guide tools"><a href="#routes">Listening routes</a><a href="#energy-map">Energy map</a>
-<a href="#connections">Connections</a><a href="#session-notes">Notes</a><button class="reset crate-dig">Crate dig</button></nav>
+<a href="#connections">Connections</a><a href="#playlist">Playlist</a><a href="#session-notes">Notes</a><a href="share.html">Share sheet</a><button class="reset crate-dig">Crate dig</button></nav>
 <section class="lab" id="routes"><div class="lab-head"><span class="eyebrow">Curated paths</span>
 <h2>Choose a route through the music</h2><p>Each path loads one release at a time into the persistent player.</p></div>
 <div class="route-grid"><article class="route-card"><span>4 stops</span><h3>Origin To Pressure</h3><p>Phuture → Hardfloor → Chris Liberator → Ki/Ki</p><button class="route-start" data-route="origin-to-pressure">Start route</button></article><article class="route-card"><span>4 stops</span><h3>Deep Hypnosis</h3><p>Emmanuel Top → Tin Man → Donato Dozzy → Helena Hauff</p><button class="route-start" data-route="deep-hypnosis">Start route</button></article><article class="route-card"><span>4 stops</span><h3>Machine Funk</h3><p>808 State → Speedy J → DMX Krew → Ceephax Acid Crew</p><button class="route-start" data-route="machine-funk">Start route</button></article></div></section>
@@ -435,6 +458,43 @@ textarea { width: 100%; min-height: 15rem; resize: vertical; background: var(--p
       <div class="card-actions"><button class="load-player" data-key="Ki/Ki - 5 Mins Of Acid">Load player</button>
       <button class="bookmark" data-key="Ki/Ki - 5 Mins Of Acid" aria-label="Bookmark Ki/Ki - 5 Mins Of Acid" aria-pressed="false">☆</button></div>
     </article></div></section>
+<section class="lab" id="playlist"><div class="lab-head"><span class="eyebrow">Export to Spotify</span>
+<h2>Turn this guide into a playlist</h2><p>Sign in with your own Spotify account and build a playlist from these 24 releases.
+The sign-in runs entirely in this browser using PKCE, so no secret is stored in the page and nothing is sent to a server other than Spotify.</p></div>
+<div class="playlist-panel"><div class="playlist-form">
+<label for="playlist-name">Playlist name</label><input id="playlist-name" type="text" value="Acid Techno: The Machine Learns to Snarl · Musiculum">
+<label for="playlist-scope">Which records</label><select id="playlist-scope">
+<option value="all">Every release in this guide (24)</option>
+<option value="filtered">Whatever the energy map filters currently show</option>
+<option value="bookmarks">Bookmarked releases only</option></select>
+<label for="playlist-depth">How much of each</label><select id="playlist-depth">
+<option value="album">Every track, album by album</option>
+<option value="single">Opening track only</option></select>
+<label class="playlist-check"><input id="playlist-public" type="checkbox"> Make the playlist public</label>
+<button class="btn playlist-send" id="playlist-send">Send to Spotify</button></div>
+<div class="playlist-setup"><label for="playlist-client">Your Spotify app client ID</label>
+<input id="playlist-client" type="text" placeholder="Client ID from your Spotify app" autocomplete="off" spellcheck="false">
+<p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
+register the redirect URI below against it, then paste the client ID here. It is kept in this browser only, and no client secret is needed.</p>
+<p>Redirect URI to register: <code id="playlist-redirect"></code>
+<button class="btn btn-inline" id="playlist-redirect-copy">Copy</button></p>
+<p>Spotify matches this character for character. Paste it into <em>Edit settings &rarr; Redirect URIs</em>, press Add, then Save.
+A different port or <code>localhost</code> instead of <code>127.0.0.1</code> produces <em>redirect_uri: Not matching configuration</em>,
+and Spotify only reports it after you have signed in. Every guide on this address shares this one entry, so you only register it once.</p>
+<p>Spotify only accepts HTTPS or loopback addresses, so serve the guide with something like <code>python -m http.server 8000 --bind 127.0.0.1</code> rather than opening the file directly.</p>
+<p>If Spotify shows its own error page with nothing but a help link, the app itself is the problem rather than this guide.
+A new app sits in <em>development mode</em>, which requires the owning account to have Spotify Premium, and admits at most five listeners &mdash;
+each one added by name and email under <em>Settings &rarr; User Management</em>. An account that signs in without being on that list
+gets as far as the sign-in screen and is then refused.</p></div></div>
+<output class="playlist-status" id="playlist-status" aria-live="polite">Not connected to Spotify yet.</output>
+<div class="liner-share"><div><span class="eyebrow">Send the words with the music</span>
+<h3>Liner notes for whoever you share this with</h3>
+<p>A playlist arrives without context. This exports the same selection as Markdown — era by era, with every note, listening cue,
+energy and texture — and includes the playlist link once you have built one. It works even without a Spotify sign-in.
+For a version anyone can open in a browser, send them <a href="share.html">share.html — the same guide with no Spotify embeds</a>.</p></div>
+<div class="liner-actions"><button class="btn" id="liner-copy">Copy liner notes</button>
+<button class="btn" id="liner-download">Download Markdown</button>
+<output class="liner-status" id="liner-status" aria-live="polite"></output></div></div></section>
 <section class="lab" id="session-notes"><div class="lab-head"><span class="eyebrow">Private listening journal</span>
 <h2>Keep what the session reveals</h2><p>Bookmarks and notes stay in this browser. Export them as Markdown.</p></div>
 <div class="notes-panel"><div><h3>Saved releases</h3><div class="saved-list" id="saved-list"></div></div>
@@ -616,6 +676,239 @@ textarea { width: 100%; min-height: 15rem; resize: vertical; background: var(--p
   });
   if (state.activeKey && byKey.has(state.activeKey)) { notesSelect.value = state.activeKey; }
   loadNote(); renderBookmarks(); updateRouteProgress();
+
+  // Spotify playlist export: Authorization Code with PKCE, so the page needs no client secret and no server.
+  const playlistName = document.querySelector('#playlist-name');
+  const playlistScope = document.querySelector('#playlist-scope');
+  const playlistDepth = document.querySelector('#playlist-depth');
+  const playlistPublic = document.querySelector('#playlist-public');
+  const playlistClient = document.querySelector('#playlist-client');
+  const playlistSend = document.querySelector('#playlist-send');
+  const playlistStatus = document.querySelector('#playlist-status');
+  const linerCopy = document.querySelector('#liner-copy');
+  const linerDownload = document.querySelector('#liner-download');
+  const linerStatus = document.querySelector('#liner-status');
+  // One redirect URI for every guide on this host, so only a single entry needs registering with Spotify.
+  const redirectUri = new URL('../callback.html', location.href).href;
+  const clientStorageKey = 'musiculum:spotify-client-id';
+  const pkceKey = 'musiculum:spotify-pkce';
+  const returnKey = 'musiculum:spotify-return';
+  const resultKey = 'musiculum:spotify-result';
+  const intentKey = 'musiculum:spotify-intent:acid-techno-the-machine-learns-to-snarl';
+  let accessToken = '';
+  document.querySelector('#playlist-redirect').textContent = redirectUri;
+  document.querySelector('#playlist-redirect-copy').addEventListener('click', async event => {
+    try { await navigator.clipboard.writeText(redirectUri); event.target.textContent = 'Copied'; }
+    catch { event.target.textContent = 'Select it manually'; }
+    setTimeout(() => event.target.textContent = 'Copy', 2000);
+  });
+  playlistClient.value = localStorage.getItem(clientStorageKey) || '';
+
+  const setPlaylistStatus = (message, isError = false) => {
+    playlistStatus.replaceChildren(message instanceof Node ? message : document.createTextNode(message));
+    playlistStatus.classList.toggle('error', isError);
+  };
+  const readSession = key => {
+    try { const value = sessionStorage.getItem(key); sessionStorage.removeItem(key); return value ? JSON.parse(value) : null; }
+    catch { return null; }
+  };
+  const randomString = length => {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
+    return [...crypto.getRandomValues(new Uint8Array(length))].map(byte => alphabet[byte % alphabet.length]).join('');
+  };
+  const base64url = buffer => btoa(String.fromCharCode(...new Uint8Array(buffer))).replaceAll('+', '-').replaceAll('/', '_').replaceAll('=', '');
+
+  const spotifyApi = async (path, options = {}) => {
+    const url = path.startsWith('http') ? path : `https://api.spotify.com/v1${path}`;
+    const response = await fetch(url, {
+      ...options,
+      headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json', ...(options.headers || {}) }
+    });
+    if (response.status === 429) {
+      const wait = Number(response.headers.get('Retry-After') || 2);
+      await new Promise(resolve => setTimeout(resolve, (wait + 1) * 1000));
+      return spotifyApi(path, options);
+    }
+    if (response.status === 401) throw new Error('The Spotify session expired. Send again to sign in.');
+    if (response.status === 403) {
+      const detail = await response.json().catch(() => null);
+      const reason = detail?.error?.message ? `${detail.error.message}. ` : '';
+      throw new Error(`${reason}Spotify blocks this unless the app owner has Premium and every listener is added under Settings \u2192 User Management in the developer dashboard (five maximum while the app is in development mode).`);
+    }
+    if (!response.ok) {
+      const detail = await response.json().catch(() => null);
+      throw new Error(detail?.error?.message || `Spotify refused the request (HTTP ${response.status}).`);
+    }
+    return response.status === 204 ? null : response.json();
+  };
+
+  const scopedRecords = () => playlistScope.value === 'bookmarks' ? records.filter(record => state.bookmarks.includes(record.key))
+    : playlistScope.value === 'filtered' ? visibleRecords()
+    : records;
+  const playlistRecords = () => scopedRecords().filter(record => record.spotify_id);
+
+  let playlistUrl = '';
+  const linerNotes = () => {
+    const chosen = scopedRecords();
+    const lines = ['# Acid Techno: The Machine Learns to Snarl', '', 'A five-era guide to the TB-303\'s journey from Chicago experiment to free-party pressure.', ''];
+    if (playlistUrl) lines.push(`Playlist: ${playlistUrl}`, '');
+    lines.push(`${chosen.length} releases, in listening order.`, '');
+    let era = '';
+    chosen.forEach((record, index) => {
+      if (record.section && record.section !== era) {
+        era = record.section;
+        lines.push(`## ${era}`, '');
+      }
+      const year = record.year ? ` (${record.year})` : '';
+      const missing = record.spotify_id ? '' : ' — not on Spotify';
+      lines.push(`### ${String(index + 1).padStart(2, '0')}. ${record.artist} — ${record.album}${year}${missing}`, '');
+      if (record.note) lines.push(record.note, '');
+      if (record.listen_for) lines.push(`*Listen for:* ${record.listen_for}`, '');
+      lines.push(`Energy ${record.energy || '5'}/10 · ${record.texture || 'unclassified'}`, '');
+    });
+    lines.push('---', '', 'Notes from the Musiculum listening guide: Acid Techno: The Machine Learns to Snarl.');
+    return lines.join('\n');
+  };
+
+  const setLinerStatus = message => linerStatus.textContent = message;
+  linerCopy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(linerNotes());
+      setLinerStatus(`Copied notes for ${scopedRecords().length} releases.`);
+    } catch {
+      setLinerStatus('This browser blocked the clipboard. Use the download instead.');
+    }
+  });
+  linerDownload.addEventListener('click', () => {
+    const blob = new Blob([linerNotes()], { type: 'text/markdown' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob); link.download = 'acid-techno-the-machine-learns-to-snarl-liner-notes.md'; link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    setLinerStatus(`Downloaded notes for ${scopedRecords().length} releases.`);
+  });
+  playlistScope.addEventListener('change', () => setLinerStatus(`Ready to share notes for ${scopedRecords().length} releases.`));
+  setLinerStatus(`Ready to share notes for ${records.length} releases.`);
+
+  const buildPlaylist = async () => {
+    const chosen = playlistRecords();
+    if (!chosen.length) { setPlaylistStatus('No releases match that selection.', true); return; }
+    playlistSend.disabled = true;
+    try {
+      const wholeAlbums = playlistDepth.value === 'album';
+      const uris = [];
+      for (let index = 0; index < chosen.length; index += 20) {
+        const batch = chosen.slice(index, index + 20);
+        setPlaylistStatus(`Reading track lists… ${index + batch.length}/${chosen.length} releases.`);
+        const data = await spotifyApi(`/albums?ids=${batch.map(record => record.spotify_id).join(',')}`);
+        for (const album of data.albums || []) {
+          if (!album) continue;
+          const tracks = [...(album.tracks?.items || [])];
+          let next = album.tracks?.next;
+          while (wholeAlbums && next) {
+            const page = await spotifyApi(next);
+            tracks.push(...(page.items || []));
+            next = page.next;
+          }
+          for (const track of wholeAlbums ? tracks : tracks.slice(0, 1)) if (track?.uri) uris.push(track.uri);
+        }
+      }
+      if (!uris.length) throw new Error('Spotify returned no playable tracks for that selection.');
+      setPlaylistStatus(`Creating a playlist of ${uris.length} tracks…`);
+      const profile = await spotifyApi('/me');
+      const playlist = await spotifyApi(`/users/${encodeURIComponent(profile.id)}/playlists`, {
+        method: 'POST',
+        body: JSON.stringify({
+          name: playlistName.value.trim() || 'Acid Techno: The Machine Learns to Snarl',
+          public: playlistPublic.checked,
+          description: 'Built from the Musiculum listening guide: Acid Techno: The Machine Learns to Snarl.'.slice(0, 300)
+        })
+      });
+      for (let index = 0; index < uris.length; index += 100) {
+        const slice = uris.slice(index, index + 100);
+        await spotifyApi(`/playlists/${playlist.id}/tracks`, { method: 'POST', body: JSON.stringify({ uris: slice }) });
+        setPlaylistStatus(`Adding tracks… ${index + slice.length}/${uris.length}.`);
+      }
+      const summary = document.createElement('span');
+      summary.append(`Done. ${uris.length} tracks from ${chosen.length} releases. `);
+      const link = document.createElement('a');
+      playlistUrl = playlist.external_urls?.spotify || '';
+      link.href = playlistUrl || 'https://open.spotify.com/collection/playlists';
+      link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Open the playlist in Spotify';
+      summary.append(link, ' Share the liner notes below alongside it.');
+      setPlaylistStatus(summary);
+      setLinerStatus('The notes now include a link to this playlist.');
+    } catch (error) {
+      setPlaylistStatus(error.message || 'Something went wrong talking to Spotify.', true);
+    } finally {
+      playlistSend.disabled = false;
+    }
+  };
+
+  const beginAuth = async clientId => {
+    const verifier = randomString(64);
+    const oauthState = randomString(16);
+    const challenge = base64url(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier)));
+    sessionStorage.setItem(pkceKey, JSON.stringify({ verifier, state: oauthState, clientId, redirectUri }));
+    sessionStorage.setItem(returnKey, location.href);
+    sessionStorage.setItem(intentKey, JSON.stringify({
+      name: playlistName.value, scope: playlistScope.value, depth: playlistDepth.value, isPublic: playlistPublic.checked
+    }));
+    const params = new URLSearchParams({
+      client_id: clientId, response_type: 'code', redirect_uri: redirectUri,
+      code_challenge_method: 'S256', code_challenge: challenge, state: oauthState,
+      scope: 'playlist-modify-private playlist-modify-public'
+    });
+    location.assign(`https://accounts.spotify.com/authorize?${params}`);
+  };
+
+  const resumeAuth = async () => {
+    const handoff = readSession(resultKey);
+    const code = handoff?.code;
+    const failure = handoff?.error;
+    if (!code && !failure) return;
+    const pending = readSession(pkceKey);
+    const intent = readSession(intentKey);
+    if (failure) { setPlaylistStatus(`Spotify sign-in did not complete (${failure}).`, true); return; }
+    if (!pending || pending.state !== handoff.state) { setPlaylistStatus('That sign-in could not be verified. Try again.', true); return; }
+    try {
+      setPlaylistStatus('Finishing sign-in…');
+      const response = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          client_id: pending.clientId, grant_type: 'authorization_code', code,
+          redirect_uri: pending.redirectUri, code_verifier: pending.verifier
+        })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error_description || 'Spotify rejected the sign-in.');
+      accessToken = data.access_token;
+      if (!intent) { setPlaylistStatus('Connected to Spotify. Choose your options and send again.'); return; }
+      playlistName.value = intent.name;
+      playlistScope.value = intent.scope;
+      playlistDepth.value = intent.depth;
+      playlistPublic.checked = intent.isPublic;
+      await buildPlaylist();
+    } catch (error) {
+      setPlaylistStatus(error.message || 'Could not complete the Spotify sign-in.', true);
+    }
+  };
+
+  playlistClient.addEventListener('change', () => localStorage.setItem(clientStorageKey, playlistClient.value.trim()));
+  playlistSend.addEventListener('click', async () => {
+    const clientId = playlistClient.value.trim();
+    if (!clientId) { setPlaylistStatus('Add your Spotify app client ID first.', true); playlistClient.focus(); return; }
+    localStorage.setItem(clientStorageKey, clientId);
+    if (accessToken) { await buildPlaylist(); return; }
+    setPlaylistStatus('Redirecting to Spotify to sign in…');
+    await beginAuth(clientId);
+  });
+
+  if (window.isSecureContext && window.crypto?.subtle) resumeAuth();
+  else {
+    playlistSend.disabled = true;
+    setPlaylistStatus('Spotify sign-in needs a secure page. Serve this guide from http://127.0.0.1 or an https address and reload — it cannot run from a file:// URL.', true);
+  }
 
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
