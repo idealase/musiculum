@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+genres/spotify-client.js
 
 # Python
 __pycache__/

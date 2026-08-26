@@ -1,0 +1,3 @@
+// Copy this file to genres/spotify-client.js for local static testing.
+// Keep this value public-client-only; never put a Spotify client secret in browser files.
+window.__MUSICULUM_SPOTIFY_CLIENT_ID__ = '';

@@ -11,6 +11,7 @@ A Python workflow for turning genre essays in markdown into Spotify-backed HTML 
 - `genres/<genre>/index.html`: generated embeddable listening report.
 - `genres/<genre>/share.html`: companion share sheet with the same words and no Spotify embeds.
 - `genres/callback.html`: shared Spotify OAuth landing page; every guide redirects through it.
+- `genres/spotify-client.js.example`: template for local runtime config of the public Spotify Client ID used by playlist export.
 - `genres/_template/`: starter files for adding a new genre.
 
 GitHub Pages deploys the repository root from `main` using `.github/workflows/pages.yml`. The published site redirects
@@ -116,7 +117,9 @@ Playlist export needs a Spotify app of your own:
 2. Register the redirect URI the guide displays, character for character. For the published GitHub Pages site it will be
 	`https://<account>.github.io/<repository>/genres/callback.html`; every guide shares this one entry. Spotify rejects
 	`localhost`, so use `127.0.0.1` only for local development.
-3. Paste the client ID into the guide. It is stored in that browser only.
+3. Configure the public client ID once for the site:
+   - **GitHub Pages deploy**: set repository variable `SPOTIFY_CLIENT_ID`; the Pages workflow injects it into `genres/spotify-client.js`.
+   - **Local static testing**: copy `genres/spotify-client.js.example` to `genres/spotify-client.js` (gitignored), then set `window.__MUSICULUM_SPOTIFY_CLIENT_ID__` to your app client ID.
 
 Spotify validates the redirect URI only *after* sign-in, so a mismatch shows up as a Spotify-hosted error page rather
 than anything the guide can catch.

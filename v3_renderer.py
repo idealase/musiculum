@@ -535,10 +535,9 @@ The sign-in runs entirely in this browser using PKCE, so no secret is stored in 
 <option value="single">Opening track only</option></select>
 <label class="playlist-check"><input id="playlist-public" type="checkbox"> Make the playlist public</label>
 <button class="btn playlist-send" id="playlist-send">Send to Spotify</button></div>
-<div class="playlist-setup"><label for="playlist-client">Your Spotify app client ID</label>
-<input id="playlist-client" type="text" placeholder="Client ID from your Spotify app" autocomplete="off" spellcheck="false">
-<p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
-register the redirect URI below against it, then paste the client ID here. It is kept in this browser only, and no client secret is needed.</p>
+<div class="playlist-setup"><p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
+register the redirect URI below against it, then set the public Spotify Client ID for this site at build/deploy time. No client secret is needed.</p>
+<p id="playlist-client-source"></p>
 <p>Redirect URI to register: <code id="playlist-redirect"></code>
 <button class="btn btn-inline" id="playlist-redirect-copy">Copy</button></p>
 <p>Spotify matches this character for character. Paste it into <em>Edit settings &rarr; Redirect URIs</em>, press Add, then Save.
@@ -571,4 +570,4 @@ For a version anyone can open in a browser, send them <a href="{share_href}">{sh
 <span id="dock-album">The player loads only when requested.</span><span id="dock-cue"></span></div>
 <div class="player-mount" id="player-mount"></div><div class="route-progress" id="route-progress" hidden>
 <button class="btn route-prev">Previous</button><span></span><button class="btn route-next">Next</button></div></aside>
-<script>{script}</script></body></html>"""
+<script src="../spotify-client.js"></script><script>{script}</script></body></html>"""
