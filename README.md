@@ -11,6 +11,7 @@ A personal-first Python workflow for turning genre essays in markdown into Spoti
 - `genres/<genre>/index.html`: generated embeddable listening report.
 - `genres/<genre>/share.html`: companion share sheet with the same words and no Spotify embeds.
 - `genres/callback.html`: shared Spotify OAuth landing page; every guide redirects through it.
+- `genres/spotify-client.js.example`: template for local runtime config of the public Spotify Client ID used by playlist export.
 - `genres/_template/`: starter files for adding a new genre.
 
 GitHub Pages deploys the repository root from `main` using `.github/workflows/pages.yml`. The published site redirects
