@@ -124,18 +124,13 @@ h1, h2, h3, p { margin-top: 0; }
 .saved-list { display: grid; gap: .5rem; align-content: start; }
 .saved-item { display: flex; justify-content: space-between; gap: .5rem; padding: .7rem; border: 1px solid var(--line); background: var(--panel); }
 .playlist-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1.2rem; align-items: start; }
-.playlist-form, .playlist-setup { display: grid; gap: .3rem; align-content: start; padding: 1.1rem; border: 1px solid var(--line); background: var(--panel); }
+.playlist-form { display: grid; gap: .3rem; align-content: start; padding: 1.1rem; border: 1px solid var(--line); background: var(--panel); }
 .playlist-panel label { margin-top: .7rem; color: var(--muted); font: 700 .62rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; }
 .playlist-panel input[type="text"], .playlist-panel select { min-width: 0; padding: .6rem; border: 1px solid var(--line); background: var(--panel2); color: var(--ink); }
 .playlist-check { display: flex; align-items: center; gap: .5rem; font: 600 .82rem Inter, sans-serif; color: #c8c2ca; text-transform: none; letter-spacing: 0; }
 .playlist-send { margin-top: 1.1rem; border-color: var(--acid); background: var(--acid); color: #111; font-weight: 800; }
 .playlist-send:hover:not(:disabled) { background: #e5ff75; color: #111; }
 .playlist-send:disabled { opacity: .45; cursor: progress; }
-.playlist-setup p { margin: .5rem 0 0; color: var(--muted); font-size: .78rem; }
-.playlist-setup a { color: var(--cyan); }
-.playlist-setup em { color: #c8c2ca; font-style: normal; font-weight: 700; }
-.playlist-setup code { padding: .1rem .3rem; border: 1px solid var(--line); background: var(--panel2); color: var(--acid); font-size: .72rem; overflow-wrap: anywhere; }
-.playlist-setup #playlist-redirect { display: block; margin-top: .35rem; padding: .45rem; }
 .btn-inline { margin-top: .4rem; padding: .35rem .7rem; font-size: .7rem; }
 .playlist-status { display: block; margin-top: 1.2rem; padding: .8rem; border-left: 2px solid var(--cyan); background: #43e8d80a; color: #d8d2da; font-size: .82rem; }
 .playlist-status a { color: var(--acid); }

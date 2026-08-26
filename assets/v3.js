@@ -168,11 +168,11 @@
   loadNote(); renderBookmarks(); updateRouteProgress();
 
   // Spotify playlist export: Authorization Code with PKCE, so the page needs no client secret and no server.
+  const clientId = '__CLIENT_ID__';
   const playlistName = document.querySelector('#playlist-name');
   const playlistScope = document.querySelector('#playlist-scope');
   const playlistDepth = document.querySelector('#playlist-depth');
   const playlistPublic = document.querySelector('#playlist-public');
-  const playlistClient = document.querySelector('#playlist-client');
   const playlistSend = document.querySelector('#playlist-send');
   const playlistStatus = document.querySelector('#playlist-status');
   const linerCopy = document.querySelector('#liner-copy');
@@ -180,19 +180,11 @@
   const linerStatus = document.querySelector('#liner-status');
   // One redirect URI for every guide on this host, so only a single entry needs registering with Spotify.
   const redirectUri = new URL('../callback.html', location.href).href;
-  const clientStorageKey = 'musiculum:spotify-client-id';
   const pkceKey = 'musiculum:spotify-pkce';
   const returnKey = 'musiculum:spotify-return';
   const resultKey = 'musiculum:spotify-result';
   const intentKey = 'musiculum:spotify-intent:__STORAGE_KEY__';
   let accessToken = '';
-  document.querySelector('#playlist-redirect').textContent = redirectUri;
-  document.querySelector('#playlist-redirect-copy').addEventListener('click', async event => {
-    try { await navigator.clipboard.writeText(redirectUri); event.target.textContent = 'Copied'; }
-    catch { event.target.textContent = 'Select it manually'; }
-    setTimeout(() => event.target.textContent = 'Copy', 2000);
-  });
-  playlistClient.value = localStorage.getItem(clientStorageKey) || '';
 
   const setPlaylistStatus = (message, isError = false) => {
     playlistStatus.replaceChildren(message instanceof Node ? message : document.createTextNode(message));
@@ -384,11 +376,8 @@
     }
   };
 
-  playlistClient.addEventListener('change', () => localStorage.setItem(clientStorageKey, playlistClient.value.trim()));
   playlistSend.addEventListener('click', async () => {
-    const clientId = playlistClient.value.trim();
-    if (!clientId) { setPlaylistStatus('Add your Spotify app client ID first.', true); playlistClient.focus(); return; }
-    localStorage.setItem(clientStorageKey, clientId);
+    if (!clientId) { setPlaylistStatus('This guide is not connected to Spotify. Contact the site owner.', true); return; }
     if (accessToken) { await buildPlaylist(); return; }
     setPlaylistStatus('Redirecting to Spotify to sign in…');
     await beginAuth(clientId);

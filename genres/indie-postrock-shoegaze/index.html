@@ -127,18 +127,13 @@ h1, h2, h3, p { margin-top: 0; }
 .saved-list { display: grid; gap: .5rem; align-content: start; }
 .saved-item { display: flex; justify-content: space-between; gap: .5rem; padding: .7rem; border: 1px solid var(--line); background: var(--panel); }
 .playlist-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1.2rem; align-items: start; }
-.playlist-form, .playlist-setup { display: grid; gap: .3rem; align-content: start; padding: 1.1rem; border: 1px solid var(--line); background: var(--panel); }
+.playlist-form { display: grid; gap: .3rem; align-content: start; padding: 1.1rem; border: 1px solid var(--line); background: var(--panel); }
 .playlist-panel label { margin-top: .7rem; color: var(--muted); font: 700 .62rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; }
 .playlist-panel input[type="text"], .playlist-panel select { min-width: 0; padding: .6rem; border: 1px solid var(--line); background: var(--panel2); color: var(--ink); }
 .playlist-check { display: flex; align-items: center; gap: .5rem; font: 600 .82rem Inter, sans-serif; color: #c8c2ca; text-transform: none; letter-spacing: 0; }
 .playlist-send { margin-top: 1.1rem; border-color: var(--acid); background: var(--acid); color: #111; font-weight: 800; }
 .playlist-send:hover:not(:disabled) { background: #e5ff75; color: #111; }
 .playlist-send:disabled { opacity: .45; cursor: progress; }
-.playlist-setup p { margin: .5rem 0 0; color: var(--muted); font-size: .78rem; }
-.playlist-setup a { color: var(--cyan); }
-.playlist-setup em { color: #c8c2ca; font-style: normal; font-weight: 700; }
-.playlist-setup code { padding: .1rem .3rem; border: 1px solid var(--line); background: var(--panel2); color: var(--acid); font-size: .72rem; overflow-wrap: anywhere; }
-.playlist-setup #playlist-redirect { display: block; margin-top: .35rem; padding: .45rem; }
 .btn-inline { margin-top: .4rem; padding: .35rem .7rem; font-size: .7rem; }
 .playlist-status { display: block; margin-top: 1.2rem; padding: .8rem; border-left: 2px solid var(--cyan); background: #43e8d80a; color: #d8d2da; font-size: .82rem; }
 .playlist-status a { color: var(--acid); }
@@ -1132,21 +1127,7 @@ The sign-in runs entirely in this browser using PKCE, so no secret is stored in 
 <option value="album">Every track, album by album</option>
 <option value="single">Opening track only</option></select>
 <label class="playlist-check"><input id="playlist-public" type="checkbox"> Make the playlist public</label>
-<button class="btn playlist-send" id="playlist-send">Send to Spotify</button></div>
-<div class="playlist-setup"><label for="playlist-client">Your Spotify app client ID</label>
-<input id="playlist-client" type="text" placeholder="Client ID from your Spotify app" autocomplete="off" spellcheck="false">
-<p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
-register the redirect URI below against it, then paste the client ID here. It is kept in this browser only, and no client secret is needed.</p>
-<p>Redirect URI to register: <code id="playlist-redirect"></code>
-<button class="btn btn-inline" id="playlist-redirect-copy">Copy</button></p>
-<p>Spotify matches this character for character. Paste it into <em>Edit settings &rarr; Redirect URIs</em>, press Add, then Save.
-A different port or <code>localhost</code> instead of <code>127.0.0.1</code> produces <em>redirect_uri: Not matching configuration</em>,
-and Spotify only reports it after you have signed in. Every guide on this address shares this one entry, so you only register it once.</p>
-<p>Spotify only accepts HTTPS or loopback addresses, so serve the guide with something like <code>python -m http.server 8000 --bind 127.0.0.1</code> rather than opening the file directly.</p>
-<p>If Spotify shows its own error page with nothing but a help link, the app itself is the problem rather than this guide.
-A new app sits in <em>development mode</em>, which requires the owning account to have Spotify Premium, and admits at most five listeners &mdash;
-each one added by name and email under <em>Settings &rarr; User Management</em>. An account that signs in without being on that list
-gets as far as the sign-in screen and is then refused.</p></div></div>
+<button class="btn playlist-send" id="playlist-send">Send to Spotify</button></div></div>
 <output class="playlist-status" id="playlist-status" aria-live="polite">Not connected to Spotify yet.</output>
 <div class="liner-share"><div><span class="eyebrow">Send the words with the music</span>
 <h3>Liner notes for whoever you share this with</h3>
@@ -1339,11 +1320,11 @@ For a version anyone can open in a browser, send them <a href="share.html">share
   loadNote(); renderBookmarks(); updateRouteProgress();
 
   // Spotify playlist export: Authorization Code with PKCE, so the page needs no client secret and no server.
+  const clientId = '';
   const playlistName = document.querySelector('#playlist-name');
   const playlistScope = document.querySelector('#playlist-scope');
   const playlistDepth = document.querySelector('#playlist-depth');
   const playlistPublic = document.querySelector('#playlist-public');
-  const playlistClient = document.querySelector('#playlist-client');
   const playlistSend = document.querySelector('#playlist-send');
   const playlistStatus = document.querySelector('#playlist-status');
   const linerCopy = document.querySelector('#liner-copy');
@@ -1351,19 +1332,11 @@ For a version anyone can open in a browser, send them <a href="share.html">share
   const linerStatus = document.querySelector('#liner-status');
   // One redirect URI for every guide on this host, so only a single entry needs registering with Spotify.
   const redirectUri = new URL('../callback.html', location.href).href;
-  const clientStorageKey = 'musiculum:spotify-client-id';
   const pkceKey = 'musiculum:spotify-pkce';
   const returnKey = 'musiculum:spotify-return';
   const resultKey = 'musiculum:spotify-result';
   const intentKey = 'musiculum:spotify-intent:gossamer-architecture-niche-pathways-through-shoegaze-post-rock-and-indie-experimentation-1989-2026';
   let accessToken = '';
-  document.querySelector('#playlist-redirect').textContent = redirectUri;
-  document.querySelector('#playlist-redirect-copy').addEventListener('click', async event => {
-    try { await navigator.clipboard.writeText(redirectUri); event.target.textContent = 'Copied'; }
-    catch { event.target.textContent = 'Select it manually'; }
-    setTimeout(() => event.target.textContent = 'Copy', 2000);
-  });
-  playlistClient.value = localStorage.getItem(clientStorageKey) || '';
 
   const setPlaylistStatus = (message, isError = false) => {
     playlistStatus.replaceChildren(message instanceof Node ? message : document.createTextNode(message));
@@ -1555,11 +1528,8 @@ For a version anyone can open in a browser, send them <a href="share.html">share
     }
   };
 
-  playlistClient.addEventListener('change', () => localStorage.setItem(clientStorageKey, playlistClient.value.trim()));
   playlistSend.addEventListener('click', async () => {
-    const clientId = playlistClient.value.trim();
-    if (!clientId) { setPlaylistStatus('Add your Spotify app client ID first.', true); playlistClient.focus(); return; }
-    localStorage.setItem(clientStorageKey, clientId);
+    if (!clientId) { setPlaylistStatus('This guide is not connected to Spotify. Contact the site owner.', true); return; }
     if (accessToken) { await buildPlaylist(); return; }
     setPlaylistStatus('Redirecting to Spotify to sign in…');
     await beginAuth(clientId);
