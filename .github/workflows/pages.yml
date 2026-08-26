@@ -27,6 +27,24 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Inject Spotify Client ID config
+        env:
+          SPOTIFY_CLIENT_ID: ${{ vars.SPOTIFY_CLIENT_ID }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          client_id = os.environ.get("SPOTIFY_CLIENT_ID", "").strip()
+          Path("genres/spotify-client.js").write_text(
+              f"window.__MUSICULUM_SPOTIFY_CLIENT_ID__ = {json.dumps(client_id)};\n",
+              encoding="utf-8",
+          )
+          if not client_id:
+              print("::warning::SPOTIFY_CLIENT_ID is empty; playlist export will stay unconfigured.")
+          PY
+
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:

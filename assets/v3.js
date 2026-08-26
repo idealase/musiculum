@@ -172,9 +172,9 @@
   const playlistScope = document.querySelector('#playlist-scope');
   const playlistDepth = document.querySelector('#playlist-depth');
   const playlistPublic = document.querySelector('#playlist-public');
-  const playlistClient = document.querySelector('#playlist-client');
   const playlistSend = document.querySelector('#playlist-send');
   const playlistStatus = document.querySelector('#playlist-status');
+  const playlistClientSource = document.querySelector('#playlist-client-source');
   const linerCopy = document.querySelector('#liner-copy');
   const linerDownload = document.querySelector('#liner-download');
   const linerStatus = document.querySelector('#liner-status');
@@ -192,7 +192,21 @@
     catch { event.target.textContent = 'Select it manually'; }
     setTimeout(() => event.target.textContent = 'Copy', 2000);
   });
-  playlistClient.value = localStorage.getItem(clientStorageKey) || '';
+  const configuredClientId = typeof window.__MUSICULUM_SPOTIFY_CLIENT_ID__ === 'string'
+    ? window.__MUSICULUM_SPOTIFY_CLIENT_ID__.trim()
+    : '';
+  if (configuredClientId) {
+    localStorage.setItem(clientStorageKey, configuredClientId);
+    playlistClientSource.textContent = 'Spotify Client ID is configured for this hosted guide.';
+  } else {
+    playlistClientSource.replaceChildren(
+      document.createTextNode('Spotify Client ID is not configured. Maintainer setup: create '),
+      Object.assign(document.createElement('code'), { textContent: 'genres/spotify-client.js' }),
+      document.createTextNode(' for local use, or set the '),
+      Object.assign(document.createElement('code'), { textContent: 'SPOTIFY_CLIENT_ID' }),
+      document.createTextNode(' GitHub repository variable for Pages deploys.')
+    );
+  }
 
   const setPlaylistStatus = (message, isError = false) => {
     playlistStatus.replaceChildren(message instanceof Node ? message : document.createTextNode(message));
@@ -384,11 +398,9 @@
     }
   };
 
-  playlistClient.addEventListener('change', () => localStorage.setItem(clientStorageKey, playlistClient.value.trim()));
   playlistSend.addEventListener('click', async () => {
-    const clientId = playlistClient.value.trim();
-    if (!clientId) { setPlaylistStatus('Add your Spotify app client ID first.', true); playlistClient.focus(); return; }
-    localStorage.setItem(clientStorageKey, clientId);
+    const clientId = localStorage.getItem(clientStorageKey)?.trim() || '';
+    if (!clientId) { setPlaylistStatus('Spotify Client ID is not configured for this guide yet.', true); return; }
     if (accessToken) { await buildPlaylist(); return; }
     setPlaylistStatus('Redirecting to Spotify to sign in…');
     await beginAuth(clientId);
