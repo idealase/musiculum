@@ -284,6 +284,7 @@ def render_v3(
     catalog: list[dict],
     found_count: int,
     share_filename: str = "share.html",
+    spotify_client_id: str = "",
 ) -> str:
     metadata, essay = parse_front_matter(markdown_text)
     sections = extract_sections(essay)
@@ -488,6 +489,7 @@ def render_v3(
         .replace("__TITLE__", js_string(title))
         .replace("__SUBTITLE__", js_string(subtitle_text))
         .replace("__SLUG__", slug)
+        .replace("__CLIENT_ID__", js_string(spotify_client_id))
     )
 
     return f"""<!doctype html>
@@ -534,21 +536,7 @@ The sign-in runs entirely in this browser using PKCE, so no secret is stored in 
 <option value="album">Every track, album by album</option>
 <option value="single">Opening track only</option></select>
 <label class="playlist-check"><input id="playlist-public" type="checkbox"> Make the playlist public</label>
-<button class="btn playlist-send" id="playlist-send">Send to Spotify</button></div>
-<div class="playlist-setup"><label for="playlist-client">Your Spotify app client ID</label>
-<input id="playlist-client" type="text" placeholder="Client ID from your Spotify app" autocomplete="off" spellcheck="false">
-<p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
-register the redirect URI below against it, then paste the client ID here. It is kept in this browser only, and no client secret is needed.</p>
-<p>Redirect URI to register: <code id="playlist-redirect"></code>
-<button class="btn btn-inline" id="playlist-redirect-copy">Copy</button></p>
-<p>Spotify matches this character for character. Paste it into <em>Edit settings &rarr; Redirect URIs</em>, press Add, then Save.
-A different port or <code>localhost</code> instead of <code>127.0.0.1</code> produces <em>redirect_uri: Not matching configuration</em>,
-and Spotify only reports it after you have signed in. Every guide on this address shares this one entry, so you only register it once.</p>
-<p>Spotify only accepts HTTPS or loopback addresses, so serve the guide with something like <code>python -m http.server 8000 --bind 127.0.0.1</code> rather than opening the file directly.</p>
-<p>If Spotify shows its own error page with nothing but a help link, the app itself is the problem rather than this guide.
-A new app sits in <em>development mode</em>, which requires the owning account to have Spotify Premium, and admits at most five listeners &mdash;
-each one added by name and email under <em>Settings &rarr; User Management</em>. An account that signs in without being on that list
-gets as far as the sign-in screen and is then refused.</p></div></div>
+<button class="btn playlist-send" id="playlist-send">Send to Spotify</button></div></div>
 <output class="playlist-status" id="playlist-status" aria-live="polite">Not connected to Spotify yet.</output>
 <div class="liner-share"><div><span class="eyebrow">Send the words with the music</span>
 <h3>Liner notes for whoever you share this with</h3>

@@ -678,6 +678,7 @@ def write_reports(
             catalog=catalog,
             found_count=found,
             share_filename=args.share,
+            spotify_client_id=os.environ.get("SPOTIFY_CLIENT_ID", ""),
         ),
         encoding="utf-8",
     )
@@ -771,6 +772,7 @@ def main() -> None:
     token: str | None = None
     if args.reuse_catalog:
         print("Spotify lookup skipped; reusing existing album catalog")
+        load_env(repo_root / ".env")
     else:
         load_env(repo_root / ".env")
         client_id = os.environ.get("SPOTIFY_CLIENT_ID")
