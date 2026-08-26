@@ -1,6 +1,6 @@
 # Musiculum
 
-A Python workflow for turning genre essays in markdown into Spotify-backed HTML listening reports.
+A personal-first Python workflow for turning genre essays in markdown into Spotify-backed HTML listening reports, with optional static sharing.
 
 ## Repository Layout
 
@@ -18,12 +18,29 @@ GitHub Pages deploys the repository root from `main` using `.github/workflows/pa
 from `/` to the guide hub at `/genres/`; after the first successful workflow run, its URL is shown under the repository's
 Actions and Settings -> Pages screens.
 
-## Who Creates What
+During build/deploy, the maintainer injects the Spotify Client ID into each generated `genres/<genre>/index.html` guide
+so hosted listeners can authenticate without creating their own Spotify app.
 
-- You provide `genres/<genre>/first.md`.
-- `fetch_spotify.py` generates `spotify_albums.json`, `albums_catalog.json`, `index.html`, and `share.html`.
-- You should not hand-author the JSON outputs during normal usage.
-- Copilot is optional: use it to help draft/clean your markdown essay and album tables, then run the Python script to generate artifacts.
+## Operating Model (Personal First, Optional Sharing)
+
+- Musiculum is primarily for one maintainer curating and generating listening guides from markdown.
+- The same generated guides can be published as static files (for example on GitHub Pages) and shared with a small allow-listed friend group.
+- Spotify OAuth ownership stays with the maintainer: one app, one callback URI per host, one allow list managed in Spotify Developer Dashboard.
+
+## Who Does What
+
+### Maintainer (owner/operator)
+
+- Writes `genres/<genre>/first.md`.
+- Runs `fetch_spotify.py` to generate `spotify_albums.json`, `albums_catalog.json`, `index.html`, and `share.html`.
+- Owns Spotify app registration, redirect URI setup, and Spotify allow list management.
+- Injects the Spotify Client ID during build/deploy for the hosted guide experience.
+
+### End user (allow-listed friend/listener)
+
+- Opens the published guide.
+- Authenticates with Spotify when they want playlist export.
+- Uses the app; they do **not** create a Spotify developer app or manage callback settings.
 
 ## End-to-End Flow
 
@@ -42,7 +59,7 @@ Actions and Settings -> Pages screens.
 ## Requirements
 
 - Python 3.10+
-- Spotify API credentials via `.env` in repo root:
+- Spotify API credentials via `.env` in repo root (maintainer only):
 
 ```env
 SPOTIFY_CLIENT_ID=your_client_id
@@ -56,6 +73,13 @@ pip install -r requirements.txt
 ```
 
 If `markdown` is not installed, the script still works and will render essay text as a plain `<pre>` block.
+
+### OAuth and Deployment Ownership (Maintainer)
+
+- App registration in Spotify Developer Dashboard is maintainer-owned.
+- The callback URI is maintainer-owned and host-specific (for GitHub Pages: `https://<account>.github.io/<repository>/genres/callback.html`).
+- The Spotify allow list (development-mode users) is maintainer-owned under *Settings -> User Management*.
+- The public static deployment injects the Spotify Client ID at build/deploy time so end users only sign in and use the guide.
 
 ## Usage
 
@@ -102,7 +126,7 @@ python fetch_spotify.py emo --legacy-v1
 
 ## Sharing a Guide
 
-The guide assumes a Spotify session; the people you send it to usually have neither your server nor your developer app.
+The guide assumes a Spotify session; the people you send it to should not need maintainer responsibilities.
 Three artifacts cover that gap:
 
 - **`share.html`** — the full essay, era by era, with every note, listening cue, energy and texture, and no iframes,
@@ -111,22 +135,15 @@ Three artifacts cover that gap:
   exists. Useful for pasting into a message alongside the playlist.
 - **A Spotify playlist** — built in the browser with Authorization Code + PKCE, so no client secret is ever in the page.
 
-Playlist export needs a Spotify app of your own:
-
-1. Create an app in the [developer dashboard](https://developer.spotify.com/dashboard).
-2. Register the redirect URI the guide displays, character for character. For the published GitHub Pages site it will be
-	`https://<account>.github.io/<repository>/genres/callback.html`; every guide shares this one entry. Spotify rejects
-	`localhost`, so use `127.0.0.1` only for local development.
-3. Configure the public client ID once for the site:
-   - **GitHub Pages deploy**: set repository variable `SPOTIFY_CLIENT_ID`; the Pages workflow injects it into `genres/spotify-client.js`.
-   - **Local static testing**: copy `genres/spotify-client.js.example` to `genres/spotify-client.js` (gitignored), then set `window.__MUSICULUM_SPOTIFY_CLIENT_ID__` to your app client ID.
+For hosted sharing, listeners only need to sign in with Spotify. They do **not** create their own app or configure redirect URIs.
+Those setup tasks remain with the maintainer.
 
 Spotify validates the redirect URI only *after* sign-in, so a mismatch shows up as a Spotify-hosted error page rather
 than anything the guide can catch.
 
 A new app is in **development mode**, which Spotify limits to a Premium-account owner plus at most five listeners added
-by name and email under *Settings -> User Management*. Anyone else can reach the sign-in screen and is then refused with
-a 403. Send those people `share.html` instead.
+by name and email under *Settings -> User Management*. Anyone outside that allow list can reach sign-in and is then refused
+with a 403. Send those people `share.html` instead.
 
 ## Expected Markdown Table Format
 
