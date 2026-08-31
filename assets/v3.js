@@ -175,12 +175,12 @@
   const playlistSend = document.querySelector('#playlist-send');
   const playlistStatus = document.querySelector('#playlist-status');
   const playlistClientSource = document.querySelector('#playlist-client-source');
+  const playlistMaintainerSetup = document.querySelector('#playlist-maintainer-setup');
   const linerCopy = document.querySelector('#liner-copy');
   const linerDownload = document.querySelector('#liner-download');
   const linerStatus = document.querySelector('#liner-status');
   // One redirect URI for every guide on this host, so only a single entry needs registering with Spotify.
   const redirectUri = new URL('../callback.html', location.href).href;
-  const clientStorageKey = 'musiculum:spotify-client-id';
   const pkceKey = 'musiculum:spotify-pkce';
   const returnKey = 'musiculum:spotify-return';
   const resultKey = 'musiculum:spotify-result';
@@ -196,9 +196,9 @@
     ? window.__MUSICULUM_SPOTIFY_CLIENT_ID__.trim()
     : '';
   if (configuredClientId) {
-    localStorage.setItem(clientStorageKey, configuredClientId);
-    playlistClientSource.textContent = 'Spotify Client ID is configured for this hosted guide.';
+    playlistClientSource.textContent = 'Spotify sign-in is ready. The site maintainer owns the app configuration; listeners only need to sign in.';
   } else {
+    playlistMaintainerSetup.open = true;
     playlistClientSource.replaceChildren(
       document.createTextNode('Spotify Client ID is not configured. Maintainer setup: create '),
       Object.assign(document.createElement('code'), { textContent: 'genres/spotify-client.js' }),
@@ -399,11 +399,10 @@
   };
 
   playlistSend.addEventListener('click', async () => {
-    const clientId = localStorage.getItem(clientStorageKey)?.trim() || '';
-    if (!clientId) { setPlaylistStatus('Spotify Client ID is not configured for this guide yet.', true); return; }
+    if (!configuredClientId) { setPlaylistStatus('Spotify Client ID is not configured for this guide yet. The site maintainer needs to finish the setup shown above.', true); return; }
     if (accessToken) { await buildPlaylist(); return; }
     setPlaylistStatus('Redirecting to Spotify to sign in…');
-    await beginAuth(clientId);
+    await beginAuth(configuredClientId);
   });
 
   if (window.isSecureContext && window.crypto?.subtle) resumeAuth();

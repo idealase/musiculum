@@ -535,9 +535,10 @@ The sign-in runs entirely in this browser using PKCE, so no secret is stored in 
 <option value="single">Opening track only</option></select>
 <label class="playlist-check"><input id="playlist-public" type="checkbox"> Make the playlist public</label>
 <button class="btn playlist-send" id="playlist-send">Send to Spotify</button></div>
-<div class="playlist-setup"><p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
+<div class="playlist-setup"><p id="playlist-client-source"></p>
+<details id="playlist-maintainer-setup"><summary>Maintainer setup and OAuth troubleshooting</summary>
+<p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
 register the redirect URI below against it, then set the public Spotify Client ID for this site at build/deploy time. No client secret is needed.</p>
-<p id="playlist-client-source"></p>
 <p>Redirect URI to register: <code id="playlist-redirect"></code>
 <button class="btn btn-inline" id="playlist-redirect-copy">Copy</button></p>
 <p>Spotify matches this character for character. Paste it into <em>Edit settings &rarr; Redirect URIs</em>, press Add, then Save.
@@ -547,7 +548,7 @@ and Spotify only reports it after you have signed in. Every guide on this addres
 <p>If Spotify shows its own error page with nothing but a help link, the app itself is the problem rather than this guide.
 A new app sits in <em>development mode</em>, which requires the owning account to have Spotify Premium, and admits at most five listeners &mdash;
 each one added by name and email under <em>Settings &rarr; User Management</em>. An account that signs in without being on that list
-gets as far as the sign-in screen and is then refused.</p></div></div>
+gets as far as the sign-in screen and is then refused.</p></details></div></div>
 <output class="playlist-status" id="playlist-status" aria-live="polite">Not connected to Spotify yet.</output>
 <div class="liner-share"><div><span class="eyebrow">Send the words with the music</span>
 <h3>Liner notes for whoever you share this with</h3>

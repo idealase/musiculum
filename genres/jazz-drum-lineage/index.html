@@ -766,9 +766,10 @@ The sign-in runs entirely in this browser using PKCE, so no secret is stored in 
 <option value="single">Opening track only</option></select>
 <label class="playlist-check"><input id="playlist-public" type="checkbox"> Make the playlist public</label>
 <button class="btn playlist-send" id="playlist-send">Send to Spotify</button></div>
-<div class="playlist-setup"><p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
+<div class="playlist-setup"><p id="playlist-client-source"></p>
+<details id="playlist-maintainer-setup"><summary>Maintainer setup and OAuth troubleshooting</summary>
+<p>Create an app in the <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">Spotify developer dashboard</a>,
 register the redirect URI below against it, then set the public Spotify Client ID for this site at build/deploy time. No client secret is needed.</p>
-<p id="playlist-client-source"></p>
 <p>Redirect URI to register: <code id="playlist-redirect"></code>
 <button class="btn btn-inline" id="playlist-redirect-copy">Copy</button></p>
 <p>Spotify matches this character for character. Paste it into <em>Edit settings &rarr; Redirect URIs</em>, press Add, then Save.
@@ -778,7 +779,7 @@ and Spotify only reports it after you have signed in. Every guide on this addres
 <p>If Spotify shows its own error page with nothing but a help link, the app itself is the problem rather than this guide.
 A new app sits in <em>development mode</em>, which requires the owning account to have Spotify Premium, and admits at most five listeners &mdash;
 each one added by name and email under <em>Settings &rarr; User Management</em>. An account that signs in without being on that list
-gets as far as the sign-in screen and is then refused.</p></div></div>
+gets as far as the sign-in screen and is then refused.</p></details></div></div>
 <output class="playlist-status" id="playlist-status" aria-live="polite">Not connected to Spotify yet.</output>
 <div class="liner-share"><div><span class="eyebrow">Send the words with the music</span>
 <h3>Liner notes for whoever you share this with</h3>
@@ -978,12 +979,12 @@ For a version anyone can open in a browser, send them <a href="share.html">share
   const playlistSend = document.querySelector('#playlist-send');
   const playlistStatus = document.querySelector('#playlist-status');
   const playlistClientSource = document.querySelector('#playlist-client-source');
+  const playlistMaintainerSetup = document.querySelector('#playlist-maintainer-setup');
   const linerCopy = document.querySelector('#liner-copy');
   const linerDownload = document.querySelector('#liner-download');
   const linerStatus = document.querySelector('#liner-status');
   // One redirect URI for every guide on this host, so only a single entry needs registering with Spotify.
   const redirectUri = new URL('../callback.html', location.href).href;
-  const clientStorageKey = 'musiculum:spotify-client-id';
   const pkceKey = 'musiculum:spotify-pkce';
   const returnKey = 'musiculum:spotify-return';
   const resultKey = 'musiculum:spotify-result';
@@ -999,9 +1000,9 @@ For a version anyone can open in a browser, send them <a href="share.html">share
     ? window.__MUSICULUM_SPOTIFY_CLIENT_ID__.trim()
     : '';
   if (configuredClientId) {
-    localStorage.setItem(clientStorageKey, configuredClientId);
-    playlistClientSource.textContent = 'Spotify Client ID is configured for this hosted guide.';
+    playlistClientSource.textContent = 'Spotify sign-in is ready. The site maintainer owns the app configuration; listeners only need to sign in.';
   } else {
+    playlistMaintainerSetup.open = true;
     playlistClientSource.replaceChildren(
       document.createTextNode('Spotify Client ID is not configured. Maintainer setup: create '),
       Object.assign(document.createElement('code'), { textContent: 'genres/spotify-client.js' }),
@@ -1202,11 +1203,10 @@ For a version anyone can open in a browser, send them <a href="share.html">share
   };
 
   playlistSend.addEventListener('click', async () => {
-    const clientId = localStorage.getItem(clientStorageKey)?.trim() || '';
-    if (!clientId) { setPlaylistStatus('Spotify Client ID is not configured for this guide yet.', true); return; }
+    if (!configuredClientId) { setPlaylistStatus('Spotify Client ID is not configured for this guide yet. The site maintainer needs to finish the setup shown above.', true); return; }
     if (accessToken) { await buildPlaylist(); return; }
     setPlaylistStatus('Redirecting to Spotify to sign in…');
-    await beginAuth(clientId);
+    await beginAuth(configuredClientId);
   });
 
   if (window.isSecureContext && window.crypto?.subtle) resumeAuth();
